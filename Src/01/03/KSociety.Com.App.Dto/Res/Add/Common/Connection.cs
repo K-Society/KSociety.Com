@@ -1,0 +1,21 @@
+﻿using System;
+using KSociety.Base.App.Shared;
+using KSociety.Base.InfraSub.Shared.Interface;
+using ProtoBuf;
+
+namespace KSociety.Com.App.Dto.Res.Add.Common
+{
+    [ProtoContract]
+    public class Connection : IResponse, IKbIdObject
+    {
+        [ProtoMember(1), CompatibilityLevel(CompatibilityLevel.Level200)]
+        public Guid Id { get; set; }
+
+        public Connection() { }
+
+        public Connection(Guid connectionId)
+        {
+            Id = connectionId;
+        }
+    }
+}

@@ -1,0 +1,93 @@
+﻿@model KSociety.Com.Srv.Dto.Common.List.GridView.TagGroup
+@{
+    ViewData["Title"] = "TagGroup";
+    Layout = "~/Areas/Common/Views/Shared/_CommonLayout.cshtml";
+}
+<br />
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">TagGroup</h2>
+    </div>
+
+    <div class="col-3">
+        <a asp-action="Upsert" class="btn btn-info form-control text-white">Create New TagGroup</a>
+    </div>
+    
+    <div>
+        <form asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+                    <input type="submit" value="Search" class="btn btn-default" /> |
+                    <a asp-action="Index">Back to Full List</a>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-12 border p-3 mt-3" style="overflow: auto;">
+        <form method="post">
+            @if (Model.List != null)
+            {
+                @if (Model.List.Count > 0)
+                {
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">@Html.DisplayNameFor(model => model.List.FirstOrDefault().Name)</a>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Clock"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Update"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Enable"></label>
+                            </th>
+                            <th>
+                                <label>Edit</label>
+                            </th>
+                            <th>
+                                <label>Delete</label>
+                            </th>
+                        </tr>
+                            @foreach (var item in Model.List)
+                            {
+
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Clock)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Update)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(m => item.Enable)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                                    </td>
+                                    <td>
+                                        <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            }
+                    </table>
+                }
+                else
+                {
+                    <p>No Groups available!</p>
+                }
+            }
+            else
+            {
+                <p>No Groups available!</p>
+            }
+        </form>
+    </div>
+</div>

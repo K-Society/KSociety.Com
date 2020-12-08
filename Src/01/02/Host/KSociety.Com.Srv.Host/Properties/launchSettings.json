@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Std.Srv.Host.Com": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,102 @@
+﻿@model KSociety.Com.Srv.Dto.S7.Model.S7Connection
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml";
+}
+<br />
+<h2 class="text-info">@(Model.S7ConnectionDto.Id != Guid.Empty ? "Edit" : "Create") S7Connection</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.S7ConnectionDto.Id != Guid.Empty)
+        {
+            <input type="hidden" asp-for="S7ConnectionDto.Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.Ip"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.Ip" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.Ip" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.Enable"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.Enable" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.Enable" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.WriteEnable"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.WriteEnable" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.WriteEnable" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.CpuTypeId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7ConnectionDto.CpuTypeId, new SelectList(Model.CpuTypeId.List, "Key", "Value", Model.S7ConnectionDto.CpuTypeId), htmlAttributes: new { @class = "form-control", id = "CpuTypeId" })
+            </div>
+            <span asp-validation-for="S7ConnectionDto.CpuTypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.Rack"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.Rack" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.Rack" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.Slot"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7ConnectionDto.Slot" class="form-control" />
+            </div>
+            <span asp-validation-for="S7ConnectionDto.Slot" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7ConnectionDto.ConnectionTypeId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7ConnectionDto.ConnectionTypeId, new SelectList(Model.ConnectionTypeId.List, "Key", "Value", Model.S7ConnectionDto.ConnectionTypeId), htmlAttributes: new { @class = "form-control", id = "ConnectionTypeId" })
+            </div>
+            <span asp-validation-for="S7ConnectionDto.ConnectionTypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.S7ConnectionDto.Id != Guid.Empty ? "Update" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

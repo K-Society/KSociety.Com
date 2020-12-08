@@ -1,0 +1,3 @@
+﻿Id;AutomationTypeId;Name;Ip;Enable;WriteEnable;CpuTypeId;Rack;Slot;ConnectionTypeId
+fb6f381e-7bf4-4814-df23-08d6a214e1de;1;Plc1;192.168.0.201;True;True;40;0;1;3
+fc9967e6-32b9-4077-a018-dce37c857eff;1;CbPlc;172.16.8.205;True;True;40;0;1;3

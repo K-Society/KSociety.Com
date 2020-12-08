@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Req\Remove\Transaction\**" />
+    <EmbeddedResource Remove="Req\Remove\Transaction\**" />
+    <None Remove="Req\Remove\Transaction\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Req\Add\Common\" />
+    <Folder Include="Req\Add\Logix\" />
+    <Folder Include="Req\Add\S7\" />
+    <Folder Include="Req\Copy\" />
+    <Folder Include="Req\ModifyField\" />
+    <Folder Include="Req\Update\" />
+    <Folder Include="Res\Add\" />
+    <Folder Include="Res\Copy\" />
+    <Folder Include="Res\Update\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KSociety.Base.App.Shared" Version="0.0.5" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>

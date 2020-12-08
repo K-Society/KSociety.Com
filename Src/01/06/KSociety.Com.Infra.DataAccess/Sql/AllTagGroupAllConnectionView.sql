@@ -1,0 +1,36 @@
+﻿CREATE VIEW [std].[AllTagGroupAllConnectionView]
+	AS SELECT 
+	[std].[AllTagGroupConnectionView].[Id],
+	[TagName],
+	[std].[AllConnectionView].[Id] AS [ConnectionId],
+	[std].[AllTagGroupConnectionView].[ConnectionName],
+	[std].[AllTagGroupConnectionView].[AutomationTypeId],
+	[std].[AllTagGroupConnectionView].[AutomationName],
+	[std].[AllTagGroupConnectionView].[Ip],
+	[std].[AllTagGroupConnectionView].[WriteEnable],
+	[InputOutput], 
+	[AnalogDigitalSignal],
+	[MemoryAddress],
+	[Invoke],
+	[TagGroupId],
+	[TagGroupName],
+	[Clock],
+	[Update],
+	[DataBlock],	
+	[Offset],
+	[BitOfByte],
+	[WordLenId],
+	[WordLenName],
+	[AreaId],
+	[AreaName],
+	[StringLength],
+	--Connection
+	[std].[AllConnectionView].[ConnectionTypeId],
+	[std].[AllConnectionView].[ConnectionTypeName],
+	[std].[AllConnectionView].[CpuTypeId],
+	[std].[AllConnectionView].[CpuTypeName],
+	[std].[AllConnectionView].[Rack],
+	[std].[AllConnectionView].[Slot],
+	[std].[AllConnectionView].[Path]
+	FROM [std].[AllTagGroupConnectionView]
+	INNER JOIN [std].[AllConnectionView] ON [std].[AllConnectionView].[Id] = [std].[AllTagGroupConnectionView].[ConnectionId]	

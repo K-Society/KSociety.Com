@@ -1,0 +1,66 @@
+﻿@model KSociety.Com.Srv.Dto.Common.TagGroup
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Areas/Common/Views/Shared/_CommonLayout.cshtml";
+}
+<br />
+<h2 class="text-info">@(Model.Id != Guid.Empty ? "Edit" : "Create") TagGroup</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.Id != Guid.Empty)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Clock"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Clock" class="form-control" />
+            </div>
+            <span asp-validation-for="Clock" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Update"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Update" class="form-control" />
+            </div>
+            <span asp-validation-for="Update" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Enable"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Enable" class="form-control" />
+            </div>
+            <span asp-validation-for="Enable" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.Id != Guid.Empty ? "Update" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Add\" />
+    <Folder Include="Copy\" />
+    <Folder Include="ModifyField\" />
+    <Folder Include="Update\" />
+    <Folder Include="Transaction\" />
+    <Folder Include="Remove\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\04\KSociety.Com.Biz\KSociety.Com.Biz.csproj" />
+    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Entity\KSociety.Com.Domain.Entity.csproj" />
+    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Repository\KSociety.Com.Domain.Repository.csproj" />
+    <ProjectReference Include="..\KSociety.Com.App.Dto\KSociety.Com.App.Dto.csproj" />
+  </ItemGroup>
+
+</Project>

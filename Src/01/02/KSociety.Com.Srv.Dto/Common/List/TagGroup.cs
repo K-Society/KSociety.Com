@@ -1,0 +1,20 @@
+﻿using System.Collections.Generic;
+using KSociety.Base.Srv.Dto;
+using ProtoBuf;
+
+namespace KSociety.Com.Srv.Dto.Common.List
+{
+    [ProtoContract]
+    public class TagGroup : KbList<Common.TagGroup>
+    {
+        public TagGroup()
+        {
+
+        }
+
+        public TagGroup(List<Common.TagGroup> tagGroups)
+        {
+            List = tagGroups;
+        }
+    }
+}
