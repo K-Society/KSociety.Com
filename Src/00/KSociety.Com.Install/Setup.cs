@@ -2,11 +2,11 @@
 using WixSharp;
 using WixSharp.Bootstrapper;
 
-namespace KCom.Install
+namespace KSociety.Com.Install
 {
     internal static class Setup
     {
-        private const string Product = "KSociety.ComSystem";
+        private const string Product = "ComSystem";
         private const string Manufacturer = "K-Society";
         private static string _comSystemVersion = "1.0.0.0";
 
@@ -104,7 +104,7 @@ namespace KCom.Install
         private static string BuildMsiComPresenter()
         {
             Environment.SetEnvironmentVariable("ComPresenter",
-                @"..\..\..\..\build\KCom.Pre.Web.App\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Pre.Web.App\Release\net5.0\publish");
 
             #region [Firewall]
 
@@ -134,8 +134,8 @@ namespace KCom.Install
             Project project = new Project("ComPresenter",
                 new Dir(new Id("INSTALLDIR"), @"%ProgramFiles%\" + Manufacturer + @"\" + Product,
                     new Dir(new Id("COMPRESENTERDIR"), comPresenter, "ComPresenter",
-                        new Files(comPresenter, @"%ComPresenter%\*.*", f => !f.Contains("Std.Pre.Com.Web.App.exe")),
-                        comPresenterFile = new File(comPresenter, @"%ComPresenter%\Std.Pre.Com.Web.App.exe", serviceComPresenterFw)
+                        new Files(comPresenter, @"%ComPresenter%\*.*", f => !f.Contains("KSociety.Com.Pre.Web.App.exe")),
+                        comPresenterFile = new File(comPresenter, @"%ComPresenter%\KSociety.Com.Pre.Web.App.exe", serviceComPresenterFw)
                     ) // LOGSERVER.
                 ) // INSTALLDIR.
             )
@@ -176,7 +176,7 @@ namespace KCom.Install
         private static string BuildMsiComServer()
         {
             Environment.SetEnvironmentVariable("ComServer",
-                @"..\..\..\..\build\Std.Srv.Host.Com\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Srv.Host\Release\net5.0\publish");
 
             #region [Firewall]
 
@@ -206,8 +206,8 @@ namespace KCom.Install
             Project project = new Project("ComServer",
                 new Dir(new Id("INSTALLDIR"), @"%ProgramFiles%\" + Manufacturer + @"\" + Product,
                     new Dir(new Id("LOGSERVERDIR"), comServer, "ComServer",
-                        new Files(comServer, @"%ComServer%\*.*", f => !f.Contains("Std.Srv.Host.Com.exe")),
-                        comService = new File(comServer, @"%ComServer%\Std.Srv.Host.Com.exe", serviceComServerFw)
+                        new Files(comServer, @"%ComServer%\*.*", f => !f.Contains("KSociety.Com.Srv.Host.exe")),
+                        comService = new File(comServer, @"%ComServer%\KSociety.Com.Srv.Host.exe", serviceComServerFw)
                     ) // LOGSERVER.
                 ) // INSTALLDIR.
             )
