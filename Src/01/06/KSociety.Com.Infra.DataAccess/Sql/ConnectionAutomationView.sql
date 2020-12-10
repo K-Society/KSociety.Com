@@ -1,9 +1,9 @@
-﻿CREATE VIEW [std].[ConnectionAutomationView] AS 
+﻿CREATE VIEW [kb].[ConnectionAutomationView] AS 
 SELECT
-[std].[ConnectionReadyView].[Id],
-[std].[ConnectionReadyView].[AutomationTypeId],
-[std].[AutomationType].[Name] AS AutomationName,
-[std].[ConnectionReadyView].[Name] AS ConnectionName,
+[kb].[ConnectionReadyView].[Id],
+[kb].[ConnectionReadyView].[AutomationTypeId],
+[kb].[AutomationType].[Name] AS AutomationName,
+[kb].[ConnectionReadyView].[Name] AS ConnectionName,
 [Ip],
 [WriteEnable],
 [Path],
@@ -11,5 +11,5 @@ SELECT
 [Rack],
 [Slot],
 [ConnectionTypeId]
-FROM [std].[ConnectionReadyView]
-INNER JOIN [std].[AutomationType] ON [std].[ConnectionReadyView].[AutomationTypeId] = [std].[AutomationType].[Id]
+FROM [kb].[ConnectionReadyView]
+INNER JOIN [kb].[AutomationType] ON [kb].[ConnectionReadyView].[AutomationTypeId] = [kb].[AutomationType].[Id]

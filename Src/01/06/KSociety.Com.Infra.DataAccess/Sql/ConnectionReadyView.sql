@@ -1,4 +1,4 @@
-﻿CREATE VIEW [std].[ConnectionReadyView] AS 
+﻿CREATE VIEW [kb].[ConnectionReadyView] AS 
 SELECT
 [Id],
 [AutomationTypeId],
@@ -10,5 +10,5 @@ SELECT
 [Rack],
 [Slot],
 [ConnectionTypeId]
-FROM [std].[Connection]
-WHERE [std].[Connection].[Enable] = 1
+FROM [kb].[Connection]
+WHERE [kb].[Connection].[Enable] = 1

@@ -1,4 +1,4 @@
-﻿CREATE VIEW [std].[TagReadyView] AS 
+﻿CREATE VIEW [kb].[TagReadyView] AS 
 SELECT
 [Id],
 [AutomationTypeId],
@@ -15,5 +15,5 @@ SELECT
 [WordLenId],
 [AreaId],
 [StringLength]
-FROM [std].[Tag]
-WHERE [std].[Tag].[Enable] = 1 AND [InputOutput] <> 'U'
+FROM [kb].[Tag]
+WHERE [kb].[Tag].[Enable] = 1 AND [InputOutput] <> 'U'
