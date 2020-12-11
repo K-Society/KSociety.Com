@@ -1,6 +1,6 @@
-﻿CREATE VIEW [std].[AllTagGroupConnectionView] AS 
+﻿CREATE VIEW [kb].[AllTagGroupConnectionView] AS 
 SELECT
-[std].[TagConnectionView].[Id],
+[kb].[TagConnectionView].[Id],
 [TagName],
 [ConnectionId],
 [ConnectionName],
@@ -19,18 +19,18 @@ SELECT
 [DataBlock],
 [Offset],
 [BitOfByte],
-[std].[TagConnectionView].[WordLenId],
-[std].[TagConnectionView].[AreaId],
-[std].[TagConnectionView].[StringLength],
+[kb].[TagConnectionView].[WordLenId],
+[kb].[TagConnectionView].[AreaId],
+[kb].[TagConnectionView].[StringLength],
 [Path],
-[std].[TagGroupReadyView].[Id] AS [TagGroupId],
-[std].[TagGroupReadyView].[Name] AS [TagGroupName],
-[std].[TagGroupReadyView].[Clock] AS [Clock],
-[std].[TagGroupReadyView].[Update] AS [Update],
-[std].[S7WordLen].[WordLenName] AS [WordLenName],
-[std].[S7Area].[AreaName] AS [AreaName]
-FROM [std].[TagConnectionView]
-INNER JOIN [std].[TagGroupReadyView] ON [std].[TagConnectionView].[TagGroupId] = [std].[TagGroupReadyView].[Id]
-INNER JOIN [std].[S7WordLen] ON [std].[S7WordLen].[Id] = [std].[TagConnectionView].[WordLenId]
-INNER JOIN [std].[S7Area] ON [std].[S7Area].[Id] = [std].[TagConnectionView].[AreaId]
-WHERE [std].[TagConnectionView].[AutomationTypeId] >= 1
+[kb].[TagGroupReadyView].[Id] AS [TagGroupId],
+[kb].[TagGroupReadyView].[Name] AS [TagGroupName],
+[kb].[TagGroupReadyView].[Clock] AS [Clock],
+[kb].[TagGroupReadyView].[Update] AS [Update],
+[kb].[S7WordLen].[WordLenName] AS [WordLenName],
+[kb].[S7Area].[AreaName] AS [AreaName]
+FROM [kb].[TagConnectionView]
+INNER JOIN [kb].[TagGroupReadyView] ON [kb].[TagConnectionView].[TagGroupId] = [kb].[TagGroupReadyView].[Id]
+INNER JOIN [kb].[S7WordLen] ON [kb].[S7WordLen].[Id] = [kb].[TagConnectionView].[WordLenId]
+INNER JOIN [kb].[S7Area] ON [kb].[S7Area].[Id] = [kb].[TagConnectionView].[AreaId]
+WHERE [kb].[TagConnectionView].[AutomationTypeId] >= 1

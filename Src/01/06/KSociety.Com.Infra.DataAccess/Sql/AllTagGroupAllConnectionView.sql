@@ -1,13 +1,13 @@
-﻿CREATE VIEW [std].[AllTagGroupAllConnectionView]
+﻿CREATE VIEW [kb].[AllTagGroupAllConnectionView]
 	AS SELECT 
-	[std].[AllTagGroupConnectionView].[Id],
+	[kb].[AllTagGroupConnectionView].[Id],
 	[TagName],
-	[std].[AllConnectionView].[Id] AS [ConnectionId],
-	[std].[AllTagGroupConnectionView].[ConnectionName],
-	[std].[AllTagGroupConnectionView].[AutomationTypeId],
-	[std].[AllTagGroupConnectionView].[AutomationName],
-	[std].[AllTagGroupConnectionView].[Ip],
-	[std].[AllTagGroupConnectionView].[WriteEnable],
+	[kb].[AllConnectionView].[Id] AS [ConnectionId],
+	[kb].[AllTagGroupConnectionView].[ConnectionName],
+	[kb].[AllTagGroupConnectionView].[AutomationTypeId],
+	[kb].[AllTagGroupConnectionView].[AutomationName],
+	[kb].[AllTagGroupConnectionView].[Ip],
+	[kb].[AllTagGroupConnectionView].[WriteEnable],
 	[InputOutput], 
 	[AnalogDigitalSignal],
 	[MemoryAddress],
@@ -25,12 +25,12 @@
 	[AreaName],
 	[StringLength],
 	--Connection
-	[std].[AllConnectionView].[ConnectionTypeId],
-	[std].[AllConnectionView].[ConnectionTypeName],
-	[std].[AllConnectionView].[CpuTypeId],
-	[std].[AllConnectionView].[CpuTypeName],
-	[std].[AllConnectionView].[Rack],
-	[std].[AllConnectionView].[Slot],
-	[std].[AllConnectionView].[Path]
-	FROM [std].[AllTagGroupConnectionView]
-	INNER JOIN [std].[AllConnectionView] ON [std].[AllConnectionView].[Id] = [std].[AllTagGroupConnectionView].[ConnectionId]	
+	[kb].[AllConnectionView].[ConnectionTypeId],
+	[kb].[AllConnectionView].[ConnectionTypeName],
+	[kb].[AllConnectionView].[CpuTypeId],
+	[kb].[AllConnectionView].[CpuTypeName],
+	[kb].[AllConnectionView].[Rack],
+	[kb].[AllConnectionView].[Slot],
+	[kb].[AllConnectionView].[Path]
+	FROM [kb].[AllTagGroupConnectionView]
+	INNER JOIN [kb].[AllConnectionView] ON [kb].[AllConnectionView].[Id] = [kb].[AllTagGroupConnectionView].[ConnectionId]	

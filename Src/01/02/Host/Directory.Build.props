@@ -3,13 +3,13 @@
 
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+	<TargetFramework>net5.0</TargetFramework>
 	
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <!--MSBuildErrorsAsMessages>NU1202</MSBuildErrorsAsMessages-->
 
     <ProjectName Condition=" '$(ProjectName)' == '' ">$(MSBuildProjectName)</ProjectName>
-    <BaseOutputPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\build\$(ProjectName)\))</BaseOutputPath>
+    <BaseOutputPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\..\..\..\build\$(ProjectName)\))</BaseOutputPath>
     <BaseIntermediateOutputPath>$(BaseOutputPath)obj\</BaseIntermediateOutputPath>
     <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
 
@@ -19,13 +19,13 @@
 	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>
     <Product>K-Society Com</Product>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-	<PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/K-Society/KSociety.Com</RepositoryUrl>
-	<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
-  <Import Project="Icon.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Icon.Build.props') " />
-  <Import Project="CSharp.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('CSharp.Build.props') " />
+<!--
+  <Import Project="Cpp.Build.props" Condition=" Exists('Cpp.Build.props') And '$(MSBuildProjectExtension)'=='.vcxproj' " />
+  <Import Project="Wix.Build.props" Condition=" Exists('Wix.Build.props') And '$(MSBuildProjectExtension)'=='.wixproj' " />
+  <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
+-->
   <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
 </Project>

@@ -1,8 +1,8 @@
-﻿CREATE VIEW [std].[TagGroupReadyView] AS 
+﻿CREATE VIEW [kb].[TagGroupReadyView] AS 
 SELECT
 [Id],
 [Name], 
 [Clock], 
 [Update]
-FROM [std].[TagGroup]
-WHERE [std].[TagGroup].[Enable] = 1
+FROM [kb].[TagGroup]
+WHERE [kb].[TagGroup].[Enable] = 1
