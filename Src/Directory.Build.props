@@ -3,7 +3,7 @@
 
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFramework>net5.0</TargetFramework>
 	
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <!--MSBuildErrorsAsMessages>NU1202</MSBuildErrorsAsMessages-->
