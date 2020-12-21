@@ -1,13 +1,12 @@
-using System;
-using System.Net;
-using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using Serilog.Formatting.Json;
-using KSociety.Log.Serilog.Sinks.RabbitMq;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Host
 {
@@ -68,27 +67,34 @@ namespace KSociety.Com.Srv.Host
 
             //var queueDeclareParameters =new QueueDeclareParameters(false, false, true);
 
-            global::Serilog.Log.Logger = new LoggerConfiguration()
-                .WriteTo.Console()
-                .WriteTo.RabbitMq((connectionFactory, exchangeDeclareParameters, queueDeclareParameters, sinkConfiguration) => {
-                    connectionFactory.HostName = "localhost";
-                    connectionFactory.UserName = "KSociety";
-                    connectionFactory.Password = "KSociety";
-                    connectionFactory.AutomaticRecoveryEnabled = true;
-                    connectionFactory.NetworkRecoveryInterval = TimeSpan.FromSeconds(10);
-                    connectionFactory.RequestedHeartbeat = TimeSpan.FromSeconds(10);
-                    connectionFactory.DispatchConsumersAsync = true;
+            var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-                    exchangeDeclareParameters.BrokerName = "k-society_log";
-                    exchangeDeclareParameters.ExchangeType = KSociety.Base.EventBus.ExchangeType.Direct.ToString().ToLower();
-                    exchangeDeclareParameters.ExchangeDurable = false;
-                    exchangeDeclareParameters.ExchangeAutoDelete = true;
+            global::Serilog.Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
 
-                    queueDeclareParameters.QueueDurable = false;
-                    queueDeclareParameters.QueueExclusive = false;
-                    queueDeclareParameters.QueueAutoDelete = true;
-                    sinkConfiguration.TextFormatter = new JsonFormatter();
-                }).MinimumLevel.Verbose().CreateLogger();
+
+            //global::Serilog.Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.Console()
+            //    .WriteTo.RabbitMq((connectionFactory, exchangeDeclareParameters, queueDeclareParameters, sinkConfiguration) => {
+            //        connectionFactory.HostName = "localhost";
+            //        connectionFactory.UserName = "KSociety";
+            //        connectionFactory.Password = "KSociety";
+            //        connectionFactory.AutomaticRecoveryEnabled = true;
+            //        connectionFactory.NetworkRecoveryInterval = TimeSpan.FromSeconds(10);
+            //        connectionFactory.RequestedHeartbeat = TimeSpan.FromSeconds(10);
+            //        connectionFactory.DispatchConsumersAsync = true;
+
+            //        exchangeDeclareParameters.BrokerName = "k-society_log";
+            //        exchangeDeclareParameters.ExchangeType = KSociety.Base.EventBus.ExchangeType.Direct.ToString().ToLower();
+            //        exchangeDeclareParameters.ExchangeDurable = false;
+            //        exchangeDeclareParameters.ExchangeAutoDelete = true;
+
+            //        queueDeclareParameters.QueueDurable = false;
+            //        queueDeclareParameters.QueueExclusive = false;
+            //        queueDeclareParameters.QueueAutoDelete = true;
+            //        sinkConfiguration.TextFormatter = new JsonFormatter();
+            //    }).MinimumLevel.Verbose().CreateLogger();
 
 
             try
