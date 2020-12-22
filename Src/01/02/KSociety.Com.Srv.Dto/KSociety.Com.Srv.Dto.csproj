@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="0.0.16" />
-    <PackageReference Include="KSociety.Base.Srv.Dto" Version="0.0.16" />
+    <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="0.0.17" />
+    <PackageReference Include="KSociety.Base.Srv.Dto" Version="0.0.17" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
