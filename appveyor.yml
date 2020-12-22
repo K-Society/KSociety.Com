@@ -25,7 +25,7 @@ build_script:
   - appveyor.cmd
   
 after_build:
-  - ps: $comSystemPath = Resolve-Path .\Src\00\KSociety.Com.Install\ComSystem.exe; $array = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$comSystemPath").FileVersion -split "\."; $env:ComSystemVersion = $array[0] + "." + $array[1] + "." + $array[2]; Write-Host "$env:ComSystemVersion"
+  - ps: $comSystemPath = Resolve-Path .\Src\00\KSociety.Com.Install\K-Society.Com.exe; $array = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$comSystemPath").FileVersion -split "\."; $env:ComSystemVersion = $array[0] + "." + $array[1] + "." + $array[2]; Write-Host "$env:ComSystemVersion"
 
 test: off
 
@@ -55,13 +55,13 @@ deploy:
     skip_symbols: true
     symbol_server: 
     artifact: /.*\.nupkg/
-    #on:
-    #  branch: develop
+    on:
+      branch: /^(master|develop)$/
       
   - provider: NuGet
     server: 
     api_key:
-      secure: +NbQ3kD9/VDnNqedksoKuGtJ/IWtd85TcMonzRhuuamabzjBatEKbCJ13Xz5SIe1
+      secure: LkTQAh9Tv+IgjhWD5LBCRs7Jc9y5eDKDo+TdnwjuBXVdfuin8jpb1ewtMb30pMxz
     skip_symbols: true
     symbol_server: 
     artifact: /.*\.nupkg/
@@ -81,4 +81,3 @@ deploy:
     on:
       branch: master
       #appveyor_repo_tag: true
-

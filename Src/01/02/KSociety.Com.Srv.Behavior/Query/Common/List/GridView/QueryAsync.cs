@@ -66,15 +66,22 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.List.GridView
         public async ValueTask<Srv.Dto.Common.List.GridView.TagGroup> TagGroupAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
+            try
+            {
+                var repository = await _commonTagGroupRepository.GetAllTagGroupAsync();
+                var tagGroupItems = repository.ToList().Select(
+                    tagGroup => _mapper.Map<Srv.Dto.Common.TagGroup>(tagGroup)
+                ).ToList();
 
-            var repository = await _commonTagGroupRepository.GetAllTagGroupAsync();
-            var tagGroupItems = repository.ToList().Select(
-                tagGroup => _mapper.Map<Srv.Dto.Common.TagGroup>(tagGroup)
-            ).ToList();
+                var output = new Srv.Dto.Common.List.GridView.TagGroup(tagGroupItems);
 
-            var output = new Srv.Dto.Common.List.GridView.TagGroup(tagGroupItems);
-
-            return output;
+                return output;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " - " + ex.StackTrace);
+                return await new ValueTask<Dto.Common.List.GridView.TagGroup>();
+            }
         }
 
         public async ValueTask<Srv.Dto.Common.List.GridView.Connection> ConnectionAsync(CallContext context = default)

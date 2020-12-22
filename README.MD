@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/j0ijesfagg4g2i82?svg=true)](https://ci.appveyor.com/project/maniglia/std-master-com)
+[![Build status](https://ci.appveyor.com/api/projects/status/vw2wblpsxwihbuoo?svg=true)](https://ci.appveyor.com/project/maniglia/ksociety-com)
 # KSociety.Com - Communication System
 #### A .NET full stack software for Siemens S7 Connectivity
 
@@ -12,7 +12,7 @@ This system needs RabbitMQ as a message-oriented middleware.
 
 ## Introduction
 
-This is the README file for Std.Master.Com. It support .Net 5.0
+This is the README file for KSociety.Com. It support .Net 5.0
 
 ## Supported frameworks
 

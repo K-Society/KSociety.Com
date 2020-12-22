@@ -2,11 +2,11 @@
 using WixSharp;
 using WixSharp.Bootstrapper;
 
-namespace KCom.Install
+namespace KSociety.Com.Install
 {
     internal static class Setup
     {
-        private const string Product = "KSociety.ComSystem";
+        private const string Product = "Com";
         private const string Manufacturer = "K-Society";
         private static string _comSystemVersion = "1.0.0.0";
 
@@ -23,7 +23,7 @@ namespace KCom.Install
             var productMsiRegistryX64 = BuildMsiRegistryX64();
 
             var bootstrapper =
-                new Bundle(Product,
+                new Bundle(Manufacturer + "." + Product,
                     new MsiPackage(productMsiUninstall)
                     {
                         DisplayInternalUI = false,
@@ -53,14 +53,15 @@ namespace KCom.Install
                     Manufacturer = Manufacturer,
                     AboutUrl = "https://github.com/K-Society/KSociety.Com",
                     Id = "Com_System",
+                    //IconFile = @"..\..\..\assets\icon\icon.ico",
                     Variables = new []
                     {
                         new Variable("UNINSTALLER_PATH",
-                            $@"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}\{"Package Cache"}\{"[WixBundleProviderKey]"}\{Product}.exe")
+                            $@"{Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)}\{"Package Cache"}\{"[WixBundleProviderKey]"}\{Manufacturer + "." + Product}.exe")
                     }
                 };
 
-            bootstrapper.Build(Product + ".exe");
+            bootstrapper.Build(Manufacturer + "." + Product + ".exe");
 
             if (System.IO.File.Exists(productMsiUninstall))
             {
@@ -104,7 +105,7 @@ namespace KCom.Install
         private static string BuildMsiComPresenter()
         {
             Environment.SetEnvironmentVariable("ComPresenter",
-                @"..\..\..\..\build\KCom.Pre.Web.App\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Pre.Web.App\Release\net5.0\publish");
 
             #region [Firewall]
 
@@ -133,9 +134,9 @@ namespace KCom.Install
 
             Project project = new Project("ComPresenter",
                 new Dir(new Id("INSTALLDIR"), @"%ProgramFiles%\" + Manufacturer + @"\" + Product,
-                    new Dir(new Id("COMPRESENTERDIR"), comPresenter, "ComPresenter",
-                        new Files(comPresenter, @"%ComPresenter%\*.*", f => !f.Contains("Std.Pre.Com.Web.App.exe")),
-                        comPresenterFile = new File(comPresenter, @"%ComPresenter%\Std.Pre.Com.Web.App.exe", serviceComPresenterFw)
+                    new Dir(new Id("COMPRESENTERDIR"), comPresenter, "Presenter",
+                        new Files(comPresenter, @"%ComPresenter%\*.*", f => !f.Contains("KSociety.Com.Pre.Web.App.exe")),
+                        comPresenterFile = new File(comPresenter, @"%ComPresenter%\KSociety.Com.Pre.Web.App.exe", serviceComPresenterFw)
                     ) // LOGSERVER.
                 ) // INSTALLDIR.
             )
@@ -154,8 +155,8 @@ namespace KCom.Install
             comPresenterFile.ServiceInstaller = new ServiceInstaller
             {
                 Id = "COMPRESENTER",
-                Name = "ComPresenter",
-                Description = Manufacturer + " Com Presenter",
+                Name = Manufacturer + "." + Product + "Presenter",
+                Description = Manufacturer + "." + Product + " - Presenter",
                 StartOn = null,
                 StopOn = SvcEvent.InstallUninstall_Wait,
                 RemoveOn = SvcEvent.Uninstall_Wait,
@@ -176,7 +177,7 @@ namespace KCom.Install
         private static string BuildMsiComServer()
         {
             Environment.SetEnvironmentVariable("ComServer",
-                @"..\..\..\..\build\Std.Srv.Host.Com\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Srv.Host\Release\net5.0\publish");
 
             #region [Firewall]
 
@@ -205,9 +206,9 @@ namespace KCom.Install
 
             Project project = new Project("ComServer",
                 new Dir(new Id("INSTALLDIR"), @"%ProgramFiles%\" + Manufacturer + @"\" + Product,
-                    new Dir(new Id("LOGSERVERDIR"), comServer, "ComServer",
-                        new Files(comServer, @"%ComServer%\*.*", f => !f.Contains("Std.Srv.Host.Com.exe")),
-                        comService = new File(comServer, @"%ComServer%\Std.Srv.Host.Com.exe", serviceComServerFw)
+                    new Dir(new Id("LOGSERVERDIR"), comServer, "Server",
+                        new Files(comServer, @"%ComServer%\*.*", f => !f.Contains("KSociety.Com.Srv.Host.exe")),
+                        comService = new File(comServer, @"%ComServer%\KSociety.Com.Srv.Host.exe", serviceComServerFw)
                     ) // LOGSERVER.
                 ) // INSTALLDIR.
             )
@@ -226,8 +227,8 @@ namespace KCom.Install
             comService.ServiceInstaller = new ServiceInstaller
             {
                 Id = "COMSERVER",
-                Name = "ComServer",
-                Description = Manufacturer + " Com Server",
+                Name = Manufacturer + "." + Product + "Server",
+                Description = Manufacturer + "." + Product + " - Server",
                 StartOn = null,
                 StopOn = SvcEvent.InstallUninstall_Wait,
                 RemoveOn = SvcEvent.Uninstall_Wait,

@@ -11,6 +11,9 @@
 *.sln.docstates
 *.exe
 *.wixpdb
+*.wxs
+*.g.wxs
+*.msi
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -20,8 +20,8 @@
     <Product>K-Society Com</Product>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <PackageProjectUrl>https://github.com/K-Society/KCom</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/K-Society/KCom</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/K-Society/KSociety.Com</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

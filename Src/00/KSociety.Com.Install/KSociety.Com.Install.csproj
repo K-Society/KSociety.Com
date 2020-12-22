@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9212B4A3-BF27-4F41-8090-3AACEAEE95E2}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>KCom.Install</RootNamespace>
-    <AssemblyName>KCom.Install</AssemblyName>
+    <RootNamespace>KSociety.Com.Install</RootNamespace>
+    <AssemblyName>KSociety.Com.Install</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>

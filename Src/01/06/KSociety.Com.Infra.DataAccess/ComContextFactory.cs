@@ -22,7 +22,7 @@ namespace KSociety.Com.Infra.DataAccess
             //Console.WriteLine(@"ComContextFactory: ");
             var optionBuilder = new DbContextOptionsBuilder<ComContext>();
             optionBuilder
-                .UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=Master.ComDb;AttachDbFilename=C:\DB\ComDb.mdf;Integrated Security=True;Connect Timeout=30;");
+                .UseSqlServer(@"Server=(LocalDB)\MSSQLLocalDB;Database=KSociety.Com;AttachDbFilename=C:\DB\ComDb.mdf;Integrated Security=True;Connect Timeout=30;");
             return new ComContext(optionBuilder.Options);
         }
     }
