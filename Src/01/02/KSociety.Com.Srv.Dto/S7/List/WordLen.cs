@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.S7.List
 {
     [ProtoContract]
-    public class WordLen : KbList<S7.WordLen>
+    public class WordLen : ObjectList<S7.WordLen>
     {
         public WordLen()
         {

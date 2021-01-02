@@ -38,10 +38,10 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         {
             if (id == null)
             {
-                ConnectionModel = await _connectionQueryModel.FindAsync(new KbIdObject(Guid.Empty));
+                ConnectionModel = await _connectionQueryModel.FindAsync(new IdObject(Guid.Empty));
                 return View(ConnectionModel);
             }
-            ConnectionModel = await _connectionQueryModel.FindAsync(new KbIdObject(id.Value));
+            ConnectionModel = await _connectionQueryModel.FindAsync(new IdObject(id.Value));
             if (ConnectionModel.ConnectionDto == null)
             {
                 return NotFound();
@@ -62,7 +62,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
                 }
                 else
                 {
-                    var connection = await _connectionQueryModel.FindAsync(new KbIdObject(ConnectionModel.ConnectionDto.Id));
+                    var connection = await _connectionQueryModel.FindAsync(new IdObject(ConnectionModel.ConnectionDto.Id));
                     if (connection == null)
                     {
                         //await _tagGroup.AddAsync(TagGroup.GetAddReq());
@@ -81,7 +81,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
         public async ValueTask<IActionResult> Delete(Guid id)
         {
-            var connection = await _connectionQueryModel.FindAsync(new KbIdObject(id));
+            var connection = await _connectionQueryModel.FindAsync(new IdObject(id));
 
             if (connection == null)
             {

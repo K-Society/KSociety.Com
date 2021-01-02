@@ -37,7 +37,7 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
             _s7ConnectionRepository = s7ConnectionRepository;
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> ConnectionTypeIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<int, string>> ConnectionTypeIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -45,13 +45,13 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
 
             var connectionTypeDns = connectionTypeRepository.ToList().Select(
                     connectionType =>
-                        new KbKeyValuePair<int, string>(connectionType.Id, connectionType.Name))
+                        new KeyValuePair<int, string>(connectionType.Id, connectionType.Name))
                 .ToList();
 
-            return new KbListKeyValuePair<int, string>(connectionTypeDns);
+            return new ListKeyValuePair<int, string>(connectionTypeDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> CpuTypeIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<int, string>> CpuTypeIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -59,13 +59,13 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
 
             var cpuTypeDns = cpuTypeRepository.ToList().Select(
                     cpuType =>
-                        new KbKeyValuePair<int, string>(cpuType.Id, cpuType.CpuTypeName))
+                        new KeyValuePair<int, string>(cpuType.Id, cpuType.CpuTypeName))
                 .ToList();
 
-            return new KbListKeyValuePair<int, string>(cpuTypeDns);
+            return new ListKeyValuePair<int, string>(cpuTypeDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> AreaIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<int, string>> AreaIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -73,13 +73,13 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
 
             var areaDns = areaRepository.ToList().Select(
                     area =>
-                        new KbKeyValuePair<int, string>(area.Id, area.AreaName))
+                        new KeyValuePair<int, string>(area.Id, area.AreaName))
                 .ToList();
 
-            return new KbListKeyValuePair<int, string>(areaDns);
+            return new ListKeyValuePair<int, string>(areaDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> WordLenIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<int, string>> WordLenIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -87,13 +87,13 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
 
             var wordLenDns = wordLenRepository.ToList().Select(
                     wordLen =>
-                        new KbKeyValuePair<int, string>(wordLen.Id, wordLen.WordLenName))
+                        new KeyValuePair<int, string>(wordLen.Id, wordLen.WordLenName))
                 .ToList();
 
-            return new KbListKeyValuePair<int, string>(wordLenDns);
+            return new ListKeyValuePair<int, string>(wordLenDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<Guid, string>> S7ConnectionIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<Guid, string>> S7ConnectionIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -101,10 +101,10 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.ListKeyValue
 
             var s7ConnectionDns = s7ConnectionRepository.ToList().Select(
                     s7Connection =>
-                        new KbKeyValuePair<Guid, string>(s7Connection.Id, s7Connection.Name))
+                        new KeyValuePair<Guid, string>(s7Connection.Id, s7Connection.Name))
                 .ToList();
 
-            return new KbListKeyValuePair<Guid, string>(s7ConnectionDns);
+            return new ListKeyValuePair<Guid, string>(s7ConnectionDns);
         }
     }
 }

@@ -3,7 +3,7 @@ using KSociety.Base.Srv.Dto;
 
 namespace KSociety.Com.Pre.Model.Interface.Query.Common.ListKeyValue
 {
-    public interface IAutomationTypeId : IKbQueryKeyValueModel<KbListKeyValuePair<int, string>, int, string>
+    public interface IAutomationTypeId : IQueryKeyValueModel<ListKeyValuePair<int, string>, int, string>
     {
     }
 }

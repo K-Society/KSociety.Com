@@ -1,9 +1,9 @@
-﻿CREATE VIEW [kb].[ConnectionAutomationView] AS 
+﻿CREATE VIEW [ksociety].[ConnectionAutomationView] AS 
 SELECT
-[kb].[ConnectionReadyView].[Id],
-[kb].[ConnectionReadyView].[AutomationTypeId],
-[kb].[AutomationType].[Name] AS AutomationName,
-[kb].[ConnectionReadyView].[Name] AS ConnectionName,
+[ksociety].[ConnectionReadyView].[Id],
+[ksociety].[ConnectionReadyView].[AutomationTypeId],
+[ksociety].[AutomationType].[Name] AS AutomationName,
+[ksociety].[ConnectionReadyView].[Name] AS ConnectionName,
 [Ip],
 [WriteEnable],
 [Path],
@@ -11,5 +11,5 @@ SELECT
 [Rack],
 [Slot],
 [ConnectionTypeId]
-FROM [kb].[ConnectionReadyView]
-INNER JOIN [kb].[AutomationType] ON [kb].[ConnectionReadyView].[AutomationTypeId] = [kb].[AutomationType].[Id]
+FROM [ksociety].[ConnectionReadyView]
+INNER JOIN [ksociety].[AutomationType] ON [ksociety].[ConnectionReadyView].[AutomationTypeId] = [ksociety].[AutomationType].[Id]

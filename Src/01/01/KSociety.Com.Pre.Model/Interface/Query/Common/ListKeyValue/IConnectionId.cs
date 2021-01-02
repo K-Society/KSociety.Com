@@ -4,7 +4,7 @@ using System;
 
 namespace KSociety.Com.Pre.Model.Interface.Query.Common.ListKeyValue
 {
-    public interface IConnectionId : IKbQueryKeyValueModel<KbListKeyValuePair<Guid, string>, Guid, string>
+    public interface IConnectionId : IQueryKeyValueModel<ListKeyValuePair<Guid, string>, Guid, string>
     {
     }
 }

@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.S7
 {
     [ProtoContract]
-    public class S7Tag : IKbAppDtoObject<
+    public class S7Tag : IAppDtoObject<
         App.Dto.Req.Remove.S7.S7Tag,
         App.Dto.Req.Add.S7.S7Tag,
         App.Dto.Req.Update.S7.S7Tag,

@@ -28,7 +28,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             _commonConnectionRepository = commonConnectionRepository;
         }
 
-        public Srv.Dto.Common.TagGroup GetTagGroupById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.Common.TagGroup GetTagGroupById(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.TagGroup tagGroup = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
@@ -44,7 +44,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             return new TagGroup(tagGroup.Id, tagGroup.Name, tagGroup.Clock, tagGroup.Update, tagGroup.Enable);
         }
 
-        public Srv.Dto.Common.Tag GetTagById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.Common.Tag GetTagById(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.Tag tag = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
@@ -60,7 +60,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             return new Tag(tag.Id, tag.AutomationTypeId, tag.Name, tag.ConnectionId, tag.Enable, tag.InputOutput, tag.AnalogDigitalSignal, tag.MemoryAddress, tag.Invoke, tag.TagGroupId);
         }
 
-        public Srv.Dto.Common.Connection GetConnectionById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.Common.Connection GetConnectionById(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.Connection connection = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);

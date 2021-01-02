@@ -1,6 +1,6 @@
-﻿CREATE VIEW [kb].[TagGroupConnectionView] AS 
+﻿CREATE VIEW [ksociety].[TagGroupConnectionView] AS 
 SELECT
-[kb].[TagConnectionView].[Id],
+[ksociety].[TagConnectionView].[Id],
 [TagName],
 [ConnectionId],
 [ConnectionName],
@@ -16,9 +16,9 @@ SELECT
 [InputOutput], 
 [AnalogDigitalSignal],
 [Invoke],
-[kb].[TagGroupReadyView].[Id] AS [TagGroupId],
-[kb].[TagGroupReadyView].[Name] AS [TagGroupName],
-[kb].[TagGroupReadyView].[Clock] AS [Clock],
-[kb].[TagGroupReadyView].[Update] AS [Update]
-FROM [kb].[TagConnectionView]
-INNER JOIN [kb].[TagGroupReadyView] ON [kb].[TagConnectionView].[TagGroupId] = [kb].[TagGroupReadyView].[Id]
+[ksociety].[TagGroupReadyView].[Id] AS [TagGroupId],
+[ksociety].[TagGroupReadyView].[Name] AS [TagGroupName],
+[ksociety].[TagGroupReadyView].[Clock] AS [Clock],
+[ksociety].[TagGroupReadyView].[Update] AS [Update]
+FROM [ksociety].[TagConnectionView]
+INNER JOIN [ksociety].[TagGroupReadyView] ON [ksociety].[TagConnectionView].[TagGroupId] = [ksociety].[TagGroupReadyView].[Id]

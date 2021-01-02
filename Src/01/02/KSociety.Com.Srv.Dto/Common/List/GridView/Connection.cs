@@ -5,10 +5,10 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common.List.GridView
 {
     [ProtoContract]
-    public class Connection : KbList<Common.Connection>
+    public class Connection : ObjectList<Common.Connection>
     {
         [ProtoMember(1)]
-        public KbListKeyValuePair<int, string> AutomationTypeId { get; set; }
+        public ListKeyValuePair<int, string> AutomationTypeId { get; set; }
 
         public Connection()
         {
@@ -16,11 +16,11 @@ namespace KSociety.Com.Srv.Dto.Common.List.GridView
 
         public Connection(
             List<Common.Connection> connections,
-            List<KbKeyValuePair<int, string>> automationTypeId
+            List<Base.Srv.Dto.KeyValuePair<int, string>> automationTypeId
         )
         {
             List = connections;
-            AutomationTypeId = new KbListKeyValuePair<int, string>(automationTypeId);
+            AutomationTypeId = new ListKeyValuePair<int, string>(automationTypeId);
         }
     }
 }

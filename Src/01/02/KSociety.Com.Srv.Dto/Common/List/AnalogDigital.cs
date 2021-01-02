@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common.List
 {
     [ProtoContract]
-    public class AnalogDigital : KbList<Common.AnalogDigital>
+    public class AnalogDigital : ObjectList<Common.AnalogDigital>
     {
         public AnalogDigital()
         {

@@ -180,7 +180,7 @@ namespace KSociety.Com.Srv.Behavior.Query.S7
         //    );
         //}
 
-        public async ValueTask<Srv.Dto.S7.S7Connection> GetS7ConnectionByIdAsync(KbIdObject idObject, CallContext context = default)
+        public async ValueTask<Srv.Dto.S7.S7Connection> GetS7ConnectionByIdAsync(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.S7.S7Connection s7Connection = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
@@ -196,7 +196,7 @@ namespace KSociety.Com.Srv.Behavior.Query.S7
             return new Srv.Dto.S7.S7Connection(s7Connection.Id, s7Connection.AutomationTypeId, s7Connection.Name, s7Connection.Ip, s7Connection.Enable, s7Connection.WriteEnable, s7Connection.CpuTypeId, s7Connection.Rack, s7Connection.Slot, s7Connection.ConnectionTypeId);
         }
 
-        public async ValueTask<Srv.Dto.S7.S7Tag> GetS7TagByIdAsync(KbIdObject idObject, CallContext context = default)
+        public async ValueTask<Srv.Dto.S7.S7Tag> GetS7TagByIdAsync(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.S7.S7Tag s7Tag = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);

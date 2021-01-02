@@ -9,9 +9,9 @@ namespace KSociety.Com.Srv.Contract.Query.Common.Model
     public interface IQueryAsync
     {
         [Operation]
-        ValueTask<Srv.Dto.Common.Model.Tag> GetTagModelByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.Common.Model.Tag> GetTagModelByIdAsync(IdObject idObject, CallContext context = default);
 
         [Operation]
-        ValueTask<Srv.Dto.Common.Model.Connection> GetConnectionModelByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.Common.Model.Connection> GetConnectionModelByIdAsync(IdObject idObject, CallContext context = default);
     }
 }

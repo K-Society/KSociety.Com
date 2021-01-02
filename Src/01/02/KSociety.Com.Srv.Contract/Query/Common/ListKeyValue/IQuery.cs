@@ -9,21 +9,21 @@ namespace KSociety.Com.Srv.Contract.Query.Common.ListKeyValue
     public interface IQuery
     {
         [Operation]
-        KbListKeyValuePair<int, string> AutomationTypeId(CallContext context = default);
+        ListKeyValuePair<int, string> AutomationTypeId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<string, string> InputOutput(CallContext context = default);
+        ListKeyValuePair<string, string> InputOutput(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<string, string> AnalogDigitalSignal(CallContext context = default);
+        ListKeyValuePair<string, string> AnalogDigitalSignal(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<Guid, string> ConnectionId(CallContext context = default);
+        ListKeyValuePair<Guid, string> ConnectionId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<Guid, string> TagGroupId(CallContext context = default);
+        ListKeyValuePair<Guid, string> TagGroupId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<byte, string> BitOfByte(CallContext context = default);
+        ListKeyValuePair<byte, string> BitOfByte(CallContext context = default);
     }
 }

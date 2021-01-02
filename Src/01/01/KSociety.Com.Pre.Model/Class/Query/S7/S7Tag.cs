@@ -19,7 +19,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.S7
             _tag = new Srv.Agent.Query.S7.S7Tag(agentConfiguration, loggerFactory);
         }
 
-        public Srv.Dto.S7.S7Tag Find(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.S7.S7Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("Find: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
             try
@@ -34,7 +34,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.S7
             return new Srv.Dto.S7.S7Tag();
         }
 
-        public async ValueTask<Srv.Dto.S7.S7Tag> FindAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.S7.S7Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("FindAsync: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + idObject.Id);
             try

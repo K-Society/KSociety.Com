@@ -10,21 +10,21 @@ namespace KSociety.Com.Srv.Contract.Query.Common.ListKeyValue
     public interface IQueryAsync
     {
         [Operation]
-        ValueTask<KbListKeyValuePair<int, string>> AutomationTypeIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<int, string>> AutomationTypeIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<string, string>> InputOutputAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<string, string>> InputOutputAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<string, string>> AnalogDigitalSignalAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<string, string>> AnalogDigitalSignalAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<Guid, string>> ConnectionIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<Guid, string>> ConnectionIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<Guid, string>> TagGroupIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<Guid, string>> TagGroupIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<byte, string>> BitOfByteAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<byte, string>> BitOfByteAsync(CallContext context = default);
     }
 }

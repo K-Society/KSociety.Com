@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.Bit> bitConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) bitConfiguration, "Bit", KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) bitConfiguration, "Bit", DatabaseContext.DefaultSchema);
 
             bitConfiguration.HasKey(k => k.BitOfByte);
             bitConfiguration.Property(p => p.BitOfByte).ValueGeneratedNever().IsRequired();

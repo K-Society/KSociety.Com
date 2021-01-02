@@ -1,8 +1,8 @@
-﻿CREATE VIEW [kb].[TagGroupReadyView] AS 
+﻿CREATE VIEW [ksociety].[TagGroupReadyView] AS 
 SELECT
 [Id],
 [Name], 
 [Clock], 
 [Update]
-FROM [kb].[TagGroup]
-WHERE [kb].[TagGroup].[Enable] = 1
+FROM [ksociety].[TagGroup]
+WHERE [ksociety].[TagGroup].[Enable] = 1

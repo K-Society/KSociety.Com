@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.View.Joined.List.GridView
 {
     [ProtoContract]
-    public class AllTagGroupAllConnection : KbList<Joined.AllTagGroupAllConnection>
+    public class AllTagGroupAllConnection : ObjectList<Joined.AllTagGroupAllConnection>
     {
         public AllTagGroupAllConnection() { }
 

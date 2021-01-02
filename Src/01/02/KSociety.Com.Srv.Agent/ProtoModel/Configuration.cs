@@ -14,44 +14,44 @@ namespace KSociety.Com.Srv.Agent.ProtoModel
             try
             {
                 //Common
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.Common.TagGroup>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.Common.TagGroup>), true)
                     .AddSubType(120, typeof(Srv.Dto.Common.List.GridView.TagGroup));
 
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.Common.Tag>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.Common.Tag>), true)
                     .AddSubType(121, typeof(Srv.Dto.Common.List.GridView.Tag));
 
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.Common.Connection>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.Common.Connection>), true)
                     .AddSubType(122, typeof(Srv.Dto.Common.List.GridView.Connection));
 
                 //S7
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.S7.S7Tag>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.S7.S7Tag>), true)
                     .AddSubType(123, typeof(Srv.Dto.S7.List.GridView.S7Tag));
 
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.S7.S7Connection>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.S7.S7Connection>), true)
                     .AddSubType(124, typeof(Srv.Dto.S7.List.GridView.S7Connection));
 
                 //Logix
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.Logix.LogixTag>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.Logix.LogixTag>), true)
                     .AddSubType(125, typeof(Srv.Dto.Logix.List.GridView.LogixTag));
 
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(KbList<Srv.Dto.Logix.LogixConnection>), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ObjectList<Srv.Dto.Logix.LogixConnection>), true)
                     .AddSubType(126, typeof(Srv.Dto.Logix.List.GridView.LogixConnection));
 
                 //View
                 ProtoBuf.Meta.RuntimeTypeModel.Default
-                    .Add(typeof(IKbList<Srv.Dto.View.Common.TagGroupReady>), true)
+                    .Add(typeof(IList<Srv.Dto.View.Common.TagGroupReady>), true)
                     .AddSubType(127, typeof(Srv.Dto.View.Common.List.GridView.TagGroupReady));
 
                 ProtoBuf.Meta.RuntimeTypeModel.Default
-                    .Add(typeof(IKbList<Srv.Dto.View.Common.TagGroupReady>), true)
+                    .Add(typeof(IList<Srv.Dto.View.Common.TagGroupReady>), true)
                     .AddSubType(117, typeof(Srv.Dto.View.Common.List.TagGroupReady));
 
                 ProtoBuf.Meta.RuntimeTypeModel.Default
-                    .Add(typeof(IKbList<Srv.Dto.View.Joined.AllConnection>), true)
+                    .Add(typeof(IList<Srv.Dto.View.Joined.AllConnection>), true)
                     .AddSubType(128, typeof(Srv.Dto.View.Joined.List.GridView.AllConnection));
 
                 ProtoBuf.Meta.RuntimeTypeModel.Default
-                    .Add(typeof(IKbList<Srv.Dto.View.Joined.AllTagGroupAllConnection>), true)
+                    .Add(typeof(IList<Srv.Dto.View.Joined.AllTagGroupAllConnection>), true)
                     .AddSubType(129, typeof(Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection));
 
                 //

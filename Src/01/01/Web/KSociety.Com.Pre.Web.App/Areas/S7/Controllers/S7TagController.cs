@@ -36,10 +36,10 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
             
             if (id == null)
             {
-                TagModel = await _tagQueryModel.FindAsync(new KbIdObject(Guid.Empty));
+                TagModel = await _tagQueryModel.FindAsync(new IdObject(Guid.Empty));
                 return View(TagModel);
             }
-            TagModel = await _tagQueryModel.FindAsync(new KbIdObject(id.Value));
+            TagModel = await _tagQueryModel.FindAsync(new IdObject(id.Value));
             if (TagModel == null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
                 }
                 else
                 {
-                    var tagGroup = await _tagQueryModel.FindAsync(new KbIdObject(TagModel.S7TagDto.Id));
+                    var tagGroup = await _tagQueryModel.FindAsync(new IdObject(TagModel.S7TagDto.Id));
                     if (tagGroup == null)
                     {
                         //await _tagGroup.AddAsync(TagGroup.GetAddReq());
@@ -78,7 +78,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public async ValueTask<IActionResult> Delete(Guid id)
         {
-            var tag = await _tagQueryModel.FindAsync(new KbIdObject(id));
+            var tag = await _tagQueryModel.FindAsync(new IdObject(id));
 
             if (tag == null)
             {

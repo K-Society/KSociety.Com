@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.S7.List
 {
     [ProtoContract]
-    public class ConnectionType : KbList<S7.ConnectionType>
+    public class ConnectionType : ObjectList<S7.ConnectionType>
     {
         public ConnectionType()
         {
