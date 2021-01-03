@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.S7.WordLen> wordLenConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) wordLenConfiguration, "S7WordLen", KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) wordLenConfiguration, "S7WordLen", DatabaseContext.DefaultSchema);
 
             wordLenConfiguration.HasKey(k => k.Id); //.HasMaxLength(12);
             wordLenConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

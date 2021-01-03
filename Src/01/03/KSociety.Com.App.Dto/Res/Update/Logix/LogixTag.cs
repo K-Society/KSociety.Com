@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.App.Dto.Res.Update.Logix
 {
     [ProtoContract]
-    public class LogixTag : IResponse, IKbIdObject
+    public class LogixTag : IResponse, IIdObject
     {
         [ProtoMember(1), CompatibilityLevel(CompatibilityLevel.Level200)]
         public Guid Id { get; set; }

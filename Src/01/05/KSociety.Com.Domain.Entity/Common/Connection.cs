@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KSociety.Base.Domain.Shared.Class;
 
 namespace KSociety.Com.Domain.Entity.Common
 {
-    public class Connection : KbEntity
+    public class Connection : Base.Domain.Shared.Class.Entity
     {
         #region [Propery]
         //public Guid ConnectionId { get; protected set; }

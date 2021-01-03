@@ -17,7 +17,7 @@ namespace KSociety.Com.Srv.Agent.Query.S7.Model
 
         }
 
-        public Srv.Dto.S7.Model.S7Connection GetS7ConnectionModelById(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.S7.Model.S7Connection GetS7ConnectionModelById(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
@@ -38,7 +38,7 @@ namespace KSociety.Com.Srv.Agent.Query.S7.Model
             return new Dto.S7.Model.S7Connection();
         }
 
-        public async ValueTask<Srv.Dto.S7.Model.S7Connection> GetS7ConnectionModelByIdAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.S7.Model.S7Connection> GetS7ConnectionModelByIdAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Command.Common
 {
-    public interface ITagGroup : IKbCommandModel<
+    public interface ITagGroup : ICommandModel<
         App.Dto.Req.Remove.Common.TagGroup,
         App.Dto.Req.Add.Common.TagGroup,
         App.Dto.Res.Add.Common.TagGroup,

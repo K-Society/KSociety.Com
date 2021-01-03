@@ -17,12 +17,12 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common.ListKeyValue
             _connection = new Srv.Agent.Query.Common.ListKeyValue.ConnectionId(agentConfiguration, loggerFactory);
         }
 
-        public KbListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
+        public ListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
         {
             return _connection.LoadData();
         }
 
-        public async ValueTask<KbListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+        public async ValueTask<ListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
             return await _connection.LoadDataAsync();
         }

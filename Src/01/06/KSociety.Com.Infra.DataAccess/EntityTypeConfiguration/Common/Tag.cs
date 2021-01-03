@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.Tag> tagConfiguration)
         {
 
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) tagConfiguration, "Tag", KSociety.Base.Infra.Shared.Class.KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) tagConfiguration, "Tag", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
 
             tagConfiguration.HasKey(k => k.Id);
             tagConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();

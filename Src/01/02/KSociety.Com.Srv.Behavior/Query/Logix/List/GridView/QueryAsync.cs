@@ -78,35 +78,35 @@ namespace KSociety.Com.Srv.Behavior.Query.Logix.List.GridView
 
             var commonAnalogDigitalDns = commonAnalogDigitalRepository.ToList().Select(
                     commonAnalogDigital =>
-                        new KbKeyValuePair<string, string>(commonAnalogDigital.AnalogDigitalSignal, commonAnalogDigital.AnalogDigitalSignal))
+                        new KeyValuePair<string, string>(commonAnalogDigital.AnalogDigitalSignal, commonAnalogDigital.AnalogDigitalSignal))
                 .ToList();
 
             var commonTagGroupRepository = await _commonTagGroupRepository.GetAllTagGroupAsync();
 
             var commonTagGroupDns = commonTagGroupRepository.ToList().Select(
                     commonTagGroup =>
-                        new KbKeyValuePair<Guid, string>(commonTagGroup.Id, commonTagGroup.Name))
+                        new KeyValuePair<Guid, string>(commonTagGroup.Id, commonTagGroup.Name))
                 .ToList();
 
             var commonInOutRepository = await _commonInOutRepository.GetAllInOutAsync();
 
             var commonInOutDns = commonInOutRepository.ToList().Select(
                     commonInOut =>
-                        new KbKeyValuePair<string, string>(commonInOut.InputOutput, commonInOut.InputOutputName))
+                        new KeyValuePair<string, string>(commonInOut.InputOutput, commonInOut.InputOutputName))
                 .ToList();
 
             var commonConnectionRepository = await _commonConnectionRepository.GetAllConnectionAsync();
 
             var commonConnectionDns = commonConnectionRepository.ToList().Select(
                     commonConnection =>
-                        new KbKeyValuePair<Guid, string>(commonConnection.Id, commonConnection.Name))
+                        new KeyValuePair<Guid, string>(commonConnection.Id, commonConnection.Name))
                 .ToList();
 
             var commonBitRepository = await _commonBitRepository.GetAllBitAsync();
 
             var commonBitDns = commonBitRepository.ToList().Select(
                     commonBit =>
-                        new KbKeyValuePair<byte, string>(commonBit.BitOfByte, commonBit.BitName))
+                        new KeyValuePair<byte, string>(commonBit.BitOfByte, commonBit.BitName))
                 .ToList();
 
             var output = new Srv.Dto.Logix.List.GridView.LogixTag(

@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.S7.List
 {
     [ProtoContract]
-    public class BlockArea : KbList<S7.BlockArea>
+    public class BlockArea : ObjectList<S7.BlockArea>
     {
         public BlockArea()
         {

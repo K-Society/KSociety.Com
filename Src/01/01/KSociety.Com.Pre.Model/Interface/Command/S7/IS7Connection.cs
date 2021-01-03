@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Command.S7
 {
-    public interface IS7Connection : IKbCommandModel<
+    public interface IS7Connection : ICommandModel<
         App.Dto.Req.Remove.S7.S7Connection,
         App.Dto.Req.Add.S7.S7Connection,
         App.Dto.Res.Add.S7.S7Connection,

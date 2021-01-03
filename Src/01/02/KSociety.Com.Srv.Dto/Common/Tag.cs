@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common
 {
     [ProtoContract]
-    public class Tag : IKbAppDtoObject<
+    public class Tag : IAppDtoObject<
         App.Dto.Req.Remove.Common.Tag, 
         App.Dto.Req.Add.Common.Tag,
         App.Dto.Req.Update.Common.Tag,

@@ -8,12 +8,12 @@ namespace KSociety.Com.Srv.Contract.Query.S7
     public interface IQuery
     {
         //[OperationContract]
-        //Dto.Common.TagGroup GetTagGroupById(KbIdObject idObject, CallContext context = default);
+        //Dto.Common.TagGroup GetTagGroupById(IdObject idObject, CallContext context = default);
 
         [Operation]
-        Srv.Dto.S7.S7Connection GetS7ConnectionById(KbIdObject idObject, CallContext context = default);
+        Srv.Dto.S7.S7Connection GetS7ConnectionById(IdObject idObject, CallContext context = default);
 
         [Operation]
-        Srv.Dto.S7.S7Tag GetS7TagById(KbIdObject idObject, CallContext context = default);
+        Srv.Dto.S7.S7Tag GetS7TagById(IdObject idObject, CallContext context = default);
     }
 }

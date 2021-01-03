@@ -19,7 +19,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common
             _tagGroup = new Srv.Agent.Query.Common.TagGroup(agentConfiguration, loggerFactory);
         }
 
-        public Srv.Dto.Common.TagGroup Find(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.Common.TagGroup Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("Find: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
             try
@@ -34,7 +34,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common
             return new Srv.Dto.Common.TagGroup();
         }
 
-        public async ValueTask<Srv.Dto.Common.TagGroup> FindAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.Common.TagGroup> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("FindAsync: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + idObject.Id);
             try

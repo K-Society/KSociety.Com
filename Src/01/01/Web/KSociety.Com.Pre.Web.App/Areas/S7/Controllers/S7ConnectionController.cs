@@ -40,10 +40,10 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
             
             if (id == null)
             {
-                S7ConnectionModel = await _s7ConnectionQueryModel.FindAsync(new KbIdObject(Guid.Empty));
+                S7ConnectionModel = await _s7ConnectionQueryModel.FindAsync(new IdObject(Guid.Empty));
                 return View(S7ConnectionModel);
             }
-            S7ConnectionModel = await _s7ConnectionQueryModel.FindAsync(new KbIdObject(id.Value));
+            S7ConnectionModel = await _s7ConnectionQueryModel.FindAsync(new IdObject(id.Value));
             if (S7ConnectionModel == null)
             {
                 return NotFound();
@@ -64,7 +64,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
                 }
                 else
                 {
-                    var s7Connection = await _s7ConnectionQueryModel.FindAsync(new KbIdObject(S7ConnectionModel.S7ConnectionDto.Id));
+                    var s7Connection = await _s7ConnectionQueryModel.FindAsync(new IdObject(S7ConnectionModel.S7ConnectionDto.Id));
                     if (s7Connection == null)
                     {
                         //await _tagGroup.AddAsync(TagGroup.GetAddReq());
@@ -83,7 +83,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public async ValueTask<IActionResult> Delete(Guid id)
         {
-            var s7Connection = await _s7ConnectionQueryModel.FindAsync(new KbIdObject(id));
+            var s7Connection = await _s7ConnectionQueryModel.FindAsync(new IdObject(id));
 
             if (s7Connection == null)
             {

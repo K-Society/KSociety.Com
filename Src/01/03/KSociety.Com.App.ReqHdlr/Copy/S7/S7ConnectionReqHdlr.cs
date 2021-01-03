@@ -16,11 +16,11 @@ namespace KSociety.Com.App.ReqHdlr.Copy.S7
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<S7ConnectionReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly IConnection _connectionRepository;
         private readonly IMapper _mapper;
 
-        public S7ConnectionReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, IConnection connectionRepository, IMapper mapper)
+        public S7ConnectionReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, IConnection connectionRepository, IMapper mapper)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<S7ConnectionReqHdlr>();

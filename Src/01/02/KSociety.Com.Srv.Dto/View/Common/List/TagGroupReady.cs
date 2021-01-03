@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.View.Common.List
 {
     [ProtoContract]
-    public class TagGroupReady : KbList<Common.TagGroupReady>
+    public class TagGroupReady : ObjectList<Common.TagGroupReady>
     {
         public TagGroupReady()
         {

@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common
 {
     [ProtoContract]
-    public class Connection : IKbAppDtoObject<
+    public class Connection : IAppDtoObject<
         App.Dto.Req.Remove.Common.Connection, 
         App.Dto.Req.Add.Common.Connection,
         App.Dto.Req.Update.Common.Connection,

@@ -14,10 +14,10 @@ namespace KSociety.Com.App.ReqHdlr.ModifyField.Logix
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<LogixTagReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly ITag _tagRepository;
 
-        public LogixTagReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, ITag tagRepository)
+        public LogixTagReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, ITag tagRepository)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<LogixTagReqHdlr>();

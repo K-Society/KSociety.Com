@@ -16,11 +16,11 @@ namespace KSociety.Com.App.ReqHdlr.Update.Logix
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<LogixConnectionReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly IConnection _connectionRepository;
         private readonly IMapper _mapper;
 
-        public LogixConnectionReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, IConnection connectionRepository, IMapper mapper)
+        public LogixConnectionReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, IConnection connectionRepository, IMapper mapper)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<LogixConnectionReqHdlr>();

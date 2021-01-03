@@ -12,13 +12,13 @@ namespace KSociety.Com.Srv.Dto.S7.Model
         public S7.S7Connection S7ConnectionDto { get; set; }
 
         [ProtoMember(2)]
-        public KbListKeyValuePair<int, string> AutomationTypeId { get; set; }
+        public ListKeyValuePair<int, string> AutomationTypeId { get; set; }
 
         [ProtoMember(3)]
-        public KbListKeyValuePair<int, string> ConnectionTypeId { get; set; }
+        public ListKeyValuePair<int, string> ConnectionTypeId { get; set; }
 
         [ProtoMember(4)]
-        public KbListKeyValuePair<int, string> CpuTypeId { get; set; }
+        public ListKeyValuePair<int, string> CpuTypeId { get; set; }
 
         public S7Connection()
         {
@@ -27,15 +27,15 @@ namespace KSociety.Com.Srv.Dto.S7.Model
 
         public S7Connection(
             S7.S7Connection s7Connection,
-            List<KbKeyValuePair<int, string>> automationTypeId,
-            List<KbKeyValuePair<int, string>> connectionTypeId,
-            List<KbKeyValuePair<int, string>> cpuTypeId
+            List<Base.Srv.Dto.KeyValuePair<int, string>> automationTypeId,
+            List<Base.Srv.Dto.KeyValuePair<int, string>> connectionTypeId,
+            List<Base.Srv.Dto.KeyValuePair<int, string>> cpuTypeId
         )
         {
             S7ConnectionDto = s7Connection;
-            AutomationTypeId = new KbListKeyValuePair<int, string>(automationTypeId);
-            ConnectionTypeId = new KbListKeyValuePair<int, string>(connectionTypeId);
-            CpuTypeId = new KbListKeyValuePair<int, string>(cpuTypeId);
+            AutomationTypeId = new ListKeyValuePair<int, string>(automationTypeId);
+            ConnectionTypeId = new ListKeyValuePair<int, string>(connectionTypeId);
+            CpuTypeId = new ListKeyValuePair<int, string>(cpuTypeId);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace KSociety.Com.Srv.Dto.Common.Model
         public Common.Connection ConnectionDto { get; set; }
 
         [ProtoMember(2)]
-        public KbListKeyValuePair<int, string> AutomationTypeId { get; set; }
+        public ListKeyValuePair<int, string> AutomationTypeId { get; set; }
 
         public Connection()
         {
@@ -20,11 +20,11 @@ namespace KSociety.Com.Srv.Dto.Common.Model
 
         public Connection(
             Common.Connection connection,
-            List<KbKeyValuePair<int, string>> automationTypeId
+            List<Base.Srv.Dto.KeyValuePair<int, string>> automationTypeId
         )
         {
             ConnectionDto = connection;
-            AutomationTypeId = new KbListKeyValuePair<int, string>(automationTypeId);
+            AutomationTypeId = new ListKeyValuePair<int, string>(automationTypeId);
         }
     }
 }

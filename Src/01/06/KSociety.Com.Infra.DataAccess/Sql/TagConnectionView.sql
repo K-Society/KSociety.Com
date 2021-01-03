@@ -1,18 +1,18 @@
-﻿CREATE VIEW [kb].[TagConnectionView] AS 
+﻿CREATE VIEW [ksociety].[TagConnectionView] AS 
 SELECT
-[kb].[TagReadyView].[Id],
-[kb].[TagReadyView].[Name] AS [TagName],
-[kb].[TagReadyView].[ConnectionId],
-[kb].[ConnectionAutomationView].[ConnectionName],
-[kb].[ConnectionAutomationView].[AutomationTypeId],
-[kb].[ConnectionAutomationView].[AutomationName],
-[kb].[ConnectionAutomationView].[Ip],
-[kb].[ConnectionAutomationView].[WriteEnable],
-[kb].[ConnectionAutomationView].[Path],
-[kb].[ConnectionAutomationView].[CpuTypeId],
-[kb].[ConnectionAutomationView].[Rack],
-[kb].[ConnectionAutomationView].[Slot],
-[kb].[ConnectionAutomationView].[ConnectionTypeId],
+[ksociety].[TagReadyView].[Id],
+[ksociety].[TagReadyView].[Name] AS [TagName],
+[ksociety].[TagReadyView].[ConnectionId],
+[ksociety].[ConnectionAutomationView].[ConnectionName],
+[ksociety].[ConnectionAutomationView].[AutomationTypeId],
+[ksociety].[ConnectionAutomationView].[AutomationName],
+[ksociety].[ConnectionAutomationView].[Ip],
+[ksociety].[ConnectionAutomationView].[WriteEnable],
+[ksociety].[ConnectionAutomationView].[Path],
+[ksociety].[ConnectionAutomationView].[CpuTypeId],
+[ksociety].[ConnectionAutomationView].[Rack],
+[ksociety].[ConnectionAutomationView].[Slot],
+[ksociety].[ConnectionAutomationView].[ConnectionTypeId],
 [InputOutput], 
 [AnalogDigitalSignal],
 [MemoryAddress],
@@ -24,5 +24,5 @@ SELECT
 [WordLenId],
 [AreaId],
 [StringLength]
-FROM [kb].[TagReadyView]
-INNER JOIN [kb].[ConnectionAutomationView] ON [kb].[TagReadyView].[ConnectionId] = [kb].[ConnectionAutomationView].[Id]
+FROM [ksociety].[TagReadyView]
+INNER JOIN [ksociety].[ConnectionAutomationView] ON [ksociety].[TagReadyView].[ConnectionId] = [ksociety].[ConnectionAutomationView].[Id]

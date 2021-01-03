@@ -9,9 +9,9 @@ namespace KSociety.Com.Srv.Contract.Query.S7.Model
     public interface IQueryAsync
     {
         [Operation]
-        ValueTask<Srv.Dto.S7.Model.S7Tag> GetS7TagModelByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.S7.Model.S7Tag> GetS7TagModelByIdAsync(IdObject idObject, CallContext context = default);
 
         [Operation]
-        ValueTask<Srv.Dto.S7.Model.S7Connection> GetS7ConnectionModelByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.S7.Model.S7Connection> GetS7ConnectionModelByIdAsync(IdObject idObject, CallContext context = default);
     }
 }

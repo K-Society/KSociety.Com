@@ -17,7 +17,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         }
 
-        public KbListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
+        public ListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
             CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
@@ -37,7 +37,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
             return null;
         }
 
-        public async ValueTask<KbListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+        public async ValueTask<ListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
             CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);

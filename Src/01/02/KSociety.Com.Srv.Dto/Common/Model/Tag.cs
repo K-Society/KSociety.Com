@@ -13,19 +13,19 @@ namespace KSociety.Com.Srv.Dto.Common.Model
         public Common.Tag TagDto { get; set; }
 
         [ProtoMember(2)]
-        public KbListKeyValuePair<int, string> AutomationTypeId { get; set; }
+        public ListKeyValuePair<int, string> AutomationTypeId { get; set; }
 
         [ProtoMember(3)]
-        public KbListKeyValuePair<string, string> AnalogDigitalSignal { get; set; }
+        public ListKeyValuePair<string, string> AnalogDigitalSignal { get; set; }
 
         [ProtoMember(4)]
-        public KbListKeyValuePair<Guid, string> TagGroupId { get; set; }
+        public ListKeyValuePair<Guid, string> TagGroupId { get; set; }
 
         [ProtoMember(5)]
-        public KbListKeyValuePair<string, string> InputOutput { get; set; }
+        public ListKeyValuePair<string, string> InputOutput { get; set; }
 
         [ProtoMember(6)]
-        public KbListKeyValuePair<Guid, string> ConnectionId { get; set; }
+        public ListKeyValuePair<Guid, string> ConnectionId { get; set; }
 
         public Tag()
         {
@@ -33,19 +33,19 @@ namespace KSociety.Com.Srv.Dto.Common.Model
 
         public Tag(
             Common.Tag tag,
-            List<KbKeyValuePair<int, string>> automationTypeId,
-            List<KbKeyValuePair<string, string>> analogDigitalSignal,
-            List<KbKeyValuePair<Guid, string>> tagGroupId,
-            List<KbKeyValuePair<string, string>> inputOutput,
-            List<KbKeyValuePair<Guid, string>> connectionId
+            List<Base.Srv.Dto.KeyValuePair<int, string>> automationTypeId,
+            List<Base.Srv.Dto.KeyValuePair<string, string>> analogDigitalSignal,
+            List<Base.Srv.Dto.KeyValuePair<Guid, string>> tagGroupId,
+            List<Base.Srv.Dto.KeyValuePair<string, string>> inputOutput,
+            List<Base.Srv.Dto.KeyValuePair<Guid, string>> connectionId
         )
         {
             TagDto = tag;
-            AutomationTypeId = new KbListKeyValuePair<int, string>(automationTypeId);
-            AnalogDigitalSignal = new KbListKeyValuePair<string, string>(analogDigitalSignal);
-            TagGroupId = new KbListKeyValuePair<Guid, string>(tagGroupId);
-            InputOutput = new KbListKeyValuePair<string, string>(inputOutput);
-            ConnectionId = new KbListKeyValuePair<Guid, string>(connectionId);
+            AutomationTypeId = new ListKeyValuePair<int, string>(automationTypeId);
+            AnalogDigitalSignal = new ListKeyValuePair<string, string>(analogDigitalSignal);
+            TagGroupId = new ListKeyValuePair<Guid, string>(tagGroupId);
+            InputOutput = new ListKeyValuePair<string, string>(inputOutput);
+            ConnectionId = new ListKeyValuePair<Guid, string>(connectionId);
         }
     }
 }

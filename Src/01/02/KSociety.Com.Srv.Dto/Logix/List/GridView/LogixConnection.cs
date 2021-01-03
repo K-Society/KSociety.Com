@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Logix.List.GridView
 {
     [ProtoContract]
-    public class LogixConnection : KbList<Logix.LogixConnection>
+    public class LogixConnection : ObjectList<Logix.LogixConnection>
     {
         public LogixConnection()
         {
@@ -13,15 +13,15 @@ namespace KSociety.Com.Srv.Dto.Logix.List.GridView
 
         public LogixConnection(
             List<Logix.LogixConnection> connections
-            //List<KbKeyValuePair<Guid, string>> connectionId,
-            //List<KbKeyValuePair<int, string>> connectionTypes,
-            //List<KbKeyValuePair<int, string>> cpuTypes
+            //List<KeyValuePair<Guid, string>> connectionId,
+            //List<KeyValuePair<int, string>> connectionTypes,
+            //List<KeyValuePair<int, string>> cpuTypes
         )
         {
             List = connections;
-            //ConnectionId = new KbListKeyValuePair<Guid, string>(connectionId);
-            //ConnectionTypeId = new KbListKeyValuePair<int, string>(connectionTypes);
-            //CpuTypeId = new KbListKeyValuePair<int, string>(cpuTypes);
+            //ConnectionId = new ListKeyValuePair<Guid, string>(connectionId);
+            //ConnectionTypeId = new ListKeyValuePair<int, string>(connectionTypes);
+            //CpuTypeId = new ListKeyValuePair<int, string>(cpuTypes);
         }
     }
 }

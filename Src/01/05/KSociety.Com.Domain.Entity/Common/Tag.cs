@@ -7,7 +7,7 @@ using KSociety.Com.Domain.Entity.Event;
 
 namespace KSociety.Com.Domain.Entity.Common
 {
-    public class Tag : KbEntityNotifier //<NotifyTagEvent>
+    public class Tag : EntityNotifier //<NotifyTagEvent>
     {
         #region [Propery]
         //public Guid TagId { get; protected set; }

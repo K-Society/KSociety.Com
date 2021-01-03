@@ -66,7 +66,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
             {
                 return View(TagGroup);
             }
-            TagGroup = await _tagGroupQuery.FindAsync(new KbIdObject(id.Value));
+            TagGroup = await _tagGroupQuery.FindAsync(new IdObject(id.Value));
             if (TagGroup == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
                 }
                 else
                 {
-                    var tagGroup = await _tagGroupQuery.FindAsync(new KbIdObject(TagGroup.Id));
+                    var tagGroup = await _tagGroupQuery.FindAsync(new IdObject(TagGroup.Id));
                     if (tagGroup == null)
                     {
                         //await _tagGroup.AddAsync(TagGroup.GetAddReq());
@@ -107,7 +107,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
         public async ValueTask<IActionResult> Delete(Guid id)
         {
-            var tagGroup = await _tagGroupQuery.FindAsync(new KbIdObject(id));
+            var tagGroup = await _tagGroupQuery.FindAsync(new IdObject(id));
 
             if (tagGroup == null)
             {

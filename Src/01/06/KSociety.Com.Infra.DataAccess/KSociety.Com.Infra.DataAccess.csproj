@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Csv\S7Connection.csv" />
+    <None Remove="Csv\S7Tag.csv" />
+    <None Remove="Csv\S7TagSeparaBarre.csv" />
+    <None Remove="Csv\TagGroup.csv" />
     <None Remove="Sql\AllConnectionView.sql" />
     <None Remove="Sql\AllTagGroupAllConnectionView.sql" />
     <None Remove="Sql\AllTagGroupConnectionView.sql" />
@@ -20,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Csv\TagGroup.csv" />
     <EmbeddedResource Include="Csv\S7Connection.csv" />
     <EmbeddedResource Include="Csv\S7Tag.csv" />
     <EmbeddedResource Include="Csv\S7TagSeparaBarre.csv" />
+    <EmbeddedResource Include="Csv\TagGroup.csv" />
     <EmbeddedResource Include="Sql\AllConnectionView.sql" />
     <EmbeddedResource Include="Sql\AllTagGroupAllConnectionView.sql" />
     <EmbeddedResource Include="Sql\AllTagGroupConnectionView.sql" />
@@ -33,10 +37,6 @@
     <EmbeddedResource Include="Sql\TagGroupConnectionView.sql" />
     <EmbeddedResource Include="Sql\TagGroupReadyView.sql" />
     <EmbeddedResource Include="Sql\TagReadyView.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntityTypeConfiguration\Modbus\" />
   </ItemGroup>
 
   <ItemGroup>

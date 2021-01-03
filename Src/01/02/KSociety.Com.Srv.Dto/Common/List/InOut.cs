@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common.List
 {
     [ProtoContract]
-    public class InOut : KbList<Common.InOut>
+    public class InOut : ObjectList<Common.InOut>
     {
         public InOut()
         {

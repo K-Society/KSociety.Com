@@ -9,18 +9,18 @@ namespace KSociety.Com.Srv.Contract.Query.S7.ListKeyValue
     public interface IQuery
     {
         [Operation]
-        KbListKeyValuePair<int, string> ConnectionTypeId(CallContext context = default);
+        ListKeyValuePair<int, string> ConnectionTypeId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<int, string> CpuTypeId(CallContext context = default);
+        ListKeyValuePair<int, string> CpuTypeId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<int, string> AreaId(CallContext context = default);
+        ListKeyValuePair<int, string> AreaId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<int, string> WordLenId(CallContext context = default);
+        ListKeyValuePair<int, string> WordLenId(CallContext context = default);
 
         [Operation]
-        KbListKeyValuePair<Guid, string> S7ConnectionId(CallContext context = default);
+        ListKeyValuePair<Guid, string> S7ConnectionId(CallContext context = default);
     }
 }

@@ -16,12 +16,12 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common.ListKeyValue
             _inOut = new Srv.Agent.Query.Common.ListKeyValue.InputOutput(agentConfiguration, loggerFactory);
         }
 
-        public KbListKeyValuePair<string, string> LoadData(CancellationToken cancellationToken = default)
+        public ListKeyValuePair<string, string> LoadData(CancellationToken cancellationToken = default)
         {
             return _inOut.LoadData();
         }
 
-        public async ValueTask<KbListKeyValuePair<string, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+        public async ValueTask<ListKeyValuePair<string, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
             return await _inOut.LoadDataAsync();
         }

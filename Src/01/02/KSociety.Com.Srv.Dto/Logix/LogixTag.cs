@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Logix
 {
     [ProtoContract]
-    public class LogixTag : IKbAppDtoObject<
+    public class LogixTag : IAppDtoObject<
         App.Dto.Req.Remove.Logix.LogixTag,
         App.Dto.Req.Add.Logix.LogixTag,
         App.Dto.Req.Update.Logix.LogixTag,

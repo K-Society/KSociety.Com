@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Command.S7
 {
-    public interface IS7Tag : IKbCommandModel<
+    public interface IS7Tag : ICommandModel<
         App.Dto.Req.Remove.S7.S7Tag,
         App.Dto.Req.Add.S7.S7Tag,
         App.Dto.Res.Add.S7.S7Tag,

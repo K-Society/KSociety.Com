@@ -29,7 +29,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             _commonConnectionRepository = commonConnectionRepository;
         }
 
-        public async ValueTask<Srv.Dto.Common.TagGroup> GetTagGroupByIdAsync(KbIdObject idObject, CallContext context = default)
+        public async ValueTask<Srv.Dto.Common.TagGroup> GetTagGroupByIdAsync(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.TagGroup tagGroup = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
@@ -45,7 +45,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             return new TagGroup(tagGroup.Id, tagGroup.Name, tagGroup.Clock, tagGroup.Update, tagGroup.Enable);
         }
 
-        public async ValueTask<Srv.Dto.Common.Tag> GetTagByIdAsync(KbIdObject idObject, CallContext context = default)
+        public async ValueTask<Srv.Dto.Common.Tag> GetTagByIdAsync(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.Tag tag = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
@@ -61,7 +61,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common
             return new Tag(tag.Id, tag.AutomationTypeId, tag.Name, tag.ConnectionId, tag.Enable, tag.InputOutput, tag.AnalogDigitalSignal, tag.MemoryAddress, tag.Invoke, tag.TagGroupId);
         }
 
-        public async ValueTask<Srv.Dto.Common.Connection> GetConnectionByIdAsync(KbIdObject idObject, CallContext context = default)
+        public async ValueTask<Srv.Dto.Common.Connection> GetConnectionByIdAsync(IdObject idObject, CallContext context = default)
         {
             Domain.Entity.Common.Connection connection = null;
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);

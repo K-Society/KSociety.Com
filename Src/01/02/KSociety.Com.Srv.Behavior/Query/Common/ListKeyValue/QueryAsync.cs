@@ -39,7 +39,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
             _commonBitRepository = commonBitRepository;
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> AutomationTypeIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<int, string>> AutomationTypeIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -47,13 +47,13 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var commonAutomationTypeDns = commonAutomationTypeRepository.ToList().Select(
                     commonAutomationType =>
-                        new KbKeyValuePair<int, string>(commonAutomationType.Id, commonAutomationType.Name))
+                        new KeyValuePair<int, string>(commonAutomationType.Id, commonAutomationType.Name))
                 .ToList();
 
-            return new KbListKeyValuePair<int, string>(commonAutomationTypeDns);
+            return new ListKeyValuePair<int, string>(commonAutomationTypeDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<string, string>> InputOutputAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<string, string>> InputOutputAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -61,13 +61,13 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var commonInOutDns = commonInOutRepository.ToList().Select(
                     commonInOut =>
-                        new KbKeyValuePair<string, string>(commonInOut.InputOutput, commonInOut.InputOutputName))
+                        new KeyValuePair<string, string>(commonInOut.InputOutput, commonInOut.InputOutputName))
                 .ToList();
 
-            return new KbListKeyValuePair<string, string>(commonInOutDns);
+            return new ListKeyValuePair<string, string>(commonInOutDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<string, string>> AnalogDigitalSignalAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<string, string>> AnalogDigitalSignalAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -75,13 +75,13 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var commonAnalogDigitalDns = commonAnalogDigitalRepository.ToList().Select(
                     commonAnalogDigital =>
-                        new KbKeyValuePair<string, string>(commonAnalogDigital.AnalogDigitalSignal, commonAnalogDigital.AnalogDigitalSignal))
+                        new KeyValuePair<string, string>(commonAnalogDigital.AnalogDigitalSignal, commonAnalogDigital.AnalogDigitalSignal))
                 .ToList();
 
-            return new KbListKeyValuePair<string, string>(commonAnalogDigitalDns);
+            return new ListKeyValuePair<string, string>(commonAnalogDigitalDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<Guid, string>> ConnectionIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<Guid, string>> ConnectionIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -89,13 +89,13 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var commonConnectionDns = commonConnectionRepository.ToList().Select(
                     commonConnection =>
-                        new KbKeyValuePair<Guid, string>(commonConnection.Id, commonConnection.Name))
+                        new KeyValuePair<Guid, string>(commonConnection.Id, commonConnection.Name))
                 .ToList();
 
-            return new KbListKeyValuePair<Guid, string>(commonConnectionDns);
+            return new ListKeyValuePair<Guid, string>(commonConnectionDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<Guid, string>> TagGroupIdAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<Guid, string>> TagGroupIdAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -103,13 +103,13 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var commonTagGroupDns = commonTagGroupRepository.ToList().Select(
                     commonTagGroup =>
-                        new KbKeyValuePair<Guid, string>(commonTagGroup.Id, commonTagGroup.Name))
+                        new KeyValuePair<Guid, string>(commonTagGroup.Id, commonTagGroup.Name))
                 .ToList();
 
-            return new KbListKeyValuePair<Guid, string>(commonTagGroupDns);
+            return new ListKeyValuePair<Guid, string>(commonTagGroupDns);
         }
 
-        public async ValueTask<KbListKeyValuePair<byte, string>> BitOfByteAsync(CallContext context = default)
+        public async ValueTask<ListKeyValuePair<byte, string>> BitOfByteAsync(CallContext context = default)
         {
             _logger.LogTrace("Query: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
 
@@ -117,10 +117,10 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.ListKeyValue
 
             var bitOfByteDns = bitOfByteRepository.ToList().Select(
                     bitOfByte =>
-                        new KbKeyValuePair<byte, string>(bitOfByte.BitOfByte, bitOfByte.BitName))
+                        new KeyValuePair<byte, string>(bitOfByte.BitOfByte, bitOfByte.BitName))
                 .ToList();
 
-            return new KbListKeyValuePair<byte, string>(bitOfByteDns);
+            return new ListKeyValuePair<byte, string>(bitOfByteDns);
         }
     }
 }

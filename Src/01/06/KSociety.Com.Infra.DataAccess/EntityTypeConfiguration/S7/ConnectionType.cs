@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.S7.ConnectionType> connectionTypeConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionTypeConfiguration, "S7ConnectionType", KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionTypeConfiguration, "S7ConnectionType", DatabaseContext.DefaultSchema);
 
             connectionTypeConfiguration.HasKey(k => k.Id);
             connectionTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

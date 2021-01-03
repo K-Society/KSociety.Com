@@ -6,64 +6,64 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.S7.List.GridView
 {
     [ProtoContract]
-    public class S7Tag : KbList<S7.S7Tag>
+    public class S7Tag : ObjectList<S7.S7Tag>
     {
         //[DataMember]
-        //public KbListKeyValuePair<Guid, string> StdTagId { get; set; }
+        //public ListKeyValuePair<Guid, string> StdTagId { get; set; }
 
         //[DataMember]
-        //public KbListKeyValuePair<Guid, string> ConnectionId { get; set; }
+        //public ListKeyValuePair<Guid, string> ConnectionId { get; set; }
         //[DataMember]
-        //public KbListKeyValuePair<int, string> AutomationTypeId { get; set; }
+        //public ListKeyValuePair<int, string> AutomationTypeId { get; set; }
 
         [ProtoMember(1)]
-        public KbListKeyValuePair<string, string> AnalogDigitalSignal { get; set; }
+        public ListKeyValuePair<string, string> AnalogDigitalSignal { get; set; }
 
         [ProtoMember(2)]
-        public KbListKeyValuePair<Guid, string> TagGroupId { get; set; }
+        public ListKeyValuePair<Guid, string> TagGroupId { get; set; }
 
         [ProtoMember(3)]
-        public KbListKeyValuePair<string, string> InputOutput { get; set; }
+        public ListKeyValuePair<string, string> InputOutput { get; set; }
 
         [ProtoMember(4)]
-        public KbListKeyValuePair<Guid, string> ConnectionId { get; set; }
+        public ListKeyValuePair<Guid, string> ConnectionId { get; set; }
         //
         [ProtoMember(5)]
-        public KbListKeyValuePair<int, string> AreaId { get; set; }
+        public ListKeyValuePair<int, string> AreaId { get; set; }
 
         [ProtoMember(6)]
-        public KbListKeyValuePair<int, string> WordLenId { get; set; }
+        public ListKeyValuePair<int, string> WordLenId { get; set; }
 
         [ProtoMember(7)]
-        public KbListKeyValuePair<byte, string> BitOfByte { get; set; }
+        public ListKeyValuePair<byte, string> BitOfByte { get; set; }
 
         public S7Tag() { }
 
         public S7Tag(
             List<S7.S7Tag> tags,
-            //List<KbKeyValuePair<Guid, string>> stdTagId,
-            //List<KbKeyValuePair<Guid, string>> connectionId,
-            //List<KbKeyValuePair<int, string>> automationTypeId,
-            List<KbKeyValuePair<string, string>> analogDigitalSignal,
-            List<KbKeyValuePair<Guid, string>> tagGroupId,
-            List<KbKeyValuePair<string, string>> inputOutput,
-            List<KbKeyValuePair<Guid, string>> connectionId,
-            List<KbKeyValuePair<int, string>> areaId,
-            List<KbKeyValuePair<int, string>> wordLenId,
-            List<KbKeyValuePair<byte, string>> bitOfByte
+            //List<KeyValuePair<Guid, string>> stdTagId,
+            //List<KeyValuePair<Guid, string>> connectionId,
+            //List<KeyValuePair<int, string>> automationTypeId,
+            List<Base.Srv.Dto.KeyValuePair<string, string>> analogDigitalSignal,
+            List<Base.Srv.Dto.KeyValuePair<Guid, string>> tagGroupId,
+            List<Base.Srv.Dto.KeyValuePair<string, string>> inputOutput,
+            List<Base.Srv.Dto.KeyValuePair<Guid, string>> connectionId,
+            List<Base.Srv.Dto.KeyValuePair<int, string>> areaId,
+            List<Base.Srv.Dto.KeyValuePair<int, string>> wordLenId,
+            List<Base.Srv.Dto.KeyValuePair<byte, string>> bitOfByte
         )
         {
             List = tags;
-            //StdTagId = new KbListKeyValuePair<Guid, string>(stdTagId);
-            //ConnectionId = new KbListKeyValuePair<Guid, string>(connectionId);
-            //AutomationTypeId = new KbListKeyValuePair<int, string>(automationTypeId);
-            AnalogDigitalSignal = new KbListKeyValuePair<string, string>(analogDigitalSignal);
-            TagGroupId = new KbListKeyValuePair<Guid, string>(tagGroupId);
-            InputOutput = new KbListKeyValuePair<string, string>(inputOutput);
-            ConnectionId = new KbListKeyValuePair<Guid, string>(connectionId);
-            AreaId = new KbListKeyValuePair<int, string>(areaId);
-            WordLenId = new KbListKeyValuePair<int, string>(wordLenId);
-            BitOfByte = new KbListKeyValuePair<byte, string>(bitOfByte);
+            //StdTagId = new ListKeyValuePair<Guid, string>(stdTagId);
+            //ConnectionId = new ListKeyValuePair<Guid, string>(connectionId);
+            //AutomationTypeId = new ListKeyValuePair<int, string>(automationTypeId);
+            AnalogDigitalSignal = new ListKeyValuePair<string, string>(analogDigitalSignal);
+            TagGroupId = new ListKeyValuePair<Guid, string>(tagGroupId);
+            InputOutput = new ListKeyValuePair<string, string>(inputOutput);
+            ConnectionId = new ListKeyValuePair<Guid, string>(connectionId);
+            AreaId = new ListKeyValuePair<int, string>(areaId);
+            WordLenId = new ListKeyValuePair<int, string>(wordLenId);
+            BitOfByte = new ListKeyValuePair<byte, string>(bitOfByte);
         }
     }
 }

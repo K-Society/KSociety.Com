@@ -10,7 +10,7 @@ using Quartz; //using Std.Srv.Shared.Interface;
 
 namespace KSociety.Com.Domain.Entity.Common
 {
-    public class TagGroup : KbEntityNotifier //<NotifyTagEvent>
+    public class TagGroup : EntityNotifier //<NotifyTagEvent>
     {
         private List<View.Joined.AllTagGroupAllConnection> _dataList;
         private List<string> _connectionNameList;
@@ -21,7 +21,7 @@ namespace KSociety.Com.Domain.Entity.Common
         private readonly Dictionary<string, List<Tag>> _tagByConnection = new Dictionary<string, List<Tag>>();
         public readonly Dictionary<string, List<Tag>> _tagReadByConnection = new Dictionary<string, List<Tag>>();
         public readonly Dictionary<string, List<Tag>> _tagWriteByConnection = new Dictionary<string, List<Tag>>();
-        private KbScheduler _scheduleRead;
+        private Scheduler _scheduleRead;
         //public  IEventBus EventBus;
         //private IEventBus _eventWriteBus;
         //private readonly IConnectionFactory _connectionFactory;
@@ -167,7 +167,7 @@ namespace KSociety.Com.Domain.Entity.Common
                 Logger?.LogError("Domain.Entity.Common.TagGroup Initiate: " + ex.Message + " - " + ex.StackTrace);
             }
 
-            _scheduleRead = new KbScheduler(Name + "Read", Clock, KbScheduler.TimeType.ms);
+            _scheduleRead = new Scheduler(Name + "Read", Clock, Scheduler.TimeType.ms);
             StartScheduleRead<TaskRead>();
         }
 

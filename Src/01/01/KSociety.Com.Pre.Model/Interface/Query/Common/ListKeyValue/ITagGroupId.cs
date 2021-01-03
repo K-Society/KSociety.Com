@@ -4,7 +4,7 @@ using System;
 
 namespace KSociety.Com.Pre.Model.Interface.Query.Common.ListKeyValue
 {
-    public interface ITagGroupId : IKbQueryKeyValueModel<KbListKeyValuePair<Guid, string>, Guid, string>
+    public interface ITagGroupId : IQueryKeyValueModel<ListKeyValuePair<Guid, string>, Guid, string>
     {
     }
 }

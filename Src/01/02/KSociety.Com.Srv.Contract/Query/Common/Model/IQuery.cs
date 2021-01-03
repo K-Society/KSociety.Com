@@ -8,9 +8,9 @@ namespace KSociety.Com.Srv.Contract.Query.Common.Model
     public interface IQuery
     {
         [Operation]
-        Srv.Dto.Common.Model.Tag GetTagModelById(KbIdObject idObject, CallContext context = default);
+        Srv.Dto.Common.Model.Tag GetTagModelById(IdObject idObject, CallContext context = default);
 
         [Operation]
-        Srv.Dto.Common.Model.Connection GetConnectionModelById(KbIdObject idObject, CallContext context = default);
+        Srv.Dto.Common.Model.Connection GetConnectionModelById(IdObject idObject, CallContext context = default);
     }
 }

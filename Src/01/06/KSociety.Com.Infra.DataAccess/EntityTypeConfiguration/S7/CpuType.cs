@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.S7.CpuType> cpuTypeConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) cpuTypeConfiguration, "S7CpuType", KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) cpuTypeConfiguration, "S7CpuType", DatabaseContext.DefaultSchema);
 
             cpuTypeConfiguration.HasKey(k => k.Id);
             cpuTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

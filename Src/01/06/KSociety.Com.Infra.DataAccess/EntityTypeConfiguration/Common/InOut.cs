@@ -8,7 +8,7 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.InOut> inOutConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) inOutConfiguration, "InOut", KbDbContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) inOutConfiguration, "InOut", DatabaseContext.DefaultSchema);
 
             inOutConfiguration.HasKey(k => k.InputOutput);
             inOutConfiguration.Property(p => p.InputOutput).ValueGeneratedNever().HasMaxLength(2).IsRequired();
