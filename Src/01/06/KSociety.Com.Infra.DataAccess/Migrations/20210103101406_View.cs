@@ -1,6 +1,7 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
 using System.Reflection;
+using KSociety.Base.Infra.Shared.Class;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace KSociety.Com.Infra.DataAccess.Migrations
 {
@@ -29,7 +30,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
+           
         }
     }
 }

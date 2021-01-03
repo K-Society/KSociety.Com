@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KSociety.Com.Infra.DataAccess.Migrations
 {
     [DbContext(typeof(ComContext))]
-    [Migration("20201210073050_View")]
+    [Migration("20210103101406_View")]
     partial class View
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
                     b.HasKey("AnalogDigitalSignal");
 
-                    b.ToTable("AnalogDigital", "kb");
+                    b.ToTable("AnalogDigital", "ksociety");
 
                     b.HasData(
                         new
@@ -62,7 +62,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AutomationType", "kb");
+                    b.ToTable("AutomationType", "ksociety");
 
                     b.HasData(
                         new
@@ -112,7 +112,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("BitName")
                         .IsUnique();
 
-                    b.ToTable("Bit", "kb");
+                    b.ToTable("Bit", "ksociety");
 
                     b.HasData(
                         new
@@ -189,7 +189,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("Name", "AutomationTypeId")
                         .IsUnique();
 
-                    b.ToTable("Connection", "kb");
+                    b.ToTable("Connection", "ksociety");
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
                 });
@@ -210,7 +210,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("InputOutputName")
                         .IsUnique();
 
-                    b.ToTable("InOut", "kb");
+                    b.ToTable("InOut", "ksociety");
 
                     b.HasData(
                         new
@@ -289,7 +289,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("Name", "AutomationTypeId")
                         .IsUnique();
 
-                    b.ToTable("Tag", "kb");
+                    b.ToTable("Tag", "ksociety");
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
                 });
@@ -319,7 +319,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("TagGroup", "kb");
+                    b.ToTable("TagGroup", "ksociety");
 
                     b.HasData(
                         new
@@ -360,7 +360,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("AreaName")
                         .IsUnique();
 
-                    b.ToTable("S7Area", "kb");
+                    b.ToTable("S7Area", "ksociety");
 
                     b.HasData(
                         new
@@ -444,7 +444,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
                     b.HasIndex("WordLenId");
 
-                    b.ToTable("S7BlockArea", "kb");
+                    b.ToTable("S7BlockArea", "ksociety");
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.S7.ConnectionType", b =>
@@ -462,7 +462,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("S7ConnectionType", "kb");
+                    b.ToTable("S7ConnectionType", "ksociety");
 
                     b.HasData(
                         new
@@ -537,7 +537,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("CpuTypeName")
                         .IsUnique();
 
-                    b.ToTable("S7CpuType", "kb");
+                    b.ToTable("S7CpuType", "ksociety");
 
                     b.HasData(
                         new
@@ -598,7 +598,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.HasIndex("WordLenName")
                         .IsUnique();
 
-                    b.ToTable("S7WordLen", "kb");
+                    b.ToTable("S7WordLen", "ksociety");
 
                     b.HasData(
                         new
@@ -701,7 +701,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.Property<int>("Update")
                         .HasColumnType("int");
 
-                    b.ToView("TagGroupReadyView", "kb");
+                    b.ToView("TagGroupReadyView", "ksociety");
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllConnection", b =>
@@ -745,7 +745,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllConnectionView", "kb");
+                    b.ToView("AllConnectionView", "ksociety");
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupAllConnection", b =>
@@ -843,7 +843,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllTagGroupAllConnectionView", "kb");
+                    b.ToView("AllTagGroupAllConnectionView", "ksociety");
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupConnection", b =>
@@ -920,7 +920,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllTagGroupConnectionView", "kb");
+                    b.ToView("AllTagGroupConnectionView", "ksociety");
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixConnection", b =>
