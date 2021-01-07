@@ -1,20 +1,13 @@
-﻿SQL Server Object Explorer -> remove connection
-add-migration ComDbSqlServer -OutputDir Migrations\SqlServer
-add-migration ViewSqlServer -OutputDir Migrations\SqlServer
+﻿using KSociety.Base.Infra.Shared.Class;
+using Microsoft.EntityFrameworkCore.Migrations;
+using System.Reflection;
 
-add-migration ComDbSqlite -OutputDir Migrations\Sqlite
-add-migration ViewSqlite -OutputDir Migrations\Sqlite
-
-add-migration View -Project KSociety.Com.Infra.Migration.SqlServer
-add-migration View -Project KSociety.Com.Infra.Migration.Sqlite
--Build
-Update-Database
-Remove-Migration
-
-Add-Migration ComDbMigration -c ComContext -o Migrations/Com/ComDb
-
-//
-
+namespace KSociety.Com.Infra.Migration.SqlServer
+{
+    public partial class View : Microsoft.EntityFrameworkCore.Migrations.Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagReadyView");
 
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagGroupReadyView");
@@ -32,9 +25,11 @@ Add-Migration ComDbMigration -c ComContext -o Migrations/Com/ComDb
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupConnectionView");
 
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
+        }
 
-            //
-
-add-migration ComDb -Args Sqlserver -Project KSociety.Com.Infra.Migration.SqlServer
-
-Update-Database -Project KSociety.Com.Infra.Migration.SqlServer
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            
+        }
+    }
+}

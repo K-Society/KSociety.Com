@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
@@ -8,7 +7,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.S7.CpuType> cpuTypeConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) cpuTypeConfiguration, "S7CpuType", DatabaseContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) cpuTypeConfiguration, "S7CpuType", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)cpuTypeConfiguration, "S7CpuType");
 
             cpuTypeConfiguration.HasKey(k => k.Id);
             cpuTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

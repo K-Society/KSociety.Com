@@ -1,18 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace KSociety.Com.Infra.DataAccess.Migrations
+namespace KSociety.Com.Infra.Migration.SqlServer
 {
-    public partial class ComDb : Migration
+    public partial class ComDb : Microsoft.EntityFrameworkCore.Migrations.Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "ksociety");
-
             migrationBuilder.CreateTable(
                 name: "AnalogDigital",
-                schema: "ksociety",
                 columns: table => new
                 {
                     AnalogDigitalSignal = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false)
@@ -24,7 +20,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "AutomationType",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -38,7 +33,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Bit",
-                schema: "ksociety",
                 columns: table => new
                 {
                     BitOfByte = table.Column<byte>(type: "tinyint", nullable: false),
@@ -51,7 +45,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "InOut",
-                schema: "ksociety",
                 columns: table => new
                 {
                     InputOutput = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
@@ -64,7 +57,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "S7Area",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -78,7 +70,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "S7ConnectionType",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -91,7 +82,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "S7CpuType",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -105,7 +95,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "S7WordLen",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
@@ -119,7 +108,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TagGroup",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -135,7 +123,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Connection",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -157,21 +144,18 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     table.ForeignKey(
                         name: "ForeignKey_Connection_AutomationType",
                         column: x => x.AutomationTypeId,
-                        principalSchema: "ksociety",
                         principalTable: "AutomationType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_S7Connection_S7ConnectionType",
                         column: x => x.ConnectionTypeId,
-                        principalSchema: "ksociety",
                         principalTable: "S7ConnectionType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_S7Connection_S7CpuType",
                         column: x => x.CpuTypeId,
-                        principalSchema: "ksociety",
                         principalTable: "S7CpuType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -179,7 +163,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "S7BlockArea",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -198,21 +181,18 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_S7BlockArea_Connection_ConnectionId",
                         column: x => x.ConnectionId,
-                        principalSchema: "ksociety",
                         principalTable: "Connection",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "ForeignKey_S7BlockArea_Area",
                         column: x => x.AreaId,
-                        principalSchema: "ksociety",
                         principalTable: "S7Area",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "ForeignKey_S7BlockArea_WordLen",
                         column: x => x.WordLenId,
-                        principalSchema: "ksociety",
                         principalTable: "S7WordLen",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -220,7 +200,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Tag",
-                schema: "ksociety",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -246,63 +225,54 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_Area",
                         column: x => x.AreaId,
-                        principalSchema: "ksociety",
                         principalTable: "S7Area",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_Bit",
                         column: x => x.BitOfByte,
-                        principalSchema: "ksociety",
                         principalTable: "Bit",
                         principalColumn: "BitOfByte",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_WordLen",
                         column: x => x.WordLenId,
-                        principalSchema: "ksociety",
                         principalTable: "S7WordLen",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_Tag_AnalogDigital",
                         column: x => x.AnalogDigitalSignal,
-                        principalSchema: "ksociety",
                         principalTable: "AnalogDigital",
                         principalColumn: "AnalogDigitalSignal",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "ForeignKey_Tag_AutomationType",
                         column: x => x.AutomationTypeId,
-                        principalSchema: "ksociety",
                         principalTable: "AutomationType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_Tag_ConnectionId",
                         column: x => x.ConnectionId,
-                        principalSchema: "ksociety",
                         principalTable: "Connection",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "ForeignKey_Tag_InOut",
                         column: x => x.InputOutput,
-                        principalSchema: "ksociety",
                         principalTable: "InOut",
                         principalColumn: "InputOutput",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "ForeignKey_Tag_TagGroup",
                         column: x => x.TagGroupId,
-                        principalSchema: "ksociety",
                         principalTable: "TagGroup",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "AnalogDigital",
                 column: "AnalogDigitalSignal",
                 values: new object[]
@@ -312,7 +282,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "AutomationType",
                 columns: new[] { "Id", "Mean", "Name" },
                 values: new object[,]
@@ -325,7 +294,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "Bit",
                 columns: new[] { "BitOfByte", "BitName" },
                 values: new object[,]
@@ -341,7 +309,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "InOut",
                 columns: new[] { "InputOutput", "InputOutputName" },
                 values: new object[,]
@@ -353,7 +320,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "S7Area",
                 columns: new[] { "Id", "AreaName", "Mean" },
                 values: new object[,]
@@ -367,7 +333,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "S7ConnectionType",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -385,7 +350,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "S7CpuType",
                 columns: new[] { "Id", "CpuTypeName", "Mean" },
                 values: new object[,]
@@ -399,13 +363,11 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[] { 11, "Counter variable type", "Counter" });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[,]
@@ -426,7 +388,6 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "TagGroup",
                 columns: new[] { "Id", "Clock", "Enable", "Name", "Update" },
                 values: new object[,]
@@ -436,19 +397,16 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "Connection",
                 columns: new[] { "Id", "AutomationTypeId", "ConnectionTypeId", "CpuTypeId", "Enable", "Ip", "Name", "Rack", "Slot", "WriteEnable" },
                 values: new object[] { new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 1, 3, 40, true, "192.168.0.201", "Plc1", (short)0, (short)1, true });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "Connection",
                 columns: new[] { "Id", "AutomationTypeId", "ConnectionTypeId", "CpuTypeId", "Enable", "Ip", "Name", "Rack", "Slot", "WriteEnable" },
                 values: new object[] { new Guid("fc9967e6-32b9-4077-a018-dce37c857eff"), 1, 3, 40, true, "172.16.8.205", "CbPlc", (short)0, (short)1, true });
 
             migrationBuilder.InsertData(
-                schema: "ksociety",
                 table: "Tag",
                 columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
                 values: new object[,]
@@ -463,161 +421,136 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_AutomationType_Name",
-                schema: "ksociety",
                 table: "AutomationType",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bit_BitName",
-                schema: "ksociety",
                 table: "Bit",
                 column: "BitName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Connection_AutomationTypeId",
-                schema: "ksociety",
                 table: "Connection",
                 column: "AutomationTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Connection_ConnectionTypeId",
-                schema: "ksociety",
                 table: "Connection",
                 column: "ConnectionTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Connection_CpuTypeId",
-                schema: "ksociety",
                 table: "Connection",
                 column: "CpuTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Connection_Name_AutomationTypeId",
-                schema: "ksociety",
                 table: "Connection",
                 columns: new[] { "Name", "AutomationTypeId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_InOut_InputOutputName",
-                schema: "ksociety",
                 table: "InOut",
                 column: "InputOutputName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7Area_AreaName",
-                schema: "ksociety",
                 table: "S7Area",
                 column: "AreaName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7BlockArea_AreaId",
-                schema: "ksociety",
                 table: "S7BlockArea",
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7BlockArea_ConnectionId",
-                schema: "ksociety",
                 table: "S7BlockArea",
                 column: "ConnectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7BlockArea_Name",
-                schema: "ksociety",
                 table: "S7BlockArea",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7BlockArea_WordLenId",
-                schema: "ksociety",
                 table: "S7BlockArea",
                 column: "WordLenId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7ConnectionType_Name",
-                schema: "ksociety",
                 table: "S7ConnectionType",
                 column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7CpuType_CpuTypeName",
-                schema: "ksociety",
                 table: "S7CpuType",
                 column: "CpuTypeName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_S7WordLen_WordLenName",
-                schema: "ksociety",
                 table: "S7WordLen",
                 column: "WordLenName",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_AnalogDigitalSignal",
-                schema: "ksociety",
                 table: "Tag",
                 column: "AnalogDigitalSignal");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_AreaId",
-                schema: "ksociety",
                 table: "Tag",
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_AutomationTypeId",
-                schema: "ksociety",
                 table: "Tag",
                 column: "AutomationTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_BitOfByte",
-                schema: "ksociety",
                 table: "Tag",
                 column: "BitOfByte");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_ConnectionId",
-                schema: "ksociety",
                 table: "Tag",
                 column: "ConnectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_InputOutput",
-                schema: "ksociety",
                 table: "Tag",
                 column: "InputOutput");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_Name_AutomationTypeId",
-                schema: "ksociety",
                 table: "Tag",
                 columns: new[] { "Name", "AutomationTypeId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_TagGroupId",
-                schema: "ksociety",
                 table: "Tag",
                 column: "TagGroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_WordLenId",
-                schema: "ksociety",
                 table: "Tag",
                 column: "WordLenId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TagGroup_Name",
-                schema: "ksociety",
                 table: "TagGroup",
                 column: "Name",
                 unique: true);
@@ -626,52 +559,40 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "S7BlockArea",
-                schema: "ksociety");
+                name: "S7BlockArea");
 
             migrationBuilder.DropTable(
-                name: "Tag",
-                schema: "ksociety");
+                name: "Tag");
 
             migrationBuilder.DropTable(
-                name: "S7Area",
-                schema: "ksociety");
+                name: "S7Area");
 
             migrationBuilder.DropTable(
-                name: "Bit",
-                schema: "ksociety");
+                name: "Bit");
 
             migrationBuilder.DropTable(
-                name: "S7WordLen",
-                schema: "ksociety");
+                name: "S7WordLen");
 
             migrationBuilder.DropTable(
-                name: "AnalogDigital",
-                schema: "ksociety");
+                name: "AnalogDigital");
 
             migrationBuilder.DropTable(
-                name: "Connection",
-                schema: "ksociety");
+                name: "Connection");
 
             migrationBuilder.DropTable(
-                name: "InOut",
-                schema: "ksociety");
+                name: "InOut");
 
             migrationBuilder.DropTable(
-                name: "TagGroup",
-                schema: "ksociety");
+                name: "TagGroup");
 
             migrationBuilder.DropTable(
-                name: "AutomationType",
-                schema: "ksociety");
+                name: "AutomationType");
 
             migrationBuilder.DropTable(
-                name: "S7ConnectionType",
-                schema: "ksociety");
+                name: "S7ConnectionType");
 
             migrationBuilder.DropTable(
-                name: "S7CpuType",
-                schema: "ksociety");
+                name: "S7CpuType");
         }
     }
 }
