@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
@@ -8,7 +7,9 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.InOut> inOutConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) inOutConfiguration, "InOut", KbDbContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)inOutConfiguration, "InOut", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) inOutConfiguration, "InOut");
+            
 
             inOutConfiguration.HasKey(k => k.InputOutput);
             inOutConfiguration.Property(p => p.InputOutput).ValueGeneratedNever().HasMaxLength(2).IsRequired();

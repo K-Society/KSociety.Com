@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Command.Logix
 {
-    public interface ILogixTag : IKbCommandModel<
+    public interface ILogixTag : ICommandModel<
         App.Dto.Req.Remove.Logix.LogixTag,
         App.Dto.Req.Add.Logix.LogixTag,
         App.Dto.Res.Add.Logix.LogixTag,

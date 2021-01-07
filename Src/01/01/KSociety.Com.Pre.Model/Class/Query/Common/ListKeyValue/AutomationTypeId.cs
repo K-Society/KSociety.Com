@@ -16,12 +16,12 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common.ListKeyValue
             _automationType = new Srv.Agent.Query.Common.ListKeyValue.AutomationTypeId(agentConfiguration, loggerFactory);
         }
 
-        public KbListKeyValuePair<int, string> LoadData(CancellationToken cancellationToken = default)
+        public ListKeyValuePair<int, string> LoadData(CancellationToken cancellationToken = default)
         {
             return _automationType.LoadData();
         }
 
-        public async ValueTask<KbListKeyValuePair<int, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+        public async ValueTask<ListKeyValuePair<int, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
             return await _automationType.LoadDataAsync();
         }

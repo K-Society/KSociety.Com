@@ -16,11 +16,11 @@ namespace KSociety.Com.App.ReqHdlr.Update.Common
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<TagReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly ITag _tagRepository;
         private readonly IMapper _mapper;
 
-        public TagReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, ITag tagRepository, IMapper mapper)
+        public TagReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, ITag tagRepository, IMapper mapper)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<TagReqHdlr>();

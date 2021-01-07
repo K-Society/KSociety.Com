@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.App.Dto.Res.Copy.S7
 {
     [ProtoContract]
-    public class S7Tag : IResponse, IKbIdObject
+    public class S7Tag : IResponse, IIdObject
     {
         [ProtoMember(1), CompatibilityLevel(CompatibilityLevel.Level200)]
         public Guid Id { get; set; }

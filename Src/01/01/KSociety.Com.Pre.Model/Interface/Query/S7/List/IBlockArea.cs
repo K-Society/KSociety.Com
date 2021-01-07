@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Query.S7.List
 {
-    public interface IBlockArea : IKbQueryModel<Srv.Dto.S7.BlockArea, Srv.Dto.S7.List.BlockArea>
+    public interface IBlockArea : IQueryModel<Srv.Dto.S7.BlockArea, Srv.Dto.S7.List.BlockArea>
     {
     }
 }

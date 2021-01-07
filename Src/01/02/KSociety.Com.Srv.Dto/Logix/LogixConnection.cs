@@ -6,7 +6,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Logix
 {
     [ProtoContract]
-    public class LogixConnection : IKbAppDtoObject<
+    public class LogixConnection : IAppDtoObject<
         App.Dto.Req.Remove.Logix.LogixConnection, 
         App.Dto.Req.Add.Logix.LogixConnection,
         App.Dto.Req.Update.Logix.LogixConnection,

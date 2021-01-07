@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.View.Joined.List
 {
     [ProtoContract]
-    public class AllConnection : KbList<Joined.AllConnection>
+    public class AllConnection : ObjectList<Joined.AllConnection>
     {
         public AllConnection() { }
 

@@ -27,7 +27,7 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.Model
             _queryKeyValue = queryKeyValue;
         }
 
-        public Srv.Dto.S7.Model.S7Tag GetS7TagModelById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.S7.Model.S7Tag GetS7TagModelById(IdObject idObject, CallContext context = default)
         {
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             Srv.Dto.S7.S7Tag tag;
@@ -55,7 +55,7 @@ namespace KSociety.Com.Srv.Behavior.Query.S7.Model
                 areaId.List, wordLenId.List, bitOfByte.List);
         }
 
-        public Srv.Dto.S7.Model.S7Connection GetS7ConnectionModelById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.S7.Model.S7Connection GetS7ConnectionModelById(IdObject idObject, CallContext context = default)
         {
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             Srv.Dto.S7.S7Connection connection;

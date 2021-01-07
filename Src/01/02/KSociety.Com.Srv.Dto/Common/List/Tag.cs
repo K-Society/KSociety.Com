@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common.List
 {
     [ProtoContract]
-    public class Tag : KbList<Common.Tag>
+    public class Tag : ObjectList<Common.Tag>
     {
         public Tag()
         {

@@ -3,7 +3,7 @@ using KSociety.Base.Srv.Dto;
 
 namespace KSociety.Com.Pre.Model.Interface.Query.Common
 {
-    public interface IConnection : IKbQueryModel<Srv.Dto.Common.Connection, KbIdObject>
+    public interface IConnection : IQueryModel<Srv.Dto.Common.Connection, IdObject>
     {
     }
 }

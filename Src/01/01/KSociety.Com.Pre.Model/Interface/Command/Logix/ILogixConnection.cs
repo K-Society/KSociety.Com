@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Command.Logix
 {
-    public interface ILogixConnection : IKbCommandModel<
+    public interface ILogixConnection : ICommandModel<
         App.Dto.Req.Remove.Logix.LogixConnection,
         App.Dto.Req.Add.Logix.LogixConnection,
         App.Dto.Res.Add.Logix.LogixConnection,

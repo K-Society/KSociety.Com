@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
@@ -8,7 +7,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.Bit> bitConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) bitConfiguration, "Bit", KbDbContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) bitConfiguration, "Bit", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)bitConfiguration, "Bit");
 
             bitConfiguration.HasKey(k => k.BitOfByte);
             bitConfiguration.Property(p => p.BitOfByte).ValueGeneratedNever().IsRequired();

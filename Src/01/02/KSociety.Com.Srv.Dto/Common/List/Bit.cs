@@ -5,7 +5,7 @@ using ProtoBuf;
 namespace KSociety.Com.Srv.Dto.Common.List
 {
     [ProtoContract]
-    public class Bit : KbList<Common.Bit>
+    public class Bit : ObjectList<Common.Bit>
     {
         public Bit()
         {

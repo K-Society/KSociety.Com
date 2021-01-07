@@ -2,6 +2,7 @@
 using System.Reflection;
 using Autofac;
 using KSociety.Base.EventBus;
+using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Com.Infra.DataAccess;
 using KSociety.Com.Srv.Host.Shared.Bindings;
@@ -52,7 +53,7 @@ namespace KSociety.Com.Srv.Host
             QueueDurable = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueDurable");
             QueueExclusive = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueExclusive");
             QueueAutoDelete = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueAutoDelete");
-            MigrationsAssembly = typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;//"Std.Infra.Com.DataAccess";
+            MigrationsAssembly = "KSociety.Com.Infra.Migration.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
         }
 
         public IConfiguration Configuration { get; }
@@ -88,7 +89,7 @@ namespace KSociety.Com.Srv.Host
                 builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.AutoMapper(AssemblyTool.GetAssembly()));
 
                 //DatabaseConfiguration.
-                builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(MasterString, DebugFlag, MigrationsAssembly));
+                builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
 
                 //MediatR.
                 builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.Mediatr());

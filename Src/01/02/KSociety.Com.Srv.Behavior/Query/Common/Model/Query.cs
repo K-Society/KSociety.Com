@@ -24,7 +24,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.Model
             _queryKeyValue = queryKeyValue;
         }
 
-        public Srv.Dto.Common.Model.Tag GetTagModelById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.Common.Model.Tag GetTagModelById(IdObject idObject, CallContext context = default)
         {
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             Srv.Dto.Common.Tag tag;
@@ -46,7 +46,7 @@ namespace KSociety.Com.Srv.Behavior.Query.Common.Model
             return new Srv.Dto.Common.Model.Tag(tag, automationTypeId.List, analogDigitalSignal.List, tagGroupId.List, inputOutput.List, connectionId.List);
         }
 
-        public Srv.Dto.Common.Model.Connection GetConnectionModelById(KbIdObject idObject, CallContext context = default)
+        public Srv.Dto.Common.Model.Connection GetConnectionModelById(IdObject idObject, CallContext context = default)
         {
             _logger.LogTrace("Query Behavior: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             Srv.Dto.Common.Connection connection;

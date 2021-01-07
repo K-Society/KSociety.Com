@@ -17,7 +17,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common.Model
             
         }
 
-        public Srv.Dto.Common.Model.Tag GetTagModelById(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.Common.Model.Tag GetTagModelById(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
@@ -38,7 +38,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common.Model
             return new Dto.Common.Model.Tag();
         }
 
-        public async ValueTask<Srv.Dto.Common.Model.Tag> GetTagModelByIdAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.Common.Model.Tag> GetTagModelByIdAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

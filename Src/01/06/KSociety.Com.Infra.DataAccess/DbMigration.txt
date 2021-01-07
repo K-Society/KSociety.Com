@@ -1,6 +1,12 @@
 ﻿SQL Server Object Explorer -> remove connection
-add-migration ComDb
-add-migration View
+add-migration ComDbSqlServer -OutputDir Migrations\SqlServer
+add-migration ViewSqlServer -OutputDir Migrations\SqlServer
+
+add-migration ComDbSqlite -OutputDir Migrations\Sqlite
+add-migration ViewSqlite -OutputDir Migrations\Sqlite
+
+add-migration View -Project KSociety.Com.Infra.Migration.SqlServer
+add-migration View -Project KSociety.Com.Infra.Migration.Sqlite
 -Build
 Update-Database
 Remove-Migration
@@ -26,3 +32,9 @@ Add-Migration ComDbMigration -c ComContext -o Migrations/Com/ComDb
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupConnectionView");
 
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
+
+            //
+
+add-migration ComDb -Args Sqlserver -Project KSociety.Com.Infra.Migration.SqlServer
+
+Update-Database -Project KSociety.Com.Infra.Migration.SqlServer

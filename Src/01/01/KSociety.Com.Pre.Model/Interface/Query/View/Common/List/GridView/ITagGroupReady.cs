@@ -3,7 +3,7 @@ using KSociety.Com.Srv.Dto.View.Common;
 
 namespace KSociety.Com.Pre.Model.Interface.Query.View.Common.List.GridView
 {
-    public interface ITagGroupReady : IKbQueryModel<TagGroupReady, Srv.Dto.View.Common.List.GridView.TagGroupReady>
+    public interface ITagGroupReady : IQueryModel<TagGroupReady, Srv.Dto.View.Common.List.GridView.TagGroupReady>
     {
     }
 }

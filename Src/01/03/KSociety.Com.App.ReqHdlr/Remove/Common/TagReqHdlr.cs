@@ -14,10 +14,10 @@ namespace KSociety.Com.App.ReqHdlr.Remove.Common
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<TagReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly ITag _tagRepository;
 
-        public TagReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, ITag tagRepository)
+        public TagReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, ITag tagRepository)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<TagReqHdlr>();

@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
@@ -8,7 +7,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.S7.BlockArea> blockAreaConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) blockAreaConfiguration, "S7BlockArea", KbDbContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) blockAreaConfiguration, "S7BlockArea", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)blockAreaConfiguration, "S7BlockArea");
 
             blockAreaConfiguration.HasKey(k => k.Id);
             blockAreaConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();

@@ -10,18 +10,18 @@ namespace KSociety.Com.Srv.Contract.Query.S7.ListKeyValue
     public interface IQueryAsync
     {
         [Operation]
-        ValueTask<KbListKeyValuePair<int, string>> ConnectionTypeIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<int, string>> ConnectionTypeIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<int, string>> CpuTypeIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<int, string>> CpuTypeIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<int, string>> AreaIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<int, string>> AreaIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<int, string>> WordLenIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<int, string>> WordLenIdAsync(CallContext context = default);
 
         [Operation]
-        ValueTask<KbListKeyValuePair<Guid, string>> S7ConnectionIdAsync(CallContext context = default);
+        ValueTask<ListKeyValuePair<Guid, string>> S7ConnectionIdAsync(CallContext context = default);
     }
 }

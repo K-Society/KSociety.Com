@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
@@ -10,7 +9,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
         {
             //try
             //{
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionConfiguration, "Connection", KbDbContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionConfiguration, "Connection", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)connectionConfiguration, "Connection");
 
             connectionConfiguration.HasKey(k => k.Id);
             connectionConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();

@@ -14,10 +14,10 @@ namespace KSociety.Com.App.ReqHdlr.Remove.Logix
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<LogixConnectionReqHdlr> _logger;
-        private readonly IDbUnitOfWork _unitOfWork;
+        private readonly IDatabaseUnitOfWork _unitOfWork;
         private readonly IConnection _connectionRepository;
 
-        public LogixConnectionReqHdlr(ILoggerFactory loggerFactory, IDbUnitOfWork unitOfWork, IConnection connectionRepository)
+        public LogixConnectionReqHdlr(ILoggerFactory loggerFactory, IDatabaseUnitOfWork unitOfWork, IConnection connectionRepository)
         {
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<LogixConnectionReqHdlr>();

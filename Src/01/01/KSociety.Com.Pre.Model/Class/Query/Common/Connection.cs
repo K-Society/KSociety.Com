@@ -19,7 +19,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common
             _connection = new Srv.Agent.Query.Common.Connection(agentConfiguration, loggerFactory);
         }
 
-        public Srv.Dto.Common.Connection Find(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.Common.Connection Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("Find: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name);
             try
@@ -34,7 +34,7 @@ namespace KSociety.Com.Pre.Model.Class.Query.Common
             return new Srv.Dto.Common.Connection();
         }
 
-        public async ValueTask<Srv.Dto.Common.Connection> FindAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.Common.Connection> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             //_logger.LogTrace("FindAsync: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod().Name + " " + idObject.Id);
             try

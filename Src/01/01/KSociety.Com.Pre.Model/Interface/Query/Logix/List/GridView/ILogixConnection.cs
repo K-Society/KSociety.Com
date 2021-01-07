@@ -2,7 +2,7 @@
 
 namespace KSociety.Com.Pre.Model.Interface.Query.Logix.List.GridView
 {
-    public interface ILogixConnection : IKbQueryModel<Srv.Dto.Logix.LogixConnection, Srv.Dto.Logix.List.GridView.LogixConnection>
+    public interface ILogixConnection : IQueryModel<Srv.Dto.Logix.LogixConnection, Srv.Dto.Logix.List.GridView.LogixConnection>
     {
     }
 }

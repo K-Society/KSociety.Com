@@ -9,12 +9,12 @@ namespace KSociety.Com.Srv.Contract.Query.Common
     public interface IQueryAsync
     {
         [Operation]
-        ValueTask<Srv.Dto.Common.TagGroup> GetTagGroupByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.Common.TagGroup> GetTagGroupByIdAsync(IdObject idObject, CallContext context = default);
 
         [Operation]
-        ValueTask<Srv.Dto.Common.Tag> GetTagByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.Common.Tag> GetTagByIdAsync(IdObject idObject, CallContext context = default);
 
         [Operation]
-        ValueTask<Srv.Dto.Common.Connection> GetConnectionByIdAsync(KbIdObject idObject, CallContext context = default);
+        ValueTask<Srv.Dto.Common.Connection> GetConnectionByIdAsync(IdObject idObject, CallContext context = default);
     }
 }

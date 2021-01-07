@@ -17,7 +17,7 @@ namespace KSociety.Com.Srv.Agent.Query.S7
 
         }
 
-        public Srv.Dto.S7.S7Tag GetS7TagById(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.S7.S7Tag GetS7TagById(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
@@ -38,7 +38,7 @@ namespace KSociety.Com.Srv.Agent.Query.S7
             return new Dto.S7.S7Tag();
         }
 
-        public async ValueTask<Srv.Dto.S7.S7Tag> GetS7TagByIdAsync(KbIdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.S7.S7Tag> GetS7TagByIdAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

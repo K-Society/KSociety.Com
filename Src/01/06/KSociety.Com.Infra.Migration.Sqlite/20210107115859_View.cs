@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System.Reflection;
 
-namespace KSociety.Com.Infra.DataAccess.Migrations
+namespace KSociety.Com.Infra.Migration.Sqlite
 {
-    public partial class View : Migration
+    public partial class View : Microsoft.EntityFrameworkCore.Migrations.Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,7 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
+            
         }
     }
 }
