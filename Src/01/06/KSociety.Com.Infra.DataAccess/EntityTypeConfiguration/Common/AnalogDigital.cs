@@ -1,5 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
@@ -8,7 +7,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.Common.AnalogDigital> analogDigitalConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) analogDigitalConfiguration, "AnalogDigital", DatabaseContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)analogDigitalConfiguration, "AnalogDigital", DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)analogDigitalConfiguration, "AnalogDigital");
 
             analogDigitalConfiguration.HasKey(k => k.AnalogDigitalSignal);
             analogDigitalConfiguration.Property(p => p.AnalogDigitalSignal).ValueGeneratedNever().HasMaxLength(7).IsRequired();

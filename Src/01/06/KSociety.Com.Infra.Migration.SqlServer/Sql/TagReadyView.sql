@@ -1,4 +1,4 @@
-﻿CREATE VIEW [ksociety].[TagReadyView] AS 
+﻿CREATE VIEW [TagReadyView] AS 
 SELECT
 [Id],
 [AutomationTypeId],
@@ -15,5 +15,5 @@ SELECT
 [WordLenId],
 [AreaId],
 [StringLength]
-FROM [ksociety].[Tag]
-WHERE [ksociety].[Tag].[Enable] = 1 AND [InputOutput] <> 'U'
+FROM [Tag]
+WHERE [Tag].[Enable] = 1 AND [InputOutput] <> 'U'

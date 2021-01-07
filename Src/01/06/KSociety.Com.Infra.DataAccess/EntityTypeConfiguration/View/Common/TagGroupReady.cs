@@ -7,7 +7,8 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.View.Common
     {
         public void Configure(EntityTypeBuilder<Domain.Entity.View.Common.TagGroupReady> tagGroupReadyConfiguration)
         {
-            RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder) tagGroupReadyConfiguration, "TagGroupReadyView", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
+            //RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder) tagGroupReadyConfiguration, "TagGroupReadyView", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
+            RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder)tagGroupReadyConfiguration, "TagGroupReadyView");
 
             tagGroupReadyConfiguration.HasNoKey();
         }
