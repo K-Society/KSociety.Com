@@ -13,6 +13,15 @@
         <a asp-action="Upsert" class="btn btn-info form-control text-white">Create New S7Connection</a>
     </div>
 
+    <div class="col-3">
+        <a asp-action="Export" asp-route-fileName="S7Connection.csv" class="btn btn-info form-control text-white">Export CSV</a>
+    </div>
+
+    <form asp-action="Import" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" />
+        <button type="submit">Upload File</button>
+    </form>
+
     <div class="col-12 border p-3 mt-3" style="overflow: auto;">
         <form method="post">
             @if (Model.List != null)
@@ -54,49 +63,49 @@
                         </tr>
                         @foreach (var item in Model.List)
                         {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(m => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Ip)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Enable)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.WriteEnable)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.CpuTypeId.List.Find(vp => vp.Key.Equals(item.CpuTypeId)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Rack)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Slot)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.ConnectionTypeId.List.Find(vp => vp.Key.Equals(item.ConnectionTypeId)).Value)
-                        </td>
-                        <td>
-                            <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
-                        </td>
-                        <td>
-                            <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Ip)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Enable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.WriteEnable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.CpuTypeId.List.Find(vp => vp.Key.Equals(item.CpuTypeId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Rack)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Slot)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.ConnectionTypeId.List.Find(vp => vp.Key.Equals(item.ConnectionTypeId)).Value)
+                                </td>
+                                <td>
+                                    <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                                </td>
+                                <td>
+                                    <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
                         }
                     </table>
                 }
                 else
                 {
-        <p>No S7Connection available!</p>
+                    <p>No S7Connection available!</p>
                 }
             }
             else
             {
-        <p>No S7Connection available!</p>
+                <p>No S7Connection available!</p>
             }
         </form>
     </div>

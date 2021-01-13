@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Common;
 
 namespace KSociety.Com.Domain.Repository.Common
 {
-    public interface IAnalogDigital : IRepository<AnalogDigital>
+    public interface IAnalogDigital : IRepositoryBase<AnalogDigital>
     {
         IEnumerable<AnalogDigital> GetAllAnalogDigital();
 

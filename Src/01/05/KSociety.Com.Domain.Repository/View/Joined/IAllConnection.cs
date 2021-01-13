@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.View.Joined;
 
 namespace KSociety.Com.Domain.Repository.View.Joined
 {
-    public interface IAllConnection : IRepository<AllConnection>
+    public interface IAllConnection : IRepositoryBase<AllConnection>
     {
         IEnumerable<AllConnection> GetAllConnection();
 

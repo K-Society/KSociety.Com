@@ -10,7 +10,9 @@ namespace KSociety.Com.Pre.Model.Interface.Command.Logix
         App.Dto.Res.Update.Logix.LogixTag,
         App.Dto.Req.Copy.Logix.LogixTag,
         App.Dto.Res.Copy.Logix.LogixTag,
-        App.Dto.Req.ModifyField.Logix.LogixTag>
+        App.Dto.Req.ModifyField.Logix.LogixTag>,
+        IExportModel<App.Dto.Req.Export.Logix.LogixTag,
+            App.Dto.Res.Export.Logix.LogixTag>
     {
         
     }

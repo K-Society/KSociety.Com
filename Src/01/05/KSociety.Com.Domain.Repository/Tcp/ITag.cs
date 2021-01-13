@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Tcp;
 
 namespace KSociety.Com.Domain.Repository.Tcp
 {
-    public interface ITag : IRepository<TcpTag>
+    public interface ITag : IRepositoryBase<TcpTag>
     {
         IEnumerable<TcpTag> GetAllTcpTag();
 

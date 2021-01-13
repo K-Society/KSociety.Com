@@ -204,6 +204,98 @@ namespace KSociety.Com.Srv.Agent.Command.Common
             return output;
         }
 
+        public App.Dto.Res.Export.Common.Tag Export(App.Dto.Req.Export.Common.Tag request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.Common.Tag output = new App.Dto.Res.Export.Common.Tag();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ExportTag(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Export.Common.Tag> ExportAsync(App.Dto.Req.Export.Common.Tag request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.Common.Tag output = new App.Dto.Res.Export.Common.Tag();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ExportTagAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public App.Dto.Res.Import.Common.Tag Import(App.Dto.Req.Import.Common.Tag request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.Common.Tag output = new App.Dto.Res.Import.Common.Tag();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ImportTag(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.Tag> ImportAsync(App.Dto.Req.Import.Common.Tag request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.Common.Tag output = new App.Dto.Res.Import.Common.Tag();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ImportTagAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
         public bool ModifyField(App.Dto.Req.ModifyField.Common.Tag request, CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

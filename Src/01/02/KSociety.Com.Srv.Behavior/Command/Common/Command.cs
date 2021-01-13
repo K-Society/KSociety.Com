@@ -39,7 +39,17 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.Copy.Common.Tag, App.Dto.Res.Copy.Common.Tag>(_loggerFactory, _componentContext, request);
         }
-        
+
+        public App.Dto.Res.Export.Common.Tag ExportTag(App.Dto.Req.Export.Common.Tag request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Export.Common.Tag, App.Dto.Res.Export.Common.Tag>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Import.Common.Tag ImportTag(App.Dto.Req.Import.Common.Tag request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Import.Common.Tag, App.Dto.Res.Import.Common.Tag>(_loggerFactory, _componentContext, request);
+        }
+
         public App.Dto.Res.ModifyField.Common.Tag ModifyTagField(App.Dto.Req.ModifyField.Common.Tag request, CallContext context = default)
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.ModifyField.Common.Tag, App.Dto.Res.ModifyField.Common.Tag>(_loggerFactory, _componentContext, request);
@@ -67,6 +77,16 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
         public App.Dto.Res.Copy.Common.TagGroup CopyTagGroup(App.Dto.Req.Copy.Common.TagGroup request, CallContext context = default)
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.Copy.Common.TagGroup, App.Dto.Res.Copy.Common.TagGroup>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Export.Common.TagGroup ExportTagGroup(App.Dto.Req.Export.Common.TagGroup request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Export.Common.TagGroup, App.Dto.Res.Export.Common.TagGroup>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Import.Common.TagGroup ImportTagGroup(App.Dto.Req.Import.Common.TagGroup request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Import.Common.TagGroup, App.Dto.Res.Import.Common.TagGroup>(_loggerFactory, _componentContext, request);
         }
 
         public App.Dto.Res.ModifyField.Common.TagGroup ModifyTagGroupField(App.Dto.Req.ModifyField.Common.TagGroup request, CallContext context = default)
@@ -101,6 +121,11 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
         public App.Dto.Res.Export.Common.Connection ExportConnection(App.Dto.Req.Export.Common.Connection request, CallContext context = default)
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.Export.Common.Connection, App.Dto.Res.Export.Common.Connection>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Import.Common.Connection ImportConnection(App.Dto.Req.Import.Common.Connection request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Import.Common.Connection, App.Dto.Res.Import.Common.Connection>(_loggerFactory, _componentContext, request);
         }
 
         public App.Dto.Res.ModifyField.Common.Connection ModifyConnectionField(App.Dto.Req.ModifyField.Common.Connection request, CallContext context = default)

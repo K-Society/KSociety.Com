@@ -94,5 +94,12 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public async ValueTask Export(string csvPath)
+        {
+            await _tag.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Tag(csvPath));
+
+
+        }
     }
 }
