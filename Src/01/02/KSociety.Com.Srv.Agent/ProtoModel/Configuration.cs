@@ -109,6 +109,39 @@ namespace KSociety.Com.Srv.Agent.ProtoModel
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
                     .AddSubType(402, typeof(App.Dto.Req.Export.Common.Connection));
 
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(403, typeof(App.Dto.Req.Export.Common.Tag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(404, typeof(App.Dto.Req.Export.S7.S7Tag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(405, typeof(App.Dto.Req.Export.Logix.LogixTag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(406, typeof(App.Dto.Req.Export.Common.TagGroup));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(407, typeof(App.Dto.Req.Export.S7.S7Connection));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(502, typeof(App.Dto.Req.Import.Common.Connection));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(503, typeof(App.Dto.Req.Import.Common.Tag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(504, typeof(App.Dto.Req.Import.S7.S7Tag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(505, typeof(App.Dto.Req.Import.Logix.LogixTag));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(506, typeof(App.Dto.Req.Import.Common.TagGroup));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(507, typeof(App.Dto.Req.Import.S7.S7Connection));
+
                 //IntegrationEvent
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(IntegrationEvent), true)
                     .AddSubType(610, typeof(IntegrationComEvent));

@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.S7;
 
 namespace KSociety.Com.Domain.Repository.S7
 {
-    public interface IWordLen : IRepository<WordLen>
+    public interface IWordLen : IRepositoryBase<WordLen>
     {
         IEnumerable<WordLen> GetAllWordLen();
 

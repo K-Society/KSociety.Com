@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.S7;
 
 namespace KSociety.Com.Domain.Repository.S7
 {
-    public interface ICpuType : IRepository<CpuType>
+    public interface ICpuType : IRepositoryBase<CpuType>
     {
         IEnumerable<CpuType> GetAllCpuType();
 

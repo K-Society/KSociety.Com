@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
+using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
@@ -93,11 +97,47 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async ValueTask Export(string csvPath)
+        public async ValueTask<IActionResult> Export(string fileName)
         {
-            await _connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Connection(csvPath));
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot", "export", fileName);
 
+            var result = await _connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Connection(path));
+            if (result.Result)
+            {
+                var memory = new MemoryStream();
+                await using (var stream = new FileStream(path, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, Class.FileManager.GetContentType(path), Path.GetFileName(path));
+            }
 
+            return Content("filename not present");
+        }
+
+        [HttpPost]
+        public async ValueTask<IActionResult> Import(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            //var path = Path.Combine(
+            //    Directory.GetCurrentDirectory(),
+            //    "wwwroot", "import", file.GetFilename());
+
+            //await using (var stream = new FileStream(path, FileMode.Create))
+            //{
+            //    await file.CopyToAsync(stream);
+            //    await stream.FlushAsync();
+                
+            //}
+
+            await _connection.ImportAsync(new KSociety.Com.App.Dto.Req.Import.Common.Connection(file.GetFilename(), file.GetFileArray().Result));
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

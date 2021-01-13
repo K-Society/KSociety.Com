@@ -22,7 +22,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Logix
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.Logix.LogixConnection removeConnection, CancellationToken cancellationToken = default)
         {
-            return await _logixConnection.RemoveAsync(removeConnection);
+            return await _logixConnection.RemoveAsync(removeConnection, cancellationToken);
         }
 
         public App.Dto.Res.Add.Logix.LogixConnection Add(App.Dto.Req.Add.Logix.LogixConnection addConnection, CancellationToken cancellationToken = default)
@@ -37,7 +37,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Logix
 
         public async ValueTask<App.Dto.Res.Update.Logix.LogixConnection> UpdateAsync(App.Dto.Req.Update.Logix.LogixConnection updateConnection, CancellationToken cancellationToken = default)
         {
-            return await _logixConnection.UpdateAsync(updateConnection);
+            return await _logixConnection.UpdateAsync(updateConnection, cancellationToken);
         }
 
         public App.Dto.Res.Copy.Logix.LogixConnection Copy(App.Dto.Req.Copy.Logix.LogixConnection copyItem, CancellationToken cancellationToken = default)
@@ -47,12 +47,12 @@ namespace KSociety.Com.Pre.Model.Class.Command.Logix
 
         public async ValueTask<App.Dto.Res.Add.Logix.LogixConnection> AddAsync(App.Dto.Req.Add.Logix.LogixConnection addConnection, CancellationToken cancellationToken = default)
         {
-            return await _logixConnection.AddAsync(addConnection);
+            return await _logixConnection.AddAsync(addConnection, cancellationToken);
         }
         
         public async ValueTask<App.Dto.Res.Copy.Logix.LogixConnection> CopyAsync(App.Dto.Req.Copy.Logix.LogixConnection copyConnection, CancellationToken cancellationToken = default)
         {
-            return await _logixConnection.CopyAsync(copyConnection);
+            return await _logixConnection.CopyAsync(copyConnection, cancellationToken);
         }
 
         public bool ModifyField(App.Dto.Req.ModifyField.Logix.LogixConnection modifyConnectionField, CancellationToken cancellationToken = default)
@@ -62,7 +62,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Logix
         
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.Logix.LogixConnection modifyConnectionField, CancellationToken cancellationToken = default)
         {
-            return await _logixConnection.ModifyFieldAsync(modifyConnectionField);
+            return await _logixConnection.ModifyFieldAsync(modifyConnectionField, cancellationToken);
         }
     }
 }

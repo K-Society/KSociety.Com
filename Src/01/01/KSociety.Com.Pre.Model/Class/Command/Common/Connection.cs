@@ -22,7 +22,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Common
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.Common.Connection removeCommonConnection, CancellationToken cancellationToken = default)
         {
-            return await _connection.RemoveAsync(removeCommonConnection);
+            return await _connection.RemoveAsync(removeCommonConnection, cancellationToken);
         }
         
         public App.Dto.Res.Add.Common.Connection Add(App.Dto.Req.Add.Common.Connection addItem, CancellationToken cancellationToken = default)
@@ -37,7 +37,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Common
 
         public async ValueTask<App.Dto.Res.Update.Common.Connection> UpdateAsync(App.Dto.Req.Update.Common.Connection updateCommonConnection, CancellationToken cancellationToken = default)
         {
-            return await _connection.UpdateAsync(updateCommonConnection);
+            return await _connection.UpdateAsync(updateCommonConnection, cancellationToken);
         }
 
         public App.Dto.Res.Copy.Common.Connection Copy(App.Dto.Req.Copy.Common.Connection copyItem, CancellationToken cancellationToken = default)
@@ -50,19 +50,29 @@ namespace KSociety.Com.Pre.Model.Class.Command.Common
             return _connection.Export(exportItem);
         }
 
+        public App.Dto.Res.Import.Common.Connection Import(App.Dto.Req.Import.Common.Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return _connection.Import(exportItem);
+        }
+
         public async ValueTask<App.Dto.Res.Add.Common.Connection> AddAsync(App.Dto.Req.Add.Common.Connection addCommonConnection, CancellationToken cancellationToken = default)
         {
-            return await _connection.AddAsync(addCommonConnection);
+            return await _connection.AddAsync(addCommonConnection, cancellationToken);
         }
 
         public async ValueTask<App.Dto.Res.Copy.Common.Connection> CopyAsync(App.Dto.Req.Copy.Common.Connection copyCommonConnection, CancellationToken cancellationToken = default)
         {
-            return await _connection.CopyAsync(copyCommonConnection);
+            return await _connection.CopyAsync(copyCommonConnection, cancellationToken);
         }
 
         public async ValueTask<App.Dto.Res.Export.Common.Connection> ExportAsync(App.Dto.Req.Export.Common.Connection exportItem, CancellationToken cancellationToken = default)
         {
-            return await _connection.ExportAsync(exportItem);
+            return await _connection.ExportAsync(exportItem, cancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.Connection> ImportAsync(App.Dto.Req.Import.Common.Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return await _connection.ImportAsync(exportItem, cancellationToken);
         }
 
         public bool ModifyField(App.Dto.Req.ModifyField.Common.Connection modifyFieldItem, CancellationToken cancellationToken = default)
@@ -72,7 +82,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.Common
         
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.Common.Connection modifyCommonConnectionField, CancellationToken cancellationToken = default)
         {
-            return await _connection.ModifyFieldAsync(modifyCommonConnectionField);
+            return await _connection.ModifyFieldAsync(modifyCommonConnectionField, cancellationToken);
         }
     }
 }

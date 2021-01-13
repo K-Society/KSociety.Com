@@ -46,6 +46,16 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Copy.Common.Tag, App.Dto.Res.Copy.Common.Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
         }
 
+        public async ValueTask<App.Dto.Res.Export.Common.Tag> ExportTagAsync(App.Dto.Req.Export.Common.Tag request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Export.Common.Tag, App.Dto.Res.Export.Common.Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.Tag> ImportTagAsync(App.Dto.Req.Import.Common.Tag request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Import.Common.Tag, App.Dto.Res.Import.Common.Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
         public async ValueTask<App.Dto.Res.ModifyField.Common.Tag> ModifyTagFieldAsync(App.Dto.Req.ModifyField.Common.Tag request, CallContext context = default)
         {
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.ModifyField.Common.Tag, App.Dto.Res.ModifyField.Common.Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
@@ -73,6 +83,16 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
         public async ValueTask<App.Dto.Res.Copy.Common.TagGroup> CopyTagGroupAsync(App.Dto.Req.Copy.Common.TagGroup request, CallContext context = default)
         {
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Copy.Common.TagGroup, App.Dto.Res.Copy.Common.TagGroup>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Export.Common.TagGroup> ExportTagGroupAsync(App.Dto.Req.Export.Common.TagGroup request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Export.Common.TagGroup, App.Dto.Res.Export.Common.TagGroup>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.TagGroup> ImportTagGroupAsync(App.Dto.Req.Import.Common.TagGroup request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Import.Common.TagGroup, App.Dto.Res.Import.Common.TagGroup>(_loggerFactory, _componentContext, request, context.CancellationToken);
         }
 
         public async ValueTask<App.Dto.Res.ModifyField.Common.TagGroup> ModifyTagGroupFieldAsync(App.Dto.Req.ModifyField.Common.TagGroup request, CallContext context = default)
@@ -107,6 +127,11 @@ namespace KSociety.Com.Srv.Behavior.Command.Common
         public async ValueTask<App.Dto.Res.Export.Common.Connection> ExportConnectionAsync(App.Dto.Req.Export.Common.Connection request, CallContext context = default)
         {
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Export.Common.Connection, App.Dto.Res.Export.Common.Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.Connection> ImportConnectionAsync(App.Dto.Req.Import.Common.Connection request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Import.Common.Connection, App.Dto.Res.Import.Common.Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
         }
 
         public async ValueTask<App.Dto.Res.ModifyField.Common.Connection> ModifyConnectionFieldAsync(App.Dto.Req.ModifyField.Common.Connection request, CallContext context = default)

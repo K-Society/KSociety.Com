@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Common
 {
-    public class Connection : RepositoryBase<ComContext, Domain.Entity.Common.Connection>, IConnection
+    public class Connection : Repository<ComContext, Domain.Entity.Common.Connection, CsvClassMap.Common.Connection>, IConnection
     {
         public Connection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
             : base(logFactory, databaseFactory)

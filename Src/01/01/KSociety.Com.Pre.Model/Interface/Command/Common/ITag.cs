@@ -10,7 +10,9 @@ namespace KSociety.Com.Pre.Model.Interface.Command.Common
         App.Dto.Res.Update.Common.Tag,
         App.Dto.Req.Copy.Common.Tag,
         App.Dto.Res.Copy.Common.Tag,
-        App.Dto.Req.ModifyField.Common.Tag>
+        App.Dto.Req.ModifyField.Common.Tag>, 
+        IExportModel<App.Dto.Req.Export.Common.Tag,
+        App.Dto.Res.Export.Common.Tag>
     {
 
         

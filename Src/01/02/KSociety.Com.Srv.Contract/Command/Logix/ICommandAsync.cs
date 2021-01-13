@@ -29,6 +29,12 @@ namespace KSociety.Com.Srv.Contract.Command.Logix
         ValueTask<App.Dto.Res.Copy.Logix.LogixTag> CopyLogixTagAsync(App.Dto.Req.Copy.Logix.LogixTag request, CallContext context = default);
 
         [Operation]
+        ValueTask<App.Dto.Res.Export.Logix.LogixTag> ExportLogixTagAsync(App.Dto.Req.Export.Logix.LogixTag request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.Logix.LogixTag> ImportLogixTagAsync(App.Dto.Req.Import.Logix.LogixTag request, CallContext context = default);
+
+        [Operation]
         //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.ModifyField.Logix.LogixTag> ModifyLogixTagFieldAsync(App.Dto.Req.ModifyField.Logix.LogixTag request, CallContext context = default);
 

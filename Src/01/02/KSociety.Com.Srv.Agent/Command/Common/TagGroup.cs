@@ -204,6 +204,98 @@ namespace KSociety.Com.Srv.Agent.Command.Common
             return output;
         }
 
+        public App.Dto.Res.Export.Common.TagGroup Export(App.Dto.Req.Export.Common.TagGroup request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.Common.TagGroup output = new App.Dto.Res.Export.Common.TagGroup();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ExportTagGroup(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Export.Common.TagGroup> ExportAsync(App.Dto.Req.Export.Common.TagGroup request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.Common.TagGroup output = new App.Dto.Res.Export.Common.TagGroup();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ExportTagGroupAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public App.Dto.Res.Import.Common.TagGroup Import(App.Dto.Req.Import.Common.TagGroup request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.Common.TagGroup output = new App.Dto.Res.Import.Common.TagGroup();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ImportTagGroup(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Import.Common.TagGroup> ImportAsync(App.Dto.Req.Import.Common.TagGroup request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.Common.TagGroup output = new App.Dto.Res.Import.Common.TagGroup();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ImportTagGroupAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
         public bool ModifyField(App.Dto.Req.ModifyField.Common.TagGroup request, CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
