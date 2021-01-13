@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Logix;
 
 namespace KSociety.Com.Domain.Repository.Logix
 {
-    public interface IConnection : IRepository<LogixConnection>
+    public interface IConnection : IRepositoryBase<LogixConnection>
     {
         IEnumerable<LogixConnection> GetAllLogixConnection();
 

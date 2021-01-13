@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.View.Joined;
 
 namespace KSociety.Com.Domain.Repository.View.Joined
 {
-    public interface IAllTagGroupAllConnection : IRepository<AllTagGroupAllConnection>
+    public interface IAllTagGroupAllConnection : IRepositoryBase<AllTagGroupAllConnection>
     { 
         IEnumerable<AllTagGroupAllConnection> GetAllTagGroupAllConnection();
 

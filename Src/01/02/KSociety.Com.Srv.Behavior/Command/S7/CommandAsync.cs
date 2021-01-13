@@ -42,6 +42,16 @@ namespace KSociety.Com.Srv.Behavior.Command.S7
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Copy.S7.S7Tag, App.Dto.Res.Copy.S7.S7Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
         }
 
+        public async ValueTask<App.Dto.Res.Export.S7.S7Tag> ExportS7TagAsync(App.Dto.Req.Export.S7.S7Tag request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Export.S7.S7Tag, App.Dto.Res.Export.S7.S7Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.S7.S7Tag> ImportS7TagAsync(App.Dto.Req.Import.S7.S7Tag request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Import.S7.S7Tag, App.Dto.Res.Import.S7.S7Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
         public async ValueTask<App.Dto.Res.ModifyField.S7.S7Tag> ModifyS7TagFieldAsync(App.Dto.Req.ModifyField.S7.S7Tag request, CallContext context = default)
         {
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.ModifyField.S7.S7Tag, App.Dto.Res.ModifyField.S7.S7Tag>(_loggerFactory, _componentContext, request, context.CancellationToken);

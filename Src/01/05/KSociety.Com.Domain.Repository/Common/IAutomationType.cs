@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Common;
 
 namespace KSociety.Com.Domain.Repository.Common
 {
-    public interface IAutomationType : IRepository<AutomationType>
+    public interface IAutomationType : IRepositoryBase<AutomationType>
     {
         IEnumerable<AutomationType> GetAllAutomationType();
 

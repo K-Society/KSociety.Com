@@ -27,6 +27,12 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.Copy.Common.Tag> CopyTagAsync(App.Dto.Req.Copy.Common.Tag request, CallContext context = default);
 
+        [Operation]
+        ValueTask<App.Dto.Res.Export.Common.Tag> ExportTagAsync(App.Dto.Req.Export.Common.Tag request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.Common.Tag> ImportTagAsync(App.Dto.Req.Import.Common.Tag request, CallContext context = default);
+
         //[OperationContract]
         ////[FaultContract(typeof(BusinessFault))]
         //void ModifyTag(Application.Db.Dtos.Modify.Request.S7.TagRequest request);
@@ -74,6 +80,12 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         [Operation]
         //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.Copy.Common.TagGroup> CopyTagGroupAsync(App.Dto.Req.Copy.Common.TagGroup request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Export.Common.TagGroup> ExportTagGroupAsync(App.Dto.Req.Export.Common.TagGroup request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.Common.TagGroup> ImportTagGroupAsync(App.Dto.Req.Import.Common.TagGroup request, CallContext context = default);
 
         //[OperationContract]
         ////[FaultContract(typeof(BusinessFault))]
@@ -123,8 +135,10 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         ValueTask<App.Dto.Res.Copy.Common.Connection> CopyConnectionAsync(App.Dto.Req.Copy.Common.Connection request, CallContext context = default);
 
         [Operation]
-        //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.Export.Common.Connection> ExportConnectionAsync(App.Dto.Req.Export.Common.Connection request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.Common.Connection> ImportConnectionAsync(App.Dto.Req.Import.Common.Connection request, CallContext context = default);
 
 
         //[OperationContract]

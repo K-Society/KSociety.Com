@@ -1,17 +1,28 @@
 ﻿@model KSociety.Com.Srv.Dto.S7.List.GridView.S7Tag
 @{
     ViewData["Title"] = "S7Tag";
-    Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml"; Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml";
+    Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml";
 }
 <br />
 
 <div class="container row p-0 m-0">
+
     <div class="col-9">
         <h2 class="text-info">Tag</h2>
     </div>
+
     <div class="col-3">
         <a asp-action="Upsert" class="btn btn-info form-control text-white">Create New S7Tag</a>
     </div>
+
+    <div class="col-3">
+        <a asp-action="Export" asp-route-fileName="S7Tag.csv" class="btn btn-info form-control text-white">Export CSV</a>
+    </div>
+
+    <form asp-action="Import" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv"/>
+        <button type="submit">Upload File</button>
+    </form>
 
     <div class="col-12 border p-3 mt-3" style="overflow: auto;">
         <form method="post">
@@ -72,56 +83,56 @@
                         </tr>
                         @foreach (var item in Model.List)
                         {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(m => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.ConnectionId.List.Find(vp => vp.Key.Equals(item.ConnectionId)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Enable)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.InputOutput.List.Find(vp => vp.Key.Equals(item.InputOutput)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.AnalogDigitalSignal.List.Find(vp => vp.Key.Equals(item.AnalogDigitalSignal)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.MemoryAddress)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Invoke)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.TagGroupId.List.Find(vp => vp.Key.Equals(item.TagGroupId)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.DataBlock)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.Offset)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.BitOfByte.List.Find(vp => vp.Key.Equals(item.BitOfByte)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.WordLenId.List.Find(vp => vp.Key.Equals(item.WordLenId)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => Model.AreaId.List.Find(vp => vp.Key.Equals(item.AreaId)).Value)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(m => item.StringLength)
-                        </td>
-                        <td>
-                            <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
-                        </td>
-                        <td>
-                            <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.ConnectionId.List.Find(vp => vp.Key.Equals(item.ConnectionId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Enable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.InputOutput.List.Find(vp => vp.Key.Equals(item.InputOutput)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.AnalogDigitalSignal.List.Find(vp => vp.Key.Equals(item.AnalogDigitalSignal)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.MemoryAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Invoke)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.TagGroupId.List.Find(vp => vp.Key.Equals(item.TagGroupId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.DataBlock)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Offset)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.BitOfByte.List.Find(vp => vp.Key.Equals(item.BitOfByte)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.WordLenId.List.Find(vp => vp.Key.Equals(item.WordLenId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.AreaId.List.Find(vp => vp.Key.Equals(item.AreaId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.StringLength)
+                                </td>
+                                <td>
+                                    <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                                </td>
+                                <td>
+                                    <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
                         }
                     </table>
                 }
@@ -136,5 +147,6 @@
             }
         </form>
     </div>
+
 </div>
 

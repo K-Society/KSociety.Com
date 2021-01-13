@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Common;
 
 namespace KSociety.Com.Domain.Repository.Common
 {
-    public interface IInOut : IRepository<InOut>
+    public interface IInOut : IRepositoryBase<InOut>
     {
         IEnumerable<InOut> GetAllInOut();
 

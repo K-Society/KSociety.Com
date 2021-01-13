@@ -22,7 +22,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.S7.S7Connection removeS7Connection, CancellationToken cancellationToken = default)
         {
-            return await _s7Connection.RemoveAsync(removeS7Connection);
+            return await _s7Connection.RemoveAsync(removeS7Connection, cancellationToken);
         }
         
         public App.Dto.Res.Add.S7.S7Connection Add(App.Dto.Req.Add.S7.S7Connection addS7Connection, CancellationToken cancellationToken = default)
@@ -37,7 +37,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
 
         public async ValueTask<App.Dto.Res.Update.S7.S7Connection> UpdateAsync(App.Dto.Req.Update.S7.S7Connection updateS7Connection, CancellationToken cancellationToken = default)
         {
-            return await _s7Connection.UpdateAsync(updateS7Connection);
+            return await _s7Connection.UpdateAsync(updateS7Connection, cancellationToken);
         }
 
         public App.Dto.Res.Copy.S7.S7Connection Copy(App.Dto.Req.Copy.S7.S7Connection copyItem, CancellationToken cancellationToken = default)
@@ -47,12 +47,12 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
         
         public async ValueTask<App.Dto.Res.Add.S7.S7Connection> AddAsync(App.Dto.Req.Add.S7.S7Connection addS7Connection, CancellationToken cancellationToken = default)
         {
-            return await _s7Connection.AddAsync(addS7Connection);
+            return await _s7Connection.AddAsync(addS7Connection, cancellationToken);
         }
         
         public async ValueTask<App.Dto.Res.Copy.S7.S7Connection> CopyAsync(App.Dto.Req.Copy.S7.S7Connection copyS7Connection, CancellationToken cancellationToken = default)
         {
-            return await _s7Connection.CopyAsync(copyS7Connection);
+            return await _s7Connection.CopyAsync(copyS7Connection, cancellationToken);
         }
 
         public bool ModifyField(App.Dto.Req.ModifyField.S7.S7Connection modifyS7ConnectionField, CancellationToken cancellationToken = default)
@@ -62,7 +62,7 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
         
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.S7.S7Connection modifyS7ConnectionField, CancellationToken cancellationToken = default)
         {
-            return await _s7Connection.ModifyFieldAsync(modifyS7ConnectionField);
+            return await _s7Connection.ModifyFieldAsync(modifyS7ConnectionField, cancellationToken);
         }
     }
 }

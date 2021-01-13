@@ -20,6 +20,12 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         //[FaultContract(typeof(BusinessFault))]
         App.Dto.Res.Copy.Common.Tag CopyTag(App.Dto.Req.Copy.Common.Tag request, CallContext context = default);
 
+        [Operation]
+        App.Dto.Res.Export.Common.Tag ExportTag(App.Dto.Req.Export.Common.Tag request, CallContext context = default);
+
+        [Operation]
+        App.Dto.Res.Import.Common.Tag ImportTag(App.Dto.Req.Import.Common.Tag request, CallContext context = default);
+
         //[OperationContract]
         ////[FaultContract(typeof(BusinessFault))]
         //void ModifyTag(Application.Db.Dtos.Modify.Request.S7.TagRequest request);
@@ -58,6 +64,12 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         [Operation]
         ////[FaultContract(typeof(BusinessFault))]
         App.Dto.Res.Copy.Common.TagGroup CopyTagGroup(App.Dto.Req.Copy.Common.TagGroup request, CallContext context = default);
+
+        [Operation]
+        App.Dto.Res.Export.Common.TagGroup ExportTagGroup(App.Dto.Req.Export.Common.TagGroup request, CallContext context = default);
+
+        [Operation]
+        App.Dto.Res.Import.Common.TagGroup ImportTagGroup(App.Dto.Req.Import.Common.TagGroup request, CallContext context = default);
 
         //[OperationContract]
         //[FaultContract(typeof(BusinessFault))]
@@ -110,8 +122,10 @@ namespace KSociety.Com.Srv.Contract.Command.Common
         App.Dto.Res.Copy.Common.Connection CopyConnection(App.Dto.Req.Copy.Common.Connection request, CallContext context = default);
 
         [Operation]
-        //[FaultContract(typeof(BusinessFault))]
         App.Dto.Res.Export.Common.Connection ExportConnection(App.Dto.Req.Export.Common.Connection request, CallContext context = default);
+
+        [Operation]
+        App.Dto.Res.Import.Common.Connection ImportConnection(App.Dto.Req.Import.Common.Connection request, CallContext context = default);
 
         //[OperationContract]
         ////[FaultContract(typeof(BusinessFault))]

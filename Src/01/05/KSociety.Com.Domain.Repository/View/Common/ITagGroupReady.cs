@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.View.Common;
 
 namespace KSociety.Com.Domain.Repository.View.Common
 {
-    public interface ITagGroupReady : IRepository<TagGroupReady>
+    public interface ITagGroupReady : IRepositoryBase<TagGroupReady>
     {
         IEnumerable<TagGroupReady> GetAllTagGroupReady();
 

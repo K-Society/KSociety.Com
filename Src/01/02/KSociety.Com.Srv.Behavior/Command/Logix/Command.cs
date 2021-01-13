@@ -45,6 +45,16 @@ namespace KSociety.Com.Srv.Behavior.Command.Logix
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.Copy.Logix.LogixTag, App.Dto.Res.Copy.Logix.LogixTag>(_loggerFactory, _componentContext, request);
         }
 
+        public App.Dto.Res.Export.Logix.LogixTag ExportLogixTag(App.Dto.Req.Export.Logix.LogixTag request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Export.Logix.LogixTag, App.Dto.Res.Export.Logix.LogixTag>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Import.Logix.LogixTag ImportLogixTag(App.Dto.Req.Import.Logix.LogixTag request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Import.Logix.LogixTag, App.Dto.Res.Import.Logix.LogixTag>(_loggerFactory, _componentContext, request);
+        }
+
         public App.Dto.Res.ModifyField.Logix.LogixTag ModifyLogixTagField(App.Dto.Req.ModifyField.Logix.LogixTag request, CallContext context = default)
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.ModifyField.Logix.LogixTag, App.Dto.Res.ModifyField.Logix.LogixTag>(_loggerFactory, _componentContext, request);

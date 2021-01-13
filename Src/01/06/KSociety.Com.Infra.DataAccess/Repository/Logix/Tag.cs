@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Logix
 {
-    public class Tag : RepositoryBase<ComContext, Domain.Entity.Logix.LogixTag>, ITag
+    public class Tag : Repository<ComContext, Domain.Entity.Logix.LogixTag, CsvClassMap.Logix.Tag>, ITag
     {
         public Tag(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
             : base(logFactory, databaseFactory)

@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Tcp;
 
 namespace KSociety.Com.Domain.Repository.Tcp
 {
-    public interface IConnection : IRepository<TcpConnection>
+    public interface IConnection : IRepositoryBase<TcpConnection>
     {
         IEnumerable<TcpConnection> GetAllTcpConnection();
 

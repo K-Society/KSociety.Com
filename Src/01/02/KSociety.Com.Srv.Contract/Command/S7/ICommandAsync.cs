@@ -29,6 +29,12 @@ namespace KSociety.Com.Srv.Contract.Command.S7
         ValueTask<App.Dto.Res.Copy.S7.S7Tag> CopyS7TagAsync(App.Dto.Req.Copy.S7.S7Tag request, CallContext context = default);
 
         [Operation]
+        ValueTask<App.Dto.Res.Export.S7.S7Tag> ExportS7TagAsync(App.Dto.Req.Export.S7.S7Tag request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.S7.S7Tag> ImportS7TagAsync(App.Dto.Req.Import.S7.S7Tag request, CallContext context = default);
+
+        [Operation]
         //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.ModifyField.S7.S7Tag> ModifyS7TagFieldAsync(App.Dto.Req.ModifyField.S7.S7Tag request, CallContext context = default);
 

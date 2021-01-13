@@ -21,6 +21,12 @@ namespace KSociety.Com.Srv.Contract.Command.S7
         App.Dto.Res.Copy.S7.S7Tag CopyS7Tag(App.Dto.Req.Copy.S7.S7Tag request, CallContext context = default);
 
         [Operation]
+        App.Dto.Res.Export.S7.S7Tag ExportS7Tag(App.Dto.Req.Export.S7.S7Tag request, CallContext context = default);
+
+        [Operation]
+        App.Dto.Res.Import.S7.S7Tag ImportS7Tag(App.Dto.Req.Import.S7.S7Tag request, CallContext context = default);
+
+        [Operation]
         //[FaultContract(typeof(BusinessFault))]
         App.Dto.Res.ModifyField.S7.S7Tag ModifyS7TagField(App.Dto.Req.ModifyField.S7.S7Tag request,
             CallContext context = default);

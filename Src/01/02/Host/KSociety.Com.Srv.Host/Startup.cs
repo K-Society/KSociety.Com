@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using KSociety.Base.EventBus;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
@@ -13,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProtoBuf.Grpc.Server;
+using System;
 
 namespace KSociety.Com.Srv.Host
 {

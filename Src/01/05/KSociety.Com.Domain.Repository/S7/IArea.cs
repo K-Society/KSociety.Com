@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.S7;
 
 namespace KSociety.Com.Domain.Repository.S7
 {
-    public interface IArea : IRepository<Area>
+    public interface IArea : IRepositoryBase<Area>
     {
         IEnumerable<Area> GetAllArea();
 

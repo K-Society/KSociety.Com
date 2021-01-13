@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.S7;
 
 namespace KSociety.Com.Domain.Repository.S7
 {
-    public interface IConnection : IRepository<S7Connection>
+    public interface IConnection : IRepositoryBase<S7Connection>
     {
         IEnumerable<S7Connection> GetAllS7Connection();
 

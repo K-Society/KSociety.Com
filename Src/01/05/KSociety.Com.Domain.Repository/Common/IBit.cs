@@ -5,7 +5,7 @@ using KSociety.Com.Domain.Entity.Common;
 
 namespace KSociety.Com.Domain.Repository.Common
 {
-    public interface IBit : IRepository<Bit>
+    public interface IBit : IRepositoryBase<Bit>
     {
         IEnumerable<Bit> GetAllBit();
 
