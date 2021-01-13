@@ -204,6 +204,98 @@ namespace KSociety.Com.Srv.Agent.Command.S7
             return output;
         }
 
+        public App.Dto.Res.Export.S7.S7Connection Export(App.Dto.Req.Export.S7.S7Connection request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.S7.S7Connection output = new App.Dto.Res.Export.S7.S7Connection();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ExportS7Connection(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Export.S7.S7Connection> ExportAsync(App.Dto.Req.Export.S7.S7Connection request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Export.S7.S7Connection output = new App.Dto.Res.Export.S7.S7Connection();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ExportS7ConnectionAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public App.Dto.Res.Import.S7.S7Connection Import(App.Dto.Req.Import.S7.S7Connection request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.S7.S7Connection output = new App.Dto.Res.Import.S7.S7Connection();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommand>();
+
+                    var result = client.ImportS7Connection(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
+        public async ValueTask<App.Dto.Res.Import.S7.S7Connection> ImportAsync(App.Dto.Req.Import.S7.S7Connection request, CancellationToken cancellationToken = default)
+        {
+            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
+            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            App.Dto.Res.Import.S7.S7Connection output = new App.Dto.Res.Import.S7.S7Connection();
+            try
+            {
+                using (Channel)
+                {
+                    var client = Channel.CreateGrpcService<ICommandAsync>();
+
+                    var result = await client.ImportS7ConnectionAsync(request, CallContext);
+
+                    output = result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+            }
+            return output;
+        }
+
         public bool ModifyField(App.Dto.Req.ModifyField.S7.S7Connection request, CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

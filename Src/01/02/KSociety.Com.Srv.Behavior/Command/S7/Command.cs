@@ -80,6 +80,16 @@ namespace KSociety.Com.Srv.Behavior.Command.S7
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.Copy.S7.S7Connection, App.Dto.Res.Copy.S7.S7Connection>(_loggerFactory, _componentContext, request);
         }
 
+        public App.Dto.Res.Export.S7.S7Connection ExportS7Connection(App.Dto.Req.Export.S7.S7Connection request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Export.S7.S7Connection, App.Dto.Res.Export.S7.S7Connection>(_loggerFactory, _componentContext, request);
+        }
+
+        public App.Dto.Res.Import.S7.S7Connection ImportS7Connection(App.Dto.Req.Import.S7.S7Connection request, CallContext context = default)
+        {
+            return _commandHandler.ExecuteWithResponse<App.Dto.Req.Import.S7.S7Connection, App.Dto.Res.Import.S7.S7Connection>(_loggerFactory, _componentContext, request);
+        }
+
         public App.Dto.Res.ModifyField.S7.S7Connection ModifyS7ConnectionField(App.Dto.Req.ModifyField.S7.S7Connection request, CallContext context = default)
         {
             return _commandHandler.ExecuteWithResponse<App.Dto.Req.ModifyField.S7.S7Connection, App.Dto.Res.ModifyField.S7.S7Connection>(_loggerFactory, _componentContext, request);

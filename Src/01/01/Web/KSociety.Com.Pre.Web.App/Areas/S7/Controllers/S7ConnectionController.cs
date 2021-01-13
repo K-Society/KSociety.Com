@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
+using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
@@ -91,6 +94,38 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
             }
 
             await _s7Connection.RemoveAsync(s7Connection.S7ConnectionDto.GetRemoveReq());
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async ValueTask<IActionResult> Export(string fileName)
+        {
+            var path = Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "wwwroot", "export", fileName);
+
+            var result = await _s7Connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Connection(path));
+            if (result.Result)
+            {
+                var memory = new MemoryStream();
+                await using (var stream = new FileStream(path, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, Class.FileManager.GetContentType(path), Path.GetFileName(path));
+            }
+
+            return Content("filename not present");
+        }
+
+        [HttpPost]
+        public async ValueTask<IActionResult> Import(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            await _s7Connection.ImportAsync(new KSociety.Com.App.Dto.Req.Import.S7.S7Connection(file.FileName, file.GetFileArray().Result));
 
             return RedirectToAction(nameof(Index));
         }

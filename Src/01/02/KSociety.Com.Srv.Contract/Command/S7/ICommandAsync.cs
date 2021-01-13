@@ -60,6 +60,12 @@ namespace KSociety.Com.Srv.Contract.Command.S7
         ValueTask<App.Dto.Res.Copy.S7.S7Connection> CopyS7ConnectionAsync(App.Dto.Req.Copy.S7.S7Connection request, CallContext context = default);
 
         [Operation]
+        ValueTask<App.Dto.Res.Export.S7.S7Connection> ExportS7ConnectionAsync(App.Dto.Req.Export.S7.S7Connection request, CallContext context = default);
+
+        [Operation]
+        ValueTask<App.Dto.Res.Import.S7.S7Connection> ImportS7ConnectionAsync(App.Dto.Req.Import.S7.S7Connection request, CallContext context = default);
+
+        [Operation]
         //[FaultContract(typeof(BusinessFault))]
         ValueTask<App.Dto.Res.ModifyField.S7.S7Connection> ModifyS7ConnectionFieldAsync(App.Dto.Req.ModifyField.S7.S7Connection request, CallContext context = default);
 

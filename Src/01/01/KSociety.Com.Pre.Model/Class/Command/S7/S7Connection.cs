@@ -44,7 +44,17 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
         {
             return _s7Connection.Copy(copyItem);
         }
-        
+
+        public App.Dto.Res.Export.S7.S7Connection Export(App.Dto.Req.Export.S7.S7Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return _s7Connection.Export(exportItem);
+        }
+
+        public App.Dto.Res.Import.S7.S7Connection Import(App.Dto.Req.Import.S7.S7Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return _s7Connection.Import(exportItem);
+        }
+
         public async ValueTask<App.Dto.Res.Add.S7.S7Connection> AddAsync(App.Dto.Req.Add.S7.S7Connection addS7Connection, CancellationToken cancellationToken = default)
         {
             return await _s7Connection.AddAsync(addS7Connection, cancellationToken);
@@ -53,6 +63,16 @@ namespace KSociety.Com.Pre.Model.Class.Command.S7
         public async ValueTask<App.Dto.Res.Copy.S7.S7Connection> CopyAsync(App.Dto.Req.Copy.S7.S7Connection copyS7Connection, CancellationToken cancellationToken = default)
         {
             return await _s7Connection.CopyAsync(copyS7Connection, cancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Export.S7.S7Connection> ExportAsync(App.Dto.Req.Export.S7.S7Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return await _s7Connection.ExportAsync(exportItem, cancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.S7.S7Connection> ImportAsync(App.Dto.Req.Import.S7.S7Connection exportItem, CancellationToken cancellationToken = default)
+        {
+            return await _s7Connection.ImportAsync(exportItem, cancellationToken);
         }
 
         public bool ModifyField(App.Dto.Req.ModifyField.S7.S7Connection modifyS7ConnectionField, CancellationToken cancellationToken = default)

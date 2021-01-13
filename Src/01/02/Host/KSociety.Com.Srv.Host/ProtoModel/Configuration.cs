@@ -121,6 +121,9 @@ namespace KSociety.Com.Srv.Host.ProtoModel
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
                     .AddSubType(406, typeof(App.Dto.Req.Export.Common.TagGroup));
 
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ExportReq), true)
+                    .AddSubType(407, typeof(App.Dto.Req.Export.S7.S7Connection));
+
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
                     .AddSubType(502, typeof(App.Dto.Req.Import.Common.Connection));
 
@@ -135,6 +138,9 @@ namespace KSociety.Com.Srv.Host.ProtoModel
 
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
                     .AddSubType(506, typeof(App.Dto.Req.Import.Common.TagGroup));
+
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(ImportReq), true)
+                    .AddSubType(507, typeof(App.Dto.Req.Import.S7.S7Connection));
 
                 //IntegrationEvent
                 ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(IntegrationEvent), true)

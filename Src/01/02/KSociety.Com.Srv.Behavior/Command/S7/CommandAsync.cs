@@ -81,6 +81,16 @@ namespace KSociety.Com.Srv.Behavior.Command.S7
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Copy.S7.S7Connection, App.Dto.Res.Copy.S7.S7Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
         }
 
+        public async ValueTask<App.Dto.Res.Export.S7.S7Connection> ExportS7ConnectionAsync(App.Dto.Req.Export.S7.S7Connection request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Export.S7.S7Connection, App.Dto.Res.Export.S7.S7Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
+        public async ValueTask<App.Dto.Res.Import.S7.S7Connection> ImportS7ConnectionAsync(App.Dto.Req.Import.S7.S7Connection request, CallContext context = default)
+        {
+            return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.Import.S7.S7Connection, App.Dto.Res.Import.S7.S7Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
+        }
+
         public async ValueTask<App.Dto.Res.ModifyField.S7.S7Connection> ModifyS7ConnectionFieldAsync(App.Dto.Req.ModifyField.S7.S7Connection request, CallContext context = default)
         {
             return await _commandHandlerAsync.ExecuteWithResponseAsync<App.Dto.Req.ModifyField.S7.S7Connection, App.Dto.Res.ModifyField.S7.S7Connection>(_loggerFactory, _componentContext, request, context.CancellationToken);
