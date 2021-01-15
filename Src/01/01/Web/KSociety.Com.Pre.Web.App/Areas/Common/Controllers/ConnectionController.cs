@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using KSociety.Base.Srv.Dto;
+﻿using KSociety.Base.Srv.Dto;
 using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 {
     [Area("Common")]
     public class ConnectionController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly Model.Interface.Command.Common.IConnection _connection;
         private readonly Model.Interface.Query.Common.Model.IConnection _connectionQueryModel;
         private readonly Model.Interface.Query.Common.List.GridView.IConnection _connectionQueryListGridView;
@@ -23,10 +24,12 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         public Srv.Dto.Common.List.GridView.Connection ConnectionListGridView { get; set; }
 
         public ConnectionController(
+            IWebHostEnvironment webHostEnvironment,
             Model.Interface.Command.Common.IConnection connection,
             Model.Interface.Query.Common.Model.IConnection connectionQueryModel,
             Model.Interface.Query.Common.List.GridView.IConnection connectionQueryListGridView)
         {
+            _webHostEnvironment = webHostEnvironment;
             _connection = connection;
             _connectionQueryModel = connectionQueryModel;
             _connectionQueryListGridView = connectionQueryListGridView;
@@ -100,7 +103,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         public async ValueTask<IActionResult> Export(string fileName)
         {
             var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
+                _webHostEnvironment.ContentRootPath,
                 "wwwroot", "export", fileName);
 
             var result = await _connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Connection(path));
@@ -123,17 +126,6 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         {
             if (file == null || file.Length == 0)
                 return Content("file not selected");
-
-            //var path = Path.Combine(
-            //    Directory.GetCurrentDirectory(),
-            //    "wwwroot", "import", file.GetFilename());
-
-            //await using (var stream = new FileStream(path, FileMode.Create))
-            //{
-            //    await file.CopyToAsync(stream);
-            //    await stream.FlushAsync();
-                
-            //}
 
             await _connection.ImportAsync(new KSociety.Com.App.Dto.Req.Import.Common.Connection(file.GetFilename(), file.GetFileArray().Result));
 

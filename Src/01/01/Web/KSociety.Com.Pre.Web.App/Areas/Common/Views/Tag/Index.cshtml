@@ -14,8 +14,13 @@
     </div>
 
     <div class="col-3">
-        <a asp-action="Export" asp-route-csvPath="C:\temp\tag.csv" class="btn btn-info form-control text-white">Export CSV</a>
+        <a asp-action="Export" asp-route-csvPath="Tag.csv" class="btn btn-info form-control text-white">Export CSV</a>
     </div>
+
+    <form asp-action="Import" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload File</button>
+    </form>
 
     <div class="col-12 border p-3 mt-3" style="overflow: auto;">
         <form method="post">

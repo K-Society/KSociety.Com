@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     [Area("Common")]
     public class TagGroupController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly Model.Interface.Command.Common.ITagGroup _tagGroup;
         private readonly Model.Interface.Query.Common.ITagGroup _tagGroupQuery;
         private readonly Model.Interface.Query.Common.List.GridView.ITagGroup _tagGroupQueryListGridView;
@@ -22,8 +24,11 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         [BindProperty]
         public Srv.Dto.Common.List.GridView.TagGroup TagGroupListGridView { get; set; }
 
-        public TagGroupController(Model.Interface.Command.Common.ITagGroup tagGroup, Model.Interface.Query.Common.ITagGroup tagGroupQuery, Model.Interface.Query.Common.List.GridView.ITagGroup tagGroupQueryListGridView)
+        public TagGroupController(
+            IWebHostEnvironment webHostEnvironment,
+            Model.Interface.Command.Common.ITagGroup tagGroup, Model.Interface.Query.Common.ITagGroup tagGroupQuery, Model.Interface.Query.Common.List.GridView.ITagGroup tagGroupQueryListGridView)
         {
+            _webHostEnvironment = webHostEnvironment;
             _tagGroup = tagGroup;
             _tagGroupQuery = tagGroupQuery;
             _tagGroupQueryListGridView = tagGroupQueryListGridView;
@@ -125,7 +130,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         public async ValueTask<IActionResult> Export(string fileName)
         {
             var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
+                _webHostEnvironment.ContentRootPath,
                 "wwwroot", "export", fileName);
 
             var result = await _tagGroup.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.TagGroup(path));

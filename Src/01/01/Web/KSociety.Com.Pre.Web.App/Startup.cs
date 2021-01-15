@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Autofac;
 using KSociety.Com.Pre.Web.App.Bindings.Common;
 using KSociety.Com.Pre.Web.App.Bindings.Control;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace KSociety.Com.Pre.Web.App
@@ -74,7 +76,7 @@ namespace KSociety.Com.Pre.Web.App
 
             app.UseRouting();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
