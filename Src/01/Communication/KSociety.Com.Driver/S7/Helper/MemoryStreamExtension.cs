@@ -1,4 +1,4 @@
-﻿namespace KSociety.Com.Driver.S7.Helper
+namespace KSociety.Com.Driver.S7.Helper
 {
     internal static class MemoryStreamExtension
     {

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using KSociety.Com.Driver.S7.Helper;
+﻿using KSociety.Com.Driver.S7.Helper;
 using KSociety.Com.Driver.S7.Protocol.S7;
 using KSociety.Com.Driver.S7.Types;
+using System.Collections.Generic;
+using System.Linq;
 using DateTime = KSociety.Com.Driver.S7.Types.DateTime;
 using String = KSociety.Com.Driver.S7.Types.String;
 

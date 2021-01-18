@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using KSociety.Com.Driver.S7;
+﻿using KSociety.Com.Driver.S7;
 using KSociety.Com.Driver.S7.Types;
 using Microsoft.Extensions.Logging;
 using Polly;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using DateTime = System.DateTime;
 
 namespace KSociety.Com.Domain.Entity.S7
@@ -194,13 +194,13 @@ namespace KSociety.Com.Domain.Entity.S7
             Logger?.LogTrace("Domain.Entity.S7.S7Connection Initiate: " + Name);
             if (CpuTypeId != null)
             {
-                ClientRead = new Plc((KSociety.Com.Driver.S7.CpuType) CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
+                ClientRead = new Plc((Driver.S7.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 TryConnectRead();
             }
 
             if (CpuTypeId != null && WriteEnable)
             {
-                ClientWrite = new Plc((KSociety.Com.Driver.S7.CpuType) CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
+                ClientWrite = new Plc((Driver.S7.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 TryConnectWrite();
             }
 

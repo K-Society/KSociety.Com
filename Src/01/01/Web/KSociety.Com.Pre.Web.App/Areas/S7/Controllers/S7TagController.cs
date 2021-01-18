@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
     [Area("S7")]
     public class S7TagController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly Model.Interface.Command.S7.IS7Tag _tag;
         private readonly Model.Interface.Query.S7.Model.IS7Tag _tagQueryModel;
         private readonly Model.Interface.Query.S7.List.GridView.IS7Tag _tagQueryListGridView;
@@ -21,8 +23,11 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
         [BindProperty]
         public Srv.Dto.S7.List.GridView.S7Tag TagListGridView { get; set; }
 
-        public S7TagController(Model.Interface.Command.S7.IS7Tag tag, Model.Interface.Query.S7.Model.IS7Tag tagQueryModel, Model.Interface.Query.S7.List.GridView.IS7Tag tagQueryListGridView)
+        public S7TagController(
+            IWebHostEnvironment webHostEnvironment,
+            Model.Interface.Command.S7.IS7Tag tag, Model.Interface.Query.S7.Model.IS7Tag tagQueryModel, Model.Interface.Query.S7.List.GridView.IS7Tag tagQueryListGridView)
         {
+            _webHostEnvironment = webHostEnvironment;
             _tag = tag;
             _tagQueryModel = tagQueryModel;
             _tagQueryListGridView = tagQueryListGridView;
@@ -95,8 +100,17 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public async ValueTask<IActionResult> Export(string fileName)
         {
+            if (!Directory.Exists(Path.Combine(
+                _webHostEnvironment.ContentRootPath,
+                "wwwroot", "export")))
+            {
+                Directory.CreateDirectory(Path.Combine(
+                    _webHostEnvironment.ContentRootPath,
+                    "wwwroot", "export"));
+            }
+
             var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
+                _webHostEnvironment.ContentRootPath,
                 "wwwroot", "export", fileName);
 
             var result = await _tag.ExportAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Tag(path));

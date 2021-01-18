@@ -15,9 +15,6 @@ namespace KSociety.Com.App.Dto.Req.Import.Common
         {
             FileName = fileName;
             ByteArray = byteArray;
-            //var array = new byte[byteArray.Length];
-            //Buffer.BlockCopy(byteArray, 0, array, 0, byteArray.Length);
-            //ByteArray = array;
         }
     }
 }
