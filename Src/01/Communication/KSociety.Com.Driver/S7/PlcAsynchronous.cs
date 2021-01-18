@@ -1,3 +1,6 @@
+using KSociety.Com.Driver.S7.Protocol;
+using KSociety.Com.Driver.S7.Protocol.S7;
+using KSociety.Com.Driver.S7.Types;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -5,9 +8,6 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
-using KSociety.Com.Driver.S7.Protocol;
-using KSociety.Com.Driver.S7.Protocol.S7;
-using KSociety.Com.Driver.S7.Types;
 
 namespace KSociety.Com.Driver.S7
 {

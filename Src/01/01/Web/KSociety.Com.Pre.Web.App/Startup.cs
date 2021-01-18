@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using Autofac;
 using KSociety.Com.Pre.Web.App.Bindings.Common;
 using KSociety.Com.Pre.Web.App.Bindings.Control;
@@ -7,8 +5,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace KSociety.Com.Pre.Web.App
 {

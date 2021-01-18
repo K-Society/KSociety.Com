@@ -100,6 +100,15 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public async ValueTask<IActionResult> Export(string fileName)
         {
+            if (!Directory.Exists(Path.Combine(
+                _webHostEnvironment.ContentRootPath,
+                "wwwroot", "export")))
+            {
+                Directory.CreateDirectory(Path.Combine(
+                    _webHostEnvironment.ContentRootPath,
+                    "wwwroot", "export"));
+            }
+
             var path = Path.Combine(
                 _webHostEnvironment.ContentRootPath,
                 "wwwroot", "export", fileName);

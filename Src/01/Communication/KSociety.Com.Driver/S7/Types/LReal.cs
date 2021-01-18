@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace KSociety.Com.Driver.S7.Types
 {

@@ -1,4 +1,4 @@
-﻿namespace KSociety.Com.Driver.S7.Protocol.S7
+namespace KSociety.Com.Driver.S7.Protocol.S7
 {
     /// <summary>
     /// Represents an area of memory in the PLC
