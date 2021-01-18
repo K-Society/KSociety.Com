@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Com.Domain.Entity.Common;
 using KSociety.Com.Driver.S7;
 using KSociety.Com.Driver.S7.Types;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Domain.Entity.S7
 {
@@ -357,7 +357,7 @@ namespace KSociety.Com.Domain.Entity.S7
             }
             catch (Exception ex)
             { 
-                Logger.LogError("WriteTagToPlcAsync: " + ex.Message + " - " + ex.StackTrace);
+                Logger.LogError("WriteTagToPlcAsync: " + Name + " " + value + " " + ex.Message + " - " + ex.StackTrace);
             }
 
             return output;

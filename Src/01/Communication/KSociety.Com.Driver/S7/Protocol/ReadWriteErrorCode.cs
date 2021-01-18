@@ -1,4 +1,4 @@
-﻿
+
 namespace KSociety.Com.Driver.S7.Protocol
 {
     internal enum ReadWriteErrorCode : byte

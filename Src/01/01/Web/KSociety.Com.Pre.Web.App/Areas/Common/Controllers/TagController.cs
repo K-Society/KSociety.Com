@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
+using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
@@ -8,6 +12,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     [Area("Common")]
     public class TagController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly Model.Interface.Command.Common.ITag _tag;
         private readonly Model.Interface.Query.Common.Model.ITag _tagQueryModel;
         private readonly Model.Interface.Query.Common.List.GridView.ITag _tagQueryListGridView;
@@ -22,10 +27,12 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
         public Srv.Dto.Common.List.GridView.Tag TagListGridView { get; set; }
 
         public TagController(
+            IWebHostEnvironment webHostEnvironment,
             Model.Interface.Command.Common.ITag tag, 
             Model.Interface.Query.Common.Model.ITag tagQueryModel,
             Model.Interface.Query.Common.List.GridView.ITag tagQueryListGridView)
         {
+            _webHostEnvironment = webHostEnvironment;
             _tag = tag;
             _tagQueryModel = tagQueryModel;
             _tagQueryListGridView = tagQueryListGridView;
@@ -95,11 +102,45 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async ValueTask Export(string csvPath)
+        public async ValueTask<IActionResult> Export(string fileName)
         {
-            await _tag.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Tag(csvPath));
+            if (!Directory.Exists(Path.Combine(
+                _webHostEnvironment.ContentRootPath,
+                "wwwroot", "export")))
+            {
+                Directory.CreateDirectory(Path.Combine(
+                    _webHostEnvironment.ContentRootPath,
+                    "wwwroot", "export"));
+            }
 
+            var path = Path.Combine(
+                _webHostEnvironment.ContentRootPath,
+                "wwwroot", "export", fileName);
 
+            var result = await _tag.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Tag(path));
+            if (result.Result)
+            {
+                var memory = new MemoryStream();
+                await using (var stream = new FileStream(path, FileMode.Open))
+                {
+                    await stream.CopyToAsync(memory);
+                }
+                memory.Position = 0;
+                return File(memory, Class.FileManager.GetContentType(path), Path.GetFileName(path));
+            }
+
+            return Content("filename not present");
+        }
+
+        [HttpPost]
+        public async ValueTask<IActionResult> Import(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            await _tag.ImportAsync(new KSociety.Com.App.Dto.Req.Import.Common.Tag(file.FileName, file.GetFileArray().Result));
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

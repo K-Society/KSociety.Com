@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Pre.Web.App.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
     [Area("S7")]
     public class S7ConnectionController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly Model.Interface.Command.S7.IS7Connection _s7Connection;
         //private readonly Model.Interface.Query.S7.IS7Connection _s7ConnectionQuery;
         private readonly Model.Interface.Query.S7.Model.IS7Connection _s7ConnectionQueryModel;
@@ -23,10 +25,12 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
         public Srv.Dto.S7.List.GridView.S7Connection S7ConnectionListGridView { get; set; }
 
         public S7ConnectionController(
+            IWebHostEnvironment webHostEnvironment,
             Model.Interface.Command.S7.IS7Connection s7Connection, 
             Model.Interface.Query.S7.Model.IS7Connection s7ConnectionQueryModel,
             Model.Interface.Query.S7.List.GridView.IS7Connection s7ConnectionQueryListGridView)
         {
+            _webHostEnvironment = webHostEnvironment;
             _s7Connection = s7Connection;
             _s7ConnectionQueryModel = s7ConnectionQueryModel;
             _s7ConnectionQueryListGridView = s7ConnectionQueryListGridView;
@@ -100,8 +104,17 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public async ValueTask<IActionResult> Export(string fileName)
         {
+            if (!Directory.Exists(Path.Combine(
+                _webHostEnvironment.ContentRootPath,
+                "wwwroot", "export")))
+            {
+                Directory.CreateDirectory(Path.Combine(
+                    _webHostEnvironment.ContentRootPath,
+                    "wwwroot", "export"));
+            }
+
             var path = Path.Combine(
-                Directory.GetCurrentDirectory(),
+                _webHostEnvironment.ContentRootPath,
                 "wwwroot", "export", fileName);
 
             var result = await _s7Connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Connection(path));

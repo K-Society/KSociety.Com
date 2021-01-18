@@ -9,7 +9,7 @@ namespace KSociety.Com.Infra.DataAccess.CsvClassMap.Common
             Map(map => map.Id);
             Map(map => map.AutomationTypeId);
             Map(map => map.Name);
-            Map(map => map.Id);
+            Map(map => map.Ip);
             Map(map => map.Enable);
             Map(map => map.WriteEnable);
         }
