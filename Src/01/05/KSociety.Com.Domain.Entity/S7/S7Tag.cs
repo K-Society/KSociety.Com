@@ -1,9 +1,11 @@
 ﻿using FluentValidation;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Com.Domain.Entity.Common;
-using KSociety.Com.Driver.S7;
-using KSociety.Com.Driver.S7.Types;
+//using KSociety.Com.Driver.S7;
+//using KSociety.Com.Driver.S7.Types;
 using Microsoft.Extensions.Logging;
+using S7.Net;
+using S7.Net.Types;
 using System;
 using System.Threading.Tasks;
 
@@ -184,7 +186,7 @@ namespace KSociety.Com.Domain.Entity.S7
             {
                 DataItemTag = new DataItem
                 {
-                    Address = MemoryAddress,
+                    //Address = MemoryAddress,
                     DataType = (DataType)(AreaId ?? 132),
                     VarType = (VarType) (WordLenId ?? 0),
                     DB = DataBlock ?? 0,
