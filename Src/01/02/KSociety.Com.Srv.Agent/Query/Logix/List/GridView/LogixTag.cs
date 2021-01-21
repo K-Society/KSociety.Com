@@ -8,7 +8,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
 {
-    public class LogixTag : KSociety.Base.Srv.Agent.Connection
+    public class LogixTag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixTag
     {
         public LogixTag(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

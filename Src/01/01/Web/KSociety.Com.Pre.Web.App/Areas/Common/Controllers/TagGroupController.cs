@@ -14,9 +14,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     public class TagGroupController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Model.Interface.Command.Common.ITagGroup _tagGroup;
-        private readonly Model.Interface.Query.Common.ITagGroup _tagGroupQuery;
-        private readonly Model.Interface.Query.Common.List.GridView.ITagGroup _tagGroupQueryListGridView;
+        private readonly KSociety.Com.Srv.Agent.Interface.Command.Common.ITagGroup _tagGroup;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.ITagGroup _tagGroupQuery;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITagGroup _tagGroupQueryListGridView;
 
         [BindProperty]
         public Srv.Dto.Common.TagGroup TagGroup { get; set; }
@@ -26,7 +26,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
         public TagGroupController(
             IWebHostEnvironment webHostEnvironment,
-            Model.Interface.Command.Common.ITagGroup tagGroup, Model.Interface.Query.Common.ITagGroup tagGroupQuery, Model.Interface.Query.Common.List.GridView.ITagGroup tagGroupQueryListGridView)
+            KSociety.Com.Srv.Agent.Interface.Command.Common.ITagGroup tagGroup, 
+            KSociety.Com.Srv.Agent.Interface.Query.Common.ITagGroup tagGroupQuery,
+            KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITagGroup tagGroupQueryListGridView)
         {
             _webHostEnvironment = webHostEnvironment;
             _tagGroup = tagGroup;

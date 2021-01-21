@@ -8,7 +8,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Command.Logix
 {
-    public class LogixConnection : KSociety.Base.Srv.Agent.Connection
+    public class LogixConnection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Command.Logix.ILogixConnection
     {
         public LogixConnection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

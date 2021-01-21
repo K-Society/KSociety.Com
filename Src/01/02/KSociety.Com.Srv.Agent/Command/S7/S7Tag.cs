@@ -8,7 +8,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Command.S7
 {
-    public class S7Tag : KSociety.Base.Srv.Agent.Connection
+    public class S7Tag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Tag
     {
         public S7Tag(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

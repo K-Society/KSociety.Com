@@ -20,8 +20,8 @@ namespace KSociety.Com.Pre.Web.App.Bindings.Control
             var agentConfiguration = new AgentConfiguration("http://localhost:5001", true);
             builder.RegisterInstance(agentConfiguration).As<IAgentConfiguration>().SingleInstance();
 
-            builder.RegisterType<KSociety.Base.Pre.Model.Control.DatabaseControl>()
-                .As<KSociety.Base.Pre.Model.Control.IDatabaseControl>().SingleInstance();
+            builder.RegisterType<KSociety.Base.Srv.Agent.Control.DatabaseControl>()
+                .As<KSociety.Base.Srv.Agent.IAgentDatabaseControl>().SingleInstance();
         }
     }
 }

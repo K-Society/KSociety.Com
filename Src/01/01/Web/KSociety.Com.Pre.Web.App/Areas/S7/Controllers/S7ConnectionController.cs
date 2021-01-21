@@ -13,10 +13,10 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
     public class S7ConnectionController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Model.Interface.Command.S7.IS7Connection _s7Connection;
+        private readonly KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Connection _s7Connection;
         //private readonly Model.Interface.Query.S7.IS7Connection _s7ConnectionQuery;
-        private readonly Model.Interface.Query.S7.Model.IS7Connection _s7ConnectionQueryModel;
-        private readonly Model.Interface.Query.S7.List.GridView.IS7Connection _s7ConnectionQueryListGridView;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Connection _s7ConnectionQueryModel;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.S7.List.GridView.IS7Connection _s7ConnectionQueryListGridView;
 
         [BindProperty]
         public Srv.Dto.S7.Model.S7Connection S7ConnectionModel { get; set; }
@@ -26,9 +26,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public S7ConnectionController(
             IWebHostEnvironment webHostEnvironment,
-            Model.Interface.Command.S7.IS7Connection s7Connection, 
-            Model.Interface.Query.S7.Model.IS7Connection s7ConnectionQueryModel,
-            Model.Interface.Query.S7.List.GridView.IS7Connection s7ConnectionQueryListGridView)
+            KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Connection s7Connection,
+            KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Connection s7ConnectionQueryModel,
+            KSociety.Com.Srv.Agent.Interface.Query.S7.List.GridView.IS7Connection s7ConnectionQueryListGridView)
         {
             _webHostEnvironment = webHostEnvironment;
             _s7Connection = s7Connection;

@@ -9,7 +9,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 {
-    public class ConnectionId : KSociety.Base.Srv.Agent.Connection
+    public class ConnectionId : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IConnectionId
     {
         public ConnectionId(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

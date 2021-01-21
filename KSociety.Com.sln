@@ -81,9 +81,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{925C3A53-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Srv.Host.Test", "Src\01\02\Host\Test\KSociety.Com.Srv.Host.Test\KSociety.Com.Srv.Host.Test.csproj", "{DE514DC3-7B72-47E7-B207-60F66ADF3A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSociety.Com.Infra.Migration.SqlServer", "Src\01\06\KSociety.Com.Infra.Migration.SqlServer\KSociety.Com.Infra.Migration.SqlServer.csproj", "{86BDE9A6-499D-4F6D-8CB3-22C15188847D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Migration.SqlServer", "Src\01\06\KSociety.Com.Infra.Migration.SqlServer\KSociety.Com.Infra.Migration.SqlServer.csproj", "{86BDE9A6-499D-4F6D-8CB3-22C15188847D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSociety.Com.Infra.Migration.Sqlite", "Src\01\06\KSociety.Com.Infra.Migration.Sqlite\KSociety.Com.Infra.Migration.Sqlite.csproj", "{5F364D03-548C-45EB-A0A4-F8985BC47EB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Migration.Sqlite", "Src\01\06\KSociety.Com.Infra.Migration.Sqlite\KSociety.Com.Infra.Migration.Sqlite.csproj", "{5F364D03-548C-45EB-A0A4-F8985BC47EB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
