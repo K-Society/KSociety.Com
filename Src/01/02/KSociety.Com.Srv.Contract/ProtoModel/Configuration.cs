@@ -1,11 +1,11 @@
-﻿using System;
-using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Shared.Dto.Req;
 using KSociety.Base.EventBus.Events;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Biz.IntegrationEvent.Event;
+using System;
 
-namespace KSociety.Com.Srv.Agent.ProtoModel
+namespace KSociety.Com.Srv.Contract.ProtoModel
 {
     public static class Configuration
     {

@@ -63,7 +63,7 @@ namespace KSociety.Com.Srv.Host
         {
             try
             {
-                ProtoModel.Configuration.ProtoBufConfiguration();
+                KSociety.Com.Srv.Contract.ProtoModel.Configuration.ProtoBufConfiguration();
                 services.AddCodeFirstGrpc();
                 //services.Configure<ConsoleLifetimeOptions>(opts => opts.SuppressStatusMessages = true);
             }
