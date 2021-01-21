@@ -13,9 +13,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     public class ConnectionController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Model.Interface.Command.Common.IConnection _connection;
-        private readonly Model.Interface.Query.Common.Model.IConnection _connectionQueryModel;
-        private readonly Model.Interface.Query.Common.List.GridView.IConnection _connectionQueryListGridView;
+        private readonly KSociety.Com.Srv.Agent.Interface.Command.Common.IConnection _connection;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.Model.IConnection _connectionQueryModel;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.IConnection _connectionQueryListGridView;
 
         [BindProperty]
         public Srv.Dto.Common.Model.Connection ConnectionModel { get; set; }
@@ -25,9 +25,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
         public ConnectionController(
             IWebHostEnvironment webHostEnvironment,
-            Model.Interface.Command.Common.IConnection connection,
-            Model.Interface.Query.Common.Model.IConnection connectionQueryModel,
-            Model.Interface.Query.Common.List.GridView.IConnection connectionQueryListGridView)
+            KSociety.Com.Srv.Agent.Interface.Command.Common.IConnection connection,
+            KSociety.Com.Srv.Agent.Interface.Query.Common.Model.IConnection connectionQueryModel,
+            KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.IConnection connectionQueryListGridView)
         {
             _webHostEnvironment = webHostEnvironment;
             _connection = connection;

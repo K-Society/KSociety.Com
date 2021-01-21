@@ -63,7 +63,7 @@ namespace KSociety.Com.Srv.Host
         {
             try
             {
-                ProtoModel.Configuration.ProtoBufConfiguration();
+                KSociety.Com.Srv.Contract.ProtoModel.Configuration.ProtoBufConfiguration();
                 services.AddCodeFirstGrpc();
                 //services.Configure<ConsoleLifetimeOptions>(opts => opts.SuppressStatusMessages = true);
             }
@@ -136,7 +136,7 @@ namespace KSociety.Com.Srv.Host
                         MqHostName, MqUserName, MqPassword, DebugFlag, QueueDurable, QueueExclusive, QueueAutoDelete));
 
                 //Transaction, don't move this line.
-                builder.RegisterModule(new Bindings.Transaction(DebugFlag));
+                //builder.RegisterModule(new Bindings.Transaction(DebugFlag));
 
             }
             catch (Exception ex)
@@ -196,9 +196,6 @@ namespace KSociety.Com.Srv.Host
 
                 endpoints.MapGrpcService<Srv.Behavior.Query.View.Joined.List.GridView.Query>();
                 endpoints.MapGrpcService<Srv.Behavior.Query.View.Joined.List.GridView.QueryAsync>();
-
-                endpoints.MapGrpcService<Srv.Behavior.Transaction.Transaction>();
-                endpoints.MapGrpcService<Srv.Behavior.Transaction.TransactionAsync>();
 
                 endpoints.MapGrpcService<Srv.Behavior.Biz.Biz>();
                 endpoints.MapGrpcService<Srv.Behavior.Biz.BizAsync>();

@@ -20,11 +20,11 @@ namespace KSociety.Com.Pre.Web.App.Bindings.S7
             var agentConfiguration = new ComAgentConfiguration("http://localhost:5001", true);
             builder.RegisterInstance(agentConfiguration).As<IComAgentConfiguration>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Command.S7.S7Connection>()
-                .As<Model.Interface.Command.S7.IS7Connection>().SingleInstance();
+            builder.RegisterType<Srv.Agent.Command.S7.S7Tag>()
+                .As<Srv.Agent.Interface.Command.S7.IS7Tag>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Command.S7.S7Tag>()
-                .As<Model.Interface.Command.S7.IS7Tag>().SingleInstance();
+            builder.RegisterType<Srv.Agent.Command.S7.S7Connection>()
+                .As<Srv.Agent.Interface.Command.S7.IS7Connection>().SingleInstance();
         }
     }
 }

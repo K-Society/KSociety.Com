@@ -13,9 +13,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     public class TagController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Model.Interface.Command.Common.ITag _tag;
-        private readonly Model.Interface.Query.Common.Model.ITag _tagQueryModel;
-        private readonly Model.Interface.Query.Common.List.GridView.ITag _tagQueryListGridView;
+        private readonly KSociety.Com.Srv.Agent.Interface.Command.Common.ITag _tag;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.Model.ITag _tagQueryModel;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITag _tagQueryListGridView;
 
         //[BindProperty]
         //public Srv.Dto.Common.Tag Tag { get; set; }
@@ -28,9 +28,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
 
         public TagController(
             IWebHostEnvironment webHostEnvironment,
-            Model.Interface.Command.Common.ITag tag, 
-            Model.Interface.Query.Common.Model.ITag tagQueryModel,
-            Model.Interface.Query.Common.List.GridView.ITag tagQueryListGridView)
+            KSociety.Com.Srv.Agent.Interface.Command.Common.ITag tag,
+            KSociety.Com.Srv.Agent.Interface.Query.Common.Model.ITag tagQueryModel,
+            KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITag tagQueryListGridView)
         {
             _webHostEnvironment = webHostEnvironment;
             _tag = tag;

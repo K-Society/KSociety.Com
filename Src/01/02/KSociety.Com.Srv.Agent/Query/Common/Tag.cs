@@ -9,7 +9,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Query.Common
 {
-    public class Tag : KSociety.Base.Srv.Agent.Connection
+    public class Tag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ITag
     {
         public Tag(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
@@ -17,7 +17,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common
 
         }
 
-        public Srv.Dto.Common.Tag GetTagById(IdObject idObject, CancellationToken cancellationToken = default)
+        public Srv.Dto.Common.Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
@@ -38,7 +38,7 @@ namespace KSociety.Com.Srv.Agent.Query.Common
             return new Dto.Common.Tag();
         }
 
-        public async ValueTask<Srv.Dto.Common.Tag> GetTagByIdAsync(IdObject idObject, CancellationToken cancellationToken = default)
+        public async ValueTask<Srv.Dto.Common.Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

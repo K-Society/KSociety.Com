@@ -5,9 +5,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.Common.Controllers
     [Area("Common")]
     public class HomeController : Controller
     {
-        private readonly KSociety.Base.Pre.Model.Control.IDatabaseControl _databaseControl;
+        private readonly KSociety.Base.Srv.Agent.IAgentDatabaseControl _databaseControl;
 
-        public HomeController(KSociety.Base.Pre.Model.Control.IDatabaseControl databaseControl)
+        public HomeController(KSociety.Base.Srv.Agent.IAgentDatabaseControl databaseControl)
         {
             _databaseControl = databaseControl;
         }

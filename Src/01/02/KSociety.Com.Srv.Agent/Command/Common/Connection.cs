@@ -1,14 +1,15 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using KSociety.Com.Srv.Agent.Interface.Command.Common;
 using KSociety.Com.Srv.Contract.Command.Common;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Command.Common
 {
-    public class Connection : KSociety.Base.Srv.Agent.Connection
+    public class Connection : KSociety.Base.Srv.Agent.Connection, IConnection
     {
         public Connection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

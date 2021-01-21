@@ -22,13 +22,16 @@ namespace KSociety.Com.Pre.Web.App.Bindings.Common
             builder.RegisterInstance(agentConfiguration).As<IComAgentConfiguration>().SingleInstance();
 
             //builder.RegisterType<Model.Class.Query.Common.List.GridView.TagGroup>().As<Model.Interface.Query.Common.List.GridView.ITagGroup>();
-            builder.RegisterType<Model.Class.Query.Common.TagGroup>().As<Model.Interface.Query.Common.ITagGroup>()
+            //builder.RegisterType<Model.Class.Query.Common.TagGroup>().As<Model.Interface.Query.Common.ITagGroup>()
+            //    .SingleInstance();
+
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.TagGroup>().As<KSociety.Com.Srv.Agent.Interface.Query.Common.ITagGroup>()
                 .SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.Tag>().As<Model.Interface.Query.Common.ITag>()
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.Tag>().As<KSociety.Com.Srv.Agent.Interface.Query.Common.ITag>()
                 .SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.Connection>().As<Model.Interface.Query.Common.IConnection>()
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.Connection>().As<KSociety.Com.Srv.Agent.Interface.Query.Common.IConnection>()
                 .SingleInstance();
         }
     }

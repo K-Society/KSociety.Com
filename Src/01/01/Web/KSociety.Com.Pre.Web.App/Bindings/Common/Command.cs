@@ -20,15 +20,14 @@ namespace KSociety.Com.Pre.Web.App.Bindings.Common
             var agentConfiguration = new ComAgentConfiguration("http://localhost:5001", true);
             builder.RegisterInstance(agentConfiguration).As<IComAgentConfiguration>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Command.Common.TagGroup>()
-                .As<Model.Interface.Command.Common.ITagGroup>().SingleInstance();
+            builder.RegisterType<Srv.Agent.Command.Common.TagGroup>()
+                .As<Srv.Agent.Interface.Command.Common.ITagGroup>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Command.Common.Tag>()
-                .As<Model.Interface.Command.Common.ITag>().SingleInstance();
+            builder.RegisterType<Srv.Agent.Command.Common.Tag>()
+                .As<Srv.Agent.Interface.Command.Common.ITag>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Command.Common.Connection>()
-                .As<Model.Interface.Command.Common.IConnection>().SingleInstance();
-
+            builder.RegisterType<Srv.Agent.Command.Common.Connection>()
+                .As<Srv.Agent.Interface.Command.Common.IConnection>().SingleInstance();
         }
     }
 }
