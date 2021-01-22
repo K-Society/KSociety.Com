@@ -1,7 +1,7 @@
-﻿using System;
-using ProtoBuf;
+﻿using ProtoBuf;
+using System;
 
-namespace KSociety.Com.Biz.IntegrationEvent.Event
+namespace KSociety.Com.Biz.Event
 {
     [ProtoContract]
     public class TagReadIntegrationEventReply : IntegrationComEventReply

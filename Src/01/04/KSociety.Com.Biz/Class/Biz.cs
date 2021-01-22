@@ -7,7 +7,7 @@ using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.InfraSub.Shared.Interface;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.IntegrationEvent.EventHandling;
 using KSociety.Com.Biz.Interface;
 using KSociety.Com.Domain.Repository.View.Common;

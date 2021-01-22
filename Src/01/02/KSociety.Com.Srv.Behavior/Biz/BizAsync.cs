@@ -8,7 +8,7 @@ using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.Srv.Shared.Interface;
 using KSociety.Com.App.Dto.Req.Biz;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.IntegrationEvent.EventHandling;
 using KSociety.Com.Domain.Repository.View.Common;
 using KSociety.Com.EventBus;
