@@ -1,27 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright (c) K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
 
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Logix\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="0.0.48" />
-    <PackageReference Include="KSociety.Base.Srv.Dto" Version="0.0.48" />
+    <PackageReference Include="KSociety.Base.EventBus" Version="0.0.48" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\03\KSociety.Com.App.Dto\KSociety.Com.App.Dto.csproj" />
   </ItemGroup>
 
 </Project>

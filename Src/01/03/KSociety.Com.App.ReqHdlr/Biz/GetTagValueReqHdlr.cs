@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using KSociety.Base.App.Shared;
 using KSociety.Com.App.Dto.Req.Biz;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 

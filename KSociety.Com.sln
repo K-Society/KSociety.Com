@@ -83,6 +83,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Migratio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Migration.Sqlite", "Src\01\06\KSociety.Com.Infra.Migration.Sqlite\KSociety.Com.Infra.Migration.Sqlite.csproj", "{5F364D03-548C-45EB-A0A4-F8985BC47EB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSociety.Com.Biz.Event", "Src\01\04\KSociety.Com.Biz.Event\KSociety.Com.Biz.Event.csproj", "{80FA4CBF-E402-43CB-A90C-0FA3D53EA452}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,10 @@ Global
 		{5F364D03-548C-45EB-A0A4-F8985BC47EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F364D03-548C-45EB-A0A4-F8985BC47EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F364D03-548C-45EB-A0A4-F8985BC47EB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FA4CBF-E402-43CB-A90C-0FA3D53EA452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FA4CBF-E402-43CB-A90C-0FA3D53EA452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FA4CBF-E402-43CB-A90C-0FA3D53EA452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FA4CBF-E402-43CB-A90C-0FA3D53EA452}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -202,6 +208,7 @@ Global
 		{DE514DC3-7B72-47E7-B207-60F66ADF3A2F} = {925C3A53-BB95-4267-962A-459472C6799E}
 		{86BDE9A6-499D-4F6D-8CB3-22C15188847D} = {0DA1B2A2-4D7E-4BC3-8FC3-77C8CC777D1D}
 		{5F364D03-548C-45EB-A0A4-F8985BC47EB0} = {0DA1B2A2-4D7E-4BC3-8FC3-77C8CC777D1D}
+		{80FA4CBF-E402-43CB-A90C-0FA3D53EA452} = {98E46AD8-CB90-4EE3-88E2-1B95AF75256D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C49C126-410B-47CC-86F9-7097B8A56E18}

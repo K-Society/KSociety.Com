@@ -1,6 +1,6 @@
 ﻿using ProtoBuf;
 
-namespace KSociety.Com.Biz.IntegrationEvent.Event
+namespace KSociety.Com.Biz.Event
 {
     [ProtoContract]
     public class ConnectionStatusIntegrationEvent : IntegrationComEvent

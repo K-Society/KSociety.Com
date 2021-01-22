@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using KSociety.Com.Domain.Entity.Event;
 using MediatR;

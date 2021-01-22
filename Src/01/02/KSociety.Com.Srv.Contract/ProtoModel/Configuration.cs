@@ -2,7 +2,7 @@
 using KSociety.Base.EventBus.Events;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Base.Srv.Dto;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using System;
 
 namespace KSociety.Com.Srv.Contract.ProtoModel

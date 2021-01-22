@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Autofac;
 using KSociety.Base.EventBus.Handlers;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 
