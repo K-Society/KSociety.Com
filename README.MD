@@ -1,4 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/vw2wblpsxwihbuoo?svg=true)](https://ci.appveyor.com/project/maniglia/ksociety-com)
+[![Github All Releases](https://img.shields.io/github/downloads/K-Society/KSociety.Com/total.svg)]()
 # KSociety.Com - Communication System
 #### A .NET full stack software for Siemens S7 Connectivity
 
