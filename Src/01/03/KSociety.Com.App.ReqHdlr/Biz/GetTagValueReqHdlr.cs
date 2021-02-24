@@ -33,7 +33,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
             try
             {
 
-                var result = _startup.GetTagValue(new TagReadIntegrationEvent(request.GroupName + ".automation.read", ".automation.read", request.GroupName, request.TagName));
+                var result = _startup.GetTagValue(new TagReadIntegrationEvent(request.GroupName + ".automation.read.server", request.GroupName + ".automation.read.client.com", request.GroupName, request.TagName));
                 output.GroupName = result.GroupName;
                 output.TagName = result.TagName;
                 output.Value = result.TagValue;
@@ -54,7 +54,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
             {
                 //_startup.GetTagValue(new TagReadIntegrationEvent(request.GroupName + ".automation.readCmd", request.GroupName, request.TagName));
 
-                var result = await _startup.GetTagValueAsync(new TagReadIntegrationEvent(request.GroupName + ".automation.read", ".automation.read", request.GroupName, request.TagName)).ConfigureAwait(false);
+                var result = await _startup.GetTagValueAsync(new TagReadIntegrationEvent(request.GroupName + ".automation.read.server", request.GroupName + ".automation.read.client.com", request.GroupName, request.TagName)).ConfigureAwait(false);
                 output.GroupName = result.GroupName;
                 output.TagName = result.TagName;
                 output.Value = result.TagValue;

@@ -29,11 +29,8 @@ namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
 
         public override async ValueTask<TagWriteIntegrationEventReply> HandleRpcAsync(TagWriteIntegrationEvent @event, CancellationToken cancellationToken = default)
         {
-            //Logger.LogTrace("HandleRpcAsync... " + @event.RoutingKey + " " + @event.ReplyRoutingKey);
-            //Logger.LogTrace("HandleRpcAsync... " + @event.RoutingKey);
             var result = await _biz.SetTagValueAsync(@event.GroupName, @event.Name, @event.Value).ConfigureAwait(false);
-            //Logger.LogTrace("HandleRpcAsync: " + tagValue);
-            //return new TagWriteIntegrationEventReply(@event.GroupName + @event.ReplyRoutingKey, @event.GroupName, @event.Name, @event.CreationDate, result);
+
             return new TagWriteIntegrationEventReply(@event.ReplyRoutingKey, @event.GroupName, @event.Name, @event.CreationDate, result);
         }
     }

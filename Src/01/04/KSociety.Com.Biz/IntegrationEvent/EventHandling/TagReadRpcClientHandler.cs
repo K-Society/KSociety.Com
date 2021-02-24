@@ -25,6 +25,7 @@ namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
         public override async ValueTask HandleReplyAsync(TagReadIntegrationEventReply @integrationEventReply, CancellationToken cancel = default)
         {
             //await Queue.SendAsync(@integrationEventReply, cancel).ConfigureAwait(false);
+            ;
             Logger.LogWarning("TagReadRpcClientHandler HandleRpcAsync: NotImplemented! " + @integrationEventReply.RoutingKey);
             //throw new NotImplementedException();
         }

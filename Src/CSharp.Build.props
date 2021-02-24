@@ -4,7 +4,5 @@
 <Project>
   <PropertyGroup>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\assets\key\KSociety.Com.snk))</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 </Project>

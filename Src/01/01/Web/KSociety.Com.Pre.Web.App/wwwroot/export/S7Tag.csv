@@ -1,0 +1,7 @@
+﻿Id;AutomationTypeId;Name;ConnectionId;Enable;InputOutput;AnalogDigitalSignal;MemoryAddress;Invoke;TagGroupId;DataBlock;Offset;BitOfByte;WordLenId;AreaId;StringLength
+b12ab89c-9d46-409c-0bd3-08d6ad638d40;1;Tag01;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW0;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;0;0;2;132;1
+0d754a9d-1389-4f04-0bd4-08d6ad638d40;1;Tag03;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW4;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;4;0;2;132;1
+d12d5401-a90f-40a4-3b5d-08d6b0418047;1;Tag02;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW2;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;2;0;2;132;1
+58315735-142d-4a20-3b5e-08d6b0418047;1;Tag04;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW6;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;6;0;2;132;1
+a0412d18-59df-40e3-35a9-08d6b1da6471;1;Tag05;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW8;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;8;0;2;132;1
+49d37f56-c1b7-40d7-35aa-08d6b1da6471;1;Tag06;fb6f381e-7bf4-4814-df23-08d6a214e1de;True;R;Analog;DB10.DBW10;True;a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2;10;10;0;2;132;1

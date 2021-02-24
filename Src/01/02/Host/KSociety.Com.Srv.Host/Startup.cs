@@ -116,6 +116,8 @@ namespace KSociety.Com.Srv.Host
 
                 builder.RegisterModule(new Bindings.QueryViewJoinedListGridView());
 
+                
+
 
 
                 //UnitOfWork.
@@ -137,6 +139,9 @@ namespace KSociety.Com.Srv.Host
 
                 //Transaction, don't move this line.
                 //builder.RegisterModule(new Bindings.Transaction(DebugFlag));
+
+                //Biz.
+                builder.RegisterModule(new Bindings.Biz.Biz(DebugFlag));
 
             }
             catch (Exception ex)
