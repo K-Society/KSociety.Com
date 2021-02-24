@@ -18,7 +18,7 @@ msbuild Src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:Pub
 
 msbuild Src\00\KSociety.Com.Install\KSociety.Com.Install.csproj -t:restore -p:Configuration=%_C% || exit /b
 
-msbuild Src\00\KSociety.Com.Install\KSociety.Com.Install.csproj -p:Configuration=%_C% -p:TargetFramework="net35" || exit /b
+msbuild Src\00\KSociety.Com.Install\KSociety.Com.Install.csproj -p:Configuration=%_C% -p:TargetFramework="net461" || exit /b
 
 @popd
 @endlocal
