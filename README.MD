@@ -5,7 +5,7 @@
 
 ## Overview
 
-Std.Master.Com is a full stack software consisting of:
+KSociety.Com is a full stack software consisting of:
 - a service that reads or writes data to a plc
 - a web application for the parameterization of the service
 
