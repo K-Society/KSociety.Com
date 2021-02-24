@@ -3,7 +3,7 @@
 namespace KSociety.Com.Biz.Event
 {
     [ProtoContract]
-    public class ConnectionStatusIntegrationEvent : IntegrationComEvent
+    public class ConnectionStatusIntegrationEvent : IntegrationComEventRpc
     {
         [ProtoMember(1)]
         public string GroupName { get; set; }
@@ -15,10 +15,11 @@ namespace KSociety.Com.Biz.Event
 
         public ConnectionStatusIntegrationEvent(
             string routingKey,
+            string replyRoutingKey,
             string groupName,
             string connectionName
         )
-            : base(routingKey)
+            : base(routingKey, replyRoutingKey)
         {
             GroupName = groupName;
             ConnectionName = connectionName;

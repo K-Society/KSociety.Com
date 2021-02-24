@@ -30,6 +30,7 @@ namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
 
         public override async ValueTask<TagReadIntegrationEventReply> HandleRpcAsync(TagReadIntegrationEvent @event, CancellationToken cancellationToken = default)
         {
+            ;
             var tagValue = await _biz.GetTagValueAsync(@event.GroupName, @event.Name).ConfigureAwait(false);
             return new TagReadIntegrationEventReply(@event.GroupName + ".automation.read", @event.GroupName, @event.Name, @event.CreationDate, tagValue);
         }

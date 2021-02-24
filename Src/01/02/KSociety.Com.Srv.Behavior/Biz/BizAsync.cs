@@ -162,6 +162,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
 
         public async ValueTask<App.Dto.Res.Biz.GetTagValue> GetTagValueAsync(GetTagValue request, CallContext context = default)
         {
+            ;
             return await _commandHandlerAsync.ExecuteWithResponseAsync<GetTagValue, App.Dto.Res.Biz.GetTagValue>(_loggerFactory, _componentContext, request);
         }
 

@@ -43,9 +43,18 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common
                 new Domain.Entity.Common.InOut("RW", "Read/Write")
             );
 
-            modelBuilder.Entity<Domain.Entity.Common.TagGroup>().HasData(
-                ReadCsv<Domain.Entity.Common.TagGroup>.Read(loggerFactory, @"TagGroup")
-            );
+            //modelBuilder.Entity<Domain.Entity.Common.TagGroup>().HasData(
+            //    ReadCsv<Domain.Entity.Common.TagGroup>.Read(loggerFactory, @"TagGroup")
+            //);
+
+            var tagGroup = ReadCsv<Domain.Entity.Common.TagGroup>.Read(loggerFactory, @"TagGroup");
+            if (!(tagGroup is null))
+            {
+                modelBuilder.Entity<Domain.Entity.Common.TagGroup>()
+                    .HasData(
+                        tagGroup
+                    );
+            }
         }
     }
 }

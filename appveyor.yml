@@ -44,7 +44,7 @@ skip_tags: true
 artifacts:
   - path: build\**\Release\*.nupkg
     name: nuget
-  - path: Src\00\KSociety.Com.Install\ComSystem.exe
+  - path: Src\00\KSociety.Com.Install\K-Society.Com.exe
     name: comsysteminstaller
 
 deploy:
@@ -69,8 +69,8 @@ deploy:
       branch: master
          
   - provider: GitHub
-    release: ComSystem $(ComSystemVersion)
-    description: 'ComSystem $(ComSystemVersion)'
+    release: K-Society.Com $(ComSystemVersion)
+    description: 'K-Society.Com $(ComSystemVersion)'
     auth_token:
       secure: 7XvMBiUsnXWGCogi909uIzQVH/68TW4lAipl0RN+ZAwHrlqZChxEBroMRWEcrWGM
     artifact: comsysteminstaller

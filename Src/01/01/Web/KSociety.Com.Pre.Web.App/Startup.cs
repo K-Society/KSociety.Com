@@ -39,6 +39,8 @@ namespace KSociety.Com.Pre.Web.App
 
                 builder.RegisterModule(new DatabaseControl());
 
+                builder.RegisterModule(new Bindings.Biz.Biz());
+
                 builder.RegisterModule(new Query());
                 builder.RegisterModule(new QueryListKeyValue());
                 builder.RegisterModule(new QueryListGridView());

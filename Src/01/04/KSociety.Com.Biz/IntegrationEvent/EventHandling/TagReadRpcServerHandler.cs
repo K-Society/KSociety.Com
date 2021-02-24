@@ -31,7 +31,7 @@ namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
         {
             //Logger.LogTrace("TagReadRpcServerHandler HandleRpcAsync... " + @event.RoutingKey + " " + @event.ReplyRoutingKey + " " 
             //+ @event.GroupName + " " + @event.Name);
-            //;
+            ;
             var tagValue = await _biz.GetTagValueAsync(@event.GroupName, @event.Name).ConfigureAwait(false);
 
             //Logger.LogTrace("HandleRpcAsync: " + tagValue);
