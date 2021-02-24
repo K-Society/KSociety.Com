@@ -25,7 +25,7 @@ This is the README file for KSociety.Com. It support .Net 5.0
 
 ## Architecture
 
-![Image of Architecture](https://github.com/K-Society/Std.Master.Com/blob/develop/docs/Architecture_view_for_Std.Master.Com.png)
+![Image of Architecture](https://github.com/K-Society/KSociety.Com/blob/experimental/docs/Architecture_view_for_KSociety.Com.png)
 
 ### 1. Presentation
 | GitHub Repository | NuGet | Download |
