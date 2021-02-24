@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KSociety.Com.Domain.Entity.Common
@@ -25,6 +26,9 @@ namespace KSociety.Com.Domain.Entity.Common
         //public virtual Logix.Connection LogixConnection { get; private set; }
         public virtual ICollection<Tag> Tags { get; set; }
         #endregion
+
+        public static SemaphoreSlim ReadSemaphore { get; } = new(1, 1);
+        public static SemaphoreSlim WriteSemaphore { get; } = new(1, 1);
 
         //public Connection()
         //    : base(LogManager.GetCurrentClassLogger())
@@ -212,5 +216,11 @@ namespace KSociety.Com.Domain.Entity.Common
         //            break;
         //    }
         //}
+
+        protected override void DisposeManagedResources()
+        {
+            ReadSemaphore.Dispose();
+            WriteSemaphore.Dispose();
+        }
     }
 }

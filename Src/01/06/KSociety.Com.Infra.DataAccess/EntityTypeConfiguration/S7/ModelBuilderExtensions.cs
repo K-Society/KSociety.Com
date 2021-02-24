@@ -54,24 +54,43 @@ namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
                 new Domain.Entity.S7.WordLen(7, "LReal", "LReal variable type (64 bits, 8 bytes)"),
                 new Domain.Entity.S7.WordLen(8, "String", "Char Array / C-String variable type (variable)"),
                 new Domain.Entity.S7.WordLen(9, "S7String", "S7 String variable type (variable)"),
-                new Domain.Entity.S7.WordLen(10, "Timer", "Timer variable type"),
-                new Domain.Entity.S7.WordLen(11, "Counter", "Counter variable type"),
-                new Domain.Entity.S7.WordLen(12, "DataTime", "DateTime variable type"),
-                new Domain.Entity.S7.WordLen(13, "DataTimeLong", "DateTimeLong variable type")
+                new Domain.Entity.S7.WordLen(10, "S7WString", "S7 WString variable type (variable)"),
+                new Domain.Entity.S7.WordLen(11, "Timer", "Timer variable type"),
+                new Domain.Entity.S7.WordLen(12, "Counter", "Counter variable type"),
+                new Domain.Entity.S7.WordLen(13, "DataTime", "DateTime variable type"),
+                new Domain.Entity.S7.WordLen(14, "DataTimeLong", "DateTimeLong variable type")
             );
 
             //modelBuilder.Entity<Domain.Db.Entity.>()
 
-            modelBuilder.Entity<Domain.Entity.S7.S7Connection>()
-                .HasData(
-                ReadCsv<Domain.Entity.S7.S7Connection>.Read(loggerFactory,@"S7Connection")
-            );
+            //modelBuilder.Entity<Domain.Entity.S7.S7Connection>()
+            //    .HasData(
+            //    ReadCsv<Domain.Entity.S7.S7Connection>.Read(loggerFactory,@"S7Connection")
+            //);
 
-            modelBuilder.Entity<Domain.Entity.S7.S7Tag>()
-                .HasData(
-                    ReadCsv<Domain.Entity.S7.S7Tag>.Read(loggerFactory, @"S7Tag")
-            //ReadCsv<Domain.Com.Entity.S7.S7Tag>.Read(@"S7TagSeparaBarre")
-            );
+            //modelBuilder.Entity<Domain.Entity.S7.S7Tag>()
+            //    .HasData(
+            //        ReadCsv<Domain.Entity.S7.S7Tag>.Read(loggerFactory, @"S7Tag")
+            ////ReadCsv<Domain.Com.Entity.S7.S7Tag>.Read(@"S7TagSeparaBarre")
+            //);
+
+            var s7Connection = ReadCsv<Domain.Entity.S7.S7Connection>.Read(loggerFactory, @"S7Connection");
+            if (!(s7Connection is null))
+            {
+                modelBuilder.Entity<Domain.Entity.S7.S7Connection>()
+                    .HasData(
+                        s7Connection
+                    );
+            }
+
+            var s7Tag = ReadCsv<Domain.Entity.S7.S7Tag>.Read(loggerFactory, @"S7Tag");
+            if (!(s7Tag is null))
+            {
+                modelBuilder.Entity<Domain.Entity.S7.S7Tag>()
+                    .HasData(
+                        s7Tag
+                    );
+            }
         }
     }
 }

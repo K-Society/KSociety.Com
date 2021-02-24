@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 
 namespace KSociety.Com.Biz.Interface
 {

@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Com.Domain.Entity.Common;
-using KSociety.Com.Driver.S7;
-using KSociety.Com.Driver.S7.Types;
 using Microsoft.Extensions.Logging;
+using S7.Net;
+using S7.Net.Types;
 using System;
 using System.Threading.Tasks;
 
@@ -184,7 +184,7 @@ namespace KSociety.Com.Domain.Entity.S7
             {
                 DataItemTag = new DataItem
                 {
-                    Address = MemoryAddress,
+                    //Address = MemoryAddress,
                     DataType = (DataType)(AreaId ?? 132),
                     VarType = (VarType) (WordLenId ?? 0),
                     DB = DataBlock ?? 0,
@@ -234,41 +234,30 @@ namespace KSociety.Com.Domain.Entity.S7
             tagValidator.ValidateAndThrow(this);
         }
 
-        //public override void WriteValue(string value)
-        //{
-        //    if (InputOutput.Equals("W") || InputOutput.Equals("RW"))
-        //    {
-        //        Value = value;
-        //        //DataItemTag.Value = value;
-        //        EventBus?.Publish(TagWriteEvent);
-        //    }
-        //}//WriteValue
-
         public override string ReadTagFromPlc()
         {
             string output = string.Empty;
-            try
-            {
-                if (InputOutput.Equals("R") || InputOutput.Equals("RW"))
-                {
-                    //Value = value;
-                    //DataItemTag.Value = value;
-                    var connection = (S7Connection)Connection;
 
-                    //ToDo Use Semafors
-                    var result = connection.ClientRead.ReadAsync(DataItemTag.DataType, DataItemTag.DB, DataItemTag.StartByteAdr, DataItemTag.VarType, DataItemTag.Count, DataItemTag.BitAdr);
+            if (InputOutput.Equals("R") || InputOutput.Equals("RW"))
+            {
+                var connection = (S7Connection)Connection;
+
+                Connection.ReadSemaphore.Wait();
+                try
+                {
+                    var result = connection.ClientRead.ReadAsync(DataItemTag.DataType, DataItemTag.DB,
+                        DataItemTag.StartByteAdr, DataItemTag.VarType, DataItemTag.Count, DataItemTag.BitAdr);
 
                     output = result.ToString();
-                    //if (connection.WriteEnable)
-                    //{
-                    //    connection.ClientWrite.Write(DataItemTag);
-                    //    output = true;
-                    //}
                 }
-            }
-            catch (Exception ex)
-            {
-                //Logger.LogError(ex.Message + " - " + ex.StackTrace);
+                catch (Exception ex)
+                {
+                    Logger.LogError("ReadTagFromPlc: " + ex.Message + " - " + ex.StackTrace);
+                }
+                finally
+                {
+                    Connection.ReadSemaphore.Release();
+                }
             }
 
             return output;
@@ -277,30 +266,28 @@ namespace KSociety.Com.Domain.Entity.S7
         public override async ValueTask<string> ReadTagFromPlcAsync()
         {
             string output = string.Empty;
-            try
-            {
-                if (InputOutput.Equals("R") || InputOutput.Equals("RW"))
-                {
-                    //Value = value;
-                    //DataItemTag.Value = value;
-                    var connection = (S7Connection)Connection;
 
-                    //ToDo Use Semafors
+            if (InputOutput.Equals("R") || InputOutput.Equals("RW"))
+            {
+                var connection = (S7Connection)Connection;
+
+                await Connection.ReadSemaphore.WaitAsync();
+                try
+                {
                     var result = await connection.ClientRead.ReadAsync(DataItemTag.DataType, DataItemTag.DB,
                             DataItemTag.StartByteAdr, DataItemTag.VarType, DataItemTag.Count, DataItemTag.BitAdr)
                         .ConfigureAwait(false);
 
                     output = result.ToString();
-                    //if (connection.WriteEnable)
-                    //{
-                    //    connection.ClientWrite.Write(DataItemTag);
-                    //    output = true;
-                    //}
                 }
-            }
-            catch (Exception ex)
-            {
-                //Logger.LogError(ex.Message + " - " + ex.StackTrace);
+                catch (Exception ex)
+                {
+                    Logger.LogError("ReadTagFromPlcAsync: " + ex.Message + " - " + ex.StackTrace);
+                }
+                finally
+                {
+                    Connection.ReadSemaphore.Release();
+                }
             }
 
             return output;
@@ -309,22 +296,29 @@ namespace KSociety.Com.Domain.Entity.S7
         public override bool WriteTagToPlc(string value)
         {
             bool output = false;
-            try
+
+            if (InputOutput.Equals("W") || InputOutput.Equals("RW"))
             {
-                if (InputOutput.Equals("W") || InputOutput.Equals("RW"))
+                UpdateTagValue(value);
+                var connection = (S7Connection)Connection;
+
+                Connection.WriteSemaphore.Wait();
+                try
                 {
-                    UpdateTagValue(value);
-                    var connection = (S7Connection)Connection;
                     if (connection.WriteEnable)
                     {
                         connection.ClientWrite.Write(DataItemTag);
                         output = true;
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                //Logger.LogError(ex.Message + " - " + ex.StackTrace);
+                catch (Exception ex)
+                {
+                    Logger.LogError("WriteTagToPlc: " + ex.Message + " - " + ex.StackTrace);
+                }
+                finally
+                {
+                    Connection.WriteSemaphore.Release();
+                }
             }
 
             return output;
@@ -334,13 +328,16 @@ namespace KSociety.Com.Domain.Entity.S7
         {
             //Logger.LogTrace("WriteTagToPlcAsync: 1" + Name + " " + value);
             bool output = false;
-            try
+
+            if (InputOutput.Equals("W") || InputOutput.Equals("RW"))
             {
-                if (InputOutput.Equals("W") || InputOutput.Equals("RW"))
+                //Logger.LogTrace("WriteTagToPlcAsync: 2" + Name + " " + value);
+                UpdateTagValue(value);
+                var connection = (S7Connection) Connection;
+
+                await Connection.WriteSemaphore.WaitAsync();
+                try
                 {
-                    //Logger.LogTrace("WriteTagToPlcAsync: 2" + Name + " " + value);
-                    UpdateTagValue(value);
-                    var connection = (S7Connection) Connection;
                     if (connection.WriteEnable)
                     {
                         //Logger.LogTrace("WriteTagToPlcAsync: 2" + Name + " " + value);
@@ -354,10 +351,14 @@ namespace KSociety.Com.Domain.Entity.S7
                         output = true;
                     }
                 }
-            }
-            catch (Exception ex)
-            { 
-                Logger.LogError("WriteTagToPlcAsync: " + Name + " " + value + " " + ex.Message + " - " + ex.StackTrace);
+                catch (Exception ex)
+                {
+                    Logger.LogError("WriteTagToPlcAsync: " + Name + " " + value + " " + ex.Message + " - " + ex.StackTrace);
+                }
+                finally
+                {
+                    Connection.WriteSemaphore.Release();
+                }
             }
 
             return output;
@@ -391,23 +392,30 @@ namespace KSociety.Com.Domain.Entity.S7
                     case VarType.Byte:
                         DataItemTag.Value = byte.Parse(value);
                         break;
+
                     case VarType.Int:
                         DataItemTag.Value = Int16.Parse(value);
                         break;
+
                     case VarType.DInt:
                         DataItemTag.Value = Int32.Parse(value);
                         break;
+
                     case VarType.String:
                         DataItemTag.Value = value;
                         break;
+
                     case VarType.S7String:
                         DataItemTag.Value = value;
                         DataItemTag.Count = value.Length; //254; //ToDo
                         break;
+
                     case VarType.Timer:
                         break;
+
                     case VarType.Counter:
                         break;
+
                     default:
                         Logger.LogWarning("UpdateTagValue: " + Name + " No VarType");
                         break;

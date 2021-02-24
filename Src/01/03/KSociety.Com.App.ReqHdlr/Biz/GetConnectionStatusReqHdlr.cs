@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using KSociety.Base.App.Shared;
 using KSociety.Com.App.Dto.Req.Biz;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 
@@ -31,7 +31,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
 
             try
             {
-                var result = _startup.GetConnectionStatus(new ConnectionStatusIntegrationEvent(request.GroupName + ".automation.connection", request.GroupName, request.ConnectionName));
+                var result = _startup.GetConnectionStatus(new ConnectionStatusIntegrationEvent(request.GroupName + ".automation.connection.server", request.GroupName + ".automation.connection.client.com", request.GroupName, request.ConnectionName));
 
                 output.GroupName = result.GroupName;
                 output.ConnectionName = result.ConnectionName;
@@ -52,7 +52,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
 
             try
             {
-                var result = await _startup.GetConnectionStatusAsync(new ConnectionStatusIntegrationEvent(request.GroupName + ".automation.connection", request.GroupName, request.ConnectionName)).ConfigureAwait(false);
+                var result = await _startup.GetConnectionStatusAsync(new ConnectionStatusIntegrationEvent(request.GroupName + ".automation.connection.server", request.GroupName + ".automation.connection.client.com", request.GroupName, request.ConnectionName)).ConfigureAwait(false);
 
                 output.GroupName = result.GroupName;
                 output.ConnectionName = result.ConnectionName;

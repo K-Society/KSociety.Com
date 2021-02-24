@@ -17,14 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="9.4.0" />
-    <PackageReference Include="KSociety.Base.Domain.Shared" Version="0.0.40" />
+    <PackageReference Include="FluentValidation" Version="9.5.1" />
+    <PackageReference Include="KSociety.Base.Domain.Shared" Version="0.0.81" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Polly" Version="7.2.1" />
-    <PackageReference Include="Quartz" Version="3.2.3" />
+    <PackageReference Include="Quartz" Version="3.2.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,28 @@
+﻿@model KSociety.Com.App.Dto.Res.Biz.GetTagValue
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml";
+}
+<br />
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">S7 Tools</h2>
+    </div>
+
+    <form asp-action="Index">
+        <label asp-for="GroupName"></label>
+        <input asp-for="GroupName" />
+        <label asp-for="TagName"></label>
+        <input asp-for="TagName" />
+        <input type="submit" />
+    </form>
+
+    @*@Html.DisplayFor(m => m.Value)*@
+
+    <b>Value:</b>  @ViewBag.Value <br />
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

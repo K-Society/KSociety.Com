@@ -20,20 +20,20 @@ namespace KSociety.Com.Pre.Web.App.Bindings.Common
             var agentConfiguration = new ComAgentConfiguration("http://localhost:5001", true);
             builder.RegisterInstance(agentConfiguration).As<IComAgentConfiguration>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.ListKeyValue.AutomationTypeId>()
-                .As<Model.Interface.Query.Common.ListKeyValue.IAutomationTypeId>().SingleInstance();
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.ListKeyValue.AutomationTypeId>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IAutomationTypeId>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.ListKeyValue.AnalogDigitalSignal>()
-                .As<Model.Interface.Query.Common.ListKeyValue.IAnalogDigitalSignal>().SingleInstance();
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.ListKeyValue.AnalogDigitalSignal>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IAnalogDigitalSignal>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.ListKeyValue.InputOutput>()
-                .As<Model.Interface.Query.Common.ListKeyValue.IInputOutput>().SingleInstance();
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.ListKeyValue.InputOutput>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IInputOutput>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.ListKeyValue.ConnectionId>()
-                .As<Model.Interface.Query.Common.ListKeyValue.IConnectionId>().SingleInstance();
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.ListKeyValue.ConnectionId>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IConnectionId>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.ListKeyValue.TagGroupId>()
-                .As<Model.Interface.Query.Common.ListKeyValue.ITagGroupId>().SingleInstance();
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.ListKeyValue.TagGroupId>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.ITagGroupId>().SingleInstance();
         }
     }
 }

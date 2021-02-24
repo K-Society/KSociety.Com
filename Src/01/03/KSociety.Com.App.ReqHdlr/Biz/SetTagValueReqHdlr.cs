@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using KSociety.Base.App.Shared;
 using KSociety.Com.App.Dto.Req.Biz;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 
@@ -31,7 +31,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
 
             try
             {
-                var result = _startup.SetTagValue(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", ".automation.write", request.GroupName, request.TagName, request.Value));
+                var result = _startup.SetTagValue(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value));
                 output.GroupName = result.GroupName;
                 output.TagName = result.TagName;
                 output.Result = true;
@@ -50,7 +50,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
             //_logger.LogTrace("GetTagValue ExecuteAsync: " + request.GroupName + " - " + request.TagName + " - " + _startup.SystemGroups.Count);
             try
             {
-                var result = await _startup.SetTagValueAsync(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", ".automation.write", request.GroupName, request.TagName, request.Value)).ConfigureAwait(false);
+                var result = await _startup.SetTagValueAsync(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value)).ConfigureAwait(false);
                 output.GroupName = result.GroupName;
                 output.TagName = result.TagName;
                 output.Result = true;

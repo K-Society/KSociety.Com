@@ -20,14 +20,23 @@ namespace KSociety.Com.Pre.Web.App.Bindings.Common
             var agentConfiguration = new ComAgentConfiguration("http://localhost:5001", true);
             builder.RegisterInstance(agentConfiguration).As<IComAgentConfiguration>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.List.GridView.TagGroup>()
-                .As<Model.Interface.Query.Common.List.GridView.ITagGroup>().SingleInstance();
+            //builder.RegisterType<Model.Class.Query.Common.List.GridView.TagGroup>()
+            //    .As<Model.Interface.Query.Common.List.GridView.ITagGroup>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.List.GridView.Tag>()
-                .As<Model.Interface.Query.Common.List.GridView.ITag>().SingleInstance();
+            //builder.RegisterType<Model.Class.Query.Common.List.GridView.Tag>()
+            //    .As<Model.Interface.Query.Common.List.GridView.ITag>().SingleInstance();
 
-            builder.RegisterType<Model.Class.Query.Common.List.GridView.Connection>()
-                .As<Model.Interface.Query.Common.List.GridView.IConnection>().SingleInstance();
+            //builder.RegisterType<Model.Class.Query.Common.List.GridView.Connection>()
+            //    .As<Model.Interface.Query.Common.List.GridView.IConnection>().SingleInstance();
+
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.List.GridView.TagGroup>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITagGroup>().SingleInstance();
+
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.List.GridView.Tag>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.ITag>().SingleInstance();
+
+            builder.RegisterType<KSociety.Com.Srv.Agent.Query.Common.List.GridView.Connection>()
+                .As<KSociety.Com.Srv.Agent.Interface.Query.Common.List.GridView.IConnection>().SingleInstance();
 
         }
     }

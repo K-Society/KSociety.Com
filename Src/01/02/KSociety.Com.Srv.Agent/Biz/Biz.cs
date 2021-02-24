@@ -10,7 +10,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Biz
 {
-    public class Biz : KSociety.Base.Srv.Agent.Connection
+    public class Biz : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Biz.IBiz
     {
         public Biz(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
@@ -110,7 +110,7 @@ namespace KSociety.Com.Srv.Agent.Biz
             return output;
         }
 
-        public async ValueTask<App.Dto.Res.Biz.GetConnectionStatus> ConnectionStatusAsync(GetConnectionStatus request, CancellationToken cancellationToken = default)
+        public async ValueTask<App.Dto.Res.Biz.GetConnectionStatus> GetConnectionStatusAsync(GetConnectionStatus request, CancellationToken cancellationToken = default)
         {
             //CallOptions = CallOptions.WithCancellationToken(cancellationToken);
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);

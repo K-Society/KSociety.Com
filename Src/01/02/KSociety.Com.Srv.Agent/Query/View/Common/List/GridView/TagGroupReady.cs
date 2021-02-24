@@ -8,7 +8,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Query.View.Common.List.GridView
 {
-    public class TagGroupReady : KSociety.Base.Srv.Agent.Connection
+    public class TagGroupReady : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.View.Common.List.GridView.ITagGroupReady
     {
         public TagGroupReady(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\05\KSociety.Com.Domain.Entity\KSociety.Com.Domain.Entity.csproj" />
     <ProjectReference Include="..\..\05\KSociety.Com.Domain.Repository\KSociety.Com.Domain.Repository.csproj" />
     <ProjectReference Include="..\..\KSocietyComEventBus\KSociety.Com.EventBus\KSociety.Com.EventBus.csproj" />
+    <ProjectReference Include="..\KSociety.Com.Biz.Event\KSociety.Com.Biz.Event.csproj" />
   </ItemGroup>
 
 </Project>

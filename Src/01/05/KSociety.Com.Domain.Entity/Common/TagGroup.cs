@@ -201,7 +201,6 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public async Task OnSchedulerTriggerRead()
         {
-            ;
             foreach (var connection in Connection)
             {
                 await connection.Value.ReadTags().ConfigureAwait(false);

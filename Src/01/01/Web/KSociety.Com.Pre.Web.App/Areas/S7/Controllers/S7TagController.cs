@@ -13,9 +13,9 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
     public class S7TagController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
-        private readonly Model.Interface.Command.S7.IS7Tag _tag;
-        private readonly Model.Interface.Query.S7.Model.IS7Tag _tagQueryModel;
-        private readonly Model.Interface.Query.S7.List.GridView.IS7Tag _tagQueryListGridView;
+        private readonly KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Tag _tag;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Tag _tagQueryModel;
+        private readonly KSociety.Com.Srv.Agent.Interface.Query.S7.List.GridView.IS7Tag _tagQueryListGridView;
 
         [BindProperty] 
         public Srv.Dto.S7.Model.S7Tag TagModel { get; set; }
@@ -25,7 +25,7 @@ namespace KSociety.Com.Pre.Web.App.Areas.S7.Controllers
 
         public S7TagController(
             IWebHostEnvironment webHostEnvironment,
-            Model.Interface.Command.S7.IS7Tag tag, Model.Interface.Query.S7.Model.IS7Tag tagQueryModel, Model.Interface.Query.S7.List.GridView.IS7Tag tagQueryListGridView)
+            KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Tag tag, KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Tag tagQueryModel, KSociety.Com.Srv.Agent.Interface.Query.S7.List.GridView.IS7Tag tagQueryListGridView)
         {
             _webHostEnvironment = webHostEnvironment;
             _tag = tag;

@@ -7,7 +7,7 @@ using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.InfraSub.Shared.Interface;
-using KSociety.Com.Biz.IntegrationEvent.Event;
+using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.IntegrationEvent.EventHandling;
 using KSociety.Com.Biz.Interface;
 using KSociety.Com.Domain.Repository.View.Common;
@@ -72,23 +72,36 @@ namespace KSociety.Com.Biz.Class
             {
                 foreach (var tagGroupReady in _tagGroupReady.GetAllTagGroupReady())
                 {
+                    #region [Connection]
+
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Connection", 
                         new EventBusRabbitMqRpc(PersistentConnection, _loggerFactory, new ConnectionStatusRpcHandler(_loggerFactory, _componentContext), 
                             null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueConnection_" + tagGroupReady.Name, CancellationToken.None));
 
-                    ((IEventBusRpc)TagGroupEventBus[tagGroupReady.Name + "_Connection"])
-                        .SubscribeRpc<ConnectionStatusIntegrationEvent, ConnectionStatusIntegrationEventReply, ConnectionStatusRpcHandler>(tagGroupReady.Name + ".automation.connection");
+                    ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Connection"])
+                        .SubscribeRpcClient<ConnectionStatusIntegrationEventReply, ConnectionStatusRpcClientHandler>(tagGroupReady.Name + ".automation.connection.client.com");
+
+                    TagGroupEventBus.Add(tagGroupReady.Name + "_Connection_Server",
+                        new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new ConnectionStatusRpcServerHandler(_loggerFactory, _componentContext),
+                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
+
+                    ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"])
+                        .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.connection.server");
+
+                    #endregion
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke", 
                         new EventBusRabbitMqQueue(PersistentConnection, _loggerFactory, new TagInvokeEventHandler(_loggerFactory, _componentContext),
                             null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueInvoke_" + tagGroupReady.Name, CancellationToken.None));
 
-                    TagGroupEventBus.Add(tagGroupReady.Name + "_Read", 
-                        new EventBusRabbitMqRpc(PersistentConnection, _loggerFactory, new TagReadRpcHandler(_loggerFactory, _componentContext),
+                    #region [Read]
+
+                    TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
+                        new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagReadRpcClientHandler(_loggerFactory, _componentContext),
                             null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
 
-                    ((IEventBusRpc)TagGroupEventBus[tagGroupReady.Name + "_Read"])
-                        .SubscribeRpc<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcHandler>(tagGroupReady.Name + ".automation.read");
+                    ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Read"])
+                        .SubscribeRpcClient<TagReadIntegrationEventReply, TagReadRpcClientHandler>(tagGroupReady.Name + ".automation.read.client.com");
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server", 
                         new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
@@ -97,12 +110,16 @@ namespace KSociety.Com.Biz.Class
                     ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Read_Server"])
                         .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.read.server");
 
+                    #endregion
+
+                    #region [Write]
+
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Write", 
-                        new EventBusRabbitMqRpc(PersistentConnection, _loggerFactory, new TagWriteRpcHandler(_loggerFactory, _componentContext), 
+                        new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagWriteRpcHandler(_loggerFactory, _componentContext), 
                             null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueWrite_" + tagGroupReady.Name, CancellationToken.None));
 
-                    ((IEventBusRpc)TagGroupEventBus[tagGroupReady.Name + "_Write"])
-                        .SubscribeRpc<TagWriteIntegrationEvent, TagWriteIntegrationEventReply, TagWriteRpcHandler>(tagGroupReady.Name + ".automation.write");
+                    ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"])
+                        .SubscribeRpcClient<TagWriteIntegrationEventReply, TagWriteRpcClientHandler>(tagGroupReady.Name + ".automation.write.client.com");
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server", 
                         new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagWriteRpcServerHandler(_loggerFactory, _componentContext),
@@ -110,6 +127,8 @@ namespace KSociety.Com.Biz.Class
 
                     ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"])
                         .SubscribeRpcServer<TagWriteIntegrationEvent, TagWriteIntegrationEventReply, TagWriteRpcServerHandler>(tagGroupReady.Name + ".automation.write.server");
+
+                    #endregion
 
                     if (SystemGroups.ContainsKey(tagGroupReady.Name)) continue;
                     tagGroupReady.AddLoggerFactory(_loggerFactory);
@@ -199,26 +218,28 @@ namespace KSociety.Com.Biz.Class
 
         public ConnectionStatusIntegrationEventReply GetConnectionStatus(ConnectionStatusIntegrationEvent connectionStatusIntegrationEvent)
         {
-            ((IEventBusRpc)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"]).Publish(connectionStatusIntegrationEvent);
-
-            if (((IEventBusRpc)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"]).EventHandler is ConnectionStatusRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(connectionStatusIntegrationEvent.GroupName + "_Connection"))
             {
-                return eventHandler.Take().Result;
+                var result = ((IEventBusRpcClient)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"])
+                    .CallAsync<ConnectionStatusIntegrationEventReply>(connectionStatusIntegrationEvent);
+
+                return result.Result;
             }
+
+            _logger.LogError("GetConnectionStatus: " + connectionStatusIntegrationEvent.GroupName + " " + connectionStatusIntegrationEvent.ConnectionName + " Error!");
 
             return new ConnectionStatusIntegrationEventReply();
         }
 
         public async ValueTask<ConnectionStatusIntegrationEventReply> GetConnectionStatusAsync(ConnectionStatusIntegrationEvent connectionStatusIntegrationEvent)
         {
-            await ((IEventBusRpc)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"])
-                .Publish(connectionStatusIntegrationEvent)
-                .ConfigureAwait(false);
-
-            if (((IEventBusRpc)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"]).EventHandler is ConnectionStatusRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(connectionStatusIntegrationEvent.GroupName + "_Connection"))
             {
-                return await eventHandler.Take().ConfigureAwait(false);
+                return await ((IEventBusRpcClient)TagGroupEventBus[connectionStatusIntegrationEvent.GroupName + "_Connection"])
+                    .CallAsync<ConnectionStatusIntegrationEventReply>(connectionStatusIntegrationEvent);
             }
+
+            _logger.LogError("GetConnectionStatus: " + connectionStatusIntegrationEvent.GroupName + " " + connectionStatusIntegrationEvent.ConnectionName + " Error!");
 
             return new ConnectionStatusIntegrationEventReply();
         }
@@ -229,28 +250,28 @@ namespace KSociety.Com.Biz.Class
 
         public TagReadIntegrationEventReply GetTagValue(TagReadIntegrationEvent tagReadIntegrationEvent)
         {
-            //_logger.LogTrace("GetTagValueAsync: " + tagReadIntegrationEvent.GroupName + " " + tagReadIntegrationEvent.Name);
-            ((IEventBusRpc)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"]).Publish(tagReadIntegrationEvent);
-
-            if (((IEventBusRpc)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"]).EventHandler is TagReadRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read"))
             {
-                return eventHandler.Take().Result;
+                var result= ((IEventBusRpcClient)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"])
+                    .CallAsync<TagReadIntegrationEventReply>(tagReadIntegrationEvent);
+
+                return result.Result;
             }
+
+            _logger.LogError("GetTagValueAsync: " + tagReadIntegrationEvent.GroupName + " " + tagReadIntegrationEvent.Name + " Error!");
 
             return new TagReadIntegrationEventReply();
         }
 
         public async ValueTask<TagReadIntegrationEventReply> GetTagValueAsync(TagReadIntegrationEvent tagReadIntegrationEvent)
         {
-            //_logger.LogTrace("GetTagValueAsync: " + tagReadIntegrationEvent.GroupName + " " + tagReadIntegrationEvent.Name);
-            await ((IEventBusRpc)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"])
-                .Publish(tagReadIntegrationEvent)
-                .ConfigureAwait(false);
-
-            if (((IEventBusRpc)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"]).EventHandler is TagReadRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read"))
             {
-                return await eventHandler.Take().ConfigureAwait(false);
+                return await ((IEventBusRpcClient)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"])
+                    .CallAsync<TagReadIntegrationEventReply>(tagReadIntegrationEvent);
             }
+
+            _logger.LogError("GetTagValueAsync: " + tagReadIntegrationEvent.GroupName + " " + tagReadIntegrationEvent.Name + " Error!");
 
             return new TagReadIntegrationEventReply();
         }
@@ -261,28 +282,28 @@ namespace KSociety.Com.Biz.Class
 
         public TagWriteIntegrationEventReply SetTagValue(TagWriteIntegrationEvent tagWriteIntegrationEvent)
         {
-            ((IEventBusRpc)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"])
-                .Publish(tagWriteIntegrationEvent);
-
-            if (((IEventBusRpc)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"]).EventHandler is TagWriteRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(tagWriteIntegrationEvent.GroupName + "_Write"))
             {
-                return eventHandler.Take().Result;
+                var result = ((IEventBusRpcClient)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"])
+                    .CallAsync<TagWriteIntegrationEventReply>(tagWriteIntegrationEvent);
+
+                return result.Result;
             }
+
+            _logger.LogError("SetTagValueAsync: " + tagWriteIntegrationEvent.GroupName + " " + tagWriteIntegrationEvent.Name + " Error!");
 
             return new TagWriteIntegrationEventReply();
         }
 
         public async ValueTask<TagWriteIntegrationEventReply> SetTagValueAsync(TagWriteIntegrationEvent tagWriteIntegrationEvent)
         {
-            //_logger.LogTrace("SetTagValueAsync: " + tagWriteIntegrationEvent.GroupName + " " + tagWriteIntegrationEvent.Name + " " + tagWriteIntegrationEvent.Value);
-            await ((IEventBusRpc)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"])
-                .Publish(tagWriteIntegrationEvent)
-                .ConfigureAwait(false);
-
-            if (((IEventBusRpc)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"]).EventHandler is TagWriteRpcHandler eventHandler)
+            if (TagGroupEventBus.ContainsKey(tagWriteIntegrationEvent.GroupName + "_Write"))
             {
-                return await eventHandler.Take().ConfigureAwait(false);
+                return await ((IEventBusRpcClient)TagGroupEventBus[tagWriteIntegrationEvent.GroupName + "_Write"])
+                    .CallAsync<TagWriteIntegrationEventReply>(tagWriteIntegrationEvent);
             }
+
+            _logger.LogError("SetTagValueAsync: " + tagWriteIntegrationEvent.GroupName + " " + tagWriteIntegrationEvent.Name + " Error!");
 
             return new TagWriteIntegrationEventReply();
         }

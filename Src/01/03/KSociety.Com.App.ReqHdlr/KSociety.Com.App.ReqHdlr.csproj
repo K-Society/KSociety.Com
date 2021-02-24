@@ -12,7 +12,6 @@
     <Folder Include="Copy\" />
     <Folder Include="ModifyField\" />
     <Folder Include="Update\" />
-    <Folder Include="Transaction\" />
     <Folder Include="Remove\" />
   </ItemGroup>
 

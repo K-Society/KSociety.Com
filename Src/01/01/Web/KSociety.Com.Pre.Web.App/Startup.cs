@@ -22,7 +22,7 @@ namespace KSociety.Com.Pre.Web.App
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Srv.Agent.ProtoModel.Configuration.ProtoBufConfiguration();
+            KSociety.Com.Srv.Contract.ProtoModel.Configuration.ProtoBufConfiguration();
             services.AddControllersWithViews();
         }
 
@@ -38,6 +38,8 @@ namespace KSociety.Com.Pre.Web.App
                 //builder.RegisterModule(new Log());
 
                 builder.RegisterModule(new DatabaseControl());
+
+                builder.RegisterModule(new Bindings.Biz.Biz());
 
                 builder.RegisterModule(new Query());
                 builder.RegisterModule(new QueryListKeyValue());

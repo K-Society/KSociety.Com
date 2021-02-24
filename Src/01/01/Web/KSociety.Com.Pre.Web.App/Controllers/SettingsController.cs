@@ -5,9 +5,9 @@ namespace KSociety.Com.Pre.Web.App.Controllers
 {
     public class SettingsController : Controller
     {
-        private readonly Base.Pre.Model.Control.IDatabaseControl _databaseControl;
+        private readonly KSociety.Base.Srv.Agent.IAgentDatabaseControl _databaseControl;
 
-        public SettingsController(Base.Pre.Model.Control.IDatabaseControl databaseControl)
+        public SettingsController(KSociety.Base.Srv.Agent.IAgentDatabaseControl databaseControl)
         {
             _databaseControl = databaseControl;
         }

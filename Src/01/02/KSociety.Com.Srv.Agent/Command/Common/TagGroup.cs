@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using KSociety.Com.Srv.Agent.Interface.Command.Common;
 using KSociety.Com.Srv.Contract.Command.Common;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
@@ -8,7 +9,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Command.Common
 {
-    public class TagGroup : KSociety.Base.Srv.Agent.Connection
+    public class TagGroup : KSociety.Base.Srv.Agent.Connection, ITagGroup
     {
         public TagGroup(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)

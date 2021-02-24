@@ -8,7 +8,7 @@ using ProtoBuf.Grpc.Client;
 
 namespace KSociety.Com.Srv.Agent.Command.S7
 {
-    public class S7Connection : KSociety.Base.Srv.Agent.Connection
+    public class S7Connection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Command.S7.IS7Connection
     {
         public S7Connection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
@@ -181,7 +181,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
             return output;
         }
 
-        public async Task<App.Dto.Res.Copy.S7.S7Connection> CopyAsync(App.Dto.Req.Copy.S7.S7Connection request, CancellationToken cancellationToken = default)
+        public async ValueTask<App.Dto.Res.Copy.S7.S7Connection> CopyAsync(App.Dto.Req.Copy.S7.S7Connection request, CancellationToken cancellationToken = default)
         {
             CallOptions = CallOptions.WithCancellationToken(cancellationToken);
             CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
