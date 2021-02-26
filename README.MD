@@ -23,6 +23,10 @@ This is the README file for KSociety.Com. It support .Net 5.0
 
 + Compatible S7 PLC (S7-200, S7-300, S7-400, S7-1200, S7-1500)
 
+## Install
+
+This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Install/releases) to function properly.
+
 ## Architecture
 
 ![Image of Architecture](https://github.com/K-Society/KSociety.Com/blob/experimental/docs/Architecture_view_for_KSociety.Com.png)
