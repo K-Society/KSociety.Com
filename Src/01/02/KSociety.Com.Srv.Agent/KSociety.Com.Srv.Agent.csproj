@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.Srv.Agent" Version="0.0.81" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.3.37">
+    <PackageReference Include="KSociety.Base.Srv.Agent" Version="0.0.90" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.194">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
