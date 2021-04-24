@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KSociety.Com.Pre.Form.Presenter\KSociety.Com.Pre.Form.Presenter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Bindings\" />
+  </ItemGroup>
+
+</Project>
