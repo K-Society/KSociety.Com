@@ -9,11 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="KSociety.Base.EventBus" Version="0.0.98" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.216">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.220">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
   </ItemGroup>
 
 </Project>
