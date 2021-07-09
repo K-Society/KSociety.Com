@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
-    <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="0.0.98" />
+    <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="0.0.104" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.2" />
