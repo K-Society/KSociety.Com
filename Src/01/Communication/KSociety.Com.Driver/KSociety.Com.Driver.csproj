@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBus" Version="0.0.98" />
-    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="0.0.98" />
+    <PackageReference Include="KSociety.Base.EventBus" Version="0.0.110" />
+    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="0.0.110" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.216">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.220">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="S7netplus" Version="0.12.0" />
+    <PackageReference Include="S7netplus" Version="0.13.0" />
   </ItemGroup>
 
   <ItemGroup>

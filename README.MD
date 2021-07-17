@@ -9,7 +9,7 @@ KSociety.Com is a full stack software consisting of:
 - a service that reads or writes data to a plc
 - a web application for the parameterization of the service
 
-This system needs RabbitMQ as a message-oriented middleware.
+This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Install/releases) as a message-oriented middleware.
 
 ## Introduction
 

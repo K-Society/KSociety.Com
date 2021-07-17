@@ -13,7 +13,7 @@
     <BaseIntermediateOutputPath>$(BaseOutputPath)obj\</BaseIntermediateOutputPath>
     <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
 
-    <Authors>maniglia</Authors>
+    <Authors>K-Society</Authors>
     <Company>K-Society</Company>
     <Copyright>Copyright (c) K-Society and contributors. All rights reserved.</Copyright>
 	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>

@@ -61,7 +61,7 @@ deploy:
   - provider: NuGet
     server: 
     api_key:
-      secure: LkTQAh9Tv+IgjhWD5LBCRs7Jc9y5eDKDo+TdnwjuBXVdfuin8jpb1ewtMb30pMxz
+      secure: bOgKbntjK/dMmw71pGK590FEZxLbgGSMMRdcesvYD0YBd0D8YoTNhCFHUxTUIKyw
     skip_symbols: true
     symbol_server: 
     artifact: /.*\.nupkg/
@@ -72,7 +72,7 @@ deploy:
     release: K-Society.Com $(ComSystemVersion)
     description: 'K-Society.Com $(ComSystemVersion)'
     auth_token:
-      secure: 7XvMBiUsnXWGCogi909uIzQVH/68TW4lAipl0RN+ZAwHrlqZChxEBroMRWEcrWGM
+      secure: ENcLoui/QOEIlADrbVlH5ZeIjOaJih6C65EM9p7Rs+KX45w7p8Y4J6KTHPRk5LbY
     artifact: comsysteminstaller
     draft: false
     prerelease: false
