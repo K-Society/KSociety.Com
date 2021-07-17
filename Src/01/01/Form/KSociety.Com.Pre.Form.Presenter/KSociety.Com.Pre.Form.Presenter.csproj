@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KSociety.Base.Pre.Form.Presenter" Version="0.0.110" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\02\KSociety.Com.Srv.Agent\KSociety.Com.Srv.Agent.csproj" />
+    <ProjectReference Include="..\KSociety.Com.Pre.Form.View\KSociety.Com.Pre.Form.View.csproj" />
+  </ItemGroup>
+
+</Project>

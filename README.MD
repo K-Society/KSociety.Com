@@ -1,14 +1,15 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/vw2wblpsxwihbuoo?svg=true)](https://ci.appveyor.com/project/maniglia/ksociety-com)
+![GitHub all releases](https://img.shields.io/github/downloads/K-Society/KSociety.Com/total)
 # KSociety.Com - Communication System
 #### A .NET full stack software for Siemens S7 Connectivity
 
 ## Overview
 
-Std.Master.Com is a full stack software consisting of:
+KSociety.Com is a full stack software consisting of:
 - a service that reads or writes data to a plc
 - a web application for the parameterization of the service
 
-This system needs RabbitMQ as a message-oriented middleware.
+This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Install/releases) as a message-oriented middleware.
 
 ## Introduction
 
@@ -22,9 +23,13 @@ This is the README file for KSociety.Com. It support .Net 5.0
 
 + Compatible S7 PLC (S7-200, S7-300, S7-400, S7-1200, S7-1500)
 
+## Install
+
+This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Install/releases) to function properly.
+
 ## Architecture
 
-![Image of Architecture](https://github.com/K-Society/Std.Master.Com/blob/develop/docs/Architecture_view_for_Std.Master.Com.png)
+![Image of Architecture](https://github.com/K-Society/KSociety.Com/blob/experimental/docs/Architecture_view_for_KSociety.Com.png)
 
 ### 1. Presentation
 | GitHub Repository | NuGet | Download |
