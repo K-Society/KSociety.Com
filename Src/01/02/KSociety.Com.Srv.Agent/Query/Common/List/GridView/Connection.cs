@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Core;
 using KSociety.Com.Srv.Contract.Query.Common.List.GridView;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
@@ -18,15 +19,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common.List.GridView
 
         public Srv.Dto.Common.List.GridView.Connection LoadAllRecords(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.Connection(CallContext);
+                    return client.Connection(callContext);
                 }
             }
             catch (Exception ex)
@@ -39,15 +40,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common.List.GridView
         public async ValueTask<Srv.Dto.Common.List.GridView.Connection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.ConnectionAsync(CallContext);
+                    return await client.ConnectionAsync(callContext);
                 }
             }
             catch (Exception ex)

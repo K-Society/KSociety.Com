@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Core;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Srv.Contract.Query.Common;
 using Microsoft.Extensions.Logging;
@@ -20,15 +21,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common
         public Srv.Dto.Common.Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.GetTagById(idObject, CallContext);
+                    return client.GetTagById(idObject, callContext);
                 }
             }
             catch (Exception ex)
@@ -41,15 +42,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common
         public async ValueTask<Srv.Dto.Common.Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.GetTagByIdAsync(idObject, CallContext);
+                    return await client.GetTagByIdAsync(idObject, callContext);
                 }
             }
             catch (Exception ex)

@@ -1,4 +1,5 @@
-﻿using KSociety.Com.Srv.Agent.Interface.Command.Common;
+﻿using Grpc.Core;
+using KSociety.Com.Srv.Agent.Interface.Command.Common;
 using KSociety.Com.Srv.Contract.Command.Common;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
@@ -19,8 +20,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public bool Remove(App.Dto.Req.Remove.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -28,7 +29,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.RemoveConnection(request, CallContext);
+                    var result = client.RemoveConnection(request, callContext);
 
                     output = result.Result;
                 }
@@ -43,8 +44,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -52,7 +53,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.RemoveConnectionAsync(request, CallContext);
+                    var result = await client.RemoveConnectionAsync(request, callContext);
 
                     output = result.Result;
                 }
@@ -67,8 +68,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Add.Common.Connection Add(App.Dto.Req.Add.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Common.Connection output = new App.Dto.Res.Add.Common.Connection();
             try
             {
@@ -77,7 +78,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
                     ICommand client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.AddConnection(request, CallContext);
+                    var result = client.AddConnection(request, callContext);
 
                     output = result;
                 }
@@ -91,8 +92,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Add.Common.Connection> AddAsync(App.Dto.Req.Add.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Common.Connection output = new App.Dto.Res.Add.Common.Connection();
             try
             {
@@ -100,7 +101,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.AddConnectionAsync(request, CallContext);
+                    var result = await client.AddConnectionAsync(request, callContext);
 
                     output = result;
                 }
@@ -114,8 +115,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Update.Common.Connection Update(App.Dto.Req.Update.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Common.Connection output = new App.Dto.Res.Update.Common.Connection();
             try
             {
@@ -123,7 +124,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.UpdateConnection(request, CallContext);
+                    var result = client.UpdateConnection(request, callContext);
 
                     output = result;
                 }
@@ -137,8 +138,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Update.Common.Connection> UpdateAsync(App.Dto.Req.Update.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Common.Connection output = new App.Dto.Res.Update.Common.Connection();
             try
             {
@@ -146,7 +147,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.UpdateConnectionAsync(request, CallContext);
+                    var result = await client.UpdateConnectionAsync(request, callContext);
 
                     output = result;
                 }
@@ -160,8 +161,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Copy.Common.Connection Copy(App.Dto.Req.Copy.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Common.Connection output = new App.Dto.Res.Copy.Common.Connection();
             try
             {
@@ -169,7 +170,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.CopyConnection(request, CallContext);
+                    var result = client.CopyConnection(request, callContext);
 
                     output = result;
                 }
@@ -183,8 +184,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Copy.Common.Connection> CopyAsync(App.Dto.Req.Copy.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Common.Connection output = new App.Dto.Res.Copy.Common.Connection();
             try
             {
@@ -192,7 +193,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.CopyConnectionAsync(request, CallContext);
+                    var result = await client.CopyConnectionAsync(request, callContext);
 
                     output = result;
                 }
@@ -206,8 +207,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Export.Common.Connection Export(App.Dto.Req.Export.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.Common.Connection output = new App.Dto.Res.Export.Common.Connection();
             try
             {
@@ -215,7 +216,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ExportConnection(request, CallContext);
+                    var result = client.ExportConnection(request, callContext);
 
                     output = result;
                 }
@@ -229,8 +230,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Export.Common.Connection> ExportAsync(App.Dto.Req.Export.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.Common.Connection output = new App.Dto.Res.Export.Common.Connection();
             try
             {
@@ -238,7 +239,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ExportConnectionAsync(request, CallContext);
+                    var result = await client.ExportConnectionAsync(request, callContext);
 
                     output = result;
                 }
@@ -252,8 +253,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Import.Common.Connection Import(App.Dto.Req.Import.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.Common.Connection output = new App.Dto.Res.Import.Common.Connection();
             try
             {
@@ -261,7 +262,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ImportConnection(request, CallContext);
+                    var result = client.ImportConnection(request, callContext);
 
                     output = result;
                 }
@@ -275,8 +276,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Import.Common.Connection> ImportAsync(App.Dto.Req.Import.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.Common.Connection output = new App.Dto.Res.Import.Common.Connection();
             try
             {
@@ -284,7 +285,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ImportConnectionAsync(request, CallContext);
+                    var result = await client.ImportConnectionAsync(request, callContext);
 
                     output = result;
                 }
@@ -298,8 +299,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public bool ModifyField(App.Dto.Req.ModifyField.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -307,7 +308,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ModifyConnectionField(request, CallContext);
+                    var result = client.ModifyConnectionField(request, callContext);
 
                     output = result.Result;
                 }
@@ -321,8 +322,8 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.Common.Connection request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -330,7 +331,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ModifyConnectionFieldAsync(request, CallContext);
+                    var result = await client.ModifyConnectionFieldAsync(request, callContext);
 
                     output = result.Result;
                 }

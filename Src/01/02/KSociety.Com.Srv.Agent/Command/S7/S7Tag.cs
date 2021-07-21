@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Core;
 using KSociety.Com.Srv.Contract.Command.S7;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
@@ -18,8 +19,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public bool Remove(App.Dto.Req.Remove.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -27,7 +28,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.RemoveS7Tag(request, CallContext);
+                    var result = client.RemoveS7Tag(request, callContext);
 
                     output = result.Result;
                 }
@@ -42,8 +43,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -51,7 +52,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.RemoveS7TagAsync(request, CallContext);
+                    var result = await client.RemoveS7TagAsync(request, callContext);
 
                     output = result.Result;
                 }
@@ -66,8 +67,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public App.Dto.Res.Add.S7.S7Tag Add(App.Dto.Req.Add.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.S7.S7Tag output = new App.Dto.Res.Add.S7.S7Tag();
             try
             {
@@ -77,7 +78,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
                     client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.AddS7Tag(request, CallContext);
+                    var result = client.AddS7Tag(request, callContext);
 
                     output = result;
                 }
@@ -91,8 +92,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<App.Dto.Res.Add.S7.S7Tag> AddAsync(App.Dto.Req.Add.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.S7.S7Tag output = new App.Dto.Res.Add.S7.S7Tag();
             try
             {
@@ -100,7 +101,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.AddS7TagAsync(request, CallContext);
+                    var result = await client.AddS7TagAsync(request, callContext);
 
                     output = result;
                 }
@@ -114,8 +115,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public App.Dto.Res.Update.S7.S7Tag Update(App.Dto.Req.Update.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.S7.S7Tag output = new App.Dto.Res.Update.S7.S7Tag();
             try
             {
@@ -123,7 +124,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.UpdateS7Tag(request, CallContext);
+                    var result = client.UpdateS7Tag(request, callContext);
 
                     output = result;
                 }
@@ -137,8 +138,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<App.Dto.Res.Update.S7.S7Tag> UpdateAsync(App.Dto.Req.Update.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.S7.S7Tag output = new App.Dto.Res.Update.S7.S7Tag();
             try
             {
@@ -146,7 +147,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.UpdateS7TagAsync(request, CallContext);
+                    var result = await client.UpdateS7TagAsync(request, callContext);
 
                     output = result;
                 }
@@ -160,8 +161,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public App.Dto.Res.Copy.S7.S7Tag Copy(App.Dto.Req.Copy.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.S7.S7Tag output = new App.Dto.Res.Copy.S7.S7Tag();
             try
             {
@@ -169,7 +170,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.CopyS7Tag(request, CallContext);
+                    var result = client.CopyS7Tag(request, callContext);
 
                     output = result;
                 }
@@ -183,8 +184,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<App.Dto.Res.Copy.S7.S7Tag> CopyAsync(App.Dto.Req.Copy.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.S7.S7Tag output = new App.Dto.Res.Copy.S7.S7Tag();
             try
             {
@@ -192,7 +193,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.CopyS7TagAsync(request, CallContext);
+                    var result = await client.CopyS7TagAsync(request, callContext);
 
                     output = result;
                 }
@@ -206,8 +207,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public App.Dto.Res.Export.S7.S7Tag Export(App.Dto.Req.Export.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.S7.S7Tag output = new App.Dto.Res.Export.S7.S7Tag();
             try
             {
@@ -215,7 +216,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ExportS7Tag(request, CallContext);
+                    var result = client.ExportS7Tag(request, callContext);
 
                     output = result;
                 }
@@ -229,8 +230,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<App.Dto.Res.Export.S7.S7Tag> ExportAsync(App.Dto.Req.Export.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.S7.S7Tag output = new App.Dto.Res.Export.S7.S7Tag();
             try
             {
@@ -238,7 +239,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ExportS7TagAsync(request, CallContext);
+                    var result = await client.ExportS7TagAsync(request, callContext);
 
                     output = result;
                 }
@@ -252,8 +253,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public App.Dto.Res.Import.S7.S7Tag Import(App.Dto.Req.Import.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.S7.S7Tag output = new App.Dto.Res.Import.S7.S7Tag();
             try
             {
@@ -261,7 +262,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ImportS7Tag(request, CallContext);
+                    var result = client.ImportS7Tag(request, callContext);
 
                     output = result;
                 }
@@ -275,8 +276,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<App.Dto.Res.Import.S7.S7Tag> ImportAsync(App.Dto.Req.Import.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.S7.S7Tag output = new App.Dto.Res.Import.S7.S7Tag();
             try
             {
@@ -284,7 +285,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ImportS7TagAsync(request, CallContext);
+                    var result = await client.ImportS7TagAsync(request, callContext);
 
                     output = result;
                 }
@@ -298,8 +299,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public bool ModifyField(App.Dto.Req.ModifyField.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -307,7 +308,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ModifyS7TagField(request, CallContext);
+                    var result = client.ModifyS7TagField(request, callContext);
 
                     output = result.Result;
                 }
@@ -321,8 +322,8 @@ namespace KSociety.Com.Srv.Agent.Command.S7
 
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.S7.S7Tag request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -330,7 +331,7 @@ namespace KSociety.Com.Srv.Agent.Command.S7
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ModifyS7TagFieldAsync(request, CallContext);
+                    var result = await client.ModifyS7TagFieldAsync(request, callContext);
 
                     output = result.Result;
                 }

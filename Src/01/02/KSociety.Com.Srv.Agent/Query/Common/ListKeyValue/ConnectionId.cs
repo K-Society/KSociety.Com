@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Core;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Srv.Contract.Query.Common.ListKeyValue;
 using Microsoft.Extensions.Logging;
@@ -19,15 +20,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public ListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.ConnectionId(CallContext);
+                    return client.ConnectionId(callContext);
                 }
             }
             catch (Exception ex)
@@ -39,15 +40,15 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public async ValueTask<ListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.ConnectionIdAsync(CallContext);
+                    return await client.ConnectionIdAsync(callContext);
                 }
             }
             catch (Exception ex)

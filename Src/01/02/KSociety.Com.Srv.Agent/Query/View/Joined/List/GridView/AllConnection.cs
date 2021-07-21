@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Grpc.Core;
 using KSociety.Com.Srv.Contract.Query.View.Joined.List.GridView;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
@@ -18,15 +19,15 @@ namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
 
         public Srv.Dto.View.Joined.List.GridView.AllConnection LoadAllRecords(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.AllConnection(CallContext);
+                    return client.AllConnection(callContext);
                 }
             }
             catch (Exception ex)
@@ -38,15 +39,15 @@ namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
 
         public async Task<Srv.Dto.View.Joined.List.GridView.AllConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
+            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
+            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.AllConnectionAsync(CallContext);
+                    return await client.AllConnectionAsync(callContext);
                 }
             }
             catch (Exception ex)
