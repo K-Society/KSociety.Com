@@ -1,8 +1,7 @@
-﻿using Grpc.Core;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Com.Srv.Agent.Interface.Command.Common;
 using KSociety.Com.Srv.Contract.Command.Common;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
 using System;
 using System.Threading;
@@ -12,7 +11,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 {
     public class Tag : KSociety.Base.Srv.Agent.Connection, ITag
     {
-        public Tag(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public Tag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -20,8 +19,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public bool Remove(App.Dto.Req.Remove.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -29,7 +26,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.RemoveTag(request, callContext);
+                    var result = client.RemoveTag(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -44,8 +41,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -53,7 +48,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.RemoveTagAsync(request, callContext);
+                    var result = await client.RemoveTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -68,8 +63,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Add.Common.Tag Add(App.Dto.Req.Add.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Common.Tag output = new App.Dto.Res.Add.Common.Tag();
             try
             {
@@ -79,7 +72,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
                     client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.AddTag(request, callContext);
+                    var result = client.AddTag(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -93,8 +86,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Add.Common.Tag> AddAsync(App.Dto.Req.Add.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Common.Tag output = new App.Dto.Res.Add.Common.Tag();
             try
             {
@@ -102,7 +93,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.AddTagAsync(request, callContext);
+                    var result = await client.AddTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -116,8 +107,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Update.Common.Tag Update(App.Dto.Req.Update.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Common.Tag output = new App.Dto.Res.Update.Common.Tag();
             try
             {
@@ -125,7 +114,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.UpdateTag(request, callContext);
+                    var result = client.UpdateTag(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -139,8 +128,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Update.Common.Tag> UpdateAsync(App.Dto.Req.Update.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Common.Tag output = new App.Dto.Res.Update.Common.Tag();
             try
             {
@@ -148,7 +135,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.UpdateTagAsync(request, callContext);
+                    var result = await client.UpdateTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -162,8 +149,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Copy.Common.Tag Copy(App.Dto.Req.Copy.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Common.Tag output = new App.Dto.Res.Copy.Common.Tag();
             try
             {
@@ -171,7 +156,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.CopyTag(request, callContext);
+                    var result = client.CopyTag(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -185,8 +170,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Copy.Common.Tag> CopyAsync(App.Dto.Req.Copy.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Common.Tag output = new App.Dto.Res.Copy.Common.Tag();
             try
             {
@@ -194,7 +177,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.CopyTagAsync(request, callContext);
+                    var result = await client.CopyTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -208,8 +191,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Export.Common.Tag Export(App.Dto.Req.Export.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.Common.Tag output = new App.Dto.Res.Export.Common.Tag();
             try
             {
@@ -217,7 +198,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ExportTag(request, callContext);
+                    var result = client.ExportTag(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -231,8 +212,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Export.Common.Tag> ExportAsync(App.Dto.Req.Export.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Export.Common.Tag output = new App.Dto.Res.Export.Common.Tag();
             try
             {
@@ -240,7 +219,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ExportTagAsync(request, callContext);
+                    var result = await client.ExportTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -254,8 +233,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public App.Dto.Res.Import.Common.Tag Import(App.Dto.Req.Import.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.Common.Tag output = new App.Dto.Res.Import.Common.Tag();
             try
             {
@@ -263,7 +240,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ImportTag(request, callContext);
+                    var result = client.ImportTag(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -277,8 +254,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<App.Dto.Res.Import.Common.Tag> ImportAsync(App.Dto.Req.Import.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Import.Common.Tag output = new App.Dto.Res.Import.Common.Tag();
             try
             {
@@ -286,7 +261,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ImportTagAsync(request, callContext);
+                    var result = await client.ImportTagAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -300,8 +275,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public bool ModifyField(App.Dto.Req.ModifyField.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -309,7 +282,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ModifyTagField(request, callContext);
+                    var result = client.ModifyTagField(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -323,8 +296,6 @@ namespace KSociety.Com.Srv.Agent.Command.Common
 
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.Common.Tag request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -332,7 +303,7 @@ namespace KSociety.Com.Srv.Agent.Command.Common
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ModifyTagFieldAsync(request, callContext);
+                    var result = await client.ModifyTagFieldAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }

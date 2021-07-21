@@ -1,18 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Grpc.Core;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Srv.Contract.Query.Common.ListKeyValue;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 {
     public class AnalogDigitalSignal : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IAnalogDigitalSignal
     {
-        public AnalogDigitalSignal(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public AnalogDigitalSignal(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -20,15 +19,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public ListKeyValuePair<string, string> LoadData(CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.AnalogDigitalSignal(callContext);
+                    return client.AnalogDigitalSignal(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
@@ -40,15 +37,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public async ValueTask<ListKeyValuePair<string, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.AnalogDigitalSignalAsync(callContext);
+                    return await client.AnalogDigitalSignalAsync(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)

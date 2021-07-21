@@ -1,17 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Grpc.Core;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Com.Srv.Contract.Command.Logix;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Command.Logix
 {
     public class LogixConnection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Command.Logix.ILogixConnection
     {
-        public LogixConnection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public LogixConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -19,8 +18,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public bool Remove(App.Dto.Req.Remove.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -28,7 +25,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.RemoveLogixConnection(request, callContext);
+                    var result = client.RemoveLogixConnection(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -43,8 +40,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public async ValueTask<bool> RemoveAsync(App.Dto.Req.Remove.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -52,7 +47,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.RemoveLogixConnectionAsync(request, callContext);
+                    var result = await client.RemoveLogixConnectionAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -67,8 +62,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public App.Dto.Res.Add.Logix.LogixConnection Add(App.Dto.Req.Add.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Logix.LogixConnection output = new App.Dto.Res.Add.Logix.LogixConnection();
             try
             {
@@ -78,7 +71,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
                     client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.AddLogixConnection(request, callContext);
+                    var result = client.AddLogixConnection(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -92,8 +85,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public async ValueTask<App.Dto.Res.Add.Logix.LogixConnection> AddAsync(App.Dto.Req.Add.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Add.Logix.LogixConnection output = new App.Dto.Res.Add.Logix.LogixConnection();
             try
             {
@@ -101,7 +92,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.AddLogixConnectionAsync(request, callContext);
+                    var result = await client.AddLogixConnectionAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -115,8 +106,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public App.Dto.Res.Update.Logix.LogixConnection Update(App.Dto.Req.Update.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Logix.LogixConnection output = new App.Dto.Res.Update.Logix.LogixConnection();
             try
             {
@@ -124,7 +113,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.UpdateLogixConnection(request, callContext);
+                    var result = client.UpdateLogixConnection(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -138,8 +127,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public async ValueTask<App.Dto.Res.Update.Logix.LogixConnection> UpdateAsync(App.Dto.Req.Update.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Update.Logix.LogixConnection output = new App.Dto.Res.Update.Logix.LogixConnection();
             try
             {
@@ -147,7 +134,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.UpdateLogixConnectionAsync(request, callContext);
+                    var result = await client.UpdateLogixConnectionAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -161,8 +148,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public App.Dto.Res.Copy.Logix.LogixConnection Copy(App.Dto.Req.Copy.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Logix.LogixConnection output = new App.Dto.Res.Copy.Logix.LogixConnection();
             try
             {
@@ -170,7 +155,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.CopyLogixConnection(request, callContext);
+                    var result = client.CopyLogixConnection(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -184,8 +169,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public async ValueTask<App.Dto.Res.Copy.Logix.LogixConnection> CopyAsync(App.Dto.Req.Copy.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Copy.Logix.LogixConnection output = new App.Dto.Res.Copy.Logix.LogixConnection();
             try
             {
@@ -193,7 +176,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.CopyLogixConnectionAsync(request, callContext);
+                    var result = await client.CopyLogixConnectionAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -207,8 +190,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public bool ModifyField(App.Dto.Req.ModifyField.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -216,7 +197,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommand>();
 
-                    var result = client.ModifyLogixConnectionField(request, callContext);
+                    var result = client.ModifyLogixConnectionField(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }
@@ -230,8 +211,6 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
 
         public async ValueTask<bool> ModifyFieldAsync(App.Dto.Req.ModifyField.Logix.LogixConnection request, CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             var output = false;
             try
             {
@@ -239,7 +218,7 @@ namespace KSociety.Com.Srv.Agent.Command.Logix
                 {
                     var client = Channel.CreateGrpcService<ICommandAsync>();
 
-                    var result = await client.ModifyLogixConnectionFieldAsync(request, callContext);
+                    var result = await client.ModifyLogixConnectionFieldAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result.Result;
                 }

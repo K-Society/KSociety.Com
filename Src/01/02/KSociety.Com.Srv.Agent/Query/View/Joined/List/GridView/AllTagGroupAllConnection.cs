@@ -1,17 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Grpc.Core;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Com.Srv.Contract.Query.View.Joined.List.GridView;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
 {
     public class AllTagGroupAllConnection : KSociety.Base.Srv.Agent.Connection
     {
-        public AllTagGroupAllConnection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public AllTagGroupAllConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -19,15 +18,13 @@ namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
 
         public Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection LoadAllRecords(CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.AllTagGroupAllConnection(callContext);
+                    return client.AllTagGroupAllConnection(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
@@ -39,15 +36,13 @@ namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
 
         public async ValueTask<Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
         {
-            var callOptions = new CallOptions().WithCancellationToken(cancellationToken);
-            var callContext = new CallContext(callOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.AllTagGroupAllConnectionAsync(callContext);
+                    return await client.AllTagGroupAllConnectionAsync(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
