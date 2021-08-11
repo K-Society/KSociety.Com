@@ -1,16 +1,16 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Com.Srv.Contract.Query.Logix.List.GridView;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
 {
     public class LogixConnection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection
     {
-        public LogixConnection(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public LogixConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -18,15 +18,13 @@ namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
 
         public Srv.Dto.Logix.List.GridView.LogixConnection LoadAllRecords(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.LogixConnection(CallContext);
+                    return client.LogixConnection(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
@@ -38,15 +36,13 @@ namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
 
         public async ValueTask<Srv.Dto.Logix.List.GridView.LogixConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.LogixConnectionAsync(CallContext);
+                    return await client.LogixConnectionAsync(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)

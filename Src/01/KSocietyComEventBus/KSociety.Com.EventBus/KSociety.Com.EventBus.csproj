@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBus" Version="0.0.110" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.220">
+    <PackageReference Include="KSociety.Base.EventBus" Version="0.0.144" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.231">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
