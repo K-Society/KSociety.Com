@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="0.0.144" />
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="0.0.149" />
     <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="0.0.81" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
       <PrivateAssets>all</PrivateAssets>
@@ -28,8 +28,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\03\KSociety.Com.App.ReqHdlr\KSociety.Com.App.ReqHdlr.csproj" />
-    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Migration.Sqlite\KSociety.Com.Infra.Migration.Sqlite.csproj" />
-    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Migration.SqlServer\KSociety.Com.Infra.Migration.SqlServer.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.Sqlite\KSociety.Com.Infra.Transfer.Sqlite.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.SqlServer\KSociety.Com.Infra.Transfer.SqlServer.csproj" />
     <ProjectReference Include="..\..\KSociety.Com.Srv.Behavior\KSociety.Com.Srv.Behavior.csproj" />
     <ProjectReference Include="..\KSociety.Com.Srv.Host.Shared\KSociety.Com.Srv.Host.Shared.csproj" />
   </ItemGroup>
