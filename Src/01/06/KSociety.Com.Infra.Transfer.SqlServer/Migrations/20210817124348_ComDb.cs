@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace KSociety.Com.Infra.Migration.SqlServer
+namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
-    public partial class ComDb : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class ComDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -365,26 +365,27 @@ namespace KSociety.Com.Infra.Migration.SqlServer
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 11, "Counter variable type", "Counter" });
+                values: new object[] { 12, "Counter variable type", "Counter" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[,]
                 {
-                    { 10, "Timer variable type", "Timer" },
+                    { 11, "Timer variable type", "Timer" },
+                    { 10, "S7 WString variable type (variable)", "S7WString" },
                     { 9, "S7 String variable type (variable)", "S7String" },
                     { 8, "Char Array / C-String variable type (variable)", "String" },
                     { 7, "LReal variable type (64 bits, 8 bytes)", "LReal" },
                     { 6, "Real variable type (32 bits, 4 bytes)", "Real" },
-                    { 5, "DInt variable type (32 bits, 4 bytes)", "DInt" },
                     { 1, "S7 Byte variable type (8 bits)", "Byte" },
+                    { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" },
                     { 3, "S7 DWord variable type (32 bits, 4 bytes)", "Dword" },
                     { 2, "S7 Word variable type (16 bits, 2 bytes)", "Word" },
                     { 0, "S7 Bit variable type (bool)", "Bit" },
-                    { 12, "DateTime variable type", "DataTime" },
-                    { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" },
-                    { 13, "DateTimeLong variable type", "DataTimeLong" }
+                    { 13, "DateTime variable type", "DataTime" },
+                    { 5, "DInt variable type (32 bits, 4 bytes)", "DInt" },
+                    { 14, "DateTimeLong variable type", "DataTimeLong" }
                 });
 
             migrationBuilder.InsertData(

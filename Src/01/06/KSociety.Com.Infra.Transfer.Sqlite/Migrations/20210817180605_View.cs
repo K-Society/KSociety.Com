@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System.Reflection;
 
-namespace KSociety.Com.Infra.Migration.Sqlite
+namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
-    public partial class View : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class View : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System.Reflection;
 
-namespace KSociety.Com.Infra.Migration.SqlServer
+namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
-    public partial class View : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class View : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
