@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Srv.Contract.Query.Common.ListKeyValue;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 {
     public class TagGroupId : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.ITagGroupId
     {
-        public TagGroupId(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public TagGroupId(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -19,15 +19,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public ListKeyValuePair<Guid, string> LoadData(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.TagGroupId(CallContext);
+                    return client.TagGroupId(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
@@ -39,15 +37,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
 
         public async ValueTask<ListKeyValuePair<Guid, string>> LoadDataAsync(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.TagGroupIdAsync(CallContext);
+                    return await client.TagGroupIdAsync(ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)

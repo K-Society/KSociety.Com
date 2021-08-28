@@ -1,17 +1,17 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Base.Srv.Dto;
 using KSociety.Com.Srv.Contract.Query.Common;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Query.Common
 {
     public class Tag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ITag
     {
-        public Tag(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public Tag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -20,15 +20,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common
         public Srv.Dto.Common.Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQuery>();
 
-                    return client.GetTagById(idObject, CallContext);
+                    return client.GetTagById(idObject, ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)
@@ -41,15 +39,13 @@ namespace KSociety.Com.Srv.Agent.Query.Common
         public async ValueTask<Srv.Dto.Common.Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
         {
             Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             try
             {
                 using (Channel)
                 {
                     var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.GetTagByIdAsync(idObject, CallContext);
+                    return await client.GetTagByIdAsync(idObject, ConnectionOptions(cancellationToken));
                 }
             }
             catch (Exception ex)

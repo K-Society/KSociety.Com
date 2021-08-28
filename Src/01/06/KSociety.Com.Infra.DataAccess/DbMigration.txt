@@ -1,19 +1,5 @@
 ﻿SQL Server Object Explorer -> remove connection
-add-migration ComDbSqlServer -OutputDir Migrations\SqlServer
-add-migration ViewSqlServer -OutputDir Migrations\SqlServer
 
-add-migration ComDbSqlite -OutputDir Migrations\Sqlite
-add-migration ViewSqlite -OutputDir Migrations\Sqlite
-
-add-migration View -Project KSociety.Com.Infra.Migration.SqlServer
-add-migration View -Project KSociety.Com.Infra.Migration.Sqlite
--Build
-Update-Database
-Remove-Migration
-
-Add-Migration ComDbMigration -c ComContext -o Migrations/Com/ComDb
-
-//
 
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagReadyView");
 
@@ -33,8 +19,11 @@ Add-Migration ComDbMigration -c ComContext -o Migrations/Com/ComDb
 
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
 
-            //
 
-add-migration ComDb -Args Sqlserver -Project KSociety.Com.Infra.Migration.SqlServer
+add-migration ComDb -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
+add-migration View -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
+Update-Database -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
 
-Update-Database -Project KSociety.Com.Infra.Migration.SqlServer
+add-migration ComDb -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose
+add-migration View -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose
+Update-Database -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose

@@ -52,7 +52,7 @@ namespace KSociety.Com.Srv.Host
             QueueDurable = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueDurable");
             QueueExclusive = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueExclusive");
             QueueAutoDelete = Configuration.GetValue<bool>("MessageBroker:QueueDeclareParameters:QueueAutoDelete");
-            MigrationsAssembly = "KSociety.Com.Infra.Migration.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
+            MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
         }
 
         public IConfiguration Configuration { get; }

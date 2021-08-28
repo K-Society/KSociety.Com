@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using KSociety.Base.Srv.Agent;
 using KSociety.Com.App.Dto.Req.Biz;
 using KSociety.Com.Srv.Contract.Biz;
 using Microsoft.Extensions.Logging;
-using ProtoBuf.Grpc;
 using ProtoBuf.Grpc.Client;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Agent.Biz
 {
     public class Biz : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Biz.IBiz
     {
-        public Biz(IComAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        public Biz(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
             : base(agentConfiguration, loggerFactory)
         {
 
@@ -20,29 +20,22 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public IEnumerable<Dto.HeartBeat> SendHeartBeat(CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
-
             using (Channel)
             {
                 IBiz client = Channel.CreateGrpcService<IBiz>();
 
-                return client.SendHeartBeat(CallContext);
+                return client.SendHeartBeat(ConnectionOptions(cancellationToken));
             }
 
         }
 
         public IAsyncEnumerable<Dto.HeartBeat> SendHeartBeatAsync(CancellationToken cancellationToken = default)
         {
-            //CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
-
             using (Channel)
             {
                 IBizAsync client = Channel.CreateGrpcService<IBizAsync>();
 
-                return client.SendHeartBeatAsync(CallContext);
+                return client.SendHeartBeatAsync(ConnectionOptions(cancellationToken));
             }
             
         }
@@ -62,14 +55,11 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public IAsyncEnumerable<Dto.Biz.NotifyTagRes> NotifyTagInvokeAsync(Dto.Biz.NotifyTagReq request, CancellationToken cancellationToken = default)
         {
-            //CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             using (Channel)
             {
                 IBizAsync client = Channel.CreateGrpcService<IBizAsync>();
 
-                return client.NotifyTagInvokeAsync(request, CallContext);
+                return client.NotifyTagInvokeAsync(request, ConnectionOptions(cancellationToken));
             }
         }
 
@@ -88,9 +78,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public App.Dto.Res.Biz.GetConnectionStatus ConnectionStatus(GetConnectionStatus request, CancellationToken cancellationToken = default)
         {
-            //CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.GetConnectionStatus output = new App.Dto.Res.Biz.GetConnectionStatus();
             try
             {
@@ -98,7 +85,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBiz client = Channel.CreateGrpcService<IBiz>();
 
-                    var result = client.ConnectionStatus(request, CallContext);
+                    var result = client.ConnectionStatus(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -112,9 +99,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public async ValueTask<App.Dto.Res.Biz.GetConnectionStatus> GetConnectionStatusAsync(GetConnectionStatus request, CancellationToken cancellationToken = default)
         {
-            //CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.GetConnectionStatus output = new App.Dto.Res.Biz.GetConnectionStatus();
             try
             {
@@ -122,7 +106,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBizAsync client = Channel.CreateGrpcService<IBizAsync>();
 
-                    var result = await client.ConnectionStatusAsync(request, CallContext);
+                    var result = await client.ConnectionStatusAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -136,8 +120,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public App.Dto.Res.Biz.SetTagValue SetTagValue(SetTagValue request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.SetTagValue output = new App.Dto.Res.Biz.SetTagValue();
             try
             {
@@ -145,7 +127,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBiz client = Channel.CreateGrpcService<IBiz>();
 
-                    var result = client.SetTagValue(request, CallContext);
+                    var result = client.SetTagValue(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -159,8 +141,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public async ValueTask<App.Dto.Res.Biz.SetTagValue> SetTagValueAsync(SetTagValue request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.SetTagValue output = new App.Dto.Res.Biz.SetTagValue();
             try
             {
@@ -168,7 +148,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBizAsync client = Channel.CreateGrpcService<IBizAsync>();
 
-                    var result = await client.SetTagValueAsync(request, CallContext);
+                    var result = await client.SetTagValueAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -182,8 +162,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public App.Dto.Res.Biz.GetTagValue GetTagValue(GetTagValue request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.GetTagValue output = new App.Dto.Res.Biz.GetTagValue();
             try
             {
@@ -191,7 +169,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBiz client = Channel.CreateGrpcService<IBiz>();
 
-                    var result = client.GetTagValue(request, CallContext);
+                    var result = client.GetTagValue(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }
@@ -205,8 +183,6 @@ namespace KSociety.Com.Srv.Agent.Biz
 
         public async ValueTask<App.Dto.Res.Biz.GetTagValue> GetTagValueAsync(GetTagValue request, CancellationToken cancellationToken = default)
         {
-            CallOptions = CallOptions.WithCancellationToken(cancellationToken);
-            CallContext = new CallContext(CallOptions, CallContextFlags.IgnoreStreamTermination);
             App.Dto.Res.Biz.GetTagValue output = new App.Dto.Res.Biz.GetTagValue();
             try
             {
@@ -214,7 +190,7 @@ namespace KSociety.Com.Srv.Agent.Biz
                 {
                     IBizAsync client = Channel.CreateGrpcService<IBizAsync>();
 
-                    var result = await client.GetTagValueAsync(request, CallContext);
+                    var result = await client.GetTagValueAsync(request, ConnectionOptions(cancellationToken));
 
                     output = result;
                 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace KSociety.Com.Infra.DataAccess.Migrations
+namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
-    public partial class ComDb : Microsoft.EntityFrameworkCore.Migrations.Migration
+    public partial class ComDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -480,12 +480,17 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 11, "Counter variable type", "Counter" });
+                values: new object[] { 12, "Counter variable type", "Counter" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 10, "Timer variable type", "Timer" });
+                values: new object[] { 11, "Timer variable type", "Timer" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 10, "S7 WString variable type (variable)", "S7WString" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
@@ -510,12 +515,12 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 5, "DInt variable type (32 bits, 4 bytes)", "DInt" });
+                values: new object[] { 1, "S7 Byte variable type (8 bits)", "Byte" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 1, "S7 Byte variable type (8 bits)", "Byte" });
+                values: new object[] { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
@@ -535,17 +540,17 @@ namespace KSociety.Com.Infra.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 12, "DateTime variable type", "DataTime" });
+                values: new object[] { 13, "DateTime variable type", "DataTime" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" });
+                values: new object[] { 5, "DInt variable type (32 bits, 4 bytes)", "DInt" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 13, "DateTimeLong variable type", "DataTimeLong" });
+                values: new object[] { 14, "DateTimeLong variable type", "DataTimeLong" });
 
             migrationBuilder.InsertData(
                 table: "TagGroup",

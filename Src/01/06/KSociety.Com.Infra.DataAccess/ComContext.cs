@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess
 {
-    public sealed class ComContext : DatabaseContext
+    public class ComContext : DatabaseContext
     {
         public ComContext(ILoggerFactory loggerFactory, IDatabaseConfiguration configuration, IMediator mediator)
             : base(loggerFactory, configuration, mediator)
