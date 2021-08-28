@@ -181,7 +181,7 @@ namespace KSociety.Com.Srv.Contract.ProtoModel
                 //ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(IntegrationEvent), true)
                 //    .AddSubType(615, typeof(IntegrationComEvent));
 
-                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(IntegrationComEvent), true)
+                ProtoBuf.Meta.RuntimeTypeModel.Default.Add(typeof(IntegrationComEventRpc), true)
                     .AddSubType(615, typeof(ConnectionStatusIntegrationEvent));
 
 
