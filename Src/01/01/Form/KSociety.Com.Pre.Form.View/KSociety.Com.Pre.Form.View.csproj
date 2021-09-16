@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.Pre.Form.View" Version="0.0.161" />
+    <PackageReference Include="KSociety.Base.Pre.Form.View" Version="0.0.167" />
   </ItemGroup>
 
   <ItemGroup>
