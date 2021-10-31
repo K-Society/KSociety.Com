@@ -11,7 +11,7 @@ namespace KSociety.Com.App.ReqHdlr.Biz
 {
     public class GetConnectionStatusReqHdlr 
         : IRequestHandlerWithResponse<GetConnectionStatus, KSociety.Com.App.Dto.Res.Biz.GetConnectionStatus>,
-            IRequestHandlerWithResponseAsync<GetConnectionStatus, KSociety.Com.App.Dto.Res.Biz.GetConnectionStatus>
+          IRequestHandlerWithResponseAsync<GetConnectionStatus, KSociety.Com.App.Dto.Res.Biz.GetConnectionStatus>
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger<GetConnectionStatusReqHdlr> _logger;
