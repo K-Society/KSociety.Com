@@ -6,9 +6,9 @@ branches:
     - master
     - develop
 
-image: Visual Studio 2019
+image: Visual Studio 2022
 
-version: 0.0.0.{build}
+version: 1.0.0.{build}
 platform: Any CPU
 configuration: Release
 

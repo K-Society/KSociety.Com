@@ -13,11 +13,11 @@ This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Inst
 
 ## Introduction
 
-This is the README file for KSociety.Com. It support .Net 5.0
+This is the README file for KSociety.Com. It support .Net 6.0
 
 ## Supported frameworks
 
-+ .NET 5.0
++ .NET 6.0
 
 ## Supported PLC
 
