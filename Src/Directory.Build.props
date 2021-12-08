@@ -17,12 +17,20 @@
     <Company>K-Society</Company>
     <Copyright>Copyright (c) K-Society and contributors. All rights reserved.</Copyright>
 	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>
+	<Description>K-Society Com is a full stack framework for .NET 6 application https://github.com/K-Society/KSociety.Com</Description>
     <Product>K-Society Com</Product>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/K-Society/KSociety.Com</RepositoryUrl>
 	<RepositoryType>git</RepositoryType>
+	<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
   <Import Project="Icon.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Icon.Build.props') " />
