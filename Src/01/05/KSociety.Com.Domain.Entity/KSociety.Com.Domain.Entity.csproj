@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="10.3.4" />
-    <PackageReference Include="KSociety.Base.Domain.Shared" Version="0.0.196" />
+    <PackageReference Include="FluentValidation" Version="10.3.5" />
+    <PackageReference Include="KSociety.Base.Domain.Shared" Version="1.0.33" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
