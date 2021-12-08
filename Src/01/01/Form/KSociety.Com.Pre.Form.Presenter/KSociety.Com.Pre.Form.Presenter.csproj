@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.Pre.Form.Presenter" Version="0.0.178" />
+    <PackageReference Include="KSociety.Base.Pre.Form.Presenter" Version="1.0.33" />
   </ItemGroup>
 
   <ItemGroup>

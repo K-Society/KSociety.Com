@@ -8,7 +8,6 @@ namespace KSociety.Com.Srv.Host.Shared.Bindings
     public class ComMessageBroker : Module
     {
         private readonly bool _debugFlag;
-
         private readonly string _brokerNameCom;
         private readonly KSociety.Base.EventBus.ExchangeType _exchangeTypeCom;
         private readonly bool _exchangeDurableCom;
@@ -46,10 +45,28 @@ namespace KSociety.Com.Srv.Host.Shared.Bindings
             _mqPasswordCom = mqPasswordCom;
         }
 
+        public ComMessageBroker(Class.ComMessageBrokerOptions messageBroker, bool debug = false)
+        {
+            _debugFlag = debug;
+            _brokerNameCom = messageBroker.ExchangeDeclareParameters.BrokerName;
+            _exchangeTypeCom = messageBroker.ExchangeDeclareParameters.ExchangeType;
+            _exchangeDurableCom = messageBroker.ExchangeDeclareParameters.ExchangeDurable;
+            _exchangeAutoDeleteCom = messageBroker.ExchangeDeclareParameters.ExchangeAutoDelete;
+
+            _queueDurableCom = messageBroker.QueueDeclareParameters.QueueDurable;
+            _queueExclusiveCom = messageBroker.QueueDeclareParameters.QueueExclusive;
+            _queueAutoDeleteCom = messageBroker.QueueDeclareParameters.QueueAutoDelete;
+
+            _mqHostNameCom = messageBroker.ConnectionFactory.MqHostName;
+            _mqUserNameCom = messageBroker.ConnectionFactory.MqUserName;
+            _mqPasswordCom = messageBroker.ConnectionFactory.MqPassword;
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
             var exchangeComDeclareParameters = new ExchangeComDeclareParameters(_brokerNameCom, _exchangeTypeCom, _exchangeDurableCom, _exchangeAutoDeleteCom);
             var queueComDeclareParameters = new QueueComDeclareParameters(_queueDurableCom, _queueExclusiveCom, _queueAutoDeleteCom);
+            var eventBusComParameters = new EventBusComParameters(exchangeComDeclareParameters, queueComDeclareParameters, _debugFlag);
 
             var rabbitMqConnectionFactoryCom = new ConnectionFactory
             {
@@ -64,6 +81,7 @@ namespace KSociety.Com.Srv.Host.Shared.Bindings
 
             builder.RegisterInstance(exchangeComDeclareParameters).As<IExchangeComDeclareParameters>().SingleInstance();
             builder.RegisterInstance(queueComDeclareParameters).As<IQueueComDeclareParameters>().SingleInstance();
+            builder.RegisterInstance(eventBusComParameters).As<IEventBusComParameters>().SingleInstance();
             builder.RegisterInstance(rabbitMqConnectionFactoryCom).As<IConnectionFactory>().SingleInstance();
         }
     }

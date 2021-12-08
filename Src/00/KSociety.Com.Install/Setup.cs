@@ -105,7 +105,7 @@ namespace KSociety.Com.Install
         private static string BuildMsiComPresenter()
         {
             Environment.SetEnvironmentVariable("ComPresenter",
-                @"..\..\..\build\KSociety.Com.Pre.Web.App\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Pre.Web.App\Release\net6.0\publish");
 
             #region [Firewall]
 
@@ -177,7 +177,7 @@ namespace KSociety.Com.Install
         private static string BuildMsiComServer()
         {
             Environment.SetEnvironmentVariable("ComServer",
-                @"..\..\..\build\KSociety.Com.Srv.Host\Release\net5.0\publish");
+                @"..\..\..\build\KSociety.Com.Srv.Host\Release\net6.0\publish");
 
             #region [Firewall]
 
