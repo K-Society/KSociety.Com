@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.InfraSub.Shared.Interface;
@@ -15,6 +10,11 @@ using KSociety.Com.Domain.Repository.View.Joined;
 using KSociety.Com.EventBus;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Biz.Class
 {
@@ -23,8 +23,7 @@ namespace KSociety.Com.Biz.Class
         private readonly ILogger<Biz> _logger;
         private readonly ILoggerFactory _loggerFactory;
         private readonly IConnectionFactory _connectionFactory;
-        private readonly IExchangeComDeclareParameters _exchangeDeclareParameters;
-        private readonly IQueueComDeclareParameters _queueDeclareParameters;
+        private readonly IEventBusComParameters _eventBusComParameters;
         private readonly INotifierMediatorService _notifierMediatorService;
         private readonly ITagGroupReady _tagGroupReady;
         private readonly IAllTagGroupAllConnection _allTagGroupAllConnection;
@@ -41,8 +40,7 @@ namespace KSociety.Com.Biz.Class
         public Biz(
             ILoggerFactory loggerFactory,
             IConnectionFactory connectionFactory,
-            IExchangeComDeclareParameters exchangeDeclareParameters,
-            IQueueComDeclareParameters queueDeclareParameters,
+            IEventBusComParameters eventBusComParameters,
             INotifierMediatorService notifierMediatorService,
             ITagGroupReady tagGroupReady,
             IAllTagGroupAllConnection allTagGroupAllConnection,
@@ -52,8 +50,7 @@ namespace KSociety.Com.Biz.Class
             _loggerFactory = loggerFactory;
             _logger = _loggerFactory.CreateLogger<Biz>();
             _connectionFactory = connectionFactory;
-            _exchangeDeclareParameters = exchangeDeclareParameters;
-            _queueDeclareParameters = queueDeclareParameters;
+            _eventBusComParameters = eventBusComParameters;
             _notifierMediatorService = notifierMediatorService;
             _tagGroupReady = tagGroupReady;
             _allTagGroupAllConnection = allTagGroupAllConnection;
@@ -79,7 +76,7 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Connection", 
                         new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new ConnectionStatusRpcHandler(_loggerFactory, _componentContext), 
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueConnection_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Connection");
 
@@ -90,7 +87,7 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Connection_Server",
                         new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new ConnectionStatusRpcServerHandler(_loggerFactory, _componentContext),
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Connection_Server");
 
@@ -101,13 +98,13 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke", 
                         new EventBusRabbitMqQueue(PersistentConnection, _loggerFactory, new TagInvokeEventHandler(_loggerFactory, _componentContext),
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueInvoke_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueInvoke_" + tagGroupReady.Name, CancellationToken.None));
 
                     #region [Read]
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
                         new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagReadRpcClientHandler(_loggerFactory, _componentContext),
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Read");
 
@@ -116,7 +113,7 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server", 
                         new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Read_Server");
 
@@ -129,7 +126,7 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Write", 
                         new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagWriteRpcHandler(_loggerFactory, _componentContext), 
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueWrite_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Write");
 
@@ -138,7 +135,7 @@ namespace KSociety.Com.Biz.Class
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server", 
                         new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagWriteRpcServerHandler(_loggerFactory, _componentContext),
-                            null, _exchangeDeclareParameters, _queueDeclareParameters, "BusinessQueueServerWrite_" + tagGroupReady.Name, CancellationToken.None));
+                            null, _eventBusComParameters, "BusinessQueueServerWrite_" + tagGroupReady.Name, CancellationToken.None));
 
                     _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Write_Server");
 

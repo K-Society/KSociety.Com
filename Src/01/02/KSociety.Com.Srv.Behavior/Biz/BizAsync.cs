@@ -27,19 +27,17 @@ namespace KSociety.Com.Srv.Behavior.Biz
         private static ILogger<BizAsync> _logger;
         private readonly IComponentContext _componentContext;
         private readonly IConnectionFactory _connectionFactory;
-        private readonly IExchangeComDeclareParameters _exchangeDeclareParameters;
-        private readonly IQueueComDeclareParameters _queueDeclareParameters;
+        private readonly IEventBusComParameters _eventBusComParameters;
         private readonly ICommandHandlerAsync _commandHandlerAsync;
         private readonly ITagGroupReady _tagGroupReady;
 
-        private Dictionary<string, IEventBus> TagGroupEventBus { get; } = new Dictionary<string, IEventBus>();
+        private Dictionary<string, IEventBus> TagGroupEventBus { get; } = new();
 
         public BizAsync(
             ILoggerFactory loggerFactory,
             IComponentContext componentContext,
             IConnectionFactory connectionFactory,
-            IExchangeComDeclareParameters exchangeDeclareParameters,
-            IQueueComDeclareParameters queueDeclareParameters,
+            IEventBusComParameters eventBusComParameters,
             ICommandHandlerAsync commandHandlerAsync,
             ITagGroupReady tagGroupReady
             )
@@ -48,8 +46,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
             _logger = _loggerFactory.CreateLogger<BizAsync>();
             _componentContext = componentContext;
             _connectionFactory = connectionFactory;
-            _exchangeDeclareParameters = exchangeDeclareParameters;
-            _queueDeclareParameters = queueDeclareParameters;
+            _eventBusComParameters = eventBusComParameters;
             _commandHandlerAsync = commandHandlerAsync;
             _tagGroupReady = tagGroupReady;
 
@@ -61,7 +58,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
             try
             {
                 DefaultRabbitMqPersistentConnection persistentConnection =
-                    new DefaultRabbitMqPersistentConnection(_connectionFactory, _loggerFactory);
+                    new(_connectionFactory, _loggerFactory);
 
                 foreach (var tagGroupReady in _tagGroupReady.GetAllTagGroupReady())
                 {
@@ -72,7 +69,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
 
 
                     TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke",
-                        new EventBusRabbitMqQueue(persistentConnection, _loggerFactory, queueInvokeHandler, null, _exchangeDeclareParameters, _queueDeclareParameters,
+                        new EventBusRabbitMqQueue(persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
                             "TransactionQueueInvoke_" + tagGroupReady.Name, CancellationToken.None));
 
                     //TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
@@ -96,7 +93,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
             }
             catch (Exception ex)
             {
-                _logger.LogError("LoadGroups: " + ex.Message + " - " + ex.StackTrace);
+                _logger.LogError(ex, "LoadGroups: ");
             }
         }
 
@@ -115,7 +112,7 @@ namespace KSociety.Com.Srv.Behavior.Biz
                 }
                 catch (TaskCanceledException tce)
                 {
-                    _logger.LogWarning("SendHeartBeatAsync: CancellationToken CancellationRequested" + tce.Message);
+                    _logger.LogWarning(tce, "SendHeartBeatAsync: CancellationToken CancellationRequested.");
                 }
 
                 if (!cancel.IsCancellationRequested)
