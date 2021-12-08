@@ -18,6 +18,10 @@ environment:
   NUGET_XMLDOC_MODE: skip
   ComSystemVersion: 0.0.0.0
 
+install:
+  - ps: .\install-wix.ps1 -PackageName "wix311.exe"
+  - ps: .\install-vsix.ps1 -PackageName "Votive2022.vsix"
+
 build:
   verbosity: minimal #quiet|minimal|normal|detailed
 

@@ -34,46 +34,63 @@ This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Inst
 ### 1. Presentation
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.Pre.Com.Model](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/01/Com/Std.Pre.Com.Model) | [![NuGet](https://img.shields.io/nuget/v/Std.Pre.Com.Model)](https://www.nuget.org/packages/Std.Pre.Com.Model) | ![NuGet](https://img.shields.io/nuget/dt/Std.Pre.Com.Model) |
+| [KSociety.Com.Pre.Web.App](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/01/Web/KSociety.Com.Pre.Web.App) |  |  |
 
 ### 2. Service
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.Srv.Host.Com.Shared](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/02/Host/Com/Std.Srv.Host.Com.Shared) | [![NuGet](https://img.shields.io/nuget/v/Std.Srv.Host.Com.Shared)](https://www.nuget.org/packages/Std.Srv.Host.Com.Shared) | ![NuGet](https://img.shields.io/nuget/dt/Std.Srv.Host.Com.Shared) |
-| [Srv.Agent](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/02/Com/Srv.Agent) | [![NuGet](https://img.shields.io/nuget/v/Srv.Agent)](https://www.nuget.org/packages/Srv.Agent) | ![NuGet](https://img.shields.io/nuget/dt/Srv.Agent) |
-| [Srv.Behavior](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/02/Com/Srv.Behavior) | [![NuGet](https://img.shields.io/nuget/v/Srv.Behavior)](https://www.nuget.org/packages/Srv.Behavior) | ![NuGet](https://img.shields.io/nuget/dt/Srv.Behavior) |
-| [Srv.Contract](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/02/Com/Srv.Contract) | [![NuGet](https://img.shields.io/nuget/v/Srv.Contract)](https://www.nuget.org/packages/Srv.Contract) | ![NuGet](https://img.shields.io/nuget/dt/Srv.Contract) |
-| [Srv.Dto](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/02/Com/Srv.Dto) | [![NuGet](https://img.shields.io/nuget/v/Srv.Dto)](https://www.nuget.org/packages/Srv.Dto) | ![NuGet](https://img.shields.io/nuget/dt/Srv.Dto) |
+| [KSociety.Com.Srv.Host.Shared](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/Host/KSociety.Com.Srv.Host.Shared) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Host.Shared)](https://www.nuget.org/packages/KSociety.Com.Srv.Host.Shared) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Host.Shared) |
+| [KSociety.Com.Srv.Host](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/Host/KSociety.Com.Srv.Host) |  |  |
+| [KSociety.Com.Srv.Agent](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/KSociety.Com.Srv.Agent) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Agent)](https://www.nuget.org/packages/KSociety.Com.Srv.Agent) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Agent) |
+| [KSociety.Com.Srv.Behavior](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/KSociety.Com.Srv.Behavior) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Behavior)](https://www.nuget.org/packages/KSociety.Com.Srv.Behavior) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Behavior) |
+| [KSociety.Com.Srv.Contract](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/KSociety.Com.Srv.Contract) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Contract)](https://www.nuget.org/packages/KSociety.Com.Srv.Contract) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Contract) |
+| [KSociety.Com.Srv.Dto](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/KSociety.Com.Srv.Dto) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Dto)](https://www.nuget.org/packages/KSociety.Com.Srv.Dto) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Dto) |
 
 ### 3. Application
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.App.Com.Dto](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/03/Com/Std.App.Com.Dto) | [![NuGet](https://img.shields.io/nuget/v/Std.App.Com.Dto)](https://www.nuget.org/packages/Std.App.Com.Dto) | ![NuGet](https://img.shields.io/nuget/dt/Std.App.Com.Dto) |
-| [Std.App.Com.ReqHdlr](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/03/Com/Std.App.Com.ReqHdlr) | [![NuGet](https://img.shields.io/nuget/v/Std.App.Com.ReqHdlr)](https://www.nuget.org/packages/Std.App.Com.ReqHdlr) | ![NuGet](https://img.shields.io/nuget/dt/Std.App.Com.ReqHdlr) |
+| [KSociety.Com.App.Dto](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/03/KSociety.Com.App.Dto) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.App.Dto)](https://www.nuget.org/packages/KSociety.Com.App.Dto) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.App.Dto) |
+| [KSociety.Com.App.ReqHdlr](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/03/KSociety.Com.App.ReqHdlr) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.App.ReqHdlr)](https://www.nuget.org/packages/KSociety.Com.App.ReqHdlr) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.App.ReqHdlr) |
 
 ### 4. Business
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.Biz.Com](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/04/Com/Std.Biz.Com) | [![NuGet](https://img.shields.io/nuget/v/Std.Biz.Com)](https://www.nuget.org/packages/Std.Biz.Com) | ![NuGet](https://img.shields.io/nuget/dt/Std.Biz.Com) |
+| [KSociety.Com.Biz.Event](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/04/KSociety.Com.Biz.Event) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Biz.Event)](https://www.nuget.org/packages/KSociety.Com.Biz.Event) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Biz.Event) |
+| [KSociety.Com.Biz](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/04/KSociety.Com.Biz) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Biz)](https://www.nuget.org/packages/KSociety.Com.Biz) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Biz) |
 
 ### 5. Domain
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Domain.Entity](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/05/Com/Domain.Entity) | [![NuGet](https://img.shields.io/nuget/v/Domain.Entity)](https://www.nuget.org/packages/Domain.Entity) | ![NuGet](https://img.shields.io/nuget/dt/Domain.Entity) |
-| [Domain.Repository](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/05/Com/Domain.Repository) | [![NuGet](https://img.shields.io/nuget/v/Domain.Repository)](https://www.nuget.org/packages/Domain.Repository) | ![NuGet](https://img.shields.io/nuget/dt/Domain.Repository) |
+| [KSociety.Com.Domain.Entity](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/05/KSociety.Com.Domain.Entity) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Domain.Entity)](https://www.nuget.org/packages/KSociety.Com.Domain.Entity) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Domain.Entity) |
+| [KSociety.Com.Domain.Repository](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/05/KSociety.Com.Domain.Repository) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Domain.Repository)](https://www.nuget.org/packages/KSociety.Com.Domain.Repository) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Domain.Repository) |
 
 ### 6. Infrastructure
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.Infra.Com.DataAccess](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/06/Com/Std.Infra.Com.DataAccess) | [![NuGet](https://img.shields.io/nuget/v/Std.Infra.Com.DataAccess)](https://www.nuget.org/packages/Std.Infra.Com.DataAccess) | ![NuGet](https://img.shields.io/nuget/dt/Std.Infra.Com.DataAccess) |
+| [KSociety.Com.Infra.DataAccess](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/06/KSociety.Com.Infra.DataAccess) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Infra.DataAccess)](https://www.nuget.org/packages/KSociety.Com.Infra.DataAccess) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Infra.DataAccess) |
+| [KSociety.Com.Infra.Transfer.SqlServer](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/06/KSociety.Com.Infra.Transfer.SqlServer) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Infra.Transfer.SqlServer)](https://www.nuget.org/packages/KSociety.Com.Infra.Transfer.SqlServer) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Infra.Transfer.SqlServer) |
+| [KSociety.Com.Infra.Transfer.Sqlite](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/06/KSociety.Com.Infra.Transfer.Sqlite) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Infra.Transfer.Sqlite)](https://www.nuget.org/packages/KSociety.Com.Infra.Transfer.Sqlite) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Infra.Transfer.Sqlite) |
 
 ### Communication Driver
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.Com.Driver](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/Communication/Std.Com.Driver) | [![NuGet](https://img.shields.io/nuget/v/Std.Com.Driver)](https://www.nuget.org/packages/Std.Com.Driver) | ![NuGet](https://img.shields.io/nuget/dt/Std.Com.Driver) |
+| [KSociety.Com.Driver](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/Communication/KSociety.Com.Driver) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Driver)](https://www.nuget.org/packages/KSociety.Com.Driver) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Driver) |
 
 
 ### EventBus
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Std.EventBus.Com](https://github.com/K-Society/Std.Master.Com/tree/master/Src/01/StdEventBus/Com/Std.EventBus.Com) | [![NuGet](https://img.shields.io/nuget/v/Std.EventBus.Com)](https://www.nuget.org/packages/Std.EventBus.Com) | ![NuGet](https://img.shields.io/nuget/dt/Std.EventBus.Com) |
+| [KSociety.Com.EventBus](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/KSocietyComEventBus/KSociety.Com.EventBus) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.EventBus)](https://www.nuget.org/packages/KSociety.Com.EventBus/) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.EventBus) |
+
+## License
+The project is under Microsoft Reciprocal License [(MS-RL)](http://www.opensource.org/licenses/MS-RL)
+
+## Dependencies
+
+List of technologies, frameworks and libraries used for implementation:
+
+- [.NET 6](https://dotnet.microsoft.com/download/dotnet/6.0) (platform). Note for Visual Studio users: **VS 2022** is required.
+- [Autofac](https://autofac.org/) (Inversion of Control Container)
+- [protobuf-net](https://github.com/protobuf-net/protobuf-net) (protobuf-net is a contract based serializer for .NET code)
+- [RabbitMQ.Client](https://www.rabbitmq.com/dotnet.html) (The RabbitMQ .NET client is an implementation of an AMQP 0-9-1 client library for C#)
+- [Serilog](https://serilog.net/) (structured logging)
