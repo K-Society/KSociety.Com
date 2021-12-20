@@ -6,50 +6,49 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
+namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView;
+
+public class LogixConnection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection
 {
-    public class LogixConnection : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection
+    public LogixConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public LogixConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public Srv.Dto.Logix.List.GridView.LogixConnection LoadAllRecords(CancellationToken cancellationToken = default)
+    {
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.LogixConnection(ConnectionOptions(cancellationToken));
+            }
         }
-
-        public Srv.Dto.Logix.List.GridView.LogixConnection LoadAllRecords(CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.LogixConnection(ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return null;
+    }
 
-        public async ValueTask<Srv.Dto.Logix.List.GridView.LogixConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    public async ValueTask<Srv.Dto.Logix.List.GridView.LogixConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.LogixConnectionAsync(ConnectionOptions(cancellationToken));
-                }
+                return await client.LogixConnectionAsync(ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return null;
     }
 }

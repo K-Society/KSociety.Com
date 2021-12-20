@@ -6,50 +6,49 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView
+namespace KSociety.Com.Srv.Agent.Query.View.Joined.List.GridView;
+
+public class AllTagGroupAllConnection : KSociety.Base.Srv.Agent.Connection
 {
-    public class AllTagGroupAllConnection : KSociety.Base.Srv.Agent.Connection
+    public AllTagGroupAllConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public AllTagGroupAllConnection(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection LoadAllRecords(CancellationToken cancellationToken = default)
+    {
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.AllTagGroupAllConnection(ConnectionOptions(cancellationToken));
+            }
         }
-
-        public Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection LoadAllRecords(CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.AllTagGroupAllConnection(ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return null;
+    }
 
-        public async ValueTask<Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    public async ValueTask<Srv.Dto.View.Joined.List.GridView.AllTagGroupAllConnection> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.AllTagGroupAllConnectionAsync(ConnectionOptions(cancellationToken));
-                }
+                return await client.AllTagGroupAllConnectionAsync(ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return null;
     }
 }

@@ -1,51 +1,50 @@
 ﻿using System;
 
-namespace KSociety.Com.Driver.Enip.Eipnet.Cip
+namespace KSociety.Com.Driver.Enip.Eipnet.Cip;
+
+/// <summary>
+/// Search Connection Data Request
+/// </summary>
+public class SearchConnectionDataRequest : IPackable
 {
     /// <summary>
-    /// Search Connection Data Request
+    /// Connection serial number of established connection
     /// </summary>
-    public class SearchConnectionDataRequest : IPackable
+    public ushort ConnectionSerialNumber
     {
-        /// <summary>
-        /// Connection serial number of established connection
-        /// </summary>
-        public ushort ConnectionSerialNumber
-        {
-            get;
-            set;
-        }
+        get;
+        set;
+    }
 
-        /// <summary>
-        /// Vendor ID of the originating node
-        /// </summary>
-        public ushort OriginatorVendorId
-        {
-            get;
-            set;
-        }
+    /// <summary>
+    /// Vendor ID of the originating node
+    /// </summary>
+    public ushort OriginatorVendorId
+    {
+        get;
+        set;
+    }
 
-        /// <summary>
-        /// Serial number of the originating node
-        /// </summary>
-        public uint OriginatorSerialNumber
-        {
-            get;
-            set;
-        }
+    /// <summary>
+    /// Serial number of the originating node
+    /// </summary>
+    public uint OriginatorSerialNumber
+    {
+        get;
+        set;
+    }
     
-        /// <summary>
-        /// Packs the request into a byte array
-        /// </summary>
-        /// <returns>Byte array representing the request</returns>
-        public byte[] Pack()
-        {
-            byte[] retVal = new byte[8];
-            Buffer.BlockCopy(BitConverter.GetBytes(ConnectionSerialNumber), 0, retVal, 0, 2);
-            Buffer.BlockCopy(BitConverter.GetBytes(OriginatorVendorId), 0, retVal, 2, 2);
-            Buffer.BlockCopy(BitConverter.GetBytes(OriginatorSerialNumber), 0, retVal, 4, 4);
+    /// <summary>
+    /// Packs the request into a byte array
+    /// </summary>
+    /// <returns>Byte array representing the request</returns>
+    public byte[] Pack()
+    {
+        byte[] retVal = new byte[8];
+        Buffer.BlockCopy(BitConverter.GetBytes(ConnectionSerialNumber), 0, retVal, 0, 2);
+        Buffer.BlockCopy(BitConverter.GetBytes(OriginatorVendorId), 0, retVal, 2, 2);
+        Buffer.BlockCopy(BitConverter.GetBytes(OriginatorSerialNumber), 0, retVal, 4, 4);
 
-            return retVal;
-        }
+        return retVal;
     }
 }

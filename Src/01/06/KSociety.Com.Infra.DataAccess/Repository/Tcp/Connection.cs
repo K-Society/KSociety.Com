@@ -7,23 +7,22 @@ using KSociety.Com.Domain.Repository.Tcp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Infra.DataAccess.Repository.Tcp
+namespace KSociety.Com.Infra.DataAccess.Repository.Tcp;
+
+public class Connection : RepositoryBase<ComContext, Domain.Entity.Tcp.TcpConnection>, IConnection
 {
-    public class Connection : RepositoryBase<ComContext, Domain.Entity.Tcp.TcpConnection>, IConnection
+    public Connection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory)
+        : base(logFactory, databaseFactory)
     {
-        public Connection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory)
-            : base(logFactory, databaseFactory)
-        {
-        }
+    }
 
-        public IEnumerable<Domain.Entity.Tcp.TcpConnection> GetAllTcpConnection()
-        {
-            return FindAll().OrderBy(x => x.Name).ToList();
-        }
+    public IEnumerable<Domain.Entity.Tcp.TcpConnection> GetAllTcpConnection()
+    {
+        return FindAll().OrderBy(x => x.Name).ToList();
+    }
 
-        public async ValueTask<IEnumerable<Domain.Entity.Tcp.TcpConnection>> GetAllTcpConnectionAsync()
-        {
-            return await FindAll().OrderBy(x => x.Name).ToListAsync();
-        }
+    public async ValueTask<IEnumerable<Domain.Entity.Tcp.TcpConnection>> GetAllTcpConnectionAsync()
+    {
+        return await FindAll().OrderBy(x => x.Name).ToListAsync();
     }
 }

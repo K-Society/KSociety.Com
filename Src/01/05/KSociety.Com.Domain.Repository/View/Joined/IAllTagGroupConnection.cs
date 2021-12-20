@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using KSociety.Base.Infra.Shared.Interface;
 using KSociety.Com.Domain.Entity.View.Joined;
 
-namespace KSociety.Com.Domain.Repository.View.Joined
-{
-    public interface IAllTagGroupConnection : IRepositoryBase<AllTagGroupConnection>
-    {
-        IEnumerable<AllTagGroupConnection> GetAllTagGroupConnection();
+namespace KSociety.Com.Domain.Repository.View.Joined;
 
-        ValueTask<IEnumerable<AllTagGroupConnection>> GetAllTagGroupConnectionAsync();
-    }
+public interface IAllTagGroupConnection : IRepositoryBase<AllTagGroupConnection>
+{
+    IEnumerable<AllTagGroupConnection> GetAllTagGroupConnection();
+
+    ValueTask<IEnumerable<AllTagGroupConnection>> GetAllTagGroupConnectionAsync();
 }

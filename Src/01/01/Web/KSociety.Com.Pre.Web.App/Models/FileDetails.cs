@@ -1,8 +1,7 @@
-﻿namespace KSociety.Com.Pre.Web.App.Models
+﻿namespace KSociety.Com.Pre.Web.App.Models;
+
+public class FileDetails
 {
-    public class FileDetails
-    {
-        public string Name { get; set; }
-        public string Path { get; set; }
-    }
+    public string Name { get; set; }
+    public string Path { get; set; }
 }

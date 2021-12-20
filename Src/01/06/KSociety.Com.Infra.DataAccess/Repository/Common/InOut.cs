@@ -7,23 +7,22 @@ using KSociety.Com.Domain.Repository.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Infra.DataAccess.Repository.Common
+namespace KSociety.Com.Infra.DataAccess.Repository.Common;
+
+public class InOut : RepositoryBase<ComContext, Domain.Entity.Common.InOut>, IInOut
 {
-    public class InOut : RepositoryBase<ComContext, Domain.Entity.Common.InOut>, IInOut
+    public InOut(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+        : base(logFactory, databaseFactory)
     {
-        public InOut(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
-            : base(logFactory, databaseFactory)
-        {
-        }
+    }
 
-        public IEnumerable<Domain.Entity.Common.InOut> GetAllInOut()
-        {
-            return FindAll().OrderBy(x => x.InputOutput).AsNoTracking().ToList();
-        }
+    public IEnumerable<Domain.Entity.Common.InOut> GetAllInOut()
+    {
+        return FindAll().OrderBy(x => x.InputOutput).AsNoTracking().ToList();
+    }
 
-        public async ValueTask<IEnumerable<Domain.Entity.Common.InOut>> GetAllInOutAsync()
-        {
-            return await FindAll().OrderBy(x => x.InputOutput).AsNoTracking().ToListAsync();
-        }
+    public async ValueTask<IEnumerable<Domain.Entity.Common.InOut>> GetAllInOutAsync()
+    {
+        return await FindAll().OrderBy(x => x.InputOutput).AsNoTracking().ToListAsync();
     }
 }

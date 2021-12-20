@@ -1,6 +1,5 @@
-﻿namespace KSociety.Com.Driver.Base
+﻿namespace KSociety.Com.Driver.Base;
+
+public interface IAutomation
 {
-    public interface IAutomation
-    {
-    }
 }

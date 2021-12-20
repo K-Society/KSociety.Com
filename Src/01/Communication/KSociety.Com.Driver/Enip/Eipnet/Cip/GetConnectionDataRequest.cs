@@ -1,29 +1,28 @@
 ﻿using System;
 
-namespace KSociety.Com.Driver.Enip.Eipnet.Cip
+namespace KSociety.Com.Driver.Enip.Eipnet.Cip;
+
+/// <summary>
+/// Get Connection Data - Request
+/// </summary>
+public class GetConnectionDataRequest : IPackable
 {
     /// <summary>
-    /// Get Connection Data - Request
+    /// Connection Number
     /// </summary>
-    public class GetConnectionDataRequest : IPackable
+    /// <value>Get Connection Data Service - Request</value>
+    public ushort ConnectionNumber
     {
-        /// <summary>
-        /// Connection Number
-        /// </summary>
-        /// <value>Get Connection Data Service - Request</value>
-        public ushort ConnectionNumber
-        {
-            get;
-            set;
-        }
+        get;
+        set;
+    }
     
-        /// <summary>
-        /// Packs the data into a byte array representing the request
-        /// </summary>
-        /// <returns></returns>
-        public byte[] Pack()
-        {
-            return BitConverter.GetBytes(ConnectionNumber);
-        }
+    /// <summary>
+    /// Packs the data into a byte array representing the request
+    /// </summary>
+    /// <returns></returns>
+    public byte[] Pack()
+    {
+        return BitConverter.GetBytes(ConnectionNumber);
     }
 }

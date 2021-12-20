@@ -10,34 +10,33 @@ using Microsoft.Extensions.Logging;
 using Autofac;
 using System.Threading;
 
-namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
+namespace KSociety.Com.Biz.IntegrationEvent.EventHandling;
+
+public class ConnectionStatusRpcServerHandler : IntegrationRpcServerHandler<ConnectionStatusIntegrationEvent, ConnectionStatusIntegrationEventReply>
 {
-    public class ConnectionStatusRpcServerHandler : IntegrationRpcServerHandler<ConnectionStatusIntegrationEvent, ConnectionStatusIntegrationEventReply>
+    private readonly IBiz _biz;
+    public ConnectionStatusRpcServerHandler(
+        ILoggerFactory loggerFactory,
+        IComponentContext componentContext
+    )
+        : base(loggerFactory, componentContext)
     {
-        private readonly IBiz _biz;
-        public ConnectionStatusRpcServerHandler(
-            ILoggerFactory loggerFactory,
-            IComponentContext componentContext
-        )
-            : base(loggerFactory, componentContext)
+        if (ComponentContext.IsRegistered<IBiz>())
         {
-            if (ComponentContext.IsRegistered<IBiz>())
-            {
-                _biz = ComponentContext.Resolve<IBiz>();
-            }
-            else
-            {
-                Logger.LogError("IBiz not Registered!");
-            }
+            _biz = ComponentContext.Resolve<IBiz>();
         }
-
-        public override async ValueTask<ConnectionStatusIntegrationEventReply> HandleRpcAsync(ConnectionStatusIntegrationEvent @event, CancellationToken cancellationToken = default)
+        else
         {
-
-            var connectionRead = _biz.GetConnectionReadStatus(@event.GroupName, @event.ConnectionName); 
-            var connectionWrite = _biz.GetConnectionWriteStatus(@event.GroupName, @event.ConnectionName);
-
-            return new ConnectionStatusIntegrationEventReply(@event.ReplyRoutingKey, @event.GroupName, @event.ConnectionName, connectionRead, connectionWrite);
+            Logger.LogError("IBiz not Registered!");
         }
+    }
+
+    public override async ValueTask<ConnectionStatusIntegrationEventReply> HandleRpcAsync(ConnectionStatusIntegrationEvent @event, CancellationToken cancellationToken = default)
+    {
+
+        var connectionRead = _biz.GetConnectionReadStatus(@event.GroupName, @event.ConnectionName); 
+        var connectionWrite = _biz.GetConnectionWriteStatus(@event.GroupName, @event.ConnectionName);
+
+        return new ConnectionStatusIntegrationEventReply(@event.ReplyRoutingKey, @event.GroupName, @event.ConnectionName, connectionRead, connectionWrite);
     }
 }

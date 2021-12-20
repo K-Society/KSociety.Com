@@ -1,21 +1,21 @@
 ﻿using System;
 
-namespace KSociety.Com.Domain.Entity.Modbus
+namespace KSociety.Com.Domain.Entity.Modbus;
+
+public class ModbusTag : Common.Tag
 {
-    public class ModbusTag : Common.Tag
-    {
-        public ModbusTag(
-            Guid id,
-            int automationTypeId,
-            string name,
-            Guid connectionId,
-            bool enable,
-            string inputOutput,
-            string analogDigitalSignal,
-            string memoryAddress,
-            bool invoke,
-            Guid tagGroupId
-            )
+    public ModbusTag(
+        Guid id,
+        int automationTypeId,
+        string name,
+        Guid connectionId,
+        bool enable,
+        string inputOutput,
+        string analogDigitalSignal,
+        string memoryAddress,
+        bool invoke,
+        Guid tagGroupId
+    )
         :base(
             id,
             automationTypeId,
@@ -27,9 +27,8 @@ namespace KSociety.Com.Domain.Entity.Modbus
             memoryAddress,
             invoke,
             tagGroupId
-            )
-        {
+        )
+    {
 
-        }
     }
 }

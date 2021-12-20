@@ -1,24 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7
+namespace KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7;
+
+public class ConnectionType : IEntityTypeConfiguration<Domain.Entity.S7.ConnectionType>
 {
-    public class ConnectionType : IEntityTypeConfiguration<Domain.Entity.S7.ConnectionType>
+    public void Configure(EntityTypeBuilder<Domain.Entity.S7.ConnectionType> connectionTypeConfiguration)
     {
-        public void Configure(EntityTypeBuilder<Domain.Entity.S7.ConnectionType> connectionTypeConfiguration)
-        {
-            //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionTypeConfiguration, "S7ConnectionType", DatabaseContext.DefaultSchema);
-            RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)connectionTypeConfiguration, "S7ConnectionType");
+        //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionTypeConfiguration, "S7ConnectionType", DatabaseContext.DefaultSchema);
+        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)connectionTypeConfiguration, "S7ConnectionType");
 
-            connectionTypeConfiguration.HasKey(k => k.Id);
-            connectionTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();
+        connectionTypeConfiguration.HasKey(k => k.Id);
+        connectionTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();
 
-            connectionTypeConfiguration.HasIndex(i => i.Name).IsUnique();
-            connectionTypeConfiguration.Property(p => p.Name).HasMaxLength(9).IsRequired();
+        connectionTypeConfiguration.HasIndex(i => i.Name).IsUnique();
+        connectionTypeConfiguration.Property(p => p.Name).HasMaxLength(9).IsRequired();
 
-            var connectionNavigation = connectionTypeConfiguration.Metadata.FindNavigation(nameof(Domain.Entity.S7.ConnectionType.Connections));
+        var connectionNavigation = connectionTypeConfiguration.Metadata.FindNavigation(nameof(Domain.Entity.S7.ConnectionType.Connections));
 
-            connectionNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
-        }
+        connectionNavigation.SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

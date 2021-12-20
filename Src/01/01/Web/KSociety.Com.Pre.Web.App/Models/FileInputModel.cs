@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace KSociety.Com.Pre.Web.App.Models
+namespace KSociety.Com.Pre.Web.App.Models;
+
+public class FileInputModel
 {
-    public class FileInputModel
-    {
-        public IFormFile FileToUpload { get; set; }
-    }
+    public IFormFile FileToUpload { get; set; }
 }

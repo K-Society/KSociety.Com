@@ -1,20 +1,19 @@
 ﻿using KSociety.Base.EventBus.Events;
 using ProtoBuf;
 
-namespace KSociety.Com.Biz.Event
+namespace KSociety.Com.Biz.Event;
+
+[ProtoContract]
+public class IntegrationComEventRpc : IntegrationEventRpc
 {
-    [ProtoContract]
-    public class IntegrationComEventRpc : IntegrationEventRpc
+    public IntegrationComEventRpc()
     {
-        public IntegrationComEventRpc()
-        {
 
-        }
+    }
 
-        public IntegrationComEventRpc(string routingKey, string replyRoutingKey)
-            : base(routingKey, replyRoutingKey)
-        {
+    public IntegrationComEventRpc(string routingKey, string replyRoutingKey)
+        : base(routingKey, replyRoutingKey)
+    {
 
-        }
     }
 }
