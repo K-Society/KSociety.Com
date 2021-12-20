@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using KSociety.Base.EventBus;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Com.Infra.DataAccess;
@@ -34,7 +33,8 @@ public class Startup
         DebugFlag = Configuration.GetValue<bool>("DebugFlag");
 
         ComMessageBrokerOptions = Configuration.GetSection("MessageBroker").Get<ComMessageBrokerOptions>();
-        MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
+        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
+        MigrationsAssembly = "KSociety.Com.Infra.Transfer.Sqlite";
     }
 
     public IConfiguration Configuration { get; }
@@ -70,7 +70,8 @@ public class Startup
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.AutoMapper(AssemblyTool.GetAssembly()));
 
             //DatabaseConfiguration.
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
+            //builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
+            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlite, MasterString, DebugFlag, MigrationsAssembly));
 
             //MediatR.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.Mediatr());
@@ -98,9 +99,7 @@ public class Startup
 
             builder.RegisterModule(new Bindings.QueryViewJoinedListGridView());
 
-                
-
-
+            
 
             //UnitOfWork.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.UnitOfWork<ComContext>());

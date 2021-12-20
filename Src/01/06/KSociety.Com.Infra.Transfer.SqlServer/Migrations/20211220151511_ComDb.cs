@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
     public partial class ComDb : Migration
@@ -151,14 +153,12 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                         name: "ForeignKey_S7Connection_S7ConnectionType",
                         column: x => x.ConnectionTypeId,
                         principalTable: "S7ConnectionType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_S7Connection_S7CpuType",
                         column: x => x.CpuTypeId,
                         principalTable: "S7CpuType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -226,20 +226,17 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                         name: "ForeignKey_S7Tag_Area",
                         column: x => x.AreaId,
                         principalTable: "S7Area",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_Bit",
                         column: x => x.BitOfByte,
                         principalTable: "Bit",
-                        principalColumn: "BitOfByte",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "BitOfByte");
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_WordLen",
                         column: x => x.WordLenId,
                         principalTable: "S7WordLen",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_Tag_AnalogDigital",
                         column: x => x.AnalogDigitalSignal,
@@ -298,14 +295,14 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 columns: new[] { "BitOfByte", "BitName" },
                 values: new object[,]
                 {
-                    { (byte)7, "Bit 7" },
-                    { (byte)6, "Bit 6" },
-                    { (byte)5, "Bit 5" },
-                    { (byte)4, "Bit 4" },
+                    { (byte)0, "Bit 0" },
                     { (byte)1, "Bit 1" },
                     { (byte)2, "Bit 2" },
-                    { (byte)0, "Bit 0" },
-                    { (byte)3, "Bit 3" }
+                    { (byte)3, "Bit 3" },
+                    { (byte)4, "Bit 4" },
+                    { (byte)5, "Bit 5" },
+                    { (byte)6, "Bit 6" },
+                    { (byte)7, "Bit 7" }
                 });
 
             migrationBuilder.InsertData(
@@ -313,9 +310,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 columns: new[] { "InputOutput", "InputOutputName" },
                 values: new object[,]
                 {
+                    { "R", "Read" },
                     { "RW", "Read/Write" },
                     { "U", "Unknown" },
-                    { "R", "Read" },
                     { "W", "Write" }
                 });
 
@@ -325,11 +322,11 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 values: new object[,]
                 {
                     { 28, "S7AreaCT", "Counter area memory (C1, C2, ...)" },
-                    { 132, "S7AreaDB", "DB area memory (DB1, DB2, ...)" },
-                    { 131, "S7AreaMK", "Merkers area memory (M0, M0.0, ...)" },
-                    { 130, "S7AreaPA", "Output area memory" },
+                    { 29, "S7AreaTM", "Timer area memory(T1, T2, ...)" },
                     { 129, "S7AreaPE", "Input area memory" },
-                    { 29, "S7AreaTM", "Timer area memory(T1, T2, ...)" }
+                    { 130, "S7AreaPA", "Output area memory" },
+                    { 131, "S7AreaMK", "Merkers area memory (M0, M0.0, ...)" },
+                    { 132, "S7AreaDB", "DB area memory (DB1, DB2, ...)" }
                 });
 
             migrationBuilder.InsertData(
@@ -337,16 +334,16 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 6, "S7Basic 4" },
-                    { 10, "S7Basic 8" },
-                    { 9, "S7Basic 7" },
-                    { 8, "S7Basic 6" },
-                    { 7, "S7Basic 5" },
-                    { 5, "S7Basic 3" },
+                    { 1, "PG" },
                     { 2, "OP" },
                     { 3, "S7Basic 1" },
-                    { 1, "PG" },
-                    { 4, "S7Basic 2" }
+                    { 4, "S7Basic 2" },
+                    { 5, "S7Basic 3" },
+                    { 6, "S7Basic 4" },
+                    { 7, "S7Basic 5" },
+                    { 8, "S7Basic 6" },
+                    { 9, "S7Basic 7" },
+                    { 10, "S7Basic 8" }
                 });
 
             migrationBuilder.InsertData(
@@ -365,26 +362,26 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 12, "Counter variable type", "Counter" });
+                values: new object[] { 0, "S7 Bit variable type (bool)", "Bit" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[,]
                 {
-                    { 11, "Timer variable type", "Timer" },
-                    { 10, "S7 WString variable type (variable)", "S7WString" },
-                    { 9, "S7 String variable type (variable)", "S7String" },
-                    { 8, "Char Array / C-String variable type (variable)", "String" },
-                    { 7, "LReal variable type (64 bits, 8 bytes)", "LReal" },
-                    { 6, "Real variable type (32 bits, 4 bytes)", "Real" },
                     { 1, "S7 Byte variable type (8 bits)", "Byte" },
-                    { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" },
-                    { 3, "S7 DWord variable type (32 bits, 4 bytes)", "Dword" },
                     { 2, "S7 Word variable type (16 bits, 2 bytes)", "Word" },
-                    { 0, "S7 Bit variable type (bool)", "Bit" },
-                    { 13, "DateTime variable type", "DataTime" },
+                    { 3, "S7 DWord variable type (32 bits, 4 bytes)", "Dword" },
+                    { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" },
                     { 5, "DInt variable type (32 bits, 4 bytes)", "DInt" },
+                    { 6, "Real variable type (32 bits, 4 bytes)", "Real" },
+                    { 7, "LReal variable type (64 bits, 8 bytes)", "LReal" },
+                    { 8, "Char Array / C-String variable type (variable)", "String" },
+                    { 9, "S7 String variable type (variable)", "S7String" },
+                    { 10, "S7 WString variable type (variable)", "S7WString" },
+                    { 11, "Timer variable type", "Timer" },
+                    { 12, "Counter variable type", "Counter" },
+                    { 13, "DateTime variable type", "DataTime" },
                     { 14, "DateTimeLong variable type", "DataTimeLong" }
                 });
 
@@ -393,8 +390,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 columns: new[] { "Id", "Clock", "Enable", "Name", "Update" },
                 values: new object[,]
                 {
-                    { new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 10, false, "Group 01", 10 },
-                    { new Guid("0f62b113-dd0d-4fcf-9ed9-9ae0acd1b092"), 47, true, "CbGroup", 47 }
+                    { new Guid("0f62b113-dd0d-4fcf-9ed9-9ae0acd1b092"), 47, true, "CbGroup", 47 },
+                    { new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 10, false, "Group 01", 10 }
                 });
 
             migrationBuilder.InsertData(
@@ -412,12 +409,12 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
                 values: new object[,]
                 {
-                    { new Guid("b12ab89c-9d46-409c-0bd3-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW0", "Tag01", 0, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
-                    { new Guid("d12d5401-a90f-40a4-3b5d-08d6b0418047"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW2", "Tag02", 2, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
                     { new Guid("0d754a9d-1389-4f04-0bd4-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW4", "Tag03", 4, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
+                    { new Guid("49d37f56-c1b7-40d7-35aa-08d6b1da6471"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW10", "Tag06", 10, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
                     { new Guid("58315735-142d-4a20-3b5e-08d6b0418047"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW6", "Tag04", 6, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
                     { new Guid("a0412d18-59df-40e3-35a9-08d6b1da6471"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW8", "Tag05", 8, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
-                    { new Guid("49d37f56-c1b7-40d7-35aa-08d6b1da6471"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW10", "Tag06", 10, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 }
+                    { new Guid("b12ab89c-9d46-409c-0bd3-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW0", "Tag01", 0, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 },
+                    { new Guid("d12d5401-a90f-40a4-3b5d-08d6b0418047"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW2", "Tag02", 2, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 }
                 });
 
             migrationBuilder.CreateIndex(
