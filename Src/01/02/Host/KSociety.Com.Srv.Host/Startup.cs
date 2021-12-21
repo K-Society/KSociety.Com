@@ -1,9 +1,10 @@
 ﻿using Autofac;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
+using KSociety.Base.Srv.Host.Shared.Bindings;
 using KSociety.Base.Srv.Host.Shared.Class;
+using KSociety.Com.EventBus;
 using KSociety.Com.Infra.DataAccess;
-using KSociety.Com.Srv.Host.Shared.Bindings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProtoBuf.Grpc.Server;
+using RabbitMQ.Client;
 using System;
 
 namespace KSociety.Com.Srv.Host;
@@ -114,7 +116,11 @@ public class Startup
 
             //RabbitMQ.
             builder.RegisterModule(
-                new ComMessageBroker(ComMessageBrokerOptions, DebugFlag));
+                new MessageBroker<
+                    IExchangeComDeclareParameters,
+                    IQueueComDeclareParameters,
+                    IEventBusComParameters,
+                    IConnectionFactory>(ComMessageBrokerOptions, DebugFlag));
 
             //Transaction, don't move this line.
             //builder.RegisterModule(new Bindings.Transaction(DebugFlag));
