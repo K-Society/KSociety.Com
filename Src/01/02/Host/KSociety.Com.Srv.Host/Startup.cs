@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
+using KSociety.Base.Srv.Host.Shared.Class;
 using KSociety.Com.Infra.DataAccess;
 using KSociety.Com.Srv.Host.Shared.Bindings;
-using KSociety.Com.Srv.Host.Shared.Class;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +22,7 @@ public class Startup
     private string MasterString { get; }
 
     private bool DebugFlag { get; }
-    private ComMessageBrokerOptions ComMessageBrokerOptions { get; }
+    private MessageBrokerOptions ComMessageBrokerOptions { get; }
 
     private string MigrationsAssembly { get; }
 
@@ -32,9 +32,9 @@ public class Startup
         MasterString = Configuration.GetConnectionString("ComDb");
         DebugFlag = Configuration.GetValue<bool>("DebugFlag");
 
-        ComMessageBrokerOptions = Configuration.GetSection("MessageBroker").Get<ComMessageBrokerOptions>();
-        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
-        MigrationsAssembly = "KSociety.Com.Infra.Transfer.Sqlite";
+        ComMessageBrokerOptions = Configuration.GetSection("MessageBroker").Get<MessageBrokerOptions>();
+        MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
+        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.Sqlite";
     }
 
     public IConfiguration Configuration { get; }
@@ -70,8 +70,8 @@ public class Startup
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.AutoMapper(AssemblyTool.GetAssembly()));
 
             //DatabaseConfiguration.
-            //builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlite, MasterString, DebugFlag, MigrationsAssembly));
+            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
+            //builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlite, MasterString, DebugFlag, MigrationsAssembly));
 
             //MediatR.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.Mediatr());

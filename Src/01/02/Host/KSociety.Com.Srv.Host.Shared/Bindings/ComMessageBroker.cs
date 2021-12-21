@@ -1,7 +1,9 @@
 ﻿using System;
 using Autofac;
+using KSociety.Base.Srv.Host.Shared.Class;
 using KSociety.Com.EventBus;
 using RabbitMQ.Client;
+using ConnectionFactory = RabbitMQ.Client.ConnectionFactory;
 
 namespace KSociety.Com.Srv.Host.Shared.Bindings;
 
@@ -45,7 +47,7 @@ public class ComMessageBroker : Module
         _mqPasswordCom = mqPasswordCom;
     }
 
-    public ComMessageBroker(Class.ComMessageBrokerOptions messageBroker, bool debug = false)
+    public ComMessageBroker(MessageBrokerOptions messageBroker, bool debug = false)
     {
         _debugFlag = debug;
         _brokerNameCom = messageBroker.ExchangeDeclareParameters.BrokerName;
@@ -76,6 +78,7 @@ public class ComMessageBroker : Module
             AutomaticRecoveryEnabled = true,
             NetworkRecoveryInterval = TimeSpan.FromSeconds(10),
             RequestedHeartbeat = TimeSpan.FromSeconds(10),
+            ContinuationTimeout = TimeSpan.FromSeconds(120),
             DispatchConsumersAsync = true
         };
 
