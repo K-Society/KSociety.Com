@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerComContext))]
-    [Migration("20211220151639_View")]
-    partial class View
+    [Migration("20211222130247_ComDb")]
+    partial class ComDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

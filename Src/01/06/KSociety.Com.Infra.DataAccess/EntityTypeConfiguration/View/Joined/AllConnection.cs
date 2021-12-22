@@ -8,7 +8,7 @@ public class AllConnection : IEntityTypeConfiguration<Domain.Entity.View.Joined.
     public void Configure(EntityTypeBuilder<Domain.Entity.View.Joined.AllConnection> allConnectionConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder) allConnectionConfiguration, "AllConnectionView", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder)allConnectionConfiguration, "AllConnectionView");
+        ((EntityTypeBuilder)allConnectionConfiguration).ToView("AllConnectionView");
         allConnectionConfiguration.HasNoKey();
     }
 }

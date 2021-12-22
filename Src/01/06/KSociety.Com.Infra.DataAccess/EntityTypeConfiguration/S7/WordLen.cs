@@ -8,7 +8,7 @@ public class WordLen : IEntityTypeConfiguration<Domain.Entity.S7.WordLen>
     public void Configure(EntityTypeBuilder<Domain.Entity.S7.WordLen> wordLenConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) wordLenConfiguration, "S7WordLen", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)wordLenConfiguration, "S7WordLen");
+        ((EntityTypeBuilder)wordLenConfiguration).ToTable("S7WordLen");
 
         wordLenConfiguration.HasKey(k => k.Id); //.HasMaxLength(12);
         wordLenConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

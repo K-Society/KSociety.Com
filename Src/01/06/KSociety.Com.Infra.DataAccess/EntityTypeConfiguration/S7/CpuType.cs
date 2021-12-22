@@ -8,7 +8,7 @@ public class CpuType : IEntityTypeConfiguration<Domain.Entity.S7.CpuType>
     public void Configure(EntityTypeBuilder<Domain.Entity.S7.CpuType> cpuTypeConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) cpuTypeConfiguration, "S7CpuType", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)cpuTypeConfiguration, "S7CpuType");
+        ((EntityTypeBuilder)cpuTypeConfiguration).ToTable("S7CpuType");
 
         cpuTypeConfiguration.HasKey(k => k.Id);
         cpuTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

@@ -8,7 +8,7 @@ public class AllTagGroupAllConnection : IEntityTypeConfiguration<Domain.Entity.V
     public void Configure(EntityTypeBuilder<Domain.Entity.View.Joined.AllTagGroupAllConnection> allTagGroupAllConnectionConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder) allTagGroupAllConnectionConfiguration, "AllTagGroupAllConnectionView", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToView((EntityTypeBuilder)allTagGroupAllConnectionConfiguration, "AllTagGroupAllConnectionView");
+        ((EntityTypeBuilder)allTagGroupAllConnectionConfiguration).ToView("AllTagGroupAllConnectionView");
         allTagGroupAllConnectionConfiguration.HasNoKey();
     }
 }

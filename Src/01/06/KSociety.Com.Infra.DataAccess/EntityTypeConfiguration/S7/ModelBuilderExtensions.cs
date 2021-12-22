@@ -75,7 +75,7 @@ public static class ModelBuilderExtensions
         //);
 
         var s7Connection = ReadCsv<Domain.Entity.S7.S7Connection>.Read(loggerFactory, @"S7Connection");
-        if (!(s7Connection is null))
+        if (s7Connection is not null)
         {
             modelBuilder.Entity<Domain.Entity.S7.S7Connection>()
                 .HasData(
@@ -84,7 +84,7 @@ public static class ModelBuilderExtensions
         }
 
         var s7Tag = ReadCsv<Domain.Entity.S7.S7Tag>.Read(loggerFactory, @"S7Tag");
-        if (!(s7Tag is null))
+        if (s7Tag is not null)
         {
             modelBuilder.Entity<Domain.Entity.S7.S7Tag>()
                 .HasData(

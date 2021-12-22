@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.View.Joined;
 
-public class AllTagGroupAllConnection : RepositoryBase<ComContext, Domain.Entity.View.Joined.AllTagGroupAllConnection>, IAllTagGroupAllConnection
+public class AllTagGroupAllConnection<TContext> : RepositoryBase<TContext, Domain.Entity.View.Joined.AllTagGroupAllConnection>, IAllTagGroupAllConnection
+    where TContext : DatabaseContext
 {
-    public AllTagGroupAllConnection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public AllTagGroupAllConnection(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

@@ -9,9 +9,11 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Common;
 
-public class Bit : RepositoryBase<ComContext, Domain.Entity.Common.Bit>, IBit
+//public class Bit<TContext> : RepositoryBase<ComContext, Domain.Entity.Common.Bit>, IBit
+public class Bit<TContext> : RepositoryBase<TContext, Domain.Entity.Common.Bit>, IBit 
+    where TContext : DatabaseContext
 {
-    public Bit(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public Bit(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

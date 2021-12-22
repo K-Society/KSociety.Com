@@ -4,7 +4,8 @@ using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Base.Srv.Host.Shared.Bindings;
 using KSociety.Base.Srv.Host.Shared.Class;
 using KSociety.Com.EventBus;
-using KSociety.Com.Infra.DataAccess;
+using KSociety.Com.Infra.Transfer.Sqlite;
+using KSociety.Com.Infra.Transfer.SqlServer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -21,21 +22,24 @@ public class Startup
 {
     public ILifetimeScope AutofacContainer { get; private set; }
 
-    private string MasterString { get; }
+    //private string MasterString { get; }
 
     private bool DebugFlag { get; }
     private MessageBrokerOptions ComMessageBrokerOptions { get; }
+    private DatabaseOptions DatabaseOptions { get; }
 
-    private string MigrationsAssembly { get; }
+    //private string MigrationsAssembly { get; }
 
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
-        MasterString = Configuration.GetConnectionString("ComDb");
+        //MasterString = Configuration.GetConnectionString("ComDb");
         DebugFlag = Configuration.GetValue<bool>("DebugFlag");
 
         ComMessageBrokerOptions = Configuration.GetSection("MessageBroker").Get<MessageBrokerOptions>();
-        MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
+        DatabaseOptions = Configuration.GetSection("Database").Get<DatabaseOptions>();
+
+        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
         //MigrationsAssembly = "KSociety.Com.Infra.Transfer.Sqlite";
     }
 
@@ -72,47 +76,110 @@ public class Startup
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.AutoMapper(AssemblyTool.GetAssembly()));
 
             //DatabaseConfiguration.
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
+            //builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlserver, MasterString, DebugFlag, MigrationsAssembly));
+            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseOptions));
             //builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseEngine.Sqlite, MasterString, DebugFlag, MigrationsAssembly));
 
             //MediatR.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.Mediatr());
 
+
             //Common.
-            builder.RegisterModule(new Bindings.Common.Repository());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.Common.Repository<SqlServerComContext>());
+                    break;
+
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.Common.Repository<SqliteComContext>());
+                    break;
+            }
 
             builder.RegisterModule(new Bindings.Common.QueryListGridView());
 
             builder.RegisterModule(new Bindings.Common.QueryModel());
 
-            builder.RegisterModule(new Bindings.Common.QueryViewListGridView());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.Common.QueryViewListGridView<SqlServerComContext>());
+                    break;
+
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.Common.QueryViewListGridView<SqliteComContext>());
+                    break;
+            }
+
+
 
             //S7
-            builder.RegisterModule(new Bindings.S7.Repository());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.S7.Repository<SqlServerComContext>());
+                    break;
+
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.S7.Repository<SqliteComContext>());
+                    break;
+            }
 
             builder.RegisterModule(new Bindings.S7.QueryListGridView());
 
             builder.RegisterModule(new Bindings.S7.QueryModel());
 
             //Logix.
-            builder.RegisterModule(new Bindings.Logix.Repository());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.Logix.Repository<SqlServerComContext>());
+                    break;
+
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.Logix.Repository<SqliteComContext>());
+                    break;
+            }
 
             //builder.RegisterModule(new Bindings.Logix.QueryListGridView());
 
-            builder.RegisterModule(new Bindings.QueryViewJoinedListGridView());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.QueryViewJoinedListGridView<SqlServerComContext>());
+                    break;
 
-            
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.QueryViewJoinedListGridView<SqliteComContext>());
+                    break;
+            }
 
-            //UnitOfWork.
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.UnitOfWork<ComContext>());
 
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseControl<ComContext>());
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    //UnitOfWork.
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.UnitOfWork<SqlServerComContext>());
+
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseControl<SqlServerComContext>());
+
+                    //DatabaseFactory
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseFactory<SqlServerComContext>());
+                    break;
+
+                case DatabaseEngine.Sqlite:
+                    //UnitOfWork.
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.UnitOfWork<SqliteComContext>());
+
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseControl<SqliteComContext>());
+
+                    //DatabaseFactory
+                    builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseFactory<SqliteComContext>());
+                    break;
+            }
 
             //CommandHandler.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.CommandHdlr(AssemblyTool.GetAssembly()));
-
-            //DatabaseFactory
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseFactory<ComContext>());
 
             //RabbitMQ.
             builder.RegisterModule(
@@ -120,14 +187,25 @@ public class Startup
                     IExchangeComDeclareParameters,
                     IQueueComDeclareParameters,
                     IEventBusComParameters,
-                    IConnectionFactory>(ComMessageBrokerOptions, DebugFlag));
+                    IConnectionFactory,
+                    ExchangeComDeclareParameters,
+                    QueueComDeclareParameters,
+                    EventBusComParameters>(ComMessageBrokerOptions, DebugFlag));
 
             //Transaction, don't move this line.
             //builder.RegisterModule(new Bindings.Transaction(DebugFlag));
 
             //Biz.
-            builder.RegisterModule(new Bindings.Biz.Biz(DebugFlag));
+            switch (DatabaseOptions.DatabaseEngine)
+            {
+                case DatabaseEngine.Sqlserver:
+                    builder.RegisterModule(new Bindings.Biz.Biz<SqlServerComContext>(DebugFlag));
+                    break;
 
+                case DatabaseEngine.Sqlite:
+                    builder.RegisterModule(new Bindings.Biz.Biz<SqliteComContext>(DebugFlag));
+                    break;
+            }
         }
         catch (Exception ex)
         {

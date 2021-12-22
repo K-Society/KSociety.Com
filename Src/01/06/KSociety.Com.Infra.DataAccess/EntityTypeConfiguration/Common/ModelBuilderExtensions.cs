@@ -48,7 +48,7 @@ public static class ModelBuilderExtensions
         //);
 
         var tagGroup = ReadCsv<Domain.Entity.Common.TagGroup>.Read(loggerFactory, @"TagGroup");
-        if (!(tagGroup is null))
+        if (tagGroup is not null)
         {
             modelBuilder.Entity<Domain.Entity.Common.TagGroup>()
                 .HasData(

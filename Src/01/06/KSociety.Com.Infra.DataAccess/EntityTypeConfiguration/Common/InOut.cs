@@ -8,7 +8,7 @@ public class InOut : IEntityTypeConfiguration<Domain.Entity.Common.InOut>
     public void Configure(EntityTypeBuilder<Domain.Entity.Common.InOut> inOutConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)inOutConfiguration, "InOut", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) inOutConfiguration, "InOut");
+        ((EntityTypeBuilder) inOutConfiguration).ToTable("InOut");
             
 
         inOutConfiguration.HasKey(k => k.InputOutput);

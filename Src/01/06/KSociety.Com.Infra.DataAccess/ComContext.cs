@@ -14,8 +14,7 @@ public class ComContext : DatabaseContext
     public ComContext(ILoggerFactory loggerFactory, IDatabaseConfiguration configuration, IMediator mediator)
         : base(loggerFactory, configuration, mediator)
     {
-        //Database.EnsureCreated();
-        //Database.Migrate();
+
     }
 
     public ComContext(DbContextOptions options)

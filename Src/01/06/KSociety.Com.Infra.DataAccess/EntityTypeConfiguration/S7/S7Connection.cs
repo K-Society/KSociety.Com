@@ -21,8 +21,8 @@ public class S7Connection : IEntityTypeConfiguration<Domain.Entity.S7.S7Connecti
         //connectionConfiguration.Property(p => p.Name).HasMaxLength(50).IsRequired();
 
         //connectionConfiguration.Property(p => p.Ip).HasMaxLength(15).IsRequired();
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) connectionConfiguration.HasOne(p => p.CpuType).WithMany(pp => pp.S7Connections)
-            .HasForeignKey(fk => fk.CpuTypeId), "ForeignKey_S7Connection_S7CpuType");
+        ((ReferenceCollectionBuilder) connectionConfiguration.HasOne(p => p.CpuType).WithMany(pp => pp.S7Connections)
+            .HasForeignKey(fk => fk.CpuTypeId)).HasConstraintName("ForeignKey_S7Connection_S7CpuType");
         //.IsRequired();
 
         //connectionConfiguration.Property(p => p.CpuType).HasDefaultValue(0);
@@ -32,8 +32,8 @@ public class S7Connection : IEntityTypeConfiguration<Domain.Entity.S7.S7Connecti
 
         connectionConfiguration.Property(p => p.Slot).HasDefaultValue((short)0);//.IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) connectionConfiguration.HasOne(c => c.ConnectionType).WithMany(cc => cc.Connections)
-            .HasForeignKey(fk => fk.ConnectionTypeId), "ForeignKey_S7Connection_S7ConnectionType");
+        ((ReferenceCollectionBuilder) connectionConfiguration.HasOne(c => c.ConnectionType).WithMany(cc => cc.Connections)
+            .HasForeignKey(fk => fk.ConnectionTypeId)).HasConstraintName("ForeignKey_S7Connection_S7ConnectionType");
 
         //connectionConfiguration.Property(p => p.ConnectionType).HasDefaultValue(1);
         //.IsRequired();

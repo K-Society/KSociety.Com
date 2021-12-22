@@ -8,7 +8,7 @@ public class ConnectionType : IEntityTypeConfiguration<Domain.Entity.S7.Connecti
     public void Configure(EntityTypeBuilder<Domain.Entity.S7.ConnectionType> connectionTypeConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionTypeConfiguration, "S7ConnectionType", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)connectionTypeConfiguration, "S7ConnectionType");
+        ((EntityTypeBuilder)connectionTypeConfiguration).ToTable("S7ConnectionType");
 
         connectionTypeConfiguration.HasKey(k => k.Id);
         connectionTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

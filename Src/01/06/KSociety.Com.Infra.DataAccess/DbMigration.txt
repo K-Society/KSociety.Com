@@ -20,10 +20,10 @@
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
 
 
-add-migration ComDb -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
-add-migration View -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
-Update-Database -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -Verbose
+add-migration ComDb -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
+add-migration View -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
+Update-Database -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
 
-add-migration ComDb -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose
-add-migration View -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose
-Update-Database -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -Verbose
+add-migration ComDb -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose
+add-migration View -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose
+Update-Database -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose

@@ -9,7 +9,7 @@ public class Area : IEntityTypeConfiguration<Domain.Entity.S7.Area>
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) areaConfiguration, "S7Area", DatabaseContext.DefaultSchema);
 
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)areaConfiguration, "S7Area");
+        ((EntityTypeBuilder)areaConfiguration).ToTable("S7Area");
         //areaConfiguration.HasKey(k => new {k.AreaId, k.AreaName});
         areaConfiguration.HasKey(k => k.Id);
         areaConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();

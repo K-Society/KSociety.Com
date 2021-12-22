@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.S7;
 
-public class Tag : Repository<ComContext, Domain.Entity.S7.S7Tag, CsvClassMap.S7.Tag>, ITag
+public class Tag<TContext> : Repository<TContext, Domain.Entity.S7.S7Tag, CsvClassMap.S7.Tag>, ITag
+    where TContext : DatabaseContext
 {
-    public Tag(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public Tag(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

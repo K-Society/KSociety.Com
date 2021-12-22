@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.S7;
 
-public class Connection : Repository<ComContext, Domain.Entity.S7.S7Connection, CsvClassMap.S7.Connection>, IConnection
+public class Connection<TContext> : Repository<TContext, Domain.Entity.S7.S7Connection, CsvClassMap.S7.Connection>, IConnection
+    where TContext : DatabaseContext
 {
-    public Connection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public Connection(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

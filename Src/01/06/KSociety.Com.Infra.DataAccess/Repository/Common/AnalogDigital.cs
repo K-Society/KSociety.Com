@@ -9,10 +9,11 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Common;
 
-public class AnalogDigital 
-    : RepositoryBase<ComContext, Domain.Entity.Common.AnalogDigital>, IAnalogDigital
+public class AnalogDigital<TContext>
+    : RepositoryBase<TContext, Domain.Entity.Common.AnalogDigital>, IAnalogDigital 
+    where TContext : DatabaseContext
 {
-    public AnalogDigital(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public AnalogDigital(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

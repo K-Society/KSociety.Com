@@ -8,7 +8,7 @@ public class Bit : IEntityTypeConfiguration<Domain.Entity.Common.Bit>
     public void Configure(EntityTypeBuilder<Domain.Entity.Common.Bit> bitConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) bitConfiguration, "Bit", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)bitConfiguration, "Bit");
+        ((EntityTypeBuilder)bitConfiguration).ToTable("Bit");
 
         bitConfiguration.HasKey(k => k.BitOfByte);
         bitConfiguration.Property(p => p.BitOfByte).ValueGeneratedNever().IsRequired();

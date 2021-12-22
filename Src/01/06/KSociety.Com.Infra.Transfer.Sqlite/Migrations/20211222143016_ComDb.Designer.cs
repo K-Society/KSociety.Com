@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
     [DbContext(typeof(SqliteComContext))]
-    [Migration("20211220152253_ComDb")]
+    [Migration("20211222143016_ComDb")]
     partial class ComDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -9,14 +9,14 @@ public class Tag : IEntityTypeConfiguration<Domain.Entity.Common.Tag>
     {
 
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) tagConfiguration, "Tag", KSociety.Base.Infra.Shared.Class.DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)tagConfiguration, "Tag");
+        ((EntityTypeBuilder)tagConfiguration).ToTable("Tag");
 
         tagConfiguration.HasKey(k => k.Id);
         tagConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.AutomationType)
+        ((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.AutomationType)
                 .WithMany(cc => cc.Tags)
-                .HasForeignKey(fk => fk.AutomationTypeId), "ForeignKey_Tag_AutomationType")
+                .HasForeignKey(fk => fk.AutomationTypeId)).HasConstraintName("ForeignKey_Tag_AutomationType")
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
 
@@ -35,9 +35,9 @@ public class Tag : IEntityTypeConfiguration<Domain.Entity.Common.Tag>
         tagConfiguration.HasIndex(i => new { i.Name, i.AutomationTypeId }).IsUnique();
         tagConfiguration.Property(p => p.Name).HasMaxLength(50).IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.Connection)
+        ((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.Connection)
                 .WithMany(cc => cc.Tags)
-                .HasForeignKey(fk => fk.ConnectionId), "ForeignKey_Tag_ConnectionId")
+                .HasForeignKey(fk => fk.ConnectionId)).HasConstraintName("ForeignKey_Tag_ConnectionId")
             .IsRequired();
 
         tagConfiguration.Property(p => p.Enable).IsRequired();
@@ -47,17 +47,17 @@ public class Tag : IEntityTypeConfiguration<Domain.Entity.Common.Tag>
         tagConfiguration.Property(p => p.Invoke).IsRequired();
 
         //tagConfiguration.Property(p => p.InputOutput).IsRequired();
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.InOut).WithMany(cc => cc.Tags)
-                .HasForeignKey(fk => fk.InputOutput), "ForeignKey_Tag_InOut")
+        ((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.InOut).WithMany(cc => cc.Tags)
+                .HasForeignKey(fk => fk.InputOutput)).HasConstraintName("ForeignKey_Tag_InOut")
             .IsRequired();
 
         //tagConfiguration.Property(p => p.AnalogDigitalSignal).IsRequired();
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.AnalogDigital).WithMany(cc => cc.Tags)
-                .HasForeignKey(fk => fk.AnalogDigitalSignal), "ForeignKey_Tag_AnalogDigital")
+        ((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.AnalogDigital).WithMany(cc => cc.Tags)
+                .HasForeignKey(fk => fk.AnalogDigitalSignal)).HasConstraintName("ForeignKey_Tag_AnalogDigital")
             .IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.TagGroup).WithMany(cc => cc.Tags)
-                .HasForeignKey(fk => fk.TagGroupId), "ForeignKey_Tag_TagGroup")
+        ((ReferenceCollectionBuilder) tagConfiguration.HasOne(c => c.TagGroup).WithMany(cc => cc.Tags)
+                .HasForeignKey(fk => fk.TagGroupId)).HasConstraintName("ForeignKey_Tag_TagGroup")
             .IsRequired();
 
         tagConfiguration.Ignore(i => i.OldValue);

@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.S7;
 
-public class BlockArea : RepositoryBase<ComContext, Domain.Entity.S7.BlockArea>, IBlockArea
+public class BlockArea<TContext> : RepositoryBase<TContext, Domain.Entity.S7.BlockArea>, IBlockArea
+    where TContext : DatabaseContext
 {
-    public BlockArea(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public BlockArea(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

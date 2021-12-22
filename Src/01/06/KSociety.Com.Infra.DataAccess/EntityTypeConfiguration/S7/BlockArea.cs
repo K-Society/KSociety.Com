@@ -8,7 +8,7 @@ public class BlockArea : IEntityTypeConfiguration<Domain.Entity.S7.BlockArea>
     public void Configure(EntityTypeBuilder<Domain.Entity.S7.BlockArea> blockAreaConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) blockAreaConfiguration, "S7BlockArea", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)blockAreaConfiguration, "S7BlockArea");
+        ((EntityTypeBuilder)blockAreaConfiguration).ToTable("S7BlockArea");
 
         blockAreaConfiguration.HasKey(k => k.Id);
         blockAreaConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();
@@ -16,12 +16,12 @@ public class BlockArea : IEntityTypeConfiguration<Domain.Entity.S7.BlockArea>
         blockAreaConfiguration.HasIndex(i => i.Name).IsUnique();
         blockAreaConfiguration.Property(p => p.Name).HasMaxLength(50).IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) blockAreaConfiguration.HasOne(c => c.Area).WithMany(cc => cc.S7BlockAreas)
-            .HasForeignKey(fk => fk.AreaId), "ForeignKey_S7BlockArea_Area");
+        ((ReferenceCollectionBuilder) blockAreaConfiguration.HasOne(c => c.Area).WithMany(cc => cc.S7BlockAreas)
+            .HasForeignKey(fk => fk.AreaId)).HasConstraintName("ForeignKey_S7BlockArea_Area");
         //.IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) blockAreaConfiguration.HasOne(c => c.WordLen).WithMany(cc => cc.S7BlockAreas)
-            .HasForeignKey(fk => fk.WordLenId), "ForeignKey_S7BlockArea_WordLen");
+        ((ReferenceCollectionBuilder) blockAreaConfiguration.HasOne(c => c.WordLen).WithMany(cc => cc.S7BlockAreas)
+            .HasForeignKey(fk => fk.WordLenId)).HasConstraintName("ForeignKey_S7BlockArea_WordLen");
         //.IsRequired();
 
         //blockAreaConfiguration.Property(p => p.Name).HasMaxLength(50).IsRequired();

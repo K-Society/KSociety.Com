@@ -9,12 +9,13 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Common;
 
-public class AutomationType
+public class AutomationType<TContext>
     : RepositoryBase<
-        ComContext,
+        TContext,
         Domain.Entity.Common.AutomationType>, IAutomationType
+    where TContext : DatabaseContext
 {
-    public AutomationType(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public AutomationType(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

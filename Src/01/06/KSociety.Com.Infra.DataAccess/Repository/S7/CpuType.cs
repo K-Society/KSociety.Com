@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.S7;
 
-public class CpuType : RepositoryBase<ComContext, Domain.Entity.S7.CpuType>, ICpuType
+public class CpuType<TContext> : RepositoryBase<TContext, Domain.Entity.S7.CpuType>, ICpuType
+    where TContext : DatabaseContext
 {
-    public CpuType(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public CpuType(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

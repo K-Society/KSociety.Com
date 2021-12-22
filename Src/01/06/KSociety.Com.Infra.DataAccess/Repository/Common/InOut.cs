@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Common;
 
-public class InOut : RepositoryBase<ComContext, Domain.Entity.Common.InOut>, IInOut
+public class InOut<TContext> : RepositoryBase<TContext, Domain.Entity.Common.InOut>, IInOut
+    where TContext : DatabaseContext
 {
-    public InOut(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public InOut(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

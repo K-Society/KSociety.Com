@@ -10,14 +10,14 @@ public class Connection : IEntityTypeConfiguration<Domain.Entity.Common.Connecti
         //try
         //{
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) connectionConfiguration, "Connection", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)connectionConfiguration, "Connection");
+        ((EntityTypeBuilder)connectionConfiguration).ToTable("Connection");
 
         connectionConfiguration.HasKey(k => k.Id);
         connectionConfiguration.Property(p => p.Id).ValueGeneratedOnAdd().IsRequired();
 
-        RelationalForeignKeyBuilderExtensions.HasConstraintName((ReferenceCollectionBuilder) connectionConfiguration.HasOne(c => c.AutomationType)
+        ((ReferenceCollectionBuilder) connectionConfiguration.HasOne(c => c.AutomationType)
                 .WithMany(cc => cc.Connections)
-                .HasForeignKey(fk => fk.AutomationTypeId), "ForeignKey_Connection_AutomationType")
+                .HasForeignKey(fk => fk.AutomationTypeId)).HasConstraintName("ForeignKey_Connection_AutomationType")
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
 

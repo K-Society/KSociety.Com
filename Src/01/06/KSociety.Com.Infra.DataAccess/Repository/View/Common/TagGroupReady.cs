@@ -10,9 +10,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.View.Common;
 
-public class TagGroupReady : RepositoryBase<ComContext, Domain.Entity.View.Common.TagGroupReady>, ITagGroupReady
+public class TagGroupReady<TContext> : RepositoryBase<TContext, Domain.Entity.View.Common.TagGroupReady>, ITagGroupReady
+    where TContext : DatabaseContext
 {
-    public TagGroupReady(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
+    public TagGroupReady(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
         : base(logFactory, databaseFactory)
     {
     }

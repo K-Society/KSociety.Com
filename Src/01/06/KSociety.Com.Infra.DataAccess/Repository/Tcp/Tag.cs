@@ -9,9 +9,10 @@ using Microsoft.Extensions.Logging;
 
 namespace KSociety.Com.Infra.DataAccess.Repository.Tcp;
 
-public class Tag : RepositoryBase<ComContext, Domain.Entity.Tcp.TcpTag>, ITag
+public class Tag<TContext> : RepositoryBase<TContext, Domain.Entity.Tcp.TcpTag>, ITag
+    where TContext : DatabaseContext
 {
-    public Tag(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory)
+    public Tag(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory)
         : base(logFactory, databaseFactory)
     {
     }

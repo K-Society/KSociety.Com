@@ -8,7 +8,7 @@ public class AnalogDigital : IEntityTypeConfiguration<Domain.Entity.Common.Analo
     public void Configure(EntityTypeBuilder<Domain.Entity.Common.AnalogDigital> analogDigitalConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)analogDigitalConfiguration, "AnalogDigital", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)analogDigitalConfiguration, "AnalogDigital");
+        ((EntityTypeBuilder)analogDigitalConfiguration).ToTable("AnalogDigital");
 
         analogDigitalConfiguration.HasKey(k => k.AnalogDigitalSignal);
         analogDigitalConfiguration.Property(p => p.AnalogDigitalSignal).ValueGeneratedNever().HasMaxLength(7).IsRequired();

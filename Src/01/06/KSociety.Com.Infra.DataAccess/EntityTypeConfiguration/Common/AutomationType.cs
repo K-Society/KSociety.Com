@@ -8,7 +8,7 @@ public class AutomationType : IEntityTypeConfiguration<Domain.Entity.Common.Auto
     public void Configure(EntityTypeBuilder<Domain.Entity.Common.AutomationType> automationTypeConfiguration)
     {
         //RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder) automationTypeConfiguration, "AutomationType", DatabaseContext.DefaultSchema);
-        RelationalEntityTypeBuilderExtensions.ToTable((EntityTypeBuilder)automationTypeConfiguration, "AutomationType");
+        ((EntityTypeBuilder)automationTypeConfiguration).ToTable("AutomationType");
 
         automationTypeConfiguration.HasKey(k => k.Id);
         automationTypeConfiguration.Property(p => p.Id).ValueGeneratedNever().IsRequired();
