@@ -87,7 +87,7 @@ public class Biz : IBiz
 
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Connection_Server",
                     new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new ConnectionStatusRpcServerHandler(_loggerFactory, _componentContext),
-                        null, _eventBusComParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
+                        null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name, CancellationToken.None));
 
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Connection_Server");
 
@@ -111,9 +111,9 @@ public class Biz : IBiz
                 ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Read"])
                     .SubscribeRpcClient<TagReadIntegrationEventReply, TagReadRpcClientHandler>(tagGroupReady.Name + ".automation.read.client.com");
 
-                TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server", 
+                TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server",
                     new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
-                        null, _eventBusComParameters, "BusinessQueueServerRead_" + tagGroupReady.Name, CancellationToken.None));
+                        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
 
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Read_Server");
 
@@ -133,9 +133,9 @@ public class Biz : IBiz
                 ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"])
                     .SubscribeRpcClient<TagWriteIntegrationEventReply, TagWriteRpcClientHandler>(tagGroupReady.Name + ".automation.write.client.com");
 
-                TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server", 
+                TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server",
                     new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagWriteRpcServerHandler(_loggerFactory, _componentContext),
-                        null, _eventBusComParameters, "BusinessQueueServerWrite_" + tagGroupReady.Name, CancellationToken.None));
+                        null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name, CancellationToken.None));
 
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Write_Server");
 
