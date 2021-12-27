@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
     public partial class ComDb : Migration
@@ -151,14 +153,12 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                         name: "ForeignKey_S7Connection_S7ConnectionType",
                         column: x => x.ConnectionTypeId,
                         principalTable: "S7ConnectionType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_S7Connection_S7CpuType",
                         column: x => x.CpuTypeId,
                         principalTable: "S7CpuType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -226,20 +226,17 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                         name: "ForeignKey_S7Tag_Area",
                         column: x => x.AreaId,
                         principalTable: "S7Area",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_Bit",
                         column: x => x.BitOfByte,
                         principalTable: "Bit",
-                        principalColumn: "BitOfByte",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "BitOfByte");
                     table.ForeignKey(
                         name: "ForeignKey_S7Tag_WordLen",
                         column: x => x.WordLenId,
                         principalTable: "S7WordLen",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "ForeignKey_Tag_AnalogDigital",
                         column: x => x.AnalogDigitalSignal,
@@ -310,22 +307,7 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "Bit",
                 columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)7, "Bit 7" });
-
-            migrationBuilder.InsertData(
-                table: "Bit",
-                columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)6, "Bit 6" });
-
-            migrationBuilder.InsertData(
-                table: "Bit",
-                columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)5, "Bit 5" });
-
-            migrationBuilder.InsertData(
-                table: "Bit",
-                columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)4, "Bit 4" });
+                values: new object[] { (byte)0, "Bit 0" });
 
             migrationBuilder.InsertData(
                 table: "Bit",
@@ -340,12 +322,32 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "Bit",
                 columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)0, "Bit 0" });
+                values: new object[] { (byte)3, "Bit 3" });
 
             migrationBuilder.InsertData(
                 table: "Bit",
                 columns: new[] { "BitOfByte", "BitName" },
-                values: new object[] { (byte)3, "Bit 3" });
+                values: new object[] { (byte)4, "Bit 4" });
+
+            migrationBuilder.InsertData(
+                table: "Bit",
+                columns: new[] { "BitOfByte", "BitName" },
+                values: new object[] { (byte)5, "Bit 5" });
+
+            migrationBuilder.InsertData(
+                table: "Bit",
+                columns: new[] { "BitOfByte", "BitName" },
+                values: new object[] { (byte)6, "Bit 6" });
+
+            migrationBuilder.InsertData(
+                table: "Bit",
+                columns: new[] { "BitOfByte", "BitName" },
+                values: new object[] { (byte)7, "Bit 7" });
+
+            migrationBuilder.InsertData(
+                table: "InOut",
+                columns: new[] { "InputOutput", "InputOutputName" },
+                values: new object[] { "R", "Read" });
 
             migrationBuilder.InsertData(
                 table: "InOut",
@@ -360,11 +362,6 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "InOut",
                 columns: new[] { "InputOutput", "InputOutputName" },
-                values: new object[] { "R", "Read" });
-
-            migrationBuilder.InsertData(
-                table: "InOut",
-                columns: new[] { "InputOutput", "InputOutputName" },
                 values: new object[] { "W", "Write" });
 
             migrationBuilder.InsertData(
@@ -375,17 +372,7 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7Area",
                 columns: new[] { "Id", "AreaName", "Mean" },
-                values: new object[] { 132, "S7AreaDB", "DB area memory (DB1, DB2, ...)" });
-
-            migrationBuilder.InsertData(
-                table: "S7Area",
-                columns: new[] { "Id", "AreaName", "Mean" },
-                values: new object[] { 131, "S7AreaMK", "Merkers area memory (M0, M0.0, ...)" });
-
-            migrationBuilder.InsertData(
-                table: "S7Area",
-                columns: new[] { "Id", "AreaName", "Mean" },
-                values: new object[] { 130, "S7AreaPA", "Output area memory" });
+                values: new object[] { 29, "S7AreaTM", "Timer area memory(T1, T2, ...)" });
 
             migrationBuilder.InsertData(
                 table: "S7Area",
@@ -395,37 +382,22 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7Area",
                 columns: new[] { "Id", "AreaName", "Mean" },
-                values: new object[] { 29, "S7AreaTM", "Timer area memory(T1, T2, ...)" });
+                values: new object[] { 130, "S7AreaPA", "Output area memory" });
+
+            migrationBuilder.InsertData(
+                table: "S7Area",
+                columns: new[] { "Id", "AreaName", "Mean" },
+                values: new object[] { 131, "S7AreaMK", "Merkers area memory (M0, M0.0, ...)" });
+
+            migrationBuilder.InsertData(
+                table: "S7Area",
+                columns: new[] { "Id", "AreaName", "Mean" },
+                values: new object[] { 132, "S7AreaDB", "DB area memory (DB1, DB2, ...)" });
 
             migrationBuilder.InsertData(
                 table: "S7ConnectionType",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 6, "S7Basic 4" });
-
-            migrationBuilder.InsertData(
-                table: "S7ConnectionType",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 10, "S7Basic 8" });
-
-            migrationBuilder.InsertData(
-                table: "S7ConnectionType",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 9, "S7Basic 7" });
-
-            migrationBuilder.InsertData(
-                table: "S7ConnectionType",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 8, "S7Basic 6" });
-
-            migrationBuilder.InsertData(
-                table: "S7ConnectionType",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 7, "S7Basic 5" });
-
-            migrationBuilder.InsertData(
-                table: "S7ConnectionType",
-                columns: new[] { "Id", "Name" },
-                values: new object[] { 5, "S7Basic 3" });
+                values: new object[] { 1, "PG" });
 
             migrationBuilder.InsertData(
                 table: "S7ConnectionType",
@@ -440,12 +412,37 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7ConnectionType",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "PG" });
+                values: new object[] { 4, "S7Basic 2" });
 
             migrationBuilder.InsertData(
                 table: "S7ConnectionType",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 4, "S7Basic 2" });
+                values: new object[] { 5, "S7Basic 3" });
+
+            migrationBuilder.InsertData(
+                table: "S7ConnectionType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 6, "S7Basic 4" });
+
+            migrationBuilder.InsertData(
+                table: "S7ConnectionType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 7, "S7Basic 5" });
+
+            migrationBuilder.InsertData(
+                table: "S7ConnectionType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 8, "S7Basic 6" });
+
+            migrationBuilder.InsertData(
+                table: "S7ConnectionType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 9, "S7Basic 7" });
+
+            migrationBuilder.InsertData(
+                table: "S7ConnectionType",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 10, "S7Basic 8" });
 
             migrationBuilder.InsertData(
                 table: "S7CpuType",
@@ -480,37 +477,7 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 12, "Counter variable type", "Counter" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 11, "Timer variable type", "Timer" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 10, "S7 WString variable type (variable)", "S7WString" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 9, "S7 String variable type (variable)", "S7String" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 8, "Char Array / C-String variable type (variable)", "String" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 7, "LReal variable type (64 bits, 8 bytes)", "LReal" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 6, "Real variable type (32 bits, 4 bytes)", "Real" });
+                values: new object[] { 0, "S7 Bit variable type (bool)", "Bit" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
@@ -520,7 +487,7 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" });
+                values: new object[] { 2, "S7 Word variable type (16 bits, 2 bytes)", "Word" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
@@ -530,17 +497,7 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 2, "S7 Word variable type (16 bits, 2 bytes)", "Word" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 0, "S7 Bit variable type (bool)", "Bit" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 13, "DateTime variable type", "DataTime" });
+                values: new object[] { 4, "S7 Int variable type (16 bits, 2 bytes)", "Int" });
 
             migrationBuilder.InsertData(
                 table: "S7WordLen",
@@ -550,17 +507,57 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 6, "Real variable type (32 bits, 4 bytes)", "Real" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 7, "LReal variable type (64 bits, 8 bytes)", "LReal" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 8, "Char Array / C-String variable type (variable)", "String" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 9, "S7 String variable type (variable)", "S7String" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 10, "S7 WString variable type (variable)", "S7WString" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 11, "Timer variable type", "Timer" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 12, "Counter variable type", "Counter" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
+                values: new object[] { 13, "DateTime variable type", "DataTime" });
+
+            migrationBuilder.InsertData(
+                table: "S7WordLen",
+                columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[] { 14, "DateTimeLong variable type", "DataTimeLong" });
 
             migrationBuilder.InsertData(
                 table: "TagGroup",
                 columns: new[] { "Id", "Clock", "Enable", "Name", "Update" },
-                values: new object[] { new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 10, false, "Group 01", 10 });
+                values: new object[] { new Guid("0f62b113-dd0d-4fcf-9ed9-9ae0acd1b092"), 47, true, "CbGroup", 47 });
 
             migrationBuilder.InsertData(
                 table: "TagGroup",
                 columns: new[] { "Id", "Clock", "Enable", "Name", "Update" },
-                values: new object[] { new Guid("0f62b113-dd0d-4fcf-9ed9-9ae0acd1b092"), 47, true, "CbGroup", 47 });
+                values: new object[] { new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 10, false, "Group 01", 10 });
 
             migrationBuilder.InsertData(
                 table: "Connection",
@@ -575,17 +572,12 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "Tag",
                 columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
-                values: new object[] { new Guid("b12ab89c-9d46-409c-0bd3-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW0", "Tag01", 0, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
-
-            migrationBuilder.InsertData(
-                table: "Tag",
-                columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
-                values: new object[] { new Guid("d12d5401-a90f-40a4-3b5d-08d6b0418047"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW2", "Tag02", 2, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
-
-            migrationBuilder.InsertData(
-                table: "Tag",
-                columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
                 values: new object[] { new Guid("0d754a9d-1389-4f04-0bd4-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW4", "Tag03", 4, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
+
+            migrationBuilder.InsertData(
+                table: "Tag",
+                columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
+                values: new object[] { new Guid("49d37f56-c1b7-40d7-35aa-08d6b1da6471"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW10", "Tag06", 10, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
 
             migrationBuilder.InsertData(
                 table: "Tag",
@@ -600,7 +592,12 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
             migrationBuilder.InsertData(
                 table: "Tag",
                 columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
-                values: new object[] { new Guid("49d37f56-c1b7-40d7-35aa-08d6b1da6471"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW10", "Tag06", 10, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
+                values: new object[] { new Guid("b12ab89c-9d46-409c-0bd3-08d6ad638d40"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW0", "Tag01", 0, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
+
+            migrationBuilder.InsertData(
+                table: "Tag",
+                columns: new[] { "Id", "AnalogDigitalSignal", "AreaId", "AutomationTypeId", "BitOfByte", "ConnectionId", "DataBlock", "Enable", "InputOutput", "Invoke", "MemoryAddress", "Name", "Offset", "StringLength", "TagGroupId", "WordLenId" },
+                values: new object[] { new Guid("d12d5401-a90f-40a4-3b5d-08d6b0418047"), "Analog", 132, 1, (byte)0, new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 10, true, "R", true, "DB10.DBW2", "Tag02", 2, 1, new Guid("a87832e1-f49b-4a3f-bfbe-7df80d9a7cb2"), 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AutomationType_Name",

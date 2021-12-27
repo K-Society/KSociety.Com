@@ -1,7 +1,6 @@
-﻿namespace KSociety.Com.Driver.Enip.Eipnet
+﻿namespace KSociety.Com.Driver.Enip.Eipnet;
+
+internal interface IExpandable
 {
-    internal interface IExpandable
-    {
-        void Expand(byte[] dataArray, int offset, out int newOffset);
-    }
+    void Expand(byte[] dataArray, int offset, out int newOffset);
 }

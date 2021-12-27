@@ -7,50 +7,49 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue
+namespace KSociety.Com.Srv.Agent.Query.Common.ListKeyValue;
+
+public class AutomationTypeId : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IAutomationTypeId
 {
-    public class AutomationTypeId : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue.IAutomationTypeId
+    public AutomationTypeId(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public AutomationTypeId(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public ListKeyValuePair<int, string> LoadData(CancellationToken cancellationToken = default)
+    {
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.AutomationTypeId(ConnectionOptions(cancellationToken));
+            }
         }
-
-        public ListKeyValuePair<int, string> LoadData(CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.AutomationTypeId(ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return null;
+    }
 
-        public async ValueTask<ListKeyValuePair<int, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+    public async ValueTask<ListKeyValuePair<int, string>> LoadDataAsync(CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.AutomationTypeIdAsync(ConnectionOptions(cancellationToken));
-                }
+                return await client.AutomationTypeIdAsync(ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return null;
     }
 }

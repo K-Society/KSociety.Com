@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using KSociety.Base.Infra.Shared.Interface;
 using KSociety.Com.Domain.Entity.Common;
 
-namespace KSociety.Com.Domain.Repository.Common
-{
-    public interface IAnalogDigital : IRepositoryBase<AnalogDigital>
-    {
-        IEnumerable<AnalogDigital> GetAllAnalogDigital();
+namespace KSociety.Com.Domain.Repository.Common;
 
-        ValueTask<IEnumerable<AnalogDigital>> GetAllAnalogDigitalAsync();
-    }
+public interface IAnalogDigital : IRepositoryBase<AnalogDigital>
+{
+    IEnumerable<AnalogDigital> GetAllAnalogDigital();
+
+    ValueTask<IEnumerable<AnalogDigital>> GetAllAnalogDigitalAsync();
 }

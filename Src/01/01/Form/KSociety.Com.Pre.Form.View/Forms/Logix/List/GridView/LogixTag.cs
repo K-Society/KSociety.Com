@@ -2,20 +2,19 @@
 using KSociety.Com.Pre.Form.View.Abstractions.Logix.List.GridView;
 using System.ComponentModel;
 
-namespace KSociety.Com.Pre.Form.View.Forms.Logix.List.GridView
+namespace KSociety.Com.Pre.Form.View.Forms.Logix.List.GridView;
+
+public partial class LogixTag : DataGridView<Srv.Dto.Logix.LogixTag, Srv.Dto.Logix.List.GridView.LogixTag>, ILogixTag
 {
-    public partial class LogixTag : DataGridView<Srv.Dto.Logix.LogixTag, Srv.Dto.Logix.List.GridView.LogixTag>, ILogixTag
+    public LogixTag()
     {
-        public LogixTag()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        public LogixTag(IContainer container)
-        {
-            container.Add(this);
+    public LogixTag(IContainer container)
+    {
+        container.Add(this);
 
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

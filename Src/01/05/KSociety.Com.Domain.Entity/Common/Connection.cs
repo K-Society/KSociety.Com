@@ -3,70 +3,70 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Domain.Entity.Common
+namespace KSociety.Com.Domain.Entity.Common;
+
+public class Connection : Base.Domain.Shared.Class.Entity
 {
-    public class Connection : Base.Domain.Shared.Class.Entity
+    #region [Propery]
+    //public Guid ConnectionId { get; protected set; }
+    public Guid Id { get; protected set; }
+
+    public int AutomationTypeId { get; protected set; }
+    public virtual AutomationType AutomationType { get; protected set; }
+
+    public string Name { get; protected set; }
+
+    public string Ip { get; protected set; }
+
+    public bool Enable { get; protected set; }
+
+    public bool WriteEnable { get; protected set; }
+
+    //public virtual S7.Connection S7Connection { get; private set; }
+    //public virtual Logix.Connection LogixConnection { get; private set; }
+    public virtual ICollection<Tag> Tags { get; set; }
+    #endregion
+
+    public static SemaphoreSlim ReadSemaphore { get; } = new(1, 1);
+    public static SemaphoreSlim WriteSemaphore { get; } = new(1, 1);
+
+    //public Connection()
+    //    : base(LogManager.GetCurrentClassLogger())
+    //{
+
+    //}
+
+    #region [Constructor]
+    //public Connection()
+    //:base()
+    //{
+
+    //}
+
+    public Connection(/*ILogger<Connection> logger*/)
+        //: base(logger)
     {
-        #region [Propery]
-        //public Guid ConnectionId { get; protected set; }
-        public Guid Id { get; protected set; }
 
-        public int AutomationTypeId { get; protected set; }
-        public virtual AutomationType AutomationType { get; protected set; }
+    }
 
-        public string Name { get; protected set; }
+    //public Connection(
+    //    //ILogger<Connection> logger,
+    //    int automationTypeId,
+    //    string name,
+    //    string ip,
+    //    bool enable,
+    //    bool writeEnable
+    //)
+    //    : base(/*LogManager.GetCurrentClassLogger()*/)
+    //{
+    //    AutomationTypeId = automationTypeId;
+    //    Name = name;
+    //    Ip = ip;
+    //    Enable = enable;
+    //    WriteEnable = writeEnable;
+    //}
 
-        public string Ip { get; protected set; }
-
-        public bool Enable { get; protected set; }
-
-        public bool WriteEnable { get; protected set; }
-
-        //public virtual S7.Connection S7Connection { get; private set; }
-        //public virtual Logix.Connection LogixConnection { get; private set; }
-        public virtual ICollection<Tag> Tags { get; set; }
-        #endregion
-
-        public static SemaphoreSlim ReadSemaphore { get; } = new(1, 1);
-        public static SemaphoreSlim WriteSemaphore { get; } = new(1, 1);
-
-        //public Connection()
-        //    : base(LogManager.GetCurrentClassLogger())
-        //{
-
-        //}
-
-        #region [Constructor]
-        //public Connection()
-        //:base()
-        //{
-
-        //}
-
-        public Connection(/*ILogger<Connection> logger*/)
-            //: base(logger)
-        {
-
-        }
-
-        //public Connection(
-        //    //ILogger<Connection> logger,
-        //    int automationTypeId,
-        //    string name,
-        //    string ip,
-        //    bool enable,
-        //    bool writeEnable
-        //)
-        //    : base(/*LogManager.GetCurrentClassLogger()*/)
-        //{
-        //    AutomationTypeId = automationTypeId;
-        //    Name = name;
-        //    Ip = ip;
-        //    Enable = enable;
-        //    WriteEnable = writeEnable;
-        //}
-
-        public Connection(
+    public Connection(
             //ILogger<Connection> logger,
             int automationTypeId,
             string name,
@@ -75,15 +75,15 @@ namespace KSociety.Com.Domain.Entity.Common
             bool writeEnable
         )
         //:base(logger)
-        {
-            AutomationTypeId = automationTypeId;
-            Name = name;
-            Ip = ip;
-            Enable = enable;
-            WriteEnable = writeEnable;
-        }
+    {
+        AutomationTypeId = automationTypeId;
+        Name = name;
+        Ip = ip;
+        Enable = enable;
+        WriteEnable = writeEnable;
+    }
 
-        public Connection(
+    public Connection(
             //Guid connectionId,
             Guid id,
             int automationTypeId,
@@ -92,36 +92,36 @@ namespace KSociety.Com.Domain.Entity.Common
             bool enable,
             bool writeEnable
         )
-            //: base(new ILogger<Connection>())
-        {
-            Id = id;
-            AutomationTypeId = automationTypeId;
-            Name = name;
-            Ip = ip;
-            Enable = enable;
-            WriteEnable = writeEnable;
-        }
+        //: base(new ILogger<Connection>())
+    {
+        Id = id;
+        AutomationTypeId = automationTypeId;
+        Name = name;
+        Ip = ip;
+        Enable = enable;
+        WriteEnable = writeEnable;
+    }
 
-        //public Connection(
-        //    //ILogger<Connection> logger,
-        //    Guid id,
-        //    int automationTypeId,
-        //    string name,
-        //    string ip,
-        //    bool enable,
-        //    bool writeEnable
-        //)
-        ////:base(logger)
-        //{
-        //    Id = id;
-        //    AutomationTypeId = automationTypeId;
-        //    Name = name;
-        //    Ip = ip;
-        //    Enable = enable;
-        //    WriteEnable = writeEnable;
-        //}
+    //public Connection(
+    //    //ILogger<Connection> logger,
+    //    Guid id,
+    //    int automationTypeId,
+    //    string name,
+    //    string ip,
+    //    bool enable,
+    //    bool writeEnable
+    //)
+    ////:base(logger)
+    //{
+    //    Id = id;
+    //    AutomationTypeId = automationTypeId;
+    //    Name = name;
+    //    Ip = ip;
+    //    Enable = enable;
+    //    WriteEnable = writeEnable;
+    //}
 
-        public Connection(
+    public Connection(
             //ILogger logger,
             Guid connectionId,
             int automationTypeId,
@@ -131,18 +131,18 @@ namespace KSociety.Com.Domain.Entity.Common
             bool writeEnable,
             S7.S7Connection connection
         )
-            //: base(LogManager.GetCurrentClassLogger())
-        {
-            Id = connectionId;
-            AutomationTypeId = automationTypeId;
-            Name = name;
-            Ip = ip;
-            Enable = enable;
-            WriteEnable = writeEnable;
-            //S7Connection = connection;
-        }
+        //: base(LogManager.GetCurrentClassLogger())
+    {
+        Id = connectionId;
+        AutomationTypeId = automationTypeId;
+        Name = name;
+        Ip = ip;
+        Enable = enable;
+        WriteEnable = writeEnable;
+        //S7Connection = connection;
+    }
 
-        public Connection(
+    public Connection(
             //ILogger logger,
             Guid connectionId,
             int automationTypeId,
@@ -153,74 +153,73 @@ namespace KSociety.Com.Domain.Entity.Common
             Logix.LogixConnection connection
         )
         //: base(LogManager.GetCurrentClassLogger())
-        {
-            Id = connectionId;
-            AutomationTypeId = automationTypeId;
-            Name = name;
-            Ip = ip;
-            Enable = enable;
-            WriteEnable = writeEnable;
-            //LogixConnection = connection;
-        }
+    {
+        Id = connectionId;
+        AutomationTypeId = automationTypeId;
+        Name = name;
+        Ip = ip;
+        Enable = enable;
+        WriteEnable = writeEnable;
+        //LogixConnection = connection;
+    }
 
-        //public void SetS7Connection(S7.S7Connection connection)
+    //public void SetS7Connection(S7.S7Connection connection)
+    //{
+    //    //S7Connection = connection;
+    //}
+
+    //public void SetLogixConnection(Logix.LogixConnection connection)
+    //{
+    //    //LogixConnection = connection;
+    //}
+
+    //public abstract void Initiate();
+
+    #endregion
+    public virtual void Initiate()
+    {
+        //switch (AutomationTypeId)
         //{
-        //    //S7Connection = connection;
+        //    case 0:
+        //        //S7Connection?.Initiate(this);
+        //        break;
+
+        //    case 1:
+        //        break;
         //}
+    }
 
-        //public void SetLogixConnection(Logix.LogixConnection connection)
-        //{
-        //    //LogixConnection = connection;
-        //}
+    public virtual ValueTask ReadTags()
+    {
+        return default;
+    }
 
-        //public abstract void Initiate();
+    public virtual bool ConnectionStatusRead()
+    {
+        return false;
+    }
 
-        #endregion
-        public virtual void Initiate()
-        {
-            //switch (AutomationTypeId)
-            //{
-            //    case 0:
-            //        //S7Connection?.Initiate(this);
-            //        break;
+    public virtual bool ConnectionStatusWrite()
+    {
+        return false;
+    }
 
-            //    case 1:
-            //        break;
-            //}
-        }
+    //public async Task ReadTags()
+    //{
+    //    switch (AutomationTypeId)
+    //    {
+    //        case 0:
+    //            //await S7Connection.ReadTags();
+    //            break;
 
-        public virtual ValueTask ReadTags()
-        {
-            return default;
-        }
+    //        case 1:
+    //            break;
+    //    }
+    //}
 
-        public virtual bool ConnectionStatusRead()
-        {
-            return false;
-        }
-
-        public virtual bool ConnectionStatusWrite()
-        {
-            return false;
-        }
-
-        //public async Task ReadTags()
-        //{
-        //    switch (AutomationTypeId)
-        //    {
-        //        case 0:
-        //            //await S7Connection.ReadTags();
-        //            break;
-
-        //        case 1:
-        //            break;
-        //    }
-        //}
-
-        protected override void DisposeManagedResources()
-        {
-            ReadSemaphore.Dispose();
-            WriteSemaphore.Dispose();
-        }
+    protected override void DisposeManagedResources()
+    {
+        ReadSemaphore.Dispose();
+        WriteSemaphore.Dispose();
     }
 }

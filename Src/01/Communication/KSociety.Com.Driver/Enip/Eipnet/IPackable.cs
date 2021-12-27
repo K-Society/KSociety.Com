@@ -1,7 +1,6 @@
-﻿namespace KSociety.Com.Driver.Enip.Eipnet
+﻿namespace KSociety.Com.Driver.Enip.Eipnet;
+
+internal interface IPackable
 {
-    internal interface IPackable
-    {
-        byte[] Pack();
-    }
+    byte[] Pack();
 }

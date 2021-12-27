@@ -1,7 +1,6 @@
-﻿namespace KSociety.Com.Pre.Form.View.Abstractions.Common.List.GridView
+﻿namespace KSociety.Com.Pre.Form.View.Abstractions.Common.List.GridView;
+
+public interface ITabUserControl
 {
-    public interface ITabUserControl
-    {
-        ITagGroup GetCommonTagGroup();
-    }
+    ITagGroup GetCommonTagGroup();
 }

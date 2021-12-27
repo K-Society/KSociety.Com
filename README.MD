@@ -48,7 +48,6 @@ This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Inst
 
 | GitHub Repository | NuGet | Download |
 | ------------- | ------------- | ------------- |
-| [Shared](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/Host/KSociety.Com.Srv.Host.Shared) | [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Srv.Host.Shared)](https://www.nuget.org/packages/KSociety.Com.Srv.Host.Shared) | ![NuGet](https://img.shields.io/nuget/dt/KSociety.Com.Srv.Host.Shared) |
 | [Host](https://github.com/K-Society/KSociety.Com/tree/master/Src/01/02/Host/KSociety.Com.Srv.Host) |  |  |
 
 ### 3. Application (KSociety.Com.App.)

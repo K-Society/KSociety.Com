@@ -7,23 +7,23 @@ using KSociety.Com.Domain.Repository.S7;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Infra.DataAccess.Repository.S7
+namespace KSociety.Com.Infra.DataAccess.Repository.S7;
+
+public class Connection<TContext> : Repository<TContext, Domain.Entity.S7.S7Connection, CsvClassMap.S7.Connection>, IConnection
+    where TContext : DatabaseContext
 {
-    public class Connection : Repository<ComContext, Domain.Entity.S7.S7Connection, CsvClassMap.S7.Connection>, IConnection
+    public Connection(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
+        : base(logFactory, databaseFactory)
     {
-        public Connection(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
-            : base(logFactory, databaseFactory)
-        {
-        }
+    }
 
-        public IEnumerable<Domain.Entity.S7.S7Connection> GetAllS7Connection()
-        {
-            return FindAll().OrderBy(x => x.Name).ToList();
-        }
+    public IEnumerable<Domain.Entity.S7.S7Connection> GetAllS7Connection()
+    {
+        return FindAll().OrderBy(x => x.Name).ToList();
+    }
 
-        public async ValueTask<IEnumerable<Domain.Entity.S7.S7Connection>> GetAllS7ConnectionAsync()
-        {
-            return await FindAll().OrderBy(x => x.Name).ToListAsync();
-        }
+    public async ValueTask<IEnumerable<Domain.Entity.S7.S7Connection>> GetAllS7ConnectionAsync()
+    {
+        return await FindAll().OrderBy(x => x.Name).ToListAsync();
     }
 }

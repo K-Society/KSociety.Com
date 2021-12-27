@@ -7,24 +7,24 @@ using KSociety.Com.Domain.Repository.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Infra.DataAccess.Repository.Common
+namespace KSociety.Com.Infra.DataAccess.Repository.Common;
+
+public class Tag<TContext> : Repository<TContext, Domain.Entity.Common.Tag, CsvClassMap.Common.Tag>, ITag
+    where TContext : DatabaseContext
 {
-    public class Tag : Repository<ComContext, Domain.Entity.Common.Tag, CsvClassMap.Common.Tag>, ITag
+    public Tag(ILoggerFactory logFactory, IDatabaseFactory<TContext> databaseFactory) 
+        : base(logFactory, databaseFactory)
     {
-        public Tag(ILoggerFactory logFactory, IDatabaseFactory<ComContext> databaseFactory) 
-            : base(logFactory, databaseFactory)
-        {
-        }
+    }
 
-        public IEnumerable<Domain.Entity.Common.Tag> GetAllTag()
-        {
+    public IEnumerable<Domain.Entity.Common.Tag> GetAllTag()
+    {
             
-            return FindAll().OrderBy(x => x.Name).ToList();
-        }
+        return FindAll().OrderBy(x => x.Name).ToList();
+    }
 
-        public async ValueTask<IEnumerable<Domain.Entity.Common.Tag>> GetAllTagAsync()
-        {
-            return await FindAll().OrderBy(x => x.Name).ToListAsync();
-        }
+    public async ValueTask<IEnumerable<Domain.Entity.Common.Tag>> GetAllTagAsync()
+    {
+        return await FindAll().OrderBy(x => x.Name).ToListAsync();
     }
 }

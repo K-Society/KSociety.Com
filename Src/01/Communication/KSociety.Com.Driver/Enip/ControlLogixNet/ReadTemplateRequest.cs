@@ -1,7 +1,6 @@
-﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet
+﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet;
+
+internal class ReadTemplateRequest
 {
-    internal class ReadTemplateRequest
-    {
         
-    }
 }

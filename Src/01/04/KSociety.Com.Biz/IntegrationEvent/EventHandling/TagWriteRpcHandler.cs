@@ -6,32 +6,31 @@ using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Biz.IntegrationEvent.EventHandling
+namespace KSociety.Com.Biz.IntegrationEvent.EventHandling;
+
+public class TagWriteRpcHandler : IntegrationRpcHandler<TagWriteIntegrationEvent, TagWriteIntegrationEventReply>
 {
-    public class TagWriteRpcHandler : IntegrationRpcHandler<TagWriteIntegrationEvent, TagWriteIntegrationEventReply>
+    private readonly IBiz _biz;
+
+    public TagWriteRpcHandler(
+        ILoggerFactory loggerFactory,
+        IComponentContext componentContext
+    )
+        : base(loggerFactory, componentContext)
     {
-        private readonly IBiz _biz;
-
-        public TagWriteRpcHandler(
-            ILoggerFactory loggerFactory,
-            IComponentContext componentContext
-        )
-            : base(loggerFactory, componentContext)
+        if (ComponentContext.IsRegistered<IBiz>())
         {
-            if (ComponentContext.IsRegistered<IBiz>())
-            {
-                _biz = ComponentContext.Resolve<IBiz>();
-            }
-            else
-            {
-                Logger.LogError("IBiz not Registered!");
-            }
+            _biz = ComponentContext.Resolve<IBiz>();
         }
-
-        public override async ValueTask<TagWriteIntegrationEventReply> HandleRpcAsync(TagWriteIntegrationEvent @event, CancellationToken cancellationToken = default)
+        else
         {
-            var result = await _biz.SetTagValueAsync(@event.GroupName, @event.Name, @event.Value).ConfigureAwait(false);
-            return new TagWriteIntegrationEventReply(@event.GroupName + ".automation.write", @event.GroupName, @event.Name, @event.CreationDate, result);
+            Logger.LogError("IBiz not Registered!");
         }
+    }
+
+    public override async ValueTask<TagWriteIntegrationEventReply> HandleRpcAsync(TagWriteIntegrationEvent @event, CancellationToken cancellationToken = default)
+    {
+        var result = await _biz.SetTagValueAsync(@event.GroupName, @event.Name, @event.Value).ConfigureAwait(false);
+        return new TagWriteIntegrationEventReply(@event.GroupName + ".automation.write", @event.GroupName, @event.Name, @event.CreationDate, result);
     }
 }

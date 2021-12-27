@@ -2,20 +2,19 @@
 using KSociety.Com.Pre.Form.View.Abstractions.Common.List.GridView;
 using System.ComponentModel;
 
-namespace KSociety.Com.Pre.Form.View.Forms.Common.List.GridView
+namespace KSociety.Com.Pre.Form.View.Forms.Common.List.GridView;
+
+public partial class CommonTagGroup : DataGridView<Srv.Dto.Common.TagGroup, Srv.Dto.Common.List.GridView.TagGroup>, ITagGroup
 {
-    public partial class CommonTagGroup : DataGridView<Srv.Dto.Common.TagGroup, Srv.Dto.Common.List.GridView.TagGroup>, ITagGroup
+    public CommonTagGroup()
     {
-        public CommonTagGroup()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        public CommonTagGroup(IContainer container)
-        {
-            container.Add(this);
+    public CommonTagGroup(IContainer container)
+    {
+        container.Add(this);
 
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
