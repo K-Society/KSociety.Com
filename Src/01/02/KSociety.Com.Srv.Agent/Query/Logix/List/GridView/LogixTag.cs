@@ -6,50 +6,49 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView
+namespace KSociety.Com.Srv.Agent.Query.Logix.List.GridView;
+
+public class LogixTag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixTag
 {
-    public class LogixTag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Logix.List.GridView.ILogixTag
+    public LogixTag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public LogixTag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public Srv.Dto.Logix.List.GridView.LogixTag LoadAllRecords(CancellationToken cancellationToken = default)
+    {
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.LogixTag(ConnectionOptions(cancellationToken));
+            }
         }
-
-        public Srv.Dto.Logix.List.GridView.LogixTag LoadAllRecords(CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.LogixTag(ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return null;
+    }
 
-        public async ValueTask<Srv.Dto.Logix.List.GridView.LogixTag> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    public async ValueTask<Srv.Dto.Logix.List.GridView.LogixTag> LoadAllRecordsAsync(CancellationToken cancellationToken = default)
+    {
+        try
         {
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.LogixTagAsync(ConnectionOptions(cancellationToken));
-                }
+                return await client.LogixTagAsync(ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return null;
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return null;
     }
 }

@@ -7,52 +7,51 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.Common
+namespace KSociety.Com.Srv.Agent.Query.Common;
+
+public class TagGroup : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ITagGroup
 {
-    public class TagGroup : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.Common.ITagGroup
+    public TagGroup(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public TagGroup(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public Srv.Dto.Common.TagGroup Find(IdObject idObject, CancellationToken cancellationToken = default)
+    {
+        Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.GetTagGroupById(idObject, ConnectionOptions(cancellationToken));
+            }
         }
-
-        public Srv.Dto.Common.TagGroup Find(IdObject idObject, CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.GetTagGroupById(idObject, ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return new Dto.Common.TagGroup();
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return new Dto.Common.TagGroup();
+    }
 
-        public async ValueTask<Srv.Dto.Common.TagGroup> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
+    public async ValueTask<Srv.Dto.Common.TagGroup> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
+    {
+        Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
+        try
         {
-            Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.GetTagGroupByIdAsync(idObject, ConnectionOptions(cancellationToken));
-                }
+                return await client.GetTagGroupByIdAsync(idObject, ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return await new ValueTask<Dto.Common.TagGroup>();
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return await new ValueTask<Dto.Common.TagGroup>();
     }
 }

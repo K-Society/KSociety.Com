@@ -7,52 +7,51 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Srv.Agent.Query.S7.Model
+namespace KSociety.Com.Srv.Agent.Query.S7.Model;
+
+public class S7Tag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Tag
 {
-    public class S7Tag : KSociety.Base.Srv.Agent.Connection, KSociety.Com.Srv.Agent.Interface.Query.S7.Model.IS7Tag
+    public S7Tag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
+        : base(agentConfiguration, loggerFactory)
     {
-        public S7Tag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
-            : base(agentConfiguration, loggerFactory)
+
+    }
+
+    public Srv.Dto.S7.Model.S7Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
+    {
+        Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
+        try
         {
+            using (Channel)
+            {
+                var client = Channel.CreateGrpcService<IQuery>();
 
+                return client.GetS7TagModelById(idObject, ConnectionOptions(cancellationToken));
+            }
         }
-
-        public Srv.Dto.S7.Model.S7Tag Find(IdObject idObject, CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            try
-            {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQuery>();
-
-                    return client.GetS7TagModelById(idObject, ConnectionOptions(cancellationToken));
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return new Dto.S7.Model.S7Tag();
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
         }
+        return new Dto.S7.Model.S7Tag();
+    }
 
-        public async ValueTask<Srv.Dto.S7.Model.S7Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
+    public async ValueTask<Srv.Dto.S7.Model.S7Tag> FindAsync(IdObject idObject, CancellationToken cancellationToken = default)
+    {
+        Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
+        try
         {
-            Logger.LogTrace("Query Agent: " + GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " " + idObject.Id);
-            try
+            using (Channel)
             {
-                using (Channel)
-                {
-                    var client = Channel.CreateGrpcService<IQueryAsync>();
+                var client = Channel.CreateGrpcService<IQueryAsync>();
 
-                    return await client.GetS7TagModelByIdAsync(idObject, ConnectionOptions(cancellationToken));
-                }
+                return await client.GetS7TagModelByIdAsync(idObject, ConnectionOptions(cancellationToken));
             }
-            catch (Exception ex)
-            {
-                Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
-            }
-            return await new ValueTask<Dto.S7.Model.S7Tag>();
         }
+        catch (Exception ex)
+        {
+            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " " + ex.StackTrace);
+        }
+        return await new ValueTask<Dto.S7.Model.S7Tag>();
     }
 }

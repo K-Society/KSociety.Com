@@ -1,9 +1,8 @@
-﻿namespace KSociety.Com.Pre.Form.View.Abstractions.S7.List.GridView
-{
-    public interface ITabUserControl
-    {
-        IS7Connection GetS7Connection();
+﻿namespace KSociety.Com.Pre.Form.View.Abstractions.S7.List.GridView;
 
-        IS7Tag GetS7Tag();
-    }
+public interface ITabUserControl
+{
+    IS7Connection GetS7Connection();
+
+    IS7Tag GetS7Tag();
 }

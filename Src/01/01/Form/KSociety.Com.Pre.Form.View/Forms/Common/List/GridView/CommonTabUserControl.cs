@@ -9,39 +9,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KSociety.Com.Pre.Form.View.Forms.Common.List.GridView
+namespace KSociety.Com.Pre.Form.View.Forms.Common.List.GridView;
+
+public partial class CommonTabUserControl : UserControl, ITabUserControl
 {
-    public partial class CommonTabUserControl : UserControl, ITabUserControl
+    public CommonTabUserControl()
     {
-        public CommonTabUserControl()
+        InitializeComponent();
+    }
+
+    public ITagGroup GetCommonTagGroup()
+    {
+        return comCommonTagGroup;
+    }
+
+    private void TabControlCommon_Selected(object sender, TabControlEventArgs e)
+    {
+        switch (e.TabPage.Name)
         {
-            InitializeComponent();
-        }
+            case "commonTagGroup":
+                comCommonTagGroup.LoadDataGrid();
+                break;
 
-        public ITagGroup GetCommonTagGroup()
-        {
-            return comCommonTagGroup;
-        }
+            //case "commonConnection" :
+            //    comCommonConnection.LoadDataGrid();
+            //    break;
 
-        private void TabControlCommon_Selected(object sender, TabControlEventArgs e)
-        {
-            switch (e.TabPage.Name)
-            {
-                case "commonTagGroup":
-                    comCommonTagGroup.LoadDataGrid();
-                    break;
+            //case "commonTag" :
+            //    comCommonTag.LoadDataGrid();
+            //    break;
 
-                //case "commonConnection" :
-                //    comCommonConnection.LoadDataGrid();
-                //    break;
-
-                //case "commonTag" :
-                //    comCommonTag.LoadDataGrid();
-                //    break;
-
-                default:
-                    break;
-            }
+            default:
+                break;
         }
     }
 }

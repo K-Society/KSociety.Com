@@ -7,19 +7,22 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
     [DbContext(typeof(SqlServerComContext))]
-    [Migration("20210817124422_View")]
+    [Migration("20211222130405_View")]
     partial class View
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.9")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.AnalogDigital", b =>
                 {
@@ -29,7 +32,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 
                     b.HasKey("AnalogDigitalSignal");
 
-                    b.ToTable("AnalogDigital");
+                    b.ToTable("AnalogDigital", (string)null);
 
                     b.HasData(
                         new
@@ -62,7 +65,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("AutomationType");
+                    b.ToTable("AutomationType", (string)null);
 
                     b.HasData(
                         new
@@ -112,7 +115,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("BitName")
                         .IsUnique();
 
-                    b.ToTable("Bit");
+                    b.ToTable("Bit", (string)null);
 
                     b.HasData(
                         new
@@ -189,7 +192,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("Name", "AutomationTypeId")
                         .IsUnique();
 
-                    b.ToTable("Connection");
+                    b.ToTable("Connection", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
                 });
@@ -210,7 +213,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("InputOutputName")
                         .IsUnique();
 
-                    b.ToTable("InOut");
+                    b.ToTable("InOut", (string)null);
 
                     b.HasData(
                         new
@@ -289,7 +292,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("Name", "AutomationTypeId")
                         .IsUnique();
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tag", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
                 });
@@ -319,7 +322,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("TagGroup");
+                    b.ToTable("TagGroup", (string)null);
 
                     b.HasData(
                         new
@@ -360,7 +363,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("AreaName")
                         .IsUnique();
 
-                    b.ToTable("S7Area");
+                    b.ToTable("S7Area", (string)null);
 
                     b.HasData(
                         new
@@ -444,7 +447,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 
                     b.HasIndex("WordLenId");
 
-                    b.ToTable("S7BlockArea");
+                    b.ToTable("S7BlockArea", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.S7.ConnectionType", b =>
@@ -462,7 +465,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("S7ConnectionType");
+                    b.ToTable("S7ConnectionType", (string)null);
 
                     b.HasData(
                         new
@@ -537,7 +540,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("CpuTypeName")
                         .IsUnique();
 
-                    b.ToTable("S7CpuType");
+                    b.ToTable("S7CpuType", (string)null);
 
                     b.HasData(
                         new
@@ -598,7 +601,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasIndex("WordLenName")
                         .IsUnique();
 
-                    b.ToTable("S7WordLen");
+                    b.ToTable("S7WordLen", (string)null);
 
                     b.HasData(
                         new
@@ -942,9 +945,23 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasDiscriminator().HasValue(2);
                 });
 
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusConnection", b =>
                 {
                     b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
+
+                    b.HasDiscriminator().HasValue(3);
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
 
                     b.HasDiscriminator().HasValue(3);
                 });
@@ -1002,30 +1019,6 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                             Rack = (short)0,
                             Slot = (short)1
                         });
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
-
-                    b.Property<int?>("Port")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue(4);
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
-
-                    b.HasDiscriminator().HasValue(2);
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
-
-                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.S7.S7Tag", b =>
@@ -1175,6 +1168,16 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                         });
                 });
 
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
+
+                    b.Property<int?>("Port")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue(4);
+                });
+
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpTag", b =>
                 {
                     b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
@@ -1187,9 +1190,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasOne("KSociety.Com.Domain.Entity.Common.AutomationType", "AutomationType")
                         .WithMany("Connections")
                         .HasForeignKey("AutomationTypeId")
-                        .HasConstraintName("ForeignKey_Connection_AutomationType")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Connection_AutomationType");
 
                     b.Navigation("AutomationType");
                 });
@@ -1199,37 +1202,37 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasOne("KSociety.Com.Domain.Entity.Common.AnalogDigital", "AnalogDigital")
                         .WithMany("Tags")
                         .HasForeignKey("AnalogDigitalSignal")
-                        .HasConstraintName("ForeignKey_Tag_AnalogDigital")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Tag_AnalogDigital");
 
                     b.HasOne("KSociety.Com.Domain.Entity.Common.AutomationType", "AutomationType")
                         .WithMany("Tags")
                         .HasForeignKey("AutomationTypeId")
-                        .HasConstraintName("ForeignKey_Tag_AutomationType")
                         .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Tag_AutomationType");
 
                     b.HasOne("KSociety.Com.Domain.Entity.Common.Connection", "Connection")
                         .WithMany("Tags")
                         .HasForeignKey("ConnectionId")
-                        .HasConstraintName("ForeignKey_Tag_ConnectionId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Tag_ConnectionId");
 
                     b.HasOne("KSociety.Com.Domain.Entity.Common.InOut", "InOut")
                         .WithMany("Tags")
                         .HasForeignKey("InputOutput")
-                        .HasConstraintName("ForeignKey_Tag_InOut")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Tag_InOut");
 
                     b.HasOne("KSociety.Com.Domain.Entity.Common.TagGroup", "TagGroup")
                         .WithMany("Tags")
                         .HasForeignKey("TagGroupId")
-                        .HasConstraintName("ForeignKey_Tag_TagGroup")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_Tag_TagGroup");
 
                     b.Navigation("AnalogDigital");
 
@@ -1247,9 +1250,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasOne("KSociety.Com.Domain.Entity.S7.Area", "Area")
                         .WithMany("S7BlockAreas")
                         .HasForeignKey("AreaId")
-                        .HasConstraintName("ForeignKey_S7BlockArea_Area")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_S7BlockArea_Area");
 
                     b.HasOne("KSociety.Com.Domain.Entity.S7.S7Connection", "Connection")
                         .WithMany()
@@ -1260,9 +1263,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasOne("KSociety.Com.Domain.Entity.S7.WordLen", "WordLen")
                         .WithMany("S7BlockAreas")
                         .HasForeignKey("WordLenId")
-                        .HasConstraintName("ForeignKey_S7BlockArea_WordLen")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("ForeignKey_S7BlockArea_WordLen");
 
                     b.Navigation("Area");
 

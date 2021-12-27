@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace KSociety.Com.Pre.Web.App.Areas.Logix.Controllers
+namespace KSociety.Com.Pre.Web.App.Areas.Logix.Controllers;
+
+[Area("Logix")]
+public class HomeController : Controller
 {
-    [Area("Logix")]
-    public class HomeController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        return View();
     }
 }

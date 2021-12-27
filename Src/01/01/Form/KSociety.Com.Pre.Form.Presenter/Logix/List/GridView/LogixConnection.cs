@@ -7,31 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Pre.Form.Presenter.Logix.List.GridView
+namespace KSociety.Com.Pre.Form.Presenter.Logix.List.GridView;
+
+public class LogixConnection
+    : Presenter<
+        ILogixConnection,
+        Srv.Dto.Logix.LogixConnection,
+        App.Dto.Req.Remove.Logix.LogixConnection,
+        App.Dto.Req.Add.Logix.LogixConnection,
+        App.Dto.Res.Add.Logix.LogixConnection,
+        App.Dto.Req.Update.Logix.LogixConnection,
+        App.Dto.Res.Update.Logix.LogixConnection,
+        App.Dto.Req.Copy.Logix.LogixConnection,
+        App.Dto.Res.Copy.Logix.LogixConnection,
+        App.Dto.Req.ModifyField.Logix.LogixConnection,
+        Srv.Dto.Logix.List.GridView.LogixConnection,
+        Srv.Agent.Interface.Command.Logix.ILogixConnection,
+        Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection>
 {
-    public class LogixConnection
-        : Presenter<
-            ILogixConnection,
-            Srv.Dto.Logix.LogixConnection,
-            App.Dto.Req.Remove.Logix.LogixConnection,
-            App.Dto.Req.Add.Logix.LogixConnection,
-            App.Dto.Res.Add.Logix.LogixConnection,
-            App.Dto.Req.Update.Logix.LogixConnection,
-            App.Dto.Res.Update.Logix.LogixConnection,
-            App.Dto.Req.Copy.Logix.LogixConnection,
-            App.Dto.Res.Copy.Logix.LogixConnection,
-            App.Dto.Req.ModifyField.Logix.LogixConnection,
-            Srv.Dto.Logix.List.GridView.LogixConnection,
-            Srv.Agent.Interface.Command.Logix.ILogixConnection,
-            Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection>
+    public LogixConnection(ILogixConnection iView,
+        Srv.Agent.Interface.Command.Logix.ILogixConnection commandModel,
+        Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection queryModel,
+        ILoggerFactory loggerFactory)
+        : base(iView, commandModel, queryModel, loggerFactory)
     {
-        public LogixConnection(ILogixConnection iView,
-            Srv.Agent.Interface.Command.Logix.ILogixConnection commandModel,
-            Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection queryModel,
-            ILoggerFactory loggerFactory)
-            : base(iView, commandModel, queryModel, loggerFactory)
-        {
-            //View.DefaultValuesNeeded += ViewOnDefaultValuesNeeded;
-        }
+        //View.DefaultValuesNeeded += ViewOnDefaultValuesNeeded;
     }
 }

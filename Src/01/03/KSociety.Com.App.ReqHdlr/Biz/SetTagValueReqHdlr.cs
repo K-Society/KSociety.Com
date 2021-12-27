@@ -7,59 +7,58 @@ using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.App.ReqHdlr.Biz
+namespace KSociety.Com.App.ReqHdlr.Biz;
+
+public class SetTagValueReqHdlr :
+    IRequestHandlerWithResponse<SetTagValue, KSociety.Com.App.Dto.Res.Biz.SetTagValue>,
+    IRequestHandlerWithResponseAsync<SetTagValue, KSociety.Com.App.Dto.Res.Biz.SetTagValue>
 {
-    public class SetTagValueReqHdlr :
-        IRequestHandlerWithResponse<SetTagValue, KSociety.Com.App.Dto.Res.Biz.SetTagValue>,
-        IRequestHandlerWithResponseAsync<SetTagValue, KSociety.Com.App.Dto.Res.Biz.SetTagValue>
+    private readonly ILoggerFactory _loggerFactory;
+    private readonly ILogger<SetTagValueReqHdlr> _logger;
+    private readonly IBiz _startup;
+
+    public SetTagValueReqHdlr(ILoggerFactory loggerFactory, IBiz startup /*IMapper mapper*/)
     {
-        private readonly ILoggerFactory _loggerFactory;
-        private readonly ILogger<SetTagValueReqHdlr> _logger;
-        private readonly IBiz _startup;
+        _loggerFactory = loggerFactory;
+        _logger = _loggerFactory.CreateLogger<SetTagValueReqHdlr>();
+        _startup = startup;
+        //_mapper = mapper;
+    }
 
-        public SetTagValueReqHdlr(ILoggerFactory loggerFactory, IBiz startup /*IMapper mapper*/)
+    public KSociety.Com.App.Dto.Res.Biz.SetTagValue Execute(SetTagValue request)
+    {
+        var output = new KSociety.Com.App.Dto.Res.Biz.SetTagValue();
+
+        try
         {
-            _loggerFactory = loggerFactory;
-            _logger = _loggerFactory.CreateLogger<SetTagValueReqHdlr>();
-            _startup = startup;
-            //_mapper = mapper;
+            var result = _startup.SetTagValue(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value));
+            output.GroupName = result.GroupName;
+            output.TagName = result.TagName;
+            output.Result = true;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError("SetTagValue Execute:  " + ex.Message + " - " + ex.StackTrace);
         }
 
-        public KSociety.Com.App.Dto.Res.Biz.SetTagValue Execute(SetTagValue request)
+        return output;
+    }
+
+    public async ValueTask<KSociety.Com.App.Dto.Res.Biz.SetTagValue> ExecuteAsync(SetTagValue request, CancellationToken cancellationToken = default)
+    {
+        var output = new KSociety.Com.App.Dto.Res.Biz.SetTagValue();
+        //_logger.LogTrace("GetTagValue ExecuteAsync: " + request.GroupName + " - " + request.TagName + " - " + _startup.SystemGroups.Count);
+        try
         {
-            var output = new KSociety.Com.App.Dto.Res.Biz.SetTagValue();
-
-            try
-            {
-                var result = _startup.SetTagValue(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value));
-                output.GroupName = result.GroupName;
-                output.TagName = result.TagName;
-                output.Result = true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("SetTagValue Execute:  " + ex.Message + " - " + ex.StackTrace);
-            }
-
-            return output;
+            var result = await _startup.SetTagValueAsync(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value)).ConfigureAwait(false);
+            output.GroupName = result.GroupName;
+            output.TagName = result.TagName;
+            output.Result = true;
         }
-
-        public async ValueTask<KSociety.Com.App.Dto.Res.Biz.SetTagValue> ExecuteAsync(SetTagValue request, CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            var output = new KSociety.Com.App.Dto.Res.Biz.SetTagValue();
-            //_logger.LogTrace("GetTagValue ExecuteAsync: " + request.GroupName + " - " + request.TagName + " - " + _startup.SystemGroups.Count);
-            try
-            {
-                var result = await _startup.SetTagValueAsync(new TagWriteIntegrationEvent(request.GroupName + ".automation.write", request.GroupName + ".automation.write.client.com", request.GroupName, request.TagName, request.Value)).ConfigureAwait(false);
-                output.GroupName = result.GroupName;
-                output.TagName = result.TagName;
-                output.Result = true;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("SetTagValue Execute:  " + ex.Message + " - " + ex.StackTrace);
-            }
-            return output;
+            _logger.LogError("SetTagValue Execute:  " + ex.Message + " - " + ex.StackTrace);
         }
+        return output;
     }
 }

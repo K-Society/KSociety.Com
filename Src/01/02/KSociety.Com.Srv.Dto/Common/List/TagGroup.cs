@@ -2,19 +2,18 @@
 using KSociety.Base.Srv.Dto;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.Common.List
+namespace KSociety.Com.Srv.Dto.Common.List;
+
+[ProtoContract]
+public class TagGroup : ObjectList<Common.TagGroup>
 {
-    [ProtoContract]
-    public class TagGroup : ObjectList<Common.TagGroup>
+    public TagGroup()
     {
-        public TagGroup()
-        {
 
-        }
+    }
 
-        public TagGroup(List<Common.TagGroup> tagGroups)
-        {
-            List = tagGroups;
-        }
+    public TagGroup(List<Common.TagGroup> tagGroups)
+    {
+        List = tagGroups;
     }
 }

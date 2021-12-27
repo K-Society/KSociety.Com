@@ -3,28 +3,27 @@ using Microsoft.Net.Http.Headers;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Pre.Web.App.Models
+namespace KSociety.Com.Pre.Web.App.Models;
+
+public static class IFormFileExtensions
 {
-    public static class IFormFileExtensions
+    public static string GetFilename(this IFormFile file)
     {
-        public static string GetFilename(this IFormFile file)
-        {
-            return ContentDispositionHeaderValue.Parse(
-                file.ContentDisposition).FileName.ToString().Trim('"');
-        }
+        return ContentDispositionHeaderValue.Parse(
+            file.ContentDisposition).FileName.ToString().Trim('"');
+    }
 
-        public static async Task<MemoryStream> GetFileStream(this IFormFile file)
-        {
-            MemoryStream fileStream = new();
-            await file.CopyToAsync(fileStream);
-            return fileStream;
-        }
+    public static async Task<MemoryStream> GetFileStream(this IFormFile file)
+    {
+        MemoryStream fileStream = new();
+        await file.CopyToAsync(fileStream);
+        return fileStream;
+    }
 
-        public static async Task<byte[]> GetFileArray(this IFormFile file)
-        {
-            MemoryStream fileStream = new();
-            await file.CopyToAsync(fileStream);
-            return fileStream.ToArray();
-        }
+    public static async Task<byte[]> GetFileArray(this IFormFile file)
+    {
+        MemoryStream fileStream = new();
+        await file.CopyToAsync(fileStream);
+        return fileStream.ToArray();
     }
 }
