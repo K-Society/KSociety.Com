@@ -30,7 +30,6 @@ public static class Program
         }
         catch (Exception ex)
         {
-            //NLog: catch setup errors
             //logger.Error(ex, "Stopped program because of exception");
             global::Serilog.Log.Fatal(ex, "Stopped program because of exception");
             throw;
@@ -38,7 +37,6 @@ public static class Program
         finally
         {
             // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-            //NLog.LogManager.Shutdown();
 
             global::Serilog.Log.CloseAndFlush();
         }

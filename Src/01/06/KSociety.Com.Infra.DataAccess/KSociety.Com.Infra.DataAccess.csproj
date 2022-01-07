@@ -33,7 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Entity\KSociety.Com.Domain.Entity.csproj" />
     <ProjectReference Include="..\..\05\KSociety.Com.Domain.Repository\KSociety.Com.Domain.Repository.csproj" />
   </ItemGroup>
 
