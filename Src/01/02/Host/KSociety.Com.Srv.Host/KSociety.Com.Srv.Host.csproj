@@ -10,20 +10,19 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.2.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.0.63" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.0.34" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.0.91" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.0.52" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244">
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.255">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
-    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

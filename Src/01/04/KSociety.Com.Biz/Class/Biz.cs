@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
+using KSociety.Base.EventBusRabbitMQ.Helper;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.IntegrationEvent.EventHandling;
@@ -37,6 +38,8 @@ public class Biz : IBiz
 
     public IRabbitMqPersistentConnection PersistentConnection { get; }
 
+    private readonly Subscriber _subscriber;
+
     public Biz(
         ILoggerFactory loggerFactory,
         IConnectionFactory connectionFactory,
@@ -60,6 +63,8 @@ public class Biz : IBiz
         _logger.LogInformation("KBase.Business.Com startup machine name: " + _machineName);
 
         PersistentConnection = new DefaultRabbitMqPersistentConnection(_connectionFactory, _loggerFactory);
+
+        _subscriber = new Subscriber(_loggerFactory, connectionFactory, eventBusComParameters);
     }
 
     public void LoadGroup()
@@ -94,6 +99,8 @@ public class Biz : IBiz
                 ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"])
                     .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.connection.server");
 
+                //_subscriber.SubscribeClientServer<>();
+
                 #endregion
 
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke", 
@@ -102,23 +109,33 @@ public class Biz : IBiz
 
                 #region [Read]
 
-                TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
-                    new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagReadRpcClientHandler(_loggerFactory, _componentContext),
-                        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
+                //TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
+                //    new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagReadRpcClientHandler(_loggerFactory, _componentContext),
+                //        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
 
-                _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Read");
+                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Read");
 
-                ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Read"])
-                    .SubscribeRpcClient<TagReadIntegrationEventReply, TagReadRpcClientHandler>(tagGroupReady.Name + ".automation.read.client.com");
+                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Read"])
+                //    .SubscribeRpcClient<TagReadIntegrationEventReply, TagReadRpcClientHandler>(tagGroupReady.Name + ".automation.read.client.com");
 
-                TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server",
-                    new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
-                        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
+                //TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server",
+                //    new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
+                //        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
 
-                _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Read_Server");
+                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Read_Server");
 
-                ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Read_Server"])
-                    .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.read.server");
+                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Read_Server"])
+                //    .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.read.server");
+
+                _subscriber.SubscribeClientServer<
+                    TagReadRpcClientHandler, TagReadRpcServerHandler, 
+                    TagReadIntegrationEvent, TagReadIntegrationEventReply>(
+                    tagGroupReady.Name + "_Read", 
+                    "BusinessQueueRead_" + tagGroupReady.Name, 
+                    tagGroupReady.Name + ".automation.read.server", 
+                    tagGroupReady.Name + ".automation.read.client.com", 
+                    new TagReadRpcClientHandler(_loggerFactory, _componentContext), 
+                    new TagReadRpcServerHandler(_loggerFactory, _componentContext));
 
                 #endregion
 
@@ -141,6 +158,16 @@ public class Biz : IBiz
 
                 ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"])
                     .SubscribeRpcServer<TagWriteIntegrationEvent, TagWriteIntegrationEventReply, TagWriteRpcServerHandler>(tagGroupReady.Name + ".automation.write.server");
+
+                //_subscriber.SubscribeClientServer<
+                //    TagWriteRpcHandler, TagWriteRpcServerHandler,
+                //    TagWriteIntegrationEvent, TagWriteIntegrationEventReply>(
+                //    tagGroupReady.Name + "_Write",
+                //    "BusinessQueueWrite_" + tagGroupReady.Name,
+                //    tagGroupReady.Name + ".automation.write.server",
+                //    tagGroupReady.Name + ".automation.write.client.com",
+                //    new TagWriteRpcHandler(_loggerFactory, _componentContext),
+                //    new TagWriteRpcServerHandler(_loggerFactory, _componentContext));
 
                 #endregion
 
@@ -264,9 +291,10 @@ public class Biz : IBiz
 
     public TagReadIntegrationEventReply GetTagValue(TagReadIntegrationEvent tagReadIntegrationEvent)
     {
-        if (TagGroupEventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read"))
+        //if (TagGroupEventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read"))
+        if (_subscriber.EventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read_Client"))
         {
-            var result= ((IEventBusRpcClient)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"])
+            var result= ((IEventBusRpcClient)_subscriber.EventBus[tagReadIntegrationEvent.GroupName + "_Read_Client"])
                 .CallAsync<TagReadIntegrationEventReply>(tagReadIntegrationEvent);
 
             return result.Result;
@@ -279,9 +307,9 @@ public class Biz : IBiz
 
     public async ValueTask<TagReadIntegrationEventReply> GetTagValueAsync(TagReadIntegrationEvent tagReadIntegrationEvent)
     {
-        if (TagGroupEventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read"))
+        if (_subscriber.EventBus.ContainsKey(tagReadIntegrationEvent.GroupName + "_Read_Client"))
         {
-            return await ((IEventBusRpcClient)TagGroupEventBus[tagReadIntegrationEvent.GroupName + "_Read"])
+            return await ((IEventBusRpcClient)_subscriber.EventBus[tagReadIntegrationEvent.GroupName + "_Read_Client"])
                 .CallAsync<TagReadIntegrationEventReply>(tagReadIntegrationEvent);
         }
 
