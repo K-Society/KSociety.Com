@@ -6,7 +6,7 @@ using KSociety.Base.Domain.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Interface;
 using Microsoft.Extensions.Logging;
-using Quartz; //using Std.Srv.Shared.Interface;
+using Quartz;
 
 namespace KSociety.Com.Domain.Entity.Common;
 
