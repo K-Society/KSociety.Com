@@ -13,7 +13,6 @@ public class S7Tag
     : Presenter<
         IS7Tag,
         Srv.Dto.S7.S7Tag,
-        App.Dto.Req.Remove.S7.S7Tag,
         App.Dto.Req.Add.S7.S7Tag,
         App.Dto.Res.Add.S7.S7Tag,
         App.Dto.Req.Update.S7.S7Tag,
@@ -21,6 +20,9 @@ public class S7Tag
         App.Dto.Req.Copy.S7.S7Tag,
         App.Dto.Res.Copy.S7.S7Tag,
         App.Dto.Req.ModifyField.S7.S7Tag,
+        App.Dto.Res.ModifyField.S7.S7Tag,
+        App.Dto.Req.Remove.S7.S7Tag,
+        App.Dto.Res.Remove.S7.S7Tag,
         Srv.Dto.S7.List.GridView.S7Tag,
         Srv.Agent.Interface.Command.S7.IS7Tag,
         Srv.Agent.Interface.Query.S7.List.GridView.IS7Tag>

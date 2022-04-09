@@ -13,7 +13,6 @@ public class LogixConnection
     : Presenter<
         ILogixConnection,
         Srv.Dto.Logix.LogixConnection,
-        App.Dto.Req.Remove.Logix.LogixConnection,
         App.Dto.Req.Add.Logix.LogixConnection,
         App.Dto.Res.Add.Logix.LogixConnection,
         App.Dto.Req.Update.Logix.LogixConnection,
@@ -21,6 +20,9 @@ public class LogixConnection
         App.Dto.Req.Copy.Logix.LogixConnection,
         App.Dto.Res.Copy.Logix.LogixConnection,
         App.Dto.Req.ModifyField.Logix.LogixConnection,
+        App.Dto.Res.ModifyField.Logix.LogixConnection,
+        App.Dto.Req.Remove.Logix.LogixConnection,
+        App.Dto.Res.Remove.Logix.LogixConnection,
         Srv.Dto.Logix.List.GridView.LogixConnection,
         Srv.Agent.Interface.Command.Logix.ILogixConnection,
         Srv.Agent.Interface.Query.Logix.List.GridView.ILogixConnection>

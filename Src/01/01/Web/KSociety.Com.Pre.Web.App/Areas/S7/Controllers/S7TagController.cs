@@ -113,7 +113,7 @@ public class S7TagController : Controller
             _webHostEnvironment.ContentRootPath,
             "wwwroot", "export", fileName);
 
-        var result = await _tag.ExportAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Tag(path));
+        var result = await _tag.ExportDataAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Tag(path));
         if (result.Result)
         {
             var memory = new MemoryStream();
@@ -134,7 +134,7 @@ public class S7TagController : Controller
         if (file == null || file.Length == 0)
             return Content("file not selected");
 
-        await _tag.ImportAsync(new KSociety.Com.App.Dto.Req.Import.S7.S7Tag(file.FileName, file.GetFileArray().Result));
+        await _tag.ImportDataAsync(new KSociety.Com.App.Dto.Req.Import.S7.S7Tag(file.FileName, file.GetFileArray().Result));
 
         return RedirectToAction(nameof(Index));
     }
