@@ -8,7 +8,6 @@ public class TagGroup
     : Presenter<
         ITagGroup,
         Srv.Dto.Common.TagGroup,
-        App.Dto.Req.Remove.Common.TagGroup,
         App.Dto.Req.Add.Common.TagGroup,
         App.Dto.Res.Add.Common.TagGroup,
         App.Dto.Req.Update.Common.TagGroup,
@@ -16,6 +15,9 @@ public class TagGroup
         App.Dto.Req.Copy.Common.TagGroup,
         App.Dto.Res.Copy.Common.TagGroup,
         App.Dto.Req.ModifyField.Common.TagGroup,
+        App.Dto.Res.ModifyField.Common.TagGroup,
+        App.Dto.Req.Remove.Common.TagGroup,
+        App.Dto.Res.Remove.Common.TagGroup,
         Srv.Dto.Common.List.GridView.TagGroup,
         Srv.Agent.Interface.Command.Common.ITagGroup,
         Srv.Agent.Interface.Query.Common.List.GridView.ITagGroup>

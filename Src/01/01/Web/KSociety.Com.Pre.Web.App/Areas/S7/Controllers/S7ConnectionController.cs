@@ -117,7 +117,7 @@ public class S7ConnectionController : Controller
             _webHostEnvironment.ContentRootPath,
             "wwwroot", "export", fileName);
 
-        var result = await _s7Connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Connection(path));
+        var result = await _s7Connection.ExportDataAsync(new KSociety.Com.App.Dto.Req.Export.S7.S7Connection(path));
         if (result.Result)
         {
             var memory = new MemoryStream();
@@ -138,7 +138,7 @@ public class S7ConnectionController : Controller
         if (file == null || file.Length == 0)
             return Content("file not selected");
 
-        await _s7Connection.ImportAsync(new KSociety.Com.App.Dto.Req.Import.S7.S7Connection(file.FileName, file.GetFileArray().Result));
+        await _s7Connection.ImportDataAsync(new KSociety.Com.App.Dto.Req.Import.S7.S7Connection(file.FileName, file.GetFileArray().Result));
 
         return RedirectToAction(nameof(Index));
     }

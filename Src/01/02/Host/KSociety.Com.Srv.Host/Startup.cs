@@ -158,12 +158,22 @@ public class Startup
             endpoints.MapGrpcService<KSociety.Base.Srv.Behavior.Control.DatabaseControl>();
             endpoints.MapGrpcService<KSociety.Base.Srv.Behavior.Control.DatabaseControlAsync>();
 
-            endpoints.MapGrpcService<Srv.Behavior.Command.Common.Command>();
-            endpoints.MapGrpcService<Srv.Behavior.Command.Common.CommandAsync>();
-            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.Command>();
-            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.CommandAsync>();
-            endpoints.MapGrpcService<Srv.Behavior.Command.S7.Command>();
-            endpoints.MapGrpcService<Srv.Behavior.Command.S7.CommandAsync>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.Tag>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.TagAsync>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.TagGroup>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.TagGroupAsync>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.Connection>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Common.ConnectionAsync>();
+
+            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.Tag>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.TagAsync>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.Connection>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.Logix.ConnectionAsync>();
+
+            endpoints.MapGrpcService<Srv.Behavior.Command.S7.Tag>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.S7.TagAsync>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.S7.Connection>();
+            endpoints.MapGrpcService<Srv.Behavior.Command.S7.ConnectionAsync>();
 
             endpoints.MapGrpcService<Srv.Behavior.Query.Common.Query>();
             endpoints.MapGrpcService<Srv.Behavior.Query.Common.QueryAsync>();

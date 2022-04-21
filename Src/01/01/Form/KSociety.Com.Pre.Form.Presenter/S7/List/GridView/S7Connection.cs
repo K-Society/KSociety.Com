@@ -13,7 +13,6 @@ public class S7Connection
     : Presenter<
         IS7Connection,
         Srv.Dto.S7.S7Connection,
-        App.Dto.Req.Remove.S7.S7Connection,
         App.Dto.Req.Add.S7.S7Connection,
         App.Dto.Res.Add.S7.S7Connection,
         App.Dto.Req.Update.S7.S7Connection,
@@ -21,6 +20,9 @@ public class S7Connection
         App.Dto.Req.Copy.S7.S7Connection,
         App.Dto.Res.Copy.S7.S7Connection,
         App.Dto.Req.ModifyField.S7.S7Connection,
+        App.Dto.Res.ModifyField.S7.S7Connection,
+        App.Dto.Req.Remove.S7.S7Connection,
+        App.Dto.Res.Remove.S7.S7Connection,
         Srv.Dto.S7.List.GridView.S7Connection,
         Srv.Agent.Interface.Command.S7.IS7Connection,
         Srv.Agent.Interface.Query.S7.List.GridView.IS7Connection>

@@ -1,0 +1,24 @@
+﻿using Autofac;
+using KSociety.Base.Srv.Shared.Interface;
+using KSociety.Com.Srv.Contract.Command.Logix;
+using Microsoft.Extensions.Logging;
+
+namespace KSociety.Com.Srv.Behavior.Command.Logix;
+public class Connection : KSociety.Base.Srv.Behavior.CommandImportExport<
+    KSociety.Com.App.Dto.Req.Add.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Add.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.Update.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Update.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.Copy.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Copy.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.ModifyField.Logix.LogixConnection, KSociety.Com.App.Dto.Res.ModifyField.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.Remove.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Remove.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.Import.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Import.Logix.LogixConnection,
+    KSociety.Com.App.Dto.Req.Export.Logix.LogixConnection, KSociety.Com.App.Dto.Res.Export.Logix.LogixConnection>, IConnection
+{
+    public Connection(
+        ILoggerFactory loggerFactory,
+        IComponentContext componentContext,
+        ICommandHandler commandHandler
+    ) : base(loggerFactory, componentContext, commandHandler)
+    {
+
+    }
+}

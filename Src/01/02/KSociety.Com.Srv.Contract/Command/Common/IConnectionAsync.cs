@@ -1,0 +1,15 @@
+﻿using ProtoBuf.Grpc.Configuration;
+
+namespace KSociety.Com.Srv.Contract.Command.Common;
+
+[Service]
+public interface IConnectionAsync : KSociety.Base.Srv.Contract.ICommandImportExportAsync<
+    KSociety.Com.App.Dto.Req.Add.Common.Connection, KSociety.Com.App.Dto.Res.Add.Common.Connection,
+    KSociety.Com.App.Dto.Req.Update.Common.Connection, KSociety.Com.App.Dto.Res.Update.Common.Connection,
+    KSociety.Com.App.Dto.Req.Copy.Common.Connection, KSociety.Com.App.Dto.Res.Copy.Common.Connection,
+    KSociety.Com.App.Dto.Req.ModifyField.Common.Connection, KSociety.Com.App.Dto.Res.ModifyField.Common.Connection,
+    KSociety.Com.App.Dto.Req.Remove.Common.Connection, KSociety.Com.App.Dto.Res.Remove.Common.Connection,
+    KSociety.Com.App.Dto.Req.Import.Common.Connection, KSociety.Com.App.Dto.Res.Import.Common.Connection,
+    KSociety.Com.App.Dto.Req.Export.Common.Connection, KSociety.Com.App.Dto.Res.Export.Common.Connection>
+{
+}
