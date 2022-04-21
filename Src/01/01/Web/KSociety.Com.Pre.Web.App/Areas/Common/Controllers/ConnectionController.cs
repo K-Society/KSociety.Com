@@ -115,7 +115,7 @@ public class ConnectionController : Controller
             _webHostEnvironment.ContentRootPath,
             "wwwroot", "export", fileName);
 
-        var result = await _connection.ExportAsync(new KSociety.Com.App.Dto.Req.Export.Common.Connection(path));
+        var result = await _connection.ExportDataAsync(new KSociety.Com.App.Dto.Req.Export.Common.Connection(path));
         if (result.Result)
         {
             var memory = new MemoryStream();
@@ -136,7 +136,7 @@ public class ConnectionController : Controller
         if (file == null || file.Length == 0)
             return Content("file not selected");
 
-        await _connection.ImportAsync(new KSociety.Com.App.Dto.Req.Import.Common.Connection(file.GetFilename(), file.GetFileArray().Result));
+        await _connection.ImportDataAsync(new KSociety.Com.App.Dto.Req.Import.Common.Connection(file.GetFilename(), file.GetFileArray().Result));
 
         return RedirectToAction(nameof(Index));
     }

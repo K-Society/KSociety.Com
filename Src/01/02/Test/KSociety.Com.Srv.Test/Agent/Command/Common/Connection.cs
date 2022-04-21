@@ -20,6 +20,6 @@ public class Connection
     {
         var result = _connection.Remove(new App.Dto.Req.Remove.Common.Connection());
 
-        Assert.True(result);
+        Assert.True(result.Result);
     }
 }
