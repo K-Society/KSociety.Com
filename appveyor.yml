@@ -26,6 +26,7 @@ build_script:
   
 after_build:
   - ps: $comSystemPath = Resolve-Path .\Src\00\KSociety.Com.Install\K-Society.Com.exe; $array = [System.Diagnostics.FileVersionInfo]::GetVersionInfo("$comSystemPath").FileVersion -split "\."; $env:ComSystemVersion = $array[0] + "." + $array[1] + "." + $array[2]; Write-Host "$env:ComSystemVersion"
+  - ps: Compress-Archive -LiteralPath .\Src\00\KSociety.Com.Install\K-Society.Com.exe -DestinationPath .\Src\00\KSociety.Com.Install\K-Society.Com.zip -Force
 
 test: off
 
@@ -44,7 +45,7 @@ skip_tags: true
 artifacts:
   - path: build\**\Release\*.nupkg
     name: nuget
-  - path: Src\00\KSociety.Com.Install\K-Society.Com.exe
+  - path: Src\00\KSociety.Com.Install\K-Society.Com.zip
     name: comsysteminstaller
 
 deploy:
