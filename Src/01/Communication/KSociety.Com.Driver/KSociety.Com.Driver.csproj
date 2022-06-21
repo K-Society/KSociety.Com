@@ -16,7 +16,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="S7netplus" Version="0.13.0" />
+    <PackageReference Include="S7netplus" Version="0.14.0" />
   </ItemGroup>
 
   <ItemGroup>
