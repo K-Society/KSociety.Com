@@ -5,7 +5,7 @@ namespace KSociety.Com.Srv.Dto.Common;
 [ProtoContract]
 public class GroupName
 {
-    [ProtoMember(1), CompatibilityLevel(CompatibilityLevel.Level200)]
+    [ProtoMember(1)]
     public string Name { get; set; }
 
     public GroupName()
