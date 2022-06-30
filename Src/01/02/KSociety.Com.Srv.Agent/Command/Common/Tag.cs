@@ -12,7 +12,8 @@ public class Tag : KSociety.Base.Srv.Agent.AgentCommandImportExport<
     KSociety.Com.App.Dto.Req.ModifyField.Common.Tag, KSociety.Com.App.Dto.Res.ModifyField.Common.Tag,
     KSociety.Com.App.Dto.Req.Remove.Common.Tag, KSociety.Com.App.Dto.Res.Remove.Common.Tag,
     KSociety.Com.App.Dto.Req.Import.Common.Tag, KSociety.Com.App.Dto.Res.Import.Common.Tag,
-    KSociety.Com.App.Dto.Req.Export.Common.Tag, KSociety.Com.App.Dto.Res.Export.Common.Tag>, KSociety.Com.Srv.Agent.Interface.Command.Common.ITag
+    KSociety.Com.App.Dto.Req.Export.Common.Tag, KSociety.Com.App.Dto.Res.Export.Common.Tag>, 
+    KSociety.Com.Srv.Agent.Interface.Command.Common.ITag
 {
     public Tag(IAgentConfiguration agentConfiguration, ILoggerFactory loggerFactory)
         : base(agentConfiguration, loggerFactory)

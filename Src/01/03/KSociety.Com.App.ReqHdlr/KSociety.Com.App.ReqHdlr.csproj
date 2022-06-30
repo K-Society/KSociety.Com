@@ -8,14 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Add\" />
-    <Folder Include="Copy\" />
-    <Folder Include="ModifyField\" />
-    <Folder Include="Update\" />
-    <Folder Include="Remove\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.107">
       <PrivateAssets>all</PrivateAssets>

@@ -1,6 +1,4 @@
-﻿//using KSociety.Com.Driver.S7;
-//using KSociety.Com.Driver.S7.Types;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Polly;
 using S7.Net;
 using S7.Net.Types;
@@ -14,7 +12,7 @@ namespace KSociety.Com.Domain.Entity.S7;
 
 public class S7Connection : Common.Connection
 {
-    private Dictionary<int, List<S7Tag>> _readTags = new Dictionary<int, List<S7Tag>>();
+    private Dictionary<int, List<S7Tag>> _readTags = new();
 
     #region [Propery]
 

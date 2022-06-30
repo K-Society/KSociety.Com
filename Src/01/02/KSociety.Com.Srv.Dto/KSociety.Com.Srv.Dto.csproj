@@ -4,12 +4,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Logix\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="1.0.128" />

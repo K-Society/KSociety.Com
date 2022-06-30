@@ -4,17 +4,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Logix\" />
-    <Folder Include="Validator\Common\" />
-    <Folder Include="Validator\S7\" />
-    <Folder Include="S7\" />
-    <Folder Include="View\Common\" />
-    <Folder Include="View\Joined\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.0.3" />
