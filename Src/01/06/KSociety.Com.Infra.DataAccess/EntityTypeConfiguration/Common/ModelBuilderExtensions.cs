@@ -1,4 +1,4 @@
-﻿using KSociety.Base.Infra.Shared.Csv;
+﻿using KSociety.Base.InfraSub.Shared.Class.Csv;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
