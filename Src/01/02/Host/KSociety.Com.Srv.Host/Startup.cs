@@ -151,6 +151,8 @@ public class Startup
             app.UseDeveloperExceptionPage();
         }
 
+        app.UseMiddleware<ErrorHandlerMiddleware>();
+
         app.UseRouting();
 
         app.UseEndpoints(endpoints =>
