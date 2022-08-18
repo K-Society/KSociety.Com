@@ -19,5 +19,4 @@ public interface ITag : IAgentCommandImportExport<
         App.Dto.Res.Export.Common.Tag>
 {
 
-
 }

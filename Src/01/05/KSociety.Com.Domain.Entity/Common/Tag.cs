@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using FluentValidation;
+﻿using FluentValidation;
 using KSociety.Base.Domain.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Com.Domain.Entity.Event;
-using System.Threading;
+using System;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Domain.Entity.Common;
 
