@@ -19,7 +19,7 @@ environment:
   ComSystemVersion: 0.0.0.0
 
 install:
-  - ps: .\dotnet-install.ps1 -Version '6.0.300'
+  - ps: .\dotnet-install.ps1 -Version '6.0.400'
 
 before_build:
   - ps: dotnet --info
@@ -68,7 +68,7 @@ deploy:
   - provider: NuGet
     server: 
     api_key:
-      secure: bOgKbntjK/dMmw71pGK590FEZxLbgGSMMRdcesvYD0YBd0D8YoTNhCFHUxTUIKyw
+      secure: U1qzBMTcpUuJ7GcLAiLJJkkQXQhqZcdnmYu7rTpxuidiMRCZtJ5Vr6DoTyx1wm3p
     skip_symbols: true
     symbol_server: 
     artifact: /.*\.nupkg/

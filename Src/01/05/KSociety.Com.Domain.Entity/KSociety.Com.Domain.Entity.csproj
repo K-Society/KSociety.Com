@@ -4,22 +4,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Logix\" />
-    <Folder Include="Validator\Common\" />
-    <Folder Include="Validator\S7\" />
-    <Folder Include="S7\" />
-    <Folder Include="View\Common\" />
-    <Folder Include="View\Joined\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.0.2" />
-    <PackageReference Include="KSociety.Base.Domain.Shared" Version="1.0.128" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.107">
+    <PackageReference Include="FluentValidation" Version="11.2.0" />
+    <PackageReference Include="KSociety.Base.Domain.Shared" Version="1.0.192" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.109">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
