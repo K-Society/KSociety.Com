@@ -19,7 +19,7 @@ environment:
   ComSystemVersion: 0.0.0.0
 
 install:
-  - ps: .\dotnet-install.ps1 -Version '6.0.302'
+  - ps: .\dotnet-install.ps1 -Version '6.0.400'
 
 before_build:
   - ps: dotnet --info
