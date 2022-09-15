@@ -29,7 +29,7 @@ public class Connection : IRequest
         bool enable, bool writeEnable
     )
     {
-        AutomationTypeId = automationTypeId;
+        AutomationTypeId = (automationTypeId);
         Name = name;
         Ip = ip;
         Enable = enable;
