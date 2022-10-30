@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBus" Version="1.0.225" />
-    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="1.0.225" />
+    <PackageReference Include="KSociety.Base.EventBus" Version="1.0.233" />
+    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="1.0.233" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
       <PrivateAssets>all</PrivateAssets>
