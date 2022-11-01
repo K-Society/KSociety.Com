@@ -71,7 +71,7 @@ public class Biz : IBiz
                     new EventBusRabbitMqQueue(persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
                         "TransactionQueueInvoke_" + tagGroupReady.Name));
 
-                TagGroupEventBus[tagGroupReady.Name + "_Invoke"].Initialize();
+                ((IEventBusQueue)TagGroupEventBus[tagGroupReady.Name + "_Invoke"]).Initialize();
 
                 //TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
                 //    new EventBusRabbitMq(persistentConnection, _loggerFactory, queueReadHandler, null, "direct",

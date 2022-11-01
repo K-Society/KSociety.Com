@@ -82,7 +82,7 @@ public class Biz : IBiz
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Connection", 
                     new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new ConnectionStatusRpcHandler(_loggerFactory, _componentContext), 
                         null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name));
-                TagGroupEventBus[tagGroupReady.Name + "_Connection"].Initialize();
+                ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Connection"]).Initialize();
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Connection");
 
                 ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Connection"])
@@ -93,7 +93,7 @@ public class Biz : IBiz
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Connection_Server",
                     new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new ConnectionStatusRpcServerHandler(_loggerFactory, _componentContext),
                         null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name));
-                TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"].Initialize();
+                ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"]).Initialize();
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Connection_Server");
 
                 ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"])
@@ -106,7 +106,7 @@ public class Biz : IBiz
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke", 
                     new EventBusRabbitMqQueue(PersistentConnection, _loggerFactory, new TagInvokeEventHandler(_loggerFactory, _componentContext),
                         null, _eventBusComParameters, "BusinessQueueInvoke_" + tagGroupReady.Name));
-                TagGroupEventBus[tagGroupReady.Name + "_Invoke"].Initialize();
+                ((IEventBusQueue)TagGroupEventBus[tagGroupReady.Name + "_Invoke"]).Initialize();
 
                 #region [Read]
 
@@ -145,7 +145,7 @@ public class Biz : IBiz
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Write", 
                     new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagWriteRpcHandler(_loggerFactory, _componentContext), 
                         null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name));
-                TagGroupEventBus[tagGroupReady.Name + "_Write"].Initialize();
+                ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"]).Initialize();
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Write");
 
                 ((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"])
@@ -154,7 +154,7 @@ public class Biz : IBiz
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server",
                     new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagWriteRpcServerHandler(_loggerFactory, _componentContext),
                         null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name));
-                TagGroupEventBus[tagGroupReady.Name + "_Write_Server"].Initialize();
+                ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"]).Initialize();
                 _logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Write_Server");
 
                 ((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"])
