@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.Srv.Shared.Interface;
@@ -16,7 +11,11 @@ using KSociety.Com.Srv.Contract.Biz;
 using KSociety.Com.Srv.Dto;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
-using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Behavior.Biz;
 
@@ -25,29 +24,29 @@ public class Biz : IBiz
     private readonly ILoggerFactory _loggerFactory;
     private static ILogger<Biz> _logger;
     private readonly IComponentContext _componentContext;
-    private readonly IConnectionFactory _connectionFactory;
     private readonly IEventBusComParameters _eventBusComParameters;
     private readonly ICommandHandler _commandHandler;
     private readonly ITagGroupReady _tagGroupReady;
+    private readonly IRabbitMqPersistentConnection _persistentConnection;
 
     private Dictionary<string, IEventBus> TagGroupEventBus { get; } = new();
 
     public Biz(
         ILoggerFactory loggerFactory,
         IComponentContext componentContext,
-        IConnectionFactory connectionFactory,
         IEventBusComParameters eventBusComParameters,
         ICommandHandler commandHandler,
-        ITagGroupReady tagGroupReady
+        ITagGroupReady tagGroupReady,
+        IRabbitMqPersistentConnection persistentConnection
     )
     {
         _loggerFactory = loggerFactory;
         _logger = _loggerFactory.CreateLogger<Biz>();
         _componentContext = componentContext;
-        _connectionFactory = connectionFactory;
         _eventBusComParameters = eventBusComParameters;
         _commandHandler = commandHandler;
         _tagGroupReady = tagGroupReady;
+        _persistentConnection = persistentConnection;
 
         //LoadGroups();
     }
@@ -56,8 +55,8 @@ public class Biz : IBiz
     {
         try
         {
-            DefaultRabbitMqPersistentConnection persistentConnection =
-                new DefaultRabbitMqPersistentConnection(_connectionFactory, _loggerFactory);
+            //DefaultRabbitMqPersistentConnection persistentConnection =
+            //    new DefaultRabbitMqPersistentConnection(_connectionFactory, _loggerFactory);
 
             foreach (var tagGroupReady in _tagGroupReady.GetAllTagGroupReady())
             {
@@ -68,7 +67,7 @@ public class Biz : IBiz
 
 
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke",
-                    new EventBusRabbitMqQueue(persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
+                    new EventBusRabbitMqQueue(_persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
                         "TransactionQueueInvoke_" + tagGroupReady.Name));
 
                 ((IEventBusQueue)TagGroupEventBus[tagGroupReady.Name + "_Invoke"]).Initialize();

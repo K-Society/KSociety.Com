@@ -1,5 +1,4 @@
 ﻿using KSociety.Base.EventBus.Abstractions.EventBus;
-using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Com.Biz.Event;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,8 +7,6 @@ namespace KSociety.Com.Biz.Interface;
 
 public interface IBiz
 {
-   IRabbitMqPersistentConnection PersistentConnection { get; }
-
     Dictionary<string, Domain.Entity.Common.TagGroup> SystemGroups { get; }
 
     Dictionary<string, IEventBus> TagGroupEventBus { get; }
