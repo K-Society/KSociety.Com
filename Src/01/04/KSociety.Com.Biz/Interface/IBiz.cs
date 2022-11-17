@@ -1,4 +1,4 @@
-﻿using KSociety.Base.EventBus.Abstractions.EventBus;
+﻿using KSociety.Base.EventBusRabbitMQ.Helper;
 using KSociety.Com.Biz.Event;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +9,8 @@ public interface IBiz
 {
     Dictionary<string, Domain.Entity.Common.TagGroup> SystemGroups { get; }
 
-    Dictionary<string, IEventBus> TagGroupEventBus { get; }
+    //Dictionary<string, IEventBus> TagGroupEventBus { get; }
+    Subscriber Subscriber { get; }
 
     void LoadGroup();
 

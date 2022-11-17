@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using KSociety.Com.Driver.Enip.Eipnet.Cip;
-using KSociety.Com.Driver.Enip.Eipnet.Eip; //using Std.Com.Driver.Properties;
+using KSociety.Com.Driver.Enip.Eipnet.Eip;
 
 namespace KSociety.Com.Driver.Enip.ControlLogixNet;
 
@@ -2450,7 +2450,11 @@ public sealed class LogixSINT : LogixTag
 
         for (int i = 0; i < Elements; i++)
         {
+#if NET6_0
             Buffer.BlockCopy(BitConverter.GetBytes(_value[i]), 0, retVal, i, 1);
+#elif NET7_0
+            //ToDo
+#endif
         }
 
         return retVal;
@@ -2485,16 +2489,28 @@ public sealed class LogixSINT : LogixTag
 
         if (Elements == 1)
         {
+#if NET6_0
             retVal.AddRange(BitConverter.GetBytes(_pendingWriteValue[0]));
+#elif NET7_0
+            //ToDo
+#endif
         }
         else
         {
             for (int i = 0; i < Elements; i++)
             {
+#if NET6_0
                 if (_hasPendingWrite[i])
+                {
                     retVal.AddRange(BitConverter.GetBytes(_pendingWriteValue[i]));
+                }
                 else
+                {
                     retVal.AddRange(BitConverter.GetBytes(_value[i]));
+                }
+#elif NET7_0
+                //ToDo
+#endif
             }
 
         }
@@ -2502,9 +2518,9 @@ public sealed class LogixSINT : LogixTag
         return retVal.ToArray();
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private int PendingWriteCount()
     {
@@ -2518,16 +2534,16 @@ public sealed class LogixSINT : LogixTag
         return count;
     }
 
-    #endregion
+#endregion
 
-    #region Conversion Methods
+#region Conversion Methods
 
     public static implicit operator sbyte(LogixSINT tag)
     {
         return tag[0];
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -2537,16 +2553,16 @@ public sealed class LogixSINT : LogixTag
 public sealed class LogixLINT : LogixTag
 {
         
-    #region Fields
+#region Fields
 
     private long[] _value = new long[] { 0 };
     private long[] _pendingWriteValue = new long[] { 0 };
     private bool[] _hasPendingWrite = new bool[] { false };
     private bool _lastWriteChanged = false;
         
-    #endregion
+#endregion
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets or Sets the Value of the tag
@@ -2755,9 +2771,9 @@ public sealed class LogixLINT : LogixTag
         }
     }
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new LINT Logix Tag
@@ -2792,15 +2808,15 @@ public sealed class LogixLINT : LogixTag
 
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
 
 
-    #endregion
+#endregion
 
-    #region Protected / Internal Methods
+#region Protected / Internal Methods
 		
 #if MONO
 		internal override bool OnDataUpdated(byte[] data, uint byteOffset)
@@ -2908,9 +2924,9 @@ public sealed class LogixLINT : LogixTag
         return retVal.ToArray();
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private int PendingWriteCount()
     {
@@ -2924,16 +2940,16 @@ public sealed class LogixLINT : LogixTag
         return count;
     }
 
-    #endregion
+#endregion
 
-    #region Conversion Methods
+#region Conversion Methods
 
     public static implicit operator long(LogixLINT tag)
     {
         return tag[0];
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -2943,16 +2959,16 @@ public sealed class LogixLINT : LogixTag
 public sealed class LogixREAL : LogixTag
 {
         
-    #region Fields
+#region Fields
 
     private float[] _value = new float[] { 0 };
     private float[] _pendingWriteValue = new float[] { 0 };
     private bool[] _hasPendingWrite = new bool[] { false };
     private bool _lastWriteChanged = false;
         
-    #endregion
+#endregion
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets or Sets the Value of the tag
@@ -3161,9 +3177,9 @@ public sealed class LogixREAL : LogixTag
         }
     }
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new REAL Logix Tag
@@ -3198,15 +3214,15 @@ public sealed class LogixREAL : LogixTag
 
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
 
 
-    #endregion
+#endregion
 
-    #region Internal Methods
+#region Internal Methods
 		
 #if MONO
 		internal override void Initialize(object InitData)
@@ -3314,9 +3330,9 @@ public sealed class LogixREAL : LogixTag
         return retVal.ToArray();
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private int PendingWriteCount()
     {
@@ -3330,16 +3346,16 @@ public sealed class LogixREAL : LogixTag
         return count;
     }
 
-    #endregion
+#endregion
 
-    #region Conversion Methods
+#region Conversion Methods
 
     public static implicit operator float(LogixREAL tag)
     {
         return tag[0];
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -3349,7 +3365,7 @@ public sealed class LogixREAL : LogixTag
 
 internal class UDTItem
 {
-    #region Fields
+#region Fields
 
     private TemplateInfo _templateInfo;
     private byte[] _data;
@@ -3357,9 +3373,9 @@ internal class UDTItem
     private bool _hasPendingWrite;
     private bool _writeDataInitd = false;
 
-    #endregion
+#endregion
 
-    #region Properties
+#region Properties
 
     public object this[string name]
     {
@@ -3367,9 +3383,9 @@ internal class UDTItem
         set { SetMemberValue(name, value); }
     }
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     public UDTItem(TemplateInfo info)
     {
@@ -3379,9 +3395,9 @@ internal class UDTItem
         _hasPendingWrite = false;
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
     public bool Update(byte[] newData, uint offset)
     {
@@ -3697,7 +3713,7 @@ internal class UDTItem
         return item._data;
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -3710,15 +3726,15 @@ internal class UDTItem
 public class LogixUDT : LogixTag
 {
 
-    #region Fields
+#region Fields
 
     private TemplateInfo _templateInfo;
     private UDTItem[] _udtItem;
     private bool _lastWriteChanged = false;
 
-    #endregion
+#endregion
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets the LogixType of this tag
@@ -3855,15 +3871,15 @@ public class LogixUDT : LogixTag
         }
     }
 
-    #endregion
+#endregion
 
-    #region Events
+#region Events
 
 
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new LogixUDT
@@ -3912,9 +3928,9 @@ public class LogixUDT : LogixTag
         _templateInfo = TemplateInfo;
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
     /// <summary>
     /// Gets the type for a particular member in the type
@@ -3934,9 +3950,9 @@ public class LogixUDT : LogixTag
         return LogixTypes.Unknown;
     }
 
-    #endregion
+#endregion
 
-    #region Private Methods
+#region Private Methods
 
     private void SetPendingData(byte[] data)
     {
@@ -3977,9 +3993,9 @@ public class LogixUDT : LogixTag
 
     }
 
-    #endregion
+#endregion
 
-    #region Internal Methods
+#region Internal Methods
 		
 #if MONO
 		internal override bool OnDataUpdated(byte[] data, uint byteOffset)
@@ -4085,7 +4101,7 @@ public class LogixUDT : LogixTag
         return OnDataWrite();
     }
 
-    #endregion
+#endregion
         
 }
 
@@ -4099,7 +4115,7 @@ public class LogixUDT : LogixTag
 public sealed class LogixCONTROL : LogixUDT
 {
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets the <see cref="LogixTypes"/> of this tag
@@ -4202,9 +4218,9 @@ public sealed class LogixCONTROL : LogixUDT
         set { base["FD"] = value; }
     }
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new CONTROL Logix Tag on the specified Processor
@@ -4231,7 +4247,7 @@ public sealed class LogixCONTROL : LogixUDT
             
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -4241,7 +4257,7 @@ public sealed class LogixCONTROL : LogixUDT
 public sealed class LogixTIMER : LogixUDT
 {
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets the <see cref="LogixTypes"/> of this tag
@@ -4299,9 +4315,9 @@ public sealed class LogixTIMER : LogixUDT
         set { base["DN"] = value; }
     }
         
-    #endregion
+#endregion
         
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new TIMER Logix Tag on the specified Processor
@@ -4328,7 +4344,7 @@ public sealed class LogixTIMER : LogixUDT
             
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -4338,7 +4354,7 @@ public sealed class LogixTIMER : LogixUDT
 public sealed class LogixCOUNTER : LogixUDT
 {
         
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets the <see cref="LogixTypes"/> of this tag
@@ -4414,9 +4430,9 @@ public sealed class LogixCOUNTER : LogixUDT
         set { base["UN"] = value; }
     }
         
-    #endregion
+#endregion
         
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new COUNTER Logix Tag on the specified Processor
@@ -4443,7 +4459,7 @@ public sealed class LogixCOUNTER : LogixUDT
             
     }
 
-    #endregion
+#endregion
 
 }
 
@@ -4453,7 +4469,7 @@ public sealed class LogixCOUNTER : LogixUDT
 public sealed class LogixSTRING : LogixUDT
 {
 
-    #region Properties
+#region Properties
 
     /// <summary>
     /// Gets the Logix type of this tag
@@ -4515,9 +4531,9 @@ public sealed class LogixSTRING : LogixUDT
         }
     }
 
-    #endregion
+#endregion
 
-    #region Construction / Deconstruction
+#region Construction / Deconstruction
 
     /// <summary>
     /// Creates a new STRING Logix Tag on the specified Processor
@@ -4544,16 +4560,16 @@ public sealed class LogixSTRING : LogixUDT
             
     }
 
-    #endregion
+#endregion
 
-    #region Public Methods
+#region Public Methods
 
     public override string ToString()
     {
         return StringValue;
     }
 
-    #endregion
+#endregion
 
 }
 
