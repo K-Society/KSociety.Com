@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.11" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.10" />
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.14" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
