@@ -2,18 +2,18 @@
 using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.ModifyField.S7;
-
-[ProtoContract]
-public class S7Tag : IResponse, IBoolResponse
+namespace KSociety.Com.App.Dto.Res.ModifyField.S7
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public S7Tag() { }
-
-    public S7Tag(bool result)
+    [ProtoContract]
+    public class S7Tag : IResponse, IBoolResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public S7Tag() { }
+
+        public S7Tag(bool result)
+        {
+            Result = result;
+        }
     }
 }

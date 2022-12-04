@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using KSociety.Base.Infra.Shared.Interface;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using KSociety.Base.Infra.Shared.Interface;
 using KSociety.Com.Domain.Entity.Common;
 
-namespace KSociety.Com.Domain.Repository.Common;
-
-public interface IAnalogDigital : IRepositoryBase<AnalogDigital>
+namespace KSociety.Com.Domain.Repository.Common
 {
-    IEnumerable<AnalogDigital> GetAllAnalogDigital();
+    public interface IAnalogDigital : IRepositoryBase<AnalogDigital>
+    {
+        IEnumerable<AnalogDigital> GetAllAnalogDigital();
 
-    ValueTask<IEnumerable<AnalogDigital>> GetAllAnalogDigitalAsync();
+        ValueTask<IEnumerable<AnalogDigital>> GetAllAnalogDigitalAsync();
+    }
 }

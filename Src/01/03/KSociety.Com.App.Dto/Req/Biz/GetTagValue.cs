@@ -1,25 +1,24 @@
 ﻿using KSociety.Base.App.Shared;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Biz;
-
-[ProtoContract]
-public class GetTagValue : IRequest
+namespace KSociety.Com.App.Dto.Req.Biz
 {
-    [ProtoMember(1)]
-    public string GroupName { get; set; }
-
-    [ProtoMember(2)]
-    public string TagName { get; set; }
-
-    public GetTagValue()
+    [ProtoContract]
+    public class GetTagValue : IRequest
     {
+        [ProtoMember(1)] public string GroupName { get; set; }
 
-    }
+        [ProtoMember(2)] public string TagName { get; set; }
 
-    public GetTagValue(string groupName, string tagName)
-    {
-        GroupName = groupName;
-        TagName = tagName;
+        public GetTagValue()
+        {
+
+        }
+
+        public GetTagValue(string groupName, string tagName)
+        {
+            GroupName = groupName;
+            TagName = tagName;
+        }
     }
 }

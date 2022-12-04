@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using KSociety.Base.Infra.Abstraction.Class;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Base.Srv.Host.Shared.Bindings;
@@ -93,7 +94,7 @@ public class Startup
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.AutoMapper(AssemblyTool.GetAssembly()));
 
             //DatabaseConfiguration.
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseConfiguration(DatabaseOptions));
+            builder.RegisterModule(new KSociety.Base.Infra.Abstraction.Bindings.DatabaseConfiguration(DatabaseOptions));
 
             //MediatR.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.Mediatr());
@@ -115,15 +116,15 @@ public class Startup
             builder.RegisterModule(new Bindings.QueryViewJoinedListGridView<TContext>());
 
             //UnitOfWork.
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.UnitOfWork<TContext>());
+            builder.RegisterModule(new KSociety.Base.Infra.Shared.Bindings.UnitOfWork<TContext>());
 
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseControl<TContext>());
+            builder.RegisterModule(new KSociety.Base.Infra.Shared.Bindings.DatabaseControl<TContext>());
 
             //CommandHandler.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.CommandHdlr(AssemblyTool.GetAssembly()));
 
             //DatabaseFactory
-            builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.DatabaseFactory<TContext>());
+            builder.RegisterModule(new KSociety.Base.Infra.Shared.Bindings.DatabaseFactory<TContext>());
 
             //RabbitMQ.
             builder.RegisterModule(

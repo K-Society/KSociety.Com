@@ -1,19 +1,20 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Import.Logix;
-
-[ProtoContract]
-public class LogixConnection : ImportReq
+namespace KSociety.Com.App.Dto.Req.Import.Logix
 {
-    public LogixConnection() { }
-
-    public LogixConnection(
-        string fileName,
-        byte[] byteArray
-    )
+    [ProtoContract]
+    public class LogixConnection : ImportReq
     {
-        FileName = fileName;
-        ByteArray = byteArray;
+        public LogixConnection() { }
+
+        public LogixConnection(
+            string fileName,
+            byte[] byteArray
+        )
+        {
+            FileName = fileName;
+            ByteArray = byteArray;
+        }
     }
 }

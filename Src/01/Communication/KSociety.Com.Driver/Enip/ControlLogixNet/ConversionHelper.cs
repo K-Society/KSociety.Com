@@ -1,18 +1,20 @@
-﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet;
-
-/// <summary>
-/// Set of utility functions to help convert objects or strings to
-/// the correct LogixDataType.
-/// </summary>
-internal class ConversionHelper
+﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet
 {
-    public object ConvertTo(LogixTypes logixDataType, object inputValue)
+    /// <summary>
+    /// Set of utility functions to help convert objects or strings to
+    /// the correct LogixDataType.
+    /// </summary>
+    internal class ConversionHelper
     {
-        switch (logixDataType)
+        public object ConvertTo(LogixTypes logixDataType, object inputValue)
         {
-            default:
-                break;
+            switch (logixDataType)
+            {
+                default:
+                    break;
+            }
+
+            return null;
         }
-        return null;
     }
 }

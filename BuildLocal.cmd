@@ -1,4 +1,4 @@
-@call "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\VsDevCmd.bat" -no_ext -winsdk=none %*
+@call "C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\Tools\VsDevCmd.bat" -no_ext -winsdk=none %*
 @setlocal
 @pushd %~dp0
 @set _C=Release

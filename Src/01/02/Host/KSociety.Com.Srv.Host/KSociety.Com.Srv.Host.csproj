@@ -4,24 +4,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <UserSecretsId>dotnet-Std.Srv.Host.Com-235594AD-23E6-492D-BC68-DFEB516571BD</UserSecretsId>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.0.212" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.0.96" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.20" />
+    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.1.20" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
-    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.113">
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.177" />
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.179" />
     <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
   </ItemGroup>
 

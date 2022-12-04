@@ -2,15 +2,16 @@
 using KSociety.Base.Srv.Dto;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.View.Joined.List;
-
-[ProtoContract]
-public class AllConnection : ObjectList<Joined.AllConnection>
+namespace KSociety.Com.Srv.Dto.View.Joined.List
 {
-    public AllConnection() { }
-
-    public AllConnection(List<Joined.AllConnection> allConnection)
+    [ProtoContract]
+    public class AllConnection : ObjectList<Joined.AllConnection>
     {
-        List = allConnection;
+        public AllConnection() { }
+
+        public AllConnection(List<Joined.AllConnection> allConnection)
+        {
+            List = allConnection;
+        }
     }
 }

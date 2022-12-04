@@ -1,5 +1,5 @@
 ﻿using KSociety.Base.App.Shared;
-using KSociety.Base.Infra.Shared.Interface;
+using KSociety.Base.Infra.Abstraction.Interface;
 using KSociety.Com.App.Dto.Req.Import.Common;
 using KSociety.Com.Domain.Repository.Common;
 using Microsoft.Extensions.Logging;

@@ -1,16 +1,17 @@
-﻿using System;
-using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
+using System;
 
-namespace KSociety.Com.App.Dto.Req.Remove.Common;
-
-[ProtoContract]
-public class TagGroup : RemoveReq
+namespace KSociety.Com.App.Dto.Req.Remove.Common
 {
-    public TagGroup() { }
-
-    public TagGroup(Guid id)
-        : base(id)
+    [ProtoContract]
+    public class TagGroup : RemoveReq
     {
+        public TagGroup() { }
+
+        public TagGroup(Guid id)
+            : base(id)
+        {
+        }
     }
 }

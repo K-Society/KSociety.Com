@@ -1,12 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using Autofac;
-using KSociety.Base.EventBus.Abstractions.EventBus;
+﻿using Autofac;
 using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using KSociety.Com.Domain.Entity.Event;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Biz.IntegrationEvent.DomainEventHandler;
 
@@ -56,18 +55,29 @@ public class NotifyTagValueChangedHandler
         //            notification.Tag.Value,
         //            notification.Timestamp
         //            ));
+        if (!_biz.Subscriber.EventBus.ContainsKey(notification.Tag.TagGroup.Name + "_Invoke")) return;
 
-        await ((IEventBusQueue)_biz
-                .TagGroupEventBus[notification.Tag.TagGroup.Name + "_Invoke"])
-            .Publish(
-                new TagIntegrationEvent(
-                    //notification.Tag.TagGroup.Name + ".automation.read",
-                    notification.Tag.TagGroup.Name + ".automation.invoke",
-                    notification.Tag.TagGroup.Name,
-                    notification.Tag.Name,
-                    notification.Tag.Value,
-                    notification.Timestamp
-                )).ConfigureAwait(false);
+        await _biz.Subscriber.EventBus[notification.Tag.TagGroup.Name + "_Invoke"].Publish(
+            new TagIntegrationEvent(
+                //notification.Tag.TagGroup.Name + ".automation.read",
+                notification.Tag.TagGroup.Name + ".automation.invoke",
+                notification.Tag.TagGroup.Name,
+                notification.Tag.Name,
+                notification.Tag.Value,
+                notification.Timestamp
+            )).ConfigureAwait(false);
+
+        //await ((IEventBusQueue)_biz
+        //        .TagGroupEventBus[notification.Tag.TagGroup.Name + "_Invoke"])
+        //    .Publish(
+        //        new TagIntegrationEvent(
+        //            //notification.Tag.TagGroup.Name + ".automation.read",
+        //            notification.Tag.TagGroup.Name + ".automation.invoke",
+        //            notification.Tag.TagGroup.Name,
+        //            notification.Tag.Name,
+        //            notification.Tag.Value,
+        //            notification.Timestamp
+        //        )).ConfigureAwait(false);
 
         //_startup
         //    .TagGroupEventBusRead[notification.Tag.TagGroup.Name]
