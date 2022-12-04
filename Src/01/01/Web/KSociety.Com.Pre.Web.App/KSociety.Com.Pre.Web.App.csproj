@@ -4,6 +4,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
     <UserSecretsId>b6cb845b-dd85-4a6e-bfbf-68ded1e7817c</UserSecretsId>
   </PropertyGroup>

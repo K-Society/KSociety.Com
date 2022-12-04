@@ -1,25 +1,26 @@
 ﻿using System.Collections.Generic;
 
-namespace KSociety.Com.Domain.Entity.S7;
-
-public class WordLen
+namespace KSociety.Com.Domain.Entity.S7
 {
-    public int Id { get; private set; }
-    public string WordLenName { get; private set; }
-    public string Mean { get; private set; }
-
-    public virtual ICollection<S7Tag> S7Tags { get; set; }
-    public virtual ICollection<BlockArea> S7BlockAreas { get; set; }
-
-    //private WordLen() { }
-
-    public WordLen(int id, string wordLenName, string mean)
+    public class WordLen
     {
-        Id = id;
-        WordLenName = wordLenName;
-        Mean = mean;
+        public int Id { get; private set; }
+        public string WordLenName { get; private set; }
+        public string Mean { get; private set; }
 
-        //var s7WordLenValidator = new S7WordLenValidator();
-        //s7WordLenValidator.ValidateAndThrow(this);
+        public virtual ICollection<S7Tag> S7Tags { get; set; }
+        public virtual ICollection<BlockArea> S7BlockAreas { get; set; }
+
+        //private WordLen() { }
+
+        public WordLen(int id, string wordLenName, string mean)
+        {
+            Id = id;
+            WordLenName = wordLenName;
+            Mean = mean;
+
+            //var s7WordLenValidator = new S7WordLenValidator();
+            //s7WordLenValidator.ValidateAndThrow(this);
+        }
     }
 }

@@ -1,40 +1,43 @@
 ﻿using System;
 
-namespace KSociety.Com.Driver.Enip.ControlLogixNet;
-
-internal class GetStructAttribsRequest
+namespace KSociety.Com.Driver.Enip.ControlLogixNet
 {
-    //Bytes 6 and 7 are the instance number
-    byte[] request = new byte[] 
-    { 0x03, 0x03, 0x20, 0x6C, 0x25, 0x00, 0x00, 0x00, 0x04, 0x00, 0x04, 0x00, 0x03, 0x00,
-        0x02, 0x00, 0x01, 0x00 };
-
-    public byte RequestSize { get { return (byte)request.Length; } }
-
-    public GetStructAttribsRequest(ushort StructureId)
+    internal class GetStructAttribsRequest
     {
-        request[7] = (byte)(StructureId & 0x00FF);
-        request[6] = (byte)((StructureId & 0xFF00) >> 8);
+        //Bytes 6 and 7 are the instance number
+        byte[] request = new byte[]
+        {
+            0x03, 0x03, 0x20, 0x6C, 0x25, 0x00, 0x00, 0x00, 0x04, 0x00, 0x04, 0x00, 0x03, 0x00, 0x02, 0x00, 0x01,
+            0x00
+        };
+
+        public byte RequestSize { get { return (byte)request.Length; } }
+
+        public GetStructAttribsRequest(ushort StructureId)
+        {
+            request[7] = (byte)(StructureId & 0x00FF);
+            request[6] = (byte)((StructureId & 0xFF00) >> 8);
+        }
+
+        public byte[] Pack()
+        {
+            return request;
+        }
     }
 
-    public byte[] Pack()
+    internal class GetStructAttribsReply
     {
-        return request;
-    }
-}
+        public uint TemplateSize { get; internal set; }
+        public ushort MemorySize { get; internal set; }
+        public ushort MemberCount { get; internal set; }
+        public ushort Handle { get; internal set; }
 
-internal class GetStructAttribsReply
-{
-    public uint TemplateSize { get; internal set; }
-    public ushort MemorySize { get; internal set; }
-    public ushort MemberCount { get; internal set; }
-    public ushort Handle { get; internal set; }
-
-    public GetStructAttribsReply(byte[] data)
-    {
-        TemplateSize = BitConverter.ToUInt32(data, 6);
-        MemorySize = BitConverter.ToUInt16(data, 14);
-        MemberCount = BitConverter.ToUInt16(data, 20);
-        Handle = BitConverter.ToUInt16(data, 26);
+        public GetStructAttribsReply(byte[] data)
+        {
+            TemplateSize = BitConverter.ToUInt32(data, 6);
+            MemorySize = BitConverter.ToUInt16(data, 14);
+            MemberCount = BitConverter.ToUInt16(data, 20);
+            Handle = BitConverter.ToUInt16(data, 26);
+        }
     }
 }

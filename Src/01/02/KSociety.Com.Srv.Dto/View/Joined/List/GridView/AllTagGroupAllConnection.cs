@@ -2,15 +2,16 @@
 using KSociety.Base.Srv.Dto;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.View.Joined.List.GridView;
-
-[ProtoContract]
-public class AllTagGroupAllConnection : ObjectList<Joined.AllTagGroupAllConnection>
+namespace KSociety.Com.Srv.Dto.View.Joined.List.GridView
 {
-    public AllTagGroupAllConnection() { }
-
-    public AllTagGroupAllConnection(List<Joined.AllTagGroupAllConnection> allTagGroupAllConnection)
+    [ProtoContract]
+    public class AllTagGroupAllConnection : ObjectList<Joined.AllTagGroupAllConnection>
     {
-        List = allTagGroupAllConnection;
+        public AllTagGroupAllConnection() { }
+
+        public AllTagGroupAllConnection(List<Joined.AllTagGroupAllConnection> allTagGroupAllConnection)
+        {
+            List = allTagGroupAllConnection;
+        }
     }
 }

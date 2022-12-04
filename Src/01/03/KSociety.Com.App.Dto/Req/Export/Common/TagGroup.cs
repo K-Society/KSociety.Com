@@ -1,17 +1,18 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Export.Common;
-
-[ProtoContract]
-public class TagGroup : ExportReq
+namespace KSociety.Com.App.Dto.Req.Export.Common
 {
-    public TagGroup() { }
-
-    public TagGroup(
-        string fileName
-    )
+    [ProtoContract]
+    public class TagGroup : ExportReq
     {
-        FileName = fileName;
+        public TagGroup() { }
+
+        public TagGroup(
+            string fileName
+        )
+        {
+            FileName = fileName;
+        }
     }
 }

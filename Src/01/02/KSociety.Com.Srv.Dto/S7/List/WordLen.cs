@@ -2,17 +2,18 @@
 using KSociety.Base.Srv.Dto;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.S7.List;
-
-[ProtoContract]
-public class WordLen : ObjectList<S7.WordLen>
+namespace KSociety.Com.Srv.Dto.S7.List
 {
-    public WordLen()
+    [ProtoContract]
+    public class WordLen : ObjectList<S7.WordLen>
     {
-    }
+        public WordLen()
+        {
+        }
 
-    public WordLen(List<S7.WordLen> wordLens)
-    {
-        List = wordLens;
+        public WordLen(List<S7.WordLen> wordLens)
+        {
+            List = wordLens;
+        }
     }
 }

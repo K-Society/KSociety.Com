@@ -1,10 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using KSociety.Base.App.Shared;
-using KSociety.Base.Infra.Shared.Interface;
+﻿using KSociety.Base.App.Shared;
+using KSociety.Base.Infra.Abstraction.Interface;
 using KSociety.Com.App.Dto.Req.ModifyField.S7;
 using KSociety.Com.Domain.Repository.S7;
 using Microsoft.Extensions.Logging;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.App.ReqHdlr.ModifyField.S7;
 

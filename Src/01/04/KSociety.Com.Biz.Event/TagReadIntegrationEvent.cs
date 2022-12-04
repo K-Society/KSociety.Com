@@ -1,27 +1,26 @@
 ﻿using ProtoBuf;
 
-namespace KSociety.Com.Biz.Event;
-
-[ProtoContract]
-public class TagReadIntegrationEvent : IntegrationComEventRpc
+namespace KSociety.Com.Biz.Event
 {
-    [ProtoMember(1)]
-    public string GroupName { get; set; }
-
-    [ProtoMember(2)]
-    public string Name { get; set; }
-
-    public TagReadIntegrationEvent() { }
-
-    public TagReadIntegrationEvent(
-        string routingKey,
-        string replyRoutingKey,
-        string groupName,
-        string name
-    )
-        : base(routingKey, replyRoutingKey)
+    [ProtoContract]
+    public class TagReadIntegrationEvent : IntegrationComEventRpc
     {
-        GroupName = groupName;
-        Name = name;
+        [ProtoMember(1)] public string GroupName { get; set; }
+
+        [ProtoMember(2)] public string Name { get; set; }
+
+        public TagReadIntegrationEvent() { }
+
+        public TagReadIntegrationEvent(
+            string routingKey,
+            string replyRoutingKey,
+            string groupName,
+            string name
+        )
+            : base(routingKey, replyRoutingKey)
+        {
+            GroupName = groupName;
+            Name = name;
+        }
     }
 }

@@ -2,18 +2,19 @@
 using KSociety.Base.Srv.Dto;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.View.Common.List;
-
-[ProtoContract]
-public class TagGroupReady : ObjectList<Common.TagGroupReady>
+namespace KSociety.Com.Srv.Dto.View.Common.List
 {
-    public TagGroupReady()
+    [ProtoContract]
+    public class TagGroupReady : ObjectList<Common.TagGroupReady>
     {
+        public TagGroupReady()
+        {
 
-    }
+        }
 
-    public TagGroupReady(List<Common.TagGroupReady> tagGroupReady)
-    {
-        List = tagGroupReady;
+        public TagGroupReady(List<Common.TagGroupReady> tagGroupReady)
+        {
+            List = tagGroupReady;
+        }
     }
 }

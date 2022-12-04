@@ -1,14 +1,15 @@
 ﻿using System;
 using MediatR;
 
-namespace KSociety.Com.Domain.Entity.Event;
-
-public class LogMessage : INotification
+namespace KSociety.Com.Domain.Entity.Event
 {
-    public DateTime MessageTime { get; }
-
-    public LogMessage(DateTime messageTime)
+    public class LogMessage : INotification
     {
-        MessageTime = messageTime;
+        public DateTime MessageTime { get; }
+
+        public LogMessage(DateTime messageTime)
+        {
+            MessageTime = messageTime;
+        }
     }
 }

@@ -2,18 +2,18 @@
 using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.Remove.S7;
-
-[ProtoContract]
-public class S7Connection : IResponse, IBoolResponse
+namespace KSociety.Com.App.Dto.Res.Remove.S7
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public S7Connection() { }
-
-    public S7Connection(bool result)
+    [ProtoContract]
+    public class S7Connection : IResponse, IBoolResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public S7Connection() { }
+
+        public S7Connection(bool result)
+        {
+            Result = result;
+        }
     }
 }

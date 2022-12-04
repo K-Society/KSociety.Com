@@ -1,17 +1,18 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Export.Common;
-
-[ProtoContract]
-public class Connection : ExportReq
+namespace KSociety.Com.App.Dto.Req.Export.Common
 {
-    public Connection() { }
-
-    public Connection(
-        string fileName
-    )
+    [ProtoContract]
+    public class Connection : ExportReq
     {
-        FileName = fileName;
+        public Connection() { }
+
+        public Connection(
+            string fileName
+        )
+        {
+            FileName = fileName;
+        }
     }
 }

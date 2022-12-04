@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using KSociety.Base.Infra.Abstraction.Class;
 using KSociety.Base.Infra.Shared.Class;
 using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Base.Srv.Host.Shared.Bindings;

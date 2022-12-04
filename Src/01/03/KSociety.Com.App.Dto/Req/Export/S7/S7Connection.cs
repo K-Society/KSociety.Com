@@ -1,17 +1,18 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Export.S7;
-
-[ProtoContract]
-public class S7Connection : ExportReq
+namespace KSociety.Com.App.Dto.Req.Export.S7
 {
-    public S7Connection() { }
-
-    public S7Connection(
-        string fileName
-    )
+    [ProtoContract]
+    public class S7Connection : ExportReq
     {
-        FileName = fileName;
+        public S7Connection() { }
+
+        public S7Connection(
+            string fileName
+        )
+        {
+            FileName = fileName;
+        }
     }
 }

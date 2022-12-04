@@ -1,18 +1,18 @@
 ﻿using KSociety.Base.App.Shared;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.Export.Logix;
-
-[ProtoContract]
-public class LogixTag : IResponse
+namespace KSociety.Com.App.Dto.Res.Export.Logix
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public LogixTag() { }
-
-    public LogixTag(bool result)
+    [ProtoContract]
+    public class LogixTag : IResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public LogixTag() { }
+
+        public LogixTag(bool result)
+        {
+            Result = result;
+        }
     }
 }

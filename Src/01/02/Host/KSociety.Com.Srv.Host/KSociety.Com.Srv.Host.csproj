@@ -4,13 +4,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     <UserSecretsId>dotnet-Std.Srv.Host.Com-235594AD-23E6-492D-BC68-DFEB516571BD</UserSecretsId>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.14" />
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.20" />
     <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>

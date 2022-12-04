@@ -3,86 +3,90 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KSociety.Com.Driver.Ping;
-
-public static class PingerEngine
+namespace KSociety.Com.Driver.Ping
 {
-    public static IPAddress ResolveAddress(string hostNameOrAddress)
+    public static class PingerEngine
     {
-        var address = IPAddress.None;
-        try
+        public static IPAddress ResolveAddress(string hostNameOrAddress)
         {
-            if (!IPAddress.TryParse(hostNameOrAddress, out address))
+            var address = IPAddress.None;
+            try
             {
-                var addresses = Dns.GetHostAddresses(hostNameOrAddress);
-                address = addresses[0];
-            }
-        }
-        catch
-        {
-            //
-        }
-        return address;
-    }
-
-    public static async ValueTask<IPAddress> ResolveAddressAsync(string hostNameOrAddress)
-    {
-        var address = IPAddress.None;
-        try
-        {
-            if (!IPAddress.TryParse(hostNameOrAddress, out address))
-            {
-                var addresses = await Dns.GetHostAddressesAsync(hostNameOrAddress);
-                address = addresses[0];
-            }
-        }
-        catch
-        {
-            //
-        }
-        return address;
-    }
-
-    public static async ValueTask ContinuousPingAsync(IPAddress address, int timeout, int delayBetweenPings, IProgress<PingerResult> progress, CancellationToken cancellationToken)
-    {
-        try
-        {
-            var ping = new System.Net.NetworkInformation.Ping();
-            var result = new PingerResult(address);
-
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                System.Net.NetworkInformation.PingReply res = null;
-                try
+                if (!IPAddress.TryParse(hostNameOrAddress, out address))
                 {
+                    var addresses = Dns.GetHostAddresses(hostNameOrAddress);
+                    address = addresses[0];
+                }
+            }
+            catch
+            {
+                //
+            }
+
+            return address;
+        }
+
+        public static async ValueTask<IPAddress> ResolveAddressAsync(string hostNameOrAddress)
+        {
+            var address = IPAddress.None;
+            try
+            {
+                if (!IPAddress.TryParse(hostNameOrAddress, out address))
+                {
+                    var addresses = await Dns.GetHostAddressesAsync(hostNameOrAddress);
+                    address = addresses[0];
+                }
+            }
+            catch
+            {
+                //
+            }
+
+            return address;
+        }
+
+        public static async ValueTask ContinuousPingAsync(IPAddress address, int timeout, int delayBetweenPings,
+            IProgress<PingerResult> progress, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var ping = new System.Net.NetworkInformation.Ping();
+                var result = new PingerResult(address);
+
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    System.Net.NetworkInformation.PingReply res = null;
                     try
                     {
-                        res = await ping.SendPingAsync(address, timeout).ConfigureAwait(false);
-                        result.AddResult(res);
-                        progress.Report(result);
-                        await Task.Delay(delayBetweenPings, cancellationToken).ConfigureAwait(false);
+                        try
+                        {
+                            res = await ping.SendPingAsync(address, timeout).ConfigureAwait(false);
+                            result.AddResult(res);
+                            progress.Report(result);
+                            await Task.Delay(delayBetweenPings, cancellationToken).ConfigureAwait(false);
+                        }
+                        catch (System.Net.NetworkInformation.PingException /*pex*/)
+                        {
+                            //var s = pex.ToString();
+                            result.AddResult(res);
+                            progress.Report(result);
+                            await Task.Delay(delayBetweenPings, cancellationToken).ConfigureAwait(false);
+                        }
                     }
-                    catch (System.Net.NetworkInformation.PingException /*pex*/)
+                    catch (Exception /*ex*/)
                     {
-                        //var s = pex.ToString();
-                        result.AddResult(res);
+                        //res = null;
+                        //ex.ToString();
+                        result.AddResult(null);
                         progress.Report(result);
                         await Task.Delay(delayBetweenPings, cancellationToken).ConfigureAwait(false);
                     }
-                }
-                catch (Exception /*ex*/)
-                {
-                    //res = null;
-                    //ex.ToString();
-                    result.AddResult(null);
-                    progress.Report(result);
-                    await Task.Delay(delayBetweenPings, cancellationToken).ConfigureAwait(false);
                 }
             }
-        }
-        catch (Exception /*ex*/)
-        {
-            //ex.ToString();
+            catch (Exception /*ex*/)
+            {
+                //ex.ToString();
+            }
         }
     }
 }

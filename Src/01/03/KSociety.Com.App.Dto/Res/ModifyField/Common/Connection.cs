@@ -1,18 +1,18 @@
 ﻿using KSociety.Base.App.Shared;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.ModifyField.Common;
-
-[ProtoContract]
-public class Connection : IResponse
+namespace KSociety.Com.App.Dto.Res.ModifyField.Common
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public Connection() { }
-
-    public Connection(bool result)
+    [ProtoContract]
+    public class Connection : IResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public Connection() { }
+
+        public Connection(bool result)
+        {
+            Result = result;
+        }
     }
 }

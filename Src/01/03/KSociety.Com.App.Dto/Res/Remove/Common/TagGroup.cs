@@ -2,18 +2,19 @@
 using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.Remove.Common;
-
-[ProtoContract]
-public class TagGroup : IResponse, IBoolResponse
+namespace KSociety.Com.App.Dto.Res.Remove.Common
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public TagGroup() { }
-
-    public TagGroup(bool result)
+    [ProtoContract]
+    public class TagGroup : IResponse, IBoolResponse
     {
-        Result = result;
+        [ProtoMember(1)]
+        public bool Result { get; set; }
+
+        public TagGroup() { }
+
+        public TagGroup(bool result)
+        {
+            Result = result;
+        }
     }
 }

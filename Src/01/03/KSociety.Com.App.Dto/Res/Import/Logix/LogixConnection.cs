@@ -1,18 +1,18 @@
 ﻿using KSociety.Base.App.Shared;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.Import.Logix;
-
-[ProtoContract]
-public class LogixConnection : IResponse
+namespace KSociety.Com.App.Dto.Res.Import.Logix
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public LogixConnection() { }
-
-    public LogixConnection(bool result)
+    [ProtoContract]
+    public class LogixConnection : IResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public LogixConnection() { }
+
+        public LogixConnection(bool result)
+        {
+            Result = result;
+        }
     }
 }
