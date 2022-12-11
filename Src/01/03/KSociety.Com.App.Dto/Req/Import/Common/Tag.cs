@@ -1,19 +1,20 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Import.Common;
-
-[ProtoContract]
-public class Tag : ImportReq
+namespace KSociety.Com.App.Dto.Req.Import.Common
 {
-    public Tag() { }
-
-    public Tag(
-        string fileName,
-        byte[] byteArray
-    )
+    [ProtoContract]
+    public class Tag : ImportReq
     {
-        FileName = fileName;
-        ByteArray = byteArray;
+        public Tag() { }
+
+        public Tag(
+            string fileName,
+            byte[] byteArray
+        )
+        {
+            FileName = fileName;
+            ByteArray = byteArray;
+        }
     }
 }

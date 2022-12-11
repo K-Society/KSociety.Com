@@ -1,22 +1,21 @@
 ﻿using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.S7;
-
-[ProtoContract]
-public class ConnectionType : IObject
+namespace KSociety.Com.Srv.Dto.S7
 {
-    [ProtoMember(1)]
-    public int Id { get; set; }
-
-    [ProtoMember(2)]
-    public string Name { get; set; }
-
-    private ConnectionType() { }
-
-    public ConnectionType(int id, string name)
+    [ProtoContract]
+    public class ConnectionType : IObject
     {
-        Id = id;
-        Name = name;
+        [ProtoMember(1)] public int Id { get; set; }
+
+        [ProtoMember(2)] public string Name { get; set; }
+
+        private ConnectionType() { }
+
+        public ConnectionType(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

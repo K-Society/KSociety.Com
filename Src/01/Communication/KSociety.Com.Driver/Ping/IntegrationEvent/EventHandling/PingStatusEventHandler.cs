@@ -4,51 +4,55 @@ using KSociety.Base.EventBus.Abstractions.Handler;
 using KSociety.Com.Driver.Ping.IntegrationEvent.Event;
 using Microsoft.Extensions.Logging;
 
-namespace KSociety.Com.Driver.Ping.IntegrationEvent.EventHandling;
-
-public class PingStatusEventHandler : IIntegrationEventHandler<PingStatusIntegrationEvent>
+namespace KSociety.Com.Driver.Ping.IntegrationEvent.EventHandling
 {
-    protected readonly string Name;
-    protected readonly ILogger<PingStatusEventHandler> Logger;
-    //private readonly IAutomation _automation;
-        
-
-    public PingStatusEventHandler(string name, ILogger<PingStatusEventHandler> logger)
+    public class PingStatusEventHandler : IIntegrationEventHandler<PingStatusIntegrationEvent>
     {
-        Name = name;
-        Logger = logger;
-    }
+        protected readonly string Name;
 
-    //public PingStatusEventHandler(string name, ILogger logger, IAutomation automation)
-    //{
-    //    _name = name;
-    //    _logger = logger;
-    //    _automation = automation;
-    //}
+        protected readonly ILogger<PingStatusEventHandler> Logger;
+        //private readonly IAutomation _automation;
 
-    public virtual async ValueTask Handle(PingStatusIntegrationEvent @event, CancellationToken cancellationToken = default)
-    {
-        if (@event.Status)
+
+        public PingStatusEventHandler(string name, ILogger<PingStatusEventHandler> logger)
         {
-            Logger.LogInformation("Ping " + Name + ": " + @event.Name + " " + @event.Address + " " + @event.Status + " " +
-                                  @event.CreationDate);
-        }
-        else
-        {
-            Logger.LogError("Ping " + Name + ": " + @event.Name + " " + @event.Address + " " + @event.Status + " " +
-                            @event.CreationDate);
+            Name = name;
+            Logger = logger;
         }
 
-
-        //if (_automation is null)
+        //public PingStatusEventHandler(string name, ILogger logger, IAutomation automation)
         //{
-
-        //}
-        //else
-        //{
-        //    //_automation.
+        //    _name = name;
+        //    _logger = logger;
+        //    _automation = automation;
         //}
 
-        await Task.CompletedTask.ConfigureAwait(false);
+        public virtual async ValueTask Handle(PingStatusIntegrationEvent @event,
+            CancellationToken cancellationToken = default)
+        {
+            if (@event.Status)
+            {
+                Logger.LogInformation("Ping " + Name + ": " + @event.Name + " " + @event.Address + " " + @event.Status +
+                                      " " +
+                                      @event.CreationDate);
+            }
+            else
+            {
+                Logger.LogError("Ping " + Name + ": " + @event.Name + " " + @event.Address + " " + @event.Status + " " +
+                                @event.CreationDate);
+            }
+
+
+            //if (_automation is null)
+            //{
+
+            //}
+            //else
+            //{
+            //    //_automation.
+            //}
+
+            await Task.CompletedTask.ConfigureAwait(false);
+        }
     }
 }

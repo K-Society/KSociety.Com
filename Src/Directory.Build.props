@@ -3,7 +3,7 @@
 
 <Project>
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
 	
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <!--MSBuildErrorsAsMessages>NU1202</MSBuildErrorsAsMessages-->
@@ -12,10 +12,12 @@
     <BaseOutputPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\build\$(ProjectName)\))</BaseOutputPath>
     <BaseIntermediateOutputPath>$(BaseOutputPath)obj\</BaseIntermediateOutputPath>
     <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+	
+	<Title>$(AssemblyName)</Title>
 
     <Authors>K-Society</Authors>
     <Company>K-Society</Company>
-    <Copyright>Copyright (c) K-Society and contributors. All rights reserved.</Copyright>
+    <Copyright>Copyright © K-Society and contributors 2022. All rights reserved.</Copyright>
 	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>
 	<Description>K-Society Com is a full stack framework for .NET 6 application https://github.com/K-Society/KSociety.Com</Description>
     <Product>K-Society Com</Product>
@@ -23,10 +25,12 @@
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/K-Society/KSociety.Com</RepositoryUrl>
+	<PackageReleaseNotes>https:%2F%2Fk-society.github.io%2FKSociety.Com%2F$(ProjectName)%2Fchange-log</PackageReleaseNotes>
 	<RepositoryType>git</RepositoryType>
 	<EmbedUntrackedSources>true</EmbedUntrackedSources>
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageTags>ksociety;k-society;microservices;fullstack;framework;S7</PackageTags>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(APPVEYOR)' == 'True'">
@@ -35,5 +39,6 @@
 
   <Import Project="Icon.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Icon.Build.props') " />
   <Import Project="CSharp.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('CSharp.Build.props') " />
+  <Import Project="Readme.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Readme.Build.props') " />
   <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
 </Project>

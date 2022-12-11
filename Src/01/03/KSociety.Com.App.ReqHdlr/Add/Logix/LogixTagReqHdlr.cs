@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using KSociety.Base.App.Shared;
-using KSociety.Base.Infra.Shared.Interface;
+using KSociety.Base.Infra.Abstraction.Interface;
 using KSociety.Com.App.Dto.Req.Add.Logix;
 using KSociety.Com.Domain.Repository.Logix;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.App.ReqHdlr.Add.Logix;
 

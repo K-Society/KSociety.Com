@@ -1,19 +1,20 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Import.S7;
-
-[ProtoContract]
-public class S7Tag : ImportReq
+namespace KSociety.Com.App.Dto.Req.Import.S7
 {
-    public S7Tag() { }
-
-    public S7Tag(
-        string fileName,
-        byte[] byteArray
-    )
+    [ProtoContract]
+    public class S7Tag : ImportReq
     {
-        FileName = fileName;
-        ByteArray = byteArray;
+        public S7Tag() { }
+
+        public S7Tag(
+            string fileName,
+            byte[] byteArray
+        )
+        {
+            FileName = fileName;
+            ByteArray = byteArray;
+        }
     }
 }

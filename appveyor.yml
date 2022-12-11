@@ -18,8 +18,8 @@ environment:
   NUGET_XMLDOC_MODE: skip
   ComSystemVersion: 0.0.0.0
 
-install:
-  - ps: .\dotnet-install.ps1 -Version '6.0.401'
+#install:
+#  - ps: .\dotnet-install.ps1 -Version '6.0.401'
 
 before_build:
   - ps: dotnet --info

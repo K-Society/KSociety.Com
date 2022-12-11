@@ -1,19 +1,20 @@
 ﻿using KSociety.Base.EventBus.Events;
 using ProtoBuf;
 
-namespace KSociety.Com.Biz.Event;
-
-[ProtoContract]
-public class IntegrationComEventReply : IntegrationEventReply
+namespace KSociety.Com.Biz.Event
 {
-    public IntegrationComEventReply()
+    [ProtoContract]
+    public class IntegrationComEventReply : IntegrationEventReply
     {
+        public IntegrationComEventReply()
+        {
 
-    }
+        }
 
-    public IntegrationComEventReply(string routingKey)
-        :base(routingKey)
-    {
+        public IntegrationComEventReply(string routingKey)
+            : base(routingKey)
+        {
 
+        }
     }
 }

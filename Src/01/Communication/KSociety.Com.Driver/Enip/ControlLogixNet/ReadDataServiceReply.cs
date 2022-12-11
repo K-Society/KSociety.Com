@@ -2,63 +2,64 @@
 using KSociety.Com.Driver.Enip.Eipnet.Cip;
 using KSociety.Com.Driver.Enip.Eipnet.Eip;
 
-namespace KSociety.Com.Driver.Enip.ControlLogixNet;
-
-internal class ReadDataServiceReply
+namespace KSociety.Com.Driver.Enip.ControlLogixNet
 {
-    public byte Service { get; internal set; }
-    public byte Reserved { get; internal set; }
-    public ushort Status { get; internal set; }
-    public byte[] ByteStatus { get; internal set; }
-    public ushort DataType { get; internal set; }
-    public byte[] Data { get; internal set; }
-
-    public ReadDataServiceReply(EncapsReply reply)
+    internal class ReadDataServiceReply
     {
-        //First we have to get the data item...
-        EncapsRRData rrData = new EncapsRRData();
+        public byte Service { get; internal set; }
+        public byte Reserved { get; internal set; }
+        public ushort Status { get; internal set; }
+        public byte[] ByteStatus { get; internal set; }
+        public ushort DataType { get; internal set; }
+        public byte[] Data { get; internal set; }
 
-        CommonPacket cpf = new CommonPacket();
-        int temp = 0;
-        rrData.Expand(reply.EncapsData, 0, out temp);
-        cpf = rrData.CPF;
-
-        //The data item contains the information in an MR_Response
-        MessageRouterResponse response = new MessageRouterResponse();
-        response.Expand(cpf.DataItem.Data, 2, out temp);
-
-        Service = response.ReplyService;
-        Status = response.GeneralStatus;
-
-        byte[] bbTemp = new byte[4];
-        Buffer.BlockCopy(BitConverter.GetBytes(Status), 0, bbTemp, 0, 2);
-
-        if (Status == 0xFF)
+        public ReadDataServiceReply(EncapsReply reply)
         {
-            if (response.AdditionalStatus_Size > 0)
-                Buffer.BlockCopy(response.AdditionalStatus, 0, bbTemp, 2, 2);
+            //First we have to get the data item...
+            EncapsRRData rrData = new EncapsRRData();
+
+            CommonPacket cpf = new CommonPacket();
+            int temp = 0;
+            rrData.Expand(reply.EncapsData, 0, out temp);
+            cpf = rrData.CPF;
+
+            //The data item contains the information in an MR_Response
+            MessageRouterResponse response = new MessageRouterResponse();
+            response.Expand(cpf.DataItem.Data, 2, out temp);
+
+            Service = response.ReplyService;
+            Status = response.GeneralStatus;
+
+            byte[] bbTemp = new byte[4];
+            Buffer.BlockCopy(BitConverter.GetBytes(Status), 0, bbTemp, 0, 2);
+
+            if (Status == 0xFF)
+            {
+                if (response.AdditionalStatus_Size > 0)
+                    Buffer.BlockCopy(response.AdditionalStatus, 0, bbTemp, 2, 2);
+            }
+
+            ByteStatus = bbTemp;
+
+            //Now check the response code...
+            if (response.GeneralStatus != 0 && response.GeneralStatus != 0x06)
+                return;
+
+            if (response.ResponseData != null)
+            {
+                //Now we suck out the data type...
+                DataType = BitConverter.ToUInt16(response.ResponseData, 0);
+                byte[] tempB = new byte[response.ResponseData.Length - 2];
+                Buffer.BlockCopy(response.ResponseData, 2, tempB, 0, tempB.Length);
+                Data = tempB;
+            }
+            else
+            {
+                DataType = 0x0000;
+            }
+
+
         }
-
-        ByteStatus = bbTemp;
-
-        //Now check the response code...
-        if (response.GeneralStatus != 0 && response.GeneralStatus != 0x06)
-            return;
-
-        if (response.ResponseData != null)
-        {
-            //Now we suck out the data type...
-            DataType = BitConverter.ToUInt16(response.ResponseData, 0);
-            byte[] tempB = new byte[response.ResponseData.Length - 2];
-            Buffer.BlockCopy(response.ResponseData, 2, tempB, 0, tempB.Length);
-            Data = tempB;
-        }
-        else
-        {
-            DataType = 0x0000;
-        }
-
 
     }
-
 }

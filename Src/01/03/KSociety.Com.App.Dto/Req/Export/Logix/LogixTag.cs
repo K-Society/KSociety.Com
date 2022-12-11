@@ -1,17 +1,18 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Export.Logix;
-
-[ProtoContract]
-public class LogixTag : ExportReq
+namespace KSociety.Com.App.Dto.Req.Export.Logix
 {
-    public LogixTag() { }
-
-    public LogixTag(
-        string fileName
-    )
+    [ProtoContract]
+    public class LogixTag : ExportReq
     {
-        FileName = fileName;
+        public LogixTag() { }
+
+        public LogixTag(
+            string fileName
+        )
+        {
+            FileName = fileName;
+        }
     }
 }

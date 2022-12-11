@@ -1,13 +1,14 @@
 ﻿using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.Common;
-
-[ProtoContract]
-public class Bit : IObject
+namespace KSociety.Com.Srv.Dto.Common
 {
-    public Bit()
+    [ProtoContract]
+    public class Bit : IObject
     {
+        public Bit()
+        {
 
+        }
     }
 }

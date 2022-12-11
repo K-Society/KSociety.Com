@@ -1,4 +1,4 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using KSociety.Base.EventBus.Events;
 using KSociety.Base.InfraSub.Shared.Interface;
 using KSociety.Base.Srv.Dto;

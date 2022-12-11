@@ -1,5 +1,5 @@
-﻿using KSociety.Base.Infra.Shared.Class;
-using KSociety.Base.Infra.Shared.Interface;
+﻿using KSociety.Base.Infra.Abstraction.Interface;
+using KSociety.Base.Infra.Shared.Class;
 using KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Common;
 using KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.S7;
 using KSociety.Com.Infra.DataAccess.EntityTypeConfiguration.Tcp;

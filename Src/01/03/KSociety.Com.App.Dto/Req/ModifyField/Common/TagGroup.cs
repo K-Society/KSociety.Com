@@ -1,15 +1,17 @@
-﻿using System;
-using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
+using System;
 
-namespace KSociety.Com.App.Dto.Req.ModifyField.Common;
-
-[ProtoContract]
-public class TagGroup : ModifyFieldReq
+namespace KSociety.Com.App.Dto.Req.ModifyField.Common
 {
-    public TagGroup() { }
+    [ProtoContract]
+    public class TagGroup : ModifyFieldReq
+    {
+        public TagGroup() { }
 
-    public TagGroup(Guid id, string fieldName, string value)
-        : base(id, fieldName, value)
-    { }
+        public TagGroup(Guid id, string fieldName, string value)
+            : base(id, fieldName, value)
+        {
+        }
+    }
 }

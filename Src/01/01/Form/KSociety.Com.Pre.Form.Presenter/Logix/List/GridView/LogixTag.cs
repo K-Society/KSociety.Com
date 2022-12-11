@@ -1,11 +1,6 @@
 ﻿using KSociety.Base.Pre.Form.Presenter.Forms;
 using KSociety.Com.Pre.Form.View.Abstractions.Logix.List.GridView;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KSociety.Com.Pre.Form.Presenter.Logix.List.GridView;
 

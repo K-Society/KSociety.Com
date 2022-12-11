@@ -3,59 +3,61 @@ using System.Net;
 using System.Net.NetworkInformation;
 using KSociety.Base.InfraSub.Shared.Class;
 
-namespace KSociety.Com.Driver.Ping;
-
-public sealed class PingerResult : DisposableObject
+namespace KSociety.Com.Driver.Ping
 {
-    public IPAddress Address { get; private set; }
-    public int PingsTotal { get; private set; }
-    public int PingsSuccessFull { get; private set; }
-    public TimeSpan AverageTime { get; private set; }
-    public TimeSpan LastTime { get; private set; }
-    public IPStatus LastStatus { get; private set; }
-
-    public PingerResult(IPAddress address)
+    public sealed class PingerResult : DisposableObject
     {
-        Address = address;
+        public IPAddress Address { get; private set; }
+        public int PingsTotal { get; private set; }
+        public int PingsSuccessFull { get; private set; }
+        public TimeSpan AverageTime { get; private set; }
+        public TimeSpan LastTime { get; private set; }
+        public IPStatus LastStatus { get; private set; }
 
-        LastStatus = IPStatus.Unknown;
-    }
-
-    internal void AddResult(PingReply res)
-    {
-        if (res == null)
+        public PingerResult(IPAddress address)
         {
+            Address = address;
+
             LastStatus = IPStatus.Unknown;
-            LastTime = TimeSpan.Zero;
         }
-        else
+
+        internal void AddResult(PingReply res)
         {
-
-            PingsTotal++;
-            LastStatus = res.Status;
-
-            if (res.Status == IPStatus.Success)
+            if (res == null)
             {
-                PingsSuccessFull++;
-                LastTime = TimeSpan.FromMilliseconds(res.RoundtripTime);
-                if (PingsSuccessFull == 1)
-                    AverageTime = LastTime;
-                else
-                {
-                    var oldAverage = AverageTime.TotalMilliseconds;
-                    AverageTime = TimeSpan.FromMilliseconds(oldAverage + (res.RoundtripTime - oldAverage) / PingsSuccessFull);
-                }
+                LastStatus = IPStatus.Unknown;
+                LastTime = TimeSpan.Zero;
             }
             else
             {
-                LastTime = TimeSpan.Zero;
+
+                PingsTotal++;
+                LastStatus = res.Status;
+
+                if (res.Status == IPStatus.Success)
+                {
+                    PingsSuccessFull++;
+                    LastTime = TimeSpan.FromMilliseconds(res.RoundtripTime);
+                    if (PingsSuccessFull == 1)
+                        AverageTime = LastTime;
+                    else
+                    {
+                        var oldAverage = AverageTime.TotalMilliseconds;
+                        AverageTime =
+                            TimeSpan.FromMilliseconds(oldAverage + (res.RoundtripTime - oldAverage) / PingsSuccessFull);
+                    }
+                }
+                else
+                {
+                    LastTime = TimeSpan.Zero;
+                }
             }
+
         }
 
-    }
+        protected override void DisposeManagedResources()
+        {
 
-    protected override void DisposeManagedResources()
-    {
-
+        }
     }
 }

@@ -1,17 +1,18 @@
-﻿using KSociety.Base.App.Shared.Dto.Req;
+﻿using KSociety.Base.App.Utility.Dto.Req;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Req.Export.S7;
-
-[ProtoContract]
-public class S7Tag : ExportReq
+namespace KSociety.Com.App.Dto.Req.Export.S7
 {
-    public S7Tag() { }
-
-    public S7Tag(
-        string fileName
-    )
+    [ProtoContract]
+    public class S7Tag : ExportReq
     {
-        FileName = fileName;
+        public S7Tag() { }
+
+        public S7Tag(
+            string fileName
+        )
+        {
+            FileName = fileName;
+        }
     }
 }

@@ -1,50 +1,51 @@
 ﻿using System;
 
-namespace KSociety.Com.Driver.Enip.Eipnet.Cip;
-
-public class PortSegmentR : IPackable, IExpandable
+namespace KSociety.Com.Driver.Enip.Eipnet.Cip
 {
-    //Fields
-    private ushort _linkAddressSize;
-    private ushort _portId;
-    private byte[] _linkAddress;
-
-    //Properties
-    public ushort LinkAddressSize { get { return _linkAddressSize; } set { _linkAddressSize = value; } }
-    public ushort PortId { get { return _portId; } set { _portId = value; } }
-    public byte[] LinkAddress { get { return _linkAddress; } set { _linkAddress = value; } }
-        
-    public byte[] Pack()
+    public class PortSegmentR : IPackable, IExpandable
     {
-        byte[] retVal = new byte[(2 * 2) + _linkAddress.Length];
+        //Fields
+        private ushort _linkAddressSize;
+        private ushort _portId;
+        private byte[] _linkAddress;
 
-        int offset = 0;
-        Buffer.BlockCopy(BitConverter.GetBytes(_linkAddressSize), 0, retVal, offset, 2);
-        offset += 2;
+        //Properties
+        public ushort LinkAddressSize { get { return _linkAddressSize; } set { _linkAddressSize = value; } }
+        public ushort PortId { get { return _portId; } set { _portId = value; } }
+        public byte[] LinkAddress { get { return _linkAddress; } set { _linkAddress = value; } }
 
-        Buffer.BlockCopy(BitConverter.GetBytes(_portId), 0, retVal, offset, 2);
-        offset += 2;
+        public byte[] Pack()
+        {
+            byte[] retVal = new byte[(2 * 2) + _linkAddress.Length];
 
-        Buffer.BlockCopy(_linkAddress, 0, retVal, offset, _linkAddress.Length);
+            int offset = 0;
+            Buffer.BlockCopy(BitConverter.GetBytes(_linkAddressSize), 0, retVal, offset, 2);
+            offset += 2;
 
-        return retVal;
-    }
+            Buffer.BlockCopy(BitConverter.GetBytes(_portId), 0, retVal, offset, 2);
+            offset += 2;
 
-    public void Expand(byte[] DataArray, int Offset, out int NewOffset)
-    {
-        int offset2 = Offset;
+            Buffer.BlockCopy(_linkAddress, 0, retVal, offset, _linkAddress.Length);
 
-        _linkAddressSize = BitConverter.ToUInt16(DataArray, offset2);
-        offset2 += 2;
+            return retVal;
+        }
 
-        _portId = BitConverter.ToUInt16(DataArray, offset2);
-        offset2 += 2;
+        public void Expand(byte[] DataArray, int Offset, out int NewOffset)
+        {
+            int offset2 = Offset;
 
-        //The rest of the bytes get transferred into the LinkAddress field...
-        _linkAddress = new byte[_linkAddressSize];
-        Buffer.BlockCopy(DataArray, offset2, _linkAddress, 0, _linkAddress.Length);
-        offset2 += _linkAddress.Length;
+            _linkAddressSize = BitConverter.ToUInt16(DataArray, offset2);
+            offset2 += 2;
 
-        NewOffset = offset2 - 1;
+            _portId = BitConverter.ToUInt16(DataArray, offset2);
+            offset2 += 2;
+
+            //The rest of the bytes get transferred into the LinkAddress field...
+            _linkAddress = new byte[_linkAddressSize];
+            Buffer.BlockCopy(DataArray, offset2, _linkAddress, 0, _linkAddress.Length);
+            offset2 += _linkAddress.Length;
+
+            NewOffset = offset2 - 1;
+        }
     }
 }

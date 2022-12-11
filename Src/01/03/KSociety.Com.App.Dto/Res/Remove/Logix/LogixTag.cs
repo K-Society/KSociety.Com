@@ -2,18 +2,18 @@
 using KSociety.Base.InfraSub.Shared.Interface;
 using ProtoBuf;
 
-namespace KSociety.Com.App.Dto.Res.Remove.Logix;
-
-[ProtoContract]
-public class LogixTag : IResponse, IBoolResponse
+namespace KSociety.Com.App.Dto.Res.Remove.Logix
 {
-    [ProtoMember(1)]
-    public bool Result { get; set; }
-
-    public LogixTag() { }
-
-    public LogixTag(bool result)
+    [ProtoContract]
+    public class LogixTag : IResponse, IBoolResponse
     {
-        Result = result;
+        [ProtoMember(1)] public bool Result { get; set; }
+
+        public LogixTag() { }
+
+        public LogixTag(bool result)
+        {
+            Result = result;
+        }
     }
 }

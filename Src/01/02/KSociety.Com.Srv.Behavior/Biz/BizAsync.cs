@@ -26,30 +26,29 @@ public class BizAsync : IBizAsync
     private readonly ILoggerFactory _loggerFactory;
     private static ILogger<BizAsync> _logger;
     private readonly IComponentContext _componentContext;
-    private readonly IConnectionFactory _connectionFactory;
     private readonly IEventBusComParameters _eventBusComParameters;
     private readonly ICommandHandlerAsync _commandHandlerAsync;
     private readonly ITagGroupReady _tagGroupReady;
+    private readonly IRabbitMqPersistentConnection _persistentConnection;
 
     private Dictionary<string, IEventBus> TagGroupEventBus { get; } = new();
 
     public BizAsync(
         ILoggerFactory loggerFactory,
         IComponentContext componentContext,
-        IConnectionFactory connectionFactory,
         IEventBusComParameters eventBusComParameters,
         ICommandHandlerAsync commandHandlerAsync,
-        ITagGroupReady tagGroupReady
+        ITagGroupReady tagGroupReady,
+        IRabbitMqPersistentConnection persistentConnection
     )
     {
         _loggerFactory = loggerFactory;
         _logger = _loggerFactory.CreateLogger<BizAsync>();
         _componentContext = componentContext;
-        _connectionFactory = connectionFactory;
         _eventBusComParameters = eventBusComParameters;
         _commandHandlerAsync = commandHandlerAsync;
         _tagGroupReady = tagGroupReady;
-
+        _persistentConnection = persistentConnection;
         //LoadGroups();
     }
 
@@ -57,8 +56,8 @@ public class BizAsync : IBizAsync
     {
         try
         {
-            DefaultRabbitMqPersistentConnection persistentConnection =
-                new(_connectionFactory, _loggerFactory);
+            //DefaultRabbitMqPersistentConnection persistentConnection =
+            //    new(_connectionFactory, _loggerFactory);
 
             foreach (var tagGroupReady in _tagGroupReady.GetAllTagGroupReady())
             {
@@ -69,8 +68,10 @@ public class BizAsync : IBizAsync
 
 
                 TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke",
-                    new EventBusRabbitMqQueue(persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
-                        "TransactionQueueInvoke_" + tagGroupReady.Name, CancellationToken.None));
+                    new EventBusRabbitMqQueue(_persistentConnection, _loggerFactory, queueInvokeHandler, null, _eventBusComParameters,
+                        "TransactionQueueInvoke_" + tagGroupReady.Name));
+
+                ((IEventBusQueue)TagGroupEventBus[tagGroupReady.Name + "_Invoke"]).Initialize();
 
                 //TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
                 //    new EventBusRabbitMq(persistentConnection, _loggerFactory, queueReadHandler, null, "direct",

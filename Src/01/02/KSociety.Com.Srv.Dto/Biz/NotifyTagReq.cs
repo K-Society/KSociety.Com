@@ -1,17 +1,17 @@
 ﻿using ProtoBuf;
 
-namespace KSociety.Com.Srv.Dto.Biz;
-
-[ProtoContract]
-public class NotifyTagReq
+namespace KSociety.Com.Srv.Dto.Biz
 {
-    [ProtoMember(1)]
-    public string GroupName { get; set; }
-
-    public NotifyTagReq() { }
-
-    public NotifyTagReq(string groupName)
+    [ProtoContract]
+    public class NotifyTagReq
     {
-        GroupName = groupName;
+        [ProtoMember(1)] public string GroupName { get; set; }
+
+        public NotifyTagReq() { }
+
+        public NotifyTagReq(string groupName)
+        {
+            GroupName = groupName;
+        }
     }
 }

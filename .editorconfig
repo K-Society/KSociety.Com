@@ -201,6 +201,8 @@ dotnet_naming_style.inizia_con_i.word_separator =
 dotnet_naming_style.inizia_con_i.capitalization = pascal_case
 csharp_style_namespace_declarations = block_scoped:silent
 csharp_style_prefer_null_check_over_type_check = true:suggestion
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
 
 [*.{cs,vb}]
 dotnet_style_operator_placement_when_wrapping = beginning_of_line

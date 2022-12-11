@@ -1,40 +1,41 @@
-﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet;
-
-internal static class SequenceNumberGenerator
+﻿namespace KSociety.Com.Driver.Enip.ControlLogixNet
 {
-
-    //private static readonly object LockObject;
-    private static ushort _sequenceNum;
-
-
-    //public static ushort SequenceNumber
-    //{
-    //    get
-    //    {
-    //        lock (LockObject)
-    //        {
-    //            if (_sequenceNum == ushort.MaxValue)
-    //                _sequenceNum = ushort.MinValue;
-    //            _sequenceNum++;
-    //            return _sequenceNum;
-    //        }
-    //    }
-    //}
-
-    public static ushort SequenceNumber(object lockObject)
+    internal static class SequenceNumberGenerator
     {
-        lock (lockObject)
+
+        //private static readonly object LockObject;
+        private static ushort _sequenceNum;
+
+
+        //public static ushort SequenceNumber
+        //{
+        //    get
+        //    {
+        //        lock (LockObject)
+        //        {
+        //            if (_sequenceNum == ushort.MaxValue)
+        //                _sequenceNum = ushort.MinValue;
+        //            _sequenceNum++;
+        //            return _sequenceNum;
+        //        }
+        //    }
+        //}
+
+        public static ushort SequenceNumber(object lockObject)
         {
-            if (_sequenceNum == ushort.MaxValue)
-                _sequenceNum = ushort.MinValue;
-            _sequenceNum++;
-            return _sequenceNum;
-        }            
+            lock (lockObject)
+            {
+                if (_sequenceNum == ushort.MaxValue)
+                    _sequenceNum = ushort.MinValue;
+                _sequenceNum++;
+                return _sequenceNum;
+            }
+        }
+
+        //static SequenceNumberGenerator()
+        //{
+        //    //LockObject = new object();
+        //}
+
     }
-
-    //static SequenceNumberGenerator()
-    //{
-    //    //LockObject = new object();
-    //}
-
 }

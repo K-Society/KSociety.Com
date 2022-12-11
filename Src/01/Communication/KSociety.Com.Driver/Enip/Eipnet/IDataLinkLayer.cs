@@ -1,7 +1,8 @@
-﻿namespace KSociety.Com.Driver.Enip.Eipnet;
-
-internal interface IDataLinkLayer
+﻿namespace KSociety.Com.Driver.Enip.Eipnet
 {
-    void SendData(byte[] data);
-    byte[] ReceiveData();
+    internal interface IDataLinkLayer
+    {
+        void SendData(byte[] data);
+        byte[] ReceiveData();
+    }
 }

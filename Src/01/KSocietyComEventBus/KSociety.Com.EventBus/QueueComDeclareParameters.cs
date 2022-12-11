@@ -1,18 +1,18 @@
 ﻿using KSociety.Base.EventBus;
 
-namespace KSociety.Com.EventBus;
-
-public class QueueComDeclareParameters : QueueDeclareParameters, IQueueComDeclareParameters
+namespace KSociety.Com.EventBus
 {
-    public QueueComDeclareParameters()
-        : base()
+    public class QueueComDeclareParameters : QueueDeclareParameters, IQueueComDeclareParameters
     {
+        public QueueComDeclareParameters()
+        {
 
-    }
+        }
 
-    public QueueComDeclareParameters(bool queueDurable, bool queueExclusive, bool queueAutoDelete)
-        :base(queueDurable, queueExclusive, queueAutoDelete)
-    {
+        public QueueComDeclareParameters(bool queueDurable, bool queueExclusive, bool queueAutoDelete)
+            : base(queueDurable, queueExclusive, queueAutoDelete)
+        {
 
+        }
     }
 }
