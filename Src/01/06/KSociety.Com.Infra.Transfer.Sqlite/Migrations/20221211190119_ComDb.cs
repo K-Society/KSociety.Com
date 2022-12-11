@@ -3,17 +3,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
+    /// <inheritdoc />
     public partial class ComDb : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "AnalogDigital",
                 columns: table => new
                 {
-                    AnalogDigitalSignal = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false)
+                    AnalogDigitalSignal = table.Column<string>(type: "TEXT", maxLength: 7, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -24,9 +28,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "AutomationType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Mean = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Mean = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,8 +41,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "Bit",
                 columns: table => new
                 {
-                    BitOfByte = table.Column<byte>(type: "tinyint", nullable: false),
-                    BitName = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false)
+                    BitOfByte = table.Column<byte>(type: "INTEGER", nullable: false),
+                    BitName = table.Column<string>(type: "TEXT", maxLength: 5, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,8 +53,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "InOut",
                 columns: table => new
                 {
-                    InputOutput = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
-                    InputOutputName = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    InputOutput = table.Column<string>(type: "TEXT", maxLength: 2, nullable: false),
+                    InputOutputName = table.Column<string>(type: "TEXT", maxLength: 10, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,9 +65,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "S7Area",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    AreaName = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
-                    Mean = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    AreaName = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
+                    Mean = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,8 +78,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "S7ConnectionType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 9, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,9 +90,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "S7CpuType",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    CpuTypeName = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    Mean = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    CpuTypeName = table.Column<string>(type: "TEXT", maxLength: 12, nullable: false),
+                    Mean = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,9 +103,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "S7WordLen",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    WordLenName = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    Mean = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false),
+                    WordLenName = table.Column<string>(type: "TEXT", maxLength: 12, nullable: false),
+                    Mean = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -112,11 +116,11 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "TagGroup",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Clock = table.Column<int>(type: "int", nullable: false),
-                    Update = table.Column<int>(type: "int", nullable: false),
-                    Enable = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Clock = table.Column<int>(type: "INTEGER", nullable: false),
+                    Update = table.Column<int>(type: "INTEGER", nullable: false),
+                    Enable = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,18 +131,18 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "Connection",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AutomationTypeId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Ip = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Enable = table.Column<bool>(type: "bit", nullable: false),
-                    WriteEnable = table.Column<bool>(type: "bit", nullable: false),
-                    Path = table.Column<byte[]>(type: "varbinary(3)", maxLength: 3, nullable: true, defaultValue: new byte[] { 0, 0, 0 }),
-                    CpuTypeId = table.Column<int>(type: "int", nullable: true),
-                    Rack = table.Column<short>(type: "smallint", nullable: true, defaultValue: (short)0),
-                    Slot = table.Column<short>(type: "smallint", nullable: true, defaultValue: (short)0),
-                    ConnectionTypeId = table.Column<int>(type: "int", nullable: true),
-                    Port = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    AutomationTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Ip = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
+                    Enable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    WriteEnable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Path = table.Column<byte[]>(type: "BLOB", maxLength: 3, nullable: true, defaultValue: new byte[] { 0, 0, 0 }),
+                    CpuTypeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Rack = table.Column<short>(type: "INTEGER", nullable: true, defaultValue: (short)0),
+                    Slot = table.Column<short>(type: "INTEGER", nullable: true, defaultValue: (short)0),
+                    ConnectionTypeId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Port = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -165,15 +169,15 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "S7BlockArea",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataBlock = table.Column<int>(type: "int", nullable: false),
-                    AreaId = table.Column<int>(type: "int", nullable: false),
-                    WordLenId = table.Column<int>(type: "int", nullable: false),
-                    Start = table.Column<int>(type: "int", nullable: false),
-                    Amount = table.Column<int>(type: "int", nullable: false),
-                    Enable = table.Column<bool>(type: "bit", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ConnectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DataBlock = table.Column<int>(type: "INTEGER", nullable: false),
+                    AreaId = table.Column<int>(type: "INTEGER", nullable: false),
+                    WordLenId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Start = table.Column<int>(type: "INTEGER", nullable: false),
+                    Amount = table.Column<int>(type: "INTEGER", nullable: false),
+                    Enable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    ConnectionId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -202,22 +206,22 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 name: "Tag",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    AutomationTypeId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    ConnectionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Enable = table.Column<bool>(type: "bit", nullable: false),
-                    InputOutput = table.Column<string>(type: "nvarchar(2)", nullable: false),
-                    AnalogDigitalSignal = table.Column<string>(type: "nvarchar(7)", nullable: false),
-                    MemoryAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Invoke = table.Column<bool>(type: "bit", nullable: false),
-                    TagGroupId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataBlock = table.Column<int>(type: "int", nullable: true),
-                    Offset = table.Column<int>(type: "int", nullable: true),
-                    BitOfByte = table.Column<byte>(type: "tinyint", nullable: true),
-                    WordLenId = table.Column<int>(type: "int", nullable: true),
-                    AreaId = table.Column<int>(type: "int", nullable: true),
-                    StringLength = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    AutomationTypeId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    ConnectionId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Enable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    InputOutput = table.Column<string>(type: "TEXT", nullable: false),
+                    AnalogDigitalSignal = table.Column<string>(type: "TEXT", nullable: false),
+                    MemoryAddress = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
+                    Invoke = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TagGroupId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    DataBlock = table.Column<int>(type: "INTEGER", nullable: true),
+                    Offset = table.Column<int>(type: "INTEGER", nullable: true),
+                    BitOfByte = table.Column<byte>(type: "INTEGER", nullable: true),
+                    WordLenId = table.Column<int>(type: "INTEGER", nullable: true),
+                    AreaId = table.Column<int>(type: "INTEGER", nullable: true),
+                    StringLength = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -362,13 +366,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
             migrationBuilder.InsertData(
                 table: "S7WordLen",
                 columns: new[] { "Id", "Mean", "WordLenName" },
-                values: new object[] { 0, "S7 Bit variable type (bool)", "Bit" });
-
-            migrationBuilder.InsertData(
-                table: "S7WordLen",
-                columns: new[] { "Id", "Mean", "WordLenName" },
                 values: new object[,]
                 {
+                    { 0, "S7 Bit variable type (bool)", "Bit" },
                     { 1, "S7 Byte variable type (8 bits)", "Byte" },
                     { 2, "S7 Word variable type (16 bits, 2 bytes)", "Word" },
                     { 3, "S7 DWord variable type (32 bits, 4 bytes)", "Dword" },
@@ -397,12 +397,11 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
             migrationBuilder.InsertData(
                 table: "Connection",
                 columns: new[] { "Id", "AutomationTypeId", "ConnectionTypeId", "CpuTypeId", "Enable", "Ip", "Name", "Rack", "Slot", "WriteEnable" },
-                values: new object[] { new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 1, 3, 40, true, "192.168.0.201", "Plc1", (short)0, (short)1, true });
-
-            migrationBuilder.InsertData(
-                table: "Connection",
-                columns: new[] { "Id", "AutomationTypeId", "ConnectionTypeId", "CpuTypeId", "Enable", "Ip", "Name", "Rack", "Slot", "WriteEnable" },
-                values: new object[] { new Guid("fc9967e6-32b9-4077-a018-dce37c857eff"), 1, 3, 40, true, "172.16.8.205", "CbPlc", (short)0, (short)1, true });
+                values: new object[,]
+                {
+                    { new Guid("fb6f381e-7bf4-4814-df23-08d6a214e1de"), 1, 3, 40, true, "192.168.0.201", "Plc1", (short)0, (short)1, true },
+                    { new Guid("fc9967e6-32b9-4077-a018-dce37c857eff"), 1, 3, 40, true, "172.16.8.205", "CbPlc", (short)0, (short)1, true }
+                });
 
             migrationBuilder.InsertData(
                 table: "Tag",
@@ -554,6 +553,7 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                 unique: true);
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

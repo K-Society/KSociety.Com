@@ -1,14 +1,15 @@
-﻿using System;
-using System.Reflection;
-using KSociety.Base.Infra.Shared.Class;
+﻿using KSociety.Base.Infra.Shared.Class;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System.Reflection;
 
 #nullable disable
 
 namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
 {
+    /// <inheritdoc />
     public partial class View : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagReadyView");
@@ -30,9 +31,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
             migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
         }
     }
 }

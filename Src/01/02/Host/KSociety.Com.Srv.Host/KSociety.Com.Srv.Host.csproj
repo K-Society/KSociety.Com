@@ -13,7 +13,7 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.20" />
     <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.1.20" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.22" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.24" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,7 +24,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.179" />
-    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
   </ItemGroup>
 
   <ItemGroup>

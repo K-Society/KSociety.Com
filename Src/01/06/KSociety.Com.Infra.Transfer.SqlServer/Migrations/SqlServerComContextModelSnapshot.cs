@@ -17,10 +17,10 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.AnalogDigital", b =>
                 {
@@ -193,6 +193,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.ToTable("Connection", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.InOut", b =>
@@ -293,6 +295,8 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.ToTable("Tag", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.TagGroup", b =>
@@ -708,7 +712,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.Property<int>("Update")
                         .HasColumnType("int");
 
-                    b.ToView("TagGroupReadyView");
+                    b.ToTable((string)null);
+
+                    b.ToView("TagGroupReadyView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllConnection", b =>
@@ -752,7 +758,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupAllConnection", b =>
@@ -850,7 +858,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllTagGroupAllConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllTagGroupAllConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupConnection", b =>
@@ -927,7 +937,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("bit");
 
-                    b.ToView("AllTagGroupConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllTagGroupConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixConnection", b =>
@@ -943,23 +955,9 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                     b.HasDiscriminator().HasValue(2);
                 });
 
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
-
-                    b.HasDiscriminator().HasValue(2);
-                });
-
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusConnection", b =>
                 {
                     b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
-
-                    b.HasDiscriminator().HasValue(3);
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
 
                     b.HasDiscriminator().HasValue(3);
                 });
@@ -1017,6 +1015,30 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                             Rack = (short)0,
                             Slot = (short)1
                         });
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
+
+                    b.Property<int?>("Port")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue(4);
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
+
+                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.S7.S7Tag", b =>
@@ -1164,16 +1186,6 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
                             StringLength = 1,
                             WordLenId = 2
                         });
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
-
-                    b.Property<int?>("Port")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue(4);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpTag", b =>
