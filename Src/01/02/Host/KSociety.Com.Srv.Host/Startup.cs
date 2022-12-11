@@ -119,7 +119,8 @@ public class Startup
             builder.RegisterModule(new KSociety.Base.Infra.Shared.Bindings.UnitOfWork<TContext>());
 
             builder.RegisterModule(new KSociety.Base.Infra.Shared.Bindings.DatabaseControl<TContext>());
-
+            builder.RegisterModule(new KSociety.Base.App.Utility.Bindings.DatabaseControlHdlr());
+            
             //CommandHandler.
             builder.RegisterModule(new KSociety.Base.Srv.Host.Shared.Bindings.CommandHdlr(AssemblyTool.GetAssembly()));
 

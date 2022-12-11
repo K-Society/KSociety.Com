@@ -11,13 +11,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
 {
     [DbContext(typeof(SqliteComContext))]
-    [Migration("20211222143055_View")]
+    [Migration("20221211190145_View")]
     partial class View
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0");
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.AnalogDigital", b =>
                 {
@@ -190,6 +191,8 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.ToTable("Connection", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.InOut", b =>
@@ -290,6 +293,8 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.ToTable("Tag", (string)null);
 
                     b.HasDiscriminator<int>("AutomationTypeId").HasValue(0);
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Common.TagGroup", b =>
@@ -705,7 +710,9 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.Property<int>("Update")
                         .HasColumnType("INTEGER");
 
-                    b.ToView("TagGroupReadyView");
+                    b.ToTable((string)null);
+
+                    b.ToView("TagGroupReadyView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllConnection", b =>
@@ -749,7 +756,9 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("INTEGER");
 
-                    b.ToView("AllConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupAllConnection", b =>
@@ -847,7 +856,9 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("INTEGER");
 
-                    b.ToView("AllTagGroupAllConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllTagGroupAllConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.View.Joined.AllTagGroupConnection", b =>
@@ -924,7 +935,9 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.Property<bool>("WriteEnable")
                         .HasColumnType("INTEGER");
 
-                    b.ToView("AllTagGroupConnectionView");
+                    b.ToTable((string)null);
+
+                    b.ToView("AllTagGroupConnectionView", (string)null);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixConnection", b =>
@@ -940,23 +953,9 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                     b.HasDiscriminator().HasValue(2);
                 });
 
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
-
-                    b.HasDiscriminator().HasValue(2);
-                });
-
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusConnection", b =>
                 {
                     b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
-
-                    b.HasDiscriminator().HasValue(3);
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
 
                     b.HasDiscriminator().HasValue(3);
                 });
@@ -1014,6 +1013,30 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                             Rack = (short)0,
                             Slot = (short)1
                         });
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
+
+                    b.Property<int?>("Port")
+                        .HasColumnType("INTEGER");
+
+                    b.HasDiscriminator().HasValue(4);
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Logix.LogixTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
+
+                    b.HasDiscriminator().HasValue(2);
+                });
+
+            modelBuilder.Entity("KSociety.Com.Domain.Entity.Modbus.ModbusTag", b =>
+                {
+                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Tag");
+
+                    b.HasDiscriminator().HasValue(3);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.S7.S7Tag", b =>
@@ -1161,16 +1184,6 @@ namespace KSociety.Com.Infra.Transfer.Sqlite.Migrations
                             StringLength = 1,
                             WordLenId = 2
                         });
-                });
-
-            modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpConnection", b =>
-                {
-                    b.HasBaseType("KSociety.Com.Domain.Entity.Common.Connection");
-
-                    b.Property<int?>("Port")
-                        .HasColumnType("INTEGER");
-
-                    b.HasDiscriminator().HasValue(4);
                 });
 
             modelBuilder.Entity("KSociety.Com.Domain.Entity.Tcp.TcpTag", b =>

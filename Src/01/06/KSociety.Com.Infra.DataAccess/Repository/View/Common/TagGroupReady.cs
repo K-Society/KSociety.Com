@@ -22,13 +22,18 @@ public class TagGroupReady<TContext> : RepositoryBase<TContext, Domain.Entity.Vi
     {
         try
         {
-            return FindAll().OrderBy(x => x.Name).ToList();
+            var results = FindAll();
+            if (results is not null)
+            {
+                return results.OrderBy(x => x.Name).ToList();
+            }
+            Logger.LogWarning("{0}.{1} {2}", GetType().FullName, System.Reflection.MethodBase.GetCurrentMethod()?.Name, "No data!");
         }
         catch (Exception ex)
         {
-            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " - " + ex.StackTrace);
-            return new List<Domain.Entity.View.Common.TagGroupReady>();
+            Logger.LogError(ex, GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
         }
+        return new List<Domain.Entity.View.Common.TagGroupReady>();
     }
 
     public async ValueTask<IEnumerable<Domain.Entity.View.Common.TagGroupReady>> GetAllTagGroupReadyAsync()
@@ -39,7 +44,7 @@ public class TagGroupReady<TContext> : RepositoryBase<TContext, Domain.Entity.Vi
         }
         catch (Exception ex)
         {
-            Logger.LogError(GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name + " - " + ex.Source + " " + ex.Message + " - " + ex.StackTrace);
+            Logger.LogError(ex, GetType().FullName + "." + System.Reflection.MethodBase.GetCurrentMethod()?.Name);
             return await new ValueTask<IEnumerable<Domain.Entity.View.Common.TagGroupReady>>();
         }
     }
