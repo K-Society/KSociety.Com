@@ -49,7 +49,7 @@ skip_tags: true
 #  publish_nuget: true
 
 artifacts:
-  - path: build\**\Release\*.nupkg
+  - path: build\**\Release\*.*nupkg
     name: nuget
   - path: Src\00\KSociety.Com.Install\K-Society.Com.zip
     name: comsysteminstaller
