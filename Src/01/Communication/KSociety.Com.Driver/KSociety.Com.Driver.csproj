@@ -11,7 +11,6 @@
   <ItemGroup>
     <PackageReference Include="KSociety.Base.EventBus" Version="1.1.33" />
     <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="1.1.33" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
