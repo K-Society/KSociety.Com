@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using KSociety.Base.EventBus.Abstractions.EventBus;
 using KSociety.Base.EventBusRabbitMQ;
 using KSociety.Base.Srv.Shared.Interface;
@@ -17,7 +12,11 @@ using KSociety.Com.Srv.Dto;
 using KSociety.Com.Srv.Dto.Biz;
 using Microsoft.Extensions.Logging;
 using ProtoBuf.Grpc;
-using RabbitMQ.Client;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Srv.Behavior.Biz;
 
