@@ -3,6 +3,7 @@
 
 <Project>
   <PropertyGroup>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
 </Project>

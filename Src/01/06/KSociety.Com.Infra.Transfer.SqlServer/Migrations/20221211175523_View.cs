@@ -1,6 +1,6 @@
 ﻿using KSociety.Base.Infra.Shared.Class;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System.Reflection;
+using System;
 
 #nullable disable
 
@@ -9,26 +9,30 @@ namespace KSociety.Com.Infra.Transfer.SqlServer.Migrations
     /// <inheritdoc />
     public partial class View : Migration
     {
+
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagReadyView");
+            try
+            {
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagReadyView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagGroupReadyView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagGroupReadyView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "ConnectionReadyView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "ConnectionReadyView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "ConnectionAutomationView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "ConnectionAutomationView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagConnectionView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagConnectionView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "TagGroupConnectionView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagGroupConnectionView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllConnectionView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllConnectionView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupConnectionView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllTagGroupConnectionView");
 
-            migrationBuilder.CreateViewFromSql(Assembly.GetExecutingAssembly().GetName().Name, "AllTagGroupAllConnectionView");
+                migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllTagGroupAllConnectionView");
+            }catch(Exception ex) { Console.WriteLine(ex.Message);}
         }
 
         /// <inheritdoc />

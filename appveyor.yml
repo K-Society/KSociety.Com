@@ -1,4 +1,4 @@
-# Copyright (c) K-Society and contributors. All rights reserved. Licensed under the Microsoft Reciprocal License. See LICENSE.TXT file in the project root for full license information.
+# Copyright © K-Society and contributors. All rights reserved. Licensed under the Microsoft Reciprocal License. See LICENSE.TXT file in the project root for full license information.
 #
 
 branches:
@@ -69,9 +69,9 @@ deploy:
     server: 
     api_key:
       secure: U1qzBMTcpUuJ7GcLAiLJJkkQXQhqZcdnmYu7rTpxuidiMRCZtJ5Vr6DoTyx1wm3p
-    skip_symbols: true
-    symbol_server: 
-    artifact: /.*\.nupkg/
+    skip_symbols: false
+    symbol_server: https://www.nuget.org/api/v2/symbolpackage
+    artifact: /.*(\.|\.s)nupkg/
     on:
       branch: master
          
@@ -87,4 +87,3 @@ deploy:
     tag: $(ComSystemVersion)
     on:
       branch: master
-      #appveyor_repo_tag: true

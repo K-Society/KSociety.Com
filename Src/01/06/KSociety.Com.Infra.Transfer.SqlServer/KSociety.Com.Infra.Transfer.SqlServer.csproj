@@ -9,30 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Sql\AllConnectionView.sql" />
-    <None Remove="Sql\AllTagGroupAllConnectionView.sql" />
-    <None Remove="Sql\AllTagGroupConnectionView.sql" />
-    <None Remove="Sql\ConnectionAutomationView.sql" />
-    <None Remove="Sql\ConnectionReadyView.sql" />
-    <None Remove="Sql\TagConnectionView.sql" />
-    <None Remove="Sql\TagGroupConnectionView.sql" />
-    <None Remove="Sql\TagGroupReadyView.sql" />
-    <None Remove="Sql\TagReadyView.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="Sql\AllConnectionView.sql" />
-    <EmbeddedResource Include="Sql\AllTagGroupAllConnectionView.sql" />
-    <EmbeddedResource Include="Sql\AllTagGroupConnectionView.sql" />
-    <EmbeddedResource Include="Sql\ConnectionAutomationView.sql" />
-    <EmbeddedResource Include="Sql\ConnectionReadyView.sql" />
-    <EmbeddedResource Include="Sql\TagConnectionView.sql" />
-    <EmbeddedResource Include="Sql\TagGroupConnectionView.sql" />
-    <EmbeddedResource Include="Sql\TagGroupReadyView.sql" />
-    <EmbeddedResource Include="Sql\TagReadyView.sql" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Nerdbank.GitVersioning" Version="3.5.119">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
