@@ -94,9 +94,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Transfer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Transfer.Sqlite", "Src\01\06\KSociety.Com.Infra.Transfer.Sqlite\KSociety.Com.Infra.Transfer.Sqlite.csproj", "{5411A213-0E7B-49D1-8A95-CACCD83A324E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSociety.Com.Infra.Transfer.MySql", "Src\01\06\KSociety.Com.Infra.Transfer.MySql\KSociety.Com.Infra.Transfer.MySql.csproj", "{A95FB2BC-3839-413B-B1F5-29464008D4BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Transfer.MySql", "Src\01\06\KSociety.Com.Infra.Transfer.MySql\KSociety.Com.Infra.Transfer.MySql.csproj", "{A95FB2BC-3839-413B-B1F5-29464008D4BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSociety.Com.Infra.Transfer.Npgsql", "Src\01\06\KSociety.Com.Infra.Transfer.Npgsql\KSociety.Com.Infra.Transfer.Npgsql.csproj", "{9497D9B2-CFA1-48C8-A64A-4F475462DA45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KSociety.Com.Infra.Transfer.Npgsql", "Src\01\06\KSociety.Com.Infra.Transfer.Npgsql\KSociety.Com.Infra.Transfer.Npgsql.csproj", "{9497D9B2-CFA1-48C8-A64A-4F475462DA45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

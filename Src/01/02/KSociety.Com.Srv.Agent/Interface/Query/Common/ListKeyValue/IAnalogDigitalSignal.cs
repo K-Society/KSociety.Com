@@ -3,6 +3,6 @@ using KSociety.Base.Srv.Dto;
 
 namespace KSociety.Com.Srv.Agent.Interface.Query.Common.ListKeyValue;
 
-public interface IAnalogDigitalSignal : IAgentQueryKeyValueModel<ListKeyValuePair<string, string>, string, string>
+public interface IAnalogDigitalSignal : IAgentQueryKeyValueModel<string, string, ListKeyValuePair<string, string>>
 {
 }
