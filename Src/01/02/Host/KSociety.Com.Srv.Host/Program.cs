@@ -31,7 +31,7 @@ public static class Program
         catch (Exception ex)
         {
             //logger.Error(ex, "Stopped program because of exception");
-            global::Serilog.Log.Fatal(ex, "Stopped program because of exception");
+            global::Serilog.Log.Fatal(ex, "The program was stopped due to an exception.");
             throw;
         }
         finally

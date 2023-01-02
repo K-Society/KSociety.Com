@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (c) K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
 
 <Project Sdk="Microsoft.NET.Sdk">
 
@@ -13,6 +13,15 @@
     <None Remove="Csv\S7Tag.csv" />
     <None Remove="Csv\S7TagSeparaBarre.csv" />
     <None Remove="Csv\TagGroup.csv" />
+    <None Remove="Sql\AllConnectionView.sql" />
+    <None Remove="Sql\AllTagGroupAllConnectionView.sql" />
+    <None Remove="Sql\AllTagGroupConnectionView.sql" />
+    <None Remove="Sql\ConnectionAutomationView.sql" />
+    <None Remove="Sql\ConnectionReadyView.sql" />
+    <None Remove="Sql\TagConnectionView.sql" />
+    <None Remove="Sql\TagGroupConnectionView.sql" />
+    <None Remove="Sql\TagGroupReadyView.sql" />
+    <None Remove="Sql\TagReadyView.sql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +29,19 @@
     <EmbeddedResource Include="Csv\S7Tag.csv" />
     <EmbeddedResource Include="Csv\S7TagSeparaBarre.csv" />
     <EmbeddedResource Include="Csv\TagGroup.csv" />
+    <EmbeddedResource Include="Sql\AllConnectionView.sql" />
+    <EmbeddedResource Include="Sql\AllTagGroupAllConnectionView.sql" />
+    <EmbeddedResource Include="Sql\AllTagGroupConnectionView.sql" />
+    <EmbeddedResource Include="Sql\ConnectionAutomationView.sql" />
+    <EmbeddedResource Include="Sql\ConnectionReadyView.sql" />
+    <EmbeddedResource Include="Sql\TagConnectionView.sql" />
+    <EmbeddedResource Include="Sql\TagGroupConnectionView.sql" />
+    <EmbeddedResource Include="Sql\TagGroupReadyView.sql" />
+    <EmbeddedResource Include="Sql\TagReadyView.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
