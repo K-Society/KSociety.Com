@@ -27,6 +27,17 @@ This is the README file for KSociety.Com. It support .Net 6.0
 
 This system needs [RabbitMQ](https://github.com/K-Society/KSociety.RabbitMQ.Install/releases) to function properly.
 
+## First setup
+
+1. Use the [K-Society.Com.exe](https://github.com/K-Society/KSociety.Com/releases) to install the software.
+2. Start the server (KSociety.Com.Srv.Host.exe)
+3. Start the web application (KSociety.Com.Pre.Web.App.exe)
+4. Browse to the following URL: http://localhost:5002
+5. Go to settings: http://localhost:5002/Settings
+6. Click on migrate button.
+7. Now you can configure the other sections: Common/TagGroup, S7/Connection and S7/Tag
+8. Restart the server to apply the new configuration.
+
 ## Architecture
 
 ![Image of Architecture](https://github.com/K-Society/KSociety.Com/blob/experimental/docs/Architecture_view_for_KSociety.Com.png)

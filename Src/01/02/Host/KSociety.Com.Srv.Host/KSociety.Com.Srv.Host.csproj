@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (c) K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
 
 <Project Sdk="Microsoft.NET.Sdk.Worker">
 
@@ -11,10 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.20" />
-    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.1.20" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.24" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.1.58" />
+    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.1.58" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.1.37" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -29,6 +29,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\03\KSociety.Com.App.ReqHdlr\KSociety.Com.App.ReqHdlr.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.MySql\KSociety.Com.Infra.Transfer.MySql.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.Npgsql\KSociety.Com.Infra.Transfer.Npgsql.csproj" />
     <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.Sqlite\KSociety.Com.Infra.Transfer.Sqlite.csproj" />
     <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.SqlServer\KSociety.Com.Infra.Transfer.SqlServer.csproj" />
     <ProjectReference Include="..\..\KSociety.Com.Srv.Behavior\KSociety.Com.Srv.Behavior.csproj" />

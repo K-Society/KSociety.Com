@@ -5,6 +5,8 @@ using KSociety.Base.InfraSub.Shared.Class;
 using KSociety.Base.Srv.Host.Shared.Bindings;
 using KSociety.Base.Srv.Host.Shared.Class;
 using KSociety.Com.EventBus;
+using KSociety.Com.Infra.Transfer.MySql;
+using KSociety.Com.Infra.Transfer.Npgsql;
 using KSociety.Com.Infra.Transfer.Sqlite;
 using KSociety.Com.Infra.Transfer.SqlServer;
 using Microsoft.AspNetCore.Builder;
@@ -76,6 +78,14 @@ public class Startup
 
             case DatabaseEngine.Sqlite:
                 RegisterModule<SqliteComContext>(builder);
+                break;
+
+            case DatabaseEngine.Npgsql:
+                RegisterModule<NpgsqlComContext>(builder);
+                break;
+
+            case DatabaseEngine.Mysql:
+                RegisterModule<MySqlComContext>(builder);
                 break;
 
             default:
