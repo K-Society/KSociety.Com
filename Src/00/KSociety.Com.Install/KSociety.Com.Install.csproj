@@ -42,7 +42,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="WixSharp">
-      <Version>1.20.2</Version>
+      <Version>1.20.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
