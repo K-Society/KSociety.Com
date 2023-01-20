@@ -40,7 +40,7 @@ public class ConnectionStatusRpcHandler : IntegrationRpcHandler<ConnectionStatus
             connectionWrite = _biz.GetConnectionWriteStatus(@event.GroupName, @event.ConnectionName);
         }catch(Exception ex)
         {
-            Logger.LogError("ConnectionStatusRpcHandler: " + ex.Message + " - " + ex.StackTrace);
+            Logger.LogError(ex, "ConnectionStatusRpcHandler: ");
         }
 
         return new ConnectionStatusIntegrationEventReply(@event.GroupName + ".automation.connection", @event.GroupName, @event.ConnectionName, connectionRead, connectionWrite);

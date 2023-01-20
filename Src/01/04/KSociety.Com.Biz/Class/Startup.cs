@@ -41,12 +41,12 @@ public class Startup : IStartable
         //_allTagGroupAllConnection = allTagGroupAllConnection;
 
         //_machineName = Environment.MachineName;
-        _logger.LogInformation("KBase.Business.Com startup machine name: ");
+        _logger.LogInformation("KSociety.Com.Biz startup machine name: ");
     }
 
     public void Start()
     {
-        _logger.LogTrace("KBase.Business.Com staring...");
+        _logger.LogTrace("KSociety.Com.Biz staring...");
             
 
         _biz.LoadGroup();

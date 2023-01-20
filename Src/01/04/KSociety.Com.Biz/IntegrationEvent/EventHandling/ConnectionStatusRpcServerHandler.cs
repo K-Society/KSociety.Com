@@ -1,14 +1,10 @@
-﻿using KSociety.Base.EventBus.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Autofac;
+using KSociety.Base.EventBus.Handlers;
 using KSociety.Com.Biz.Event;
 using KSociety.Com.Biz.Interface;
 using Microsoft.Extensions.Logging;
-using Autofac;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace KSociety.Com.Biz.IntegrationEvent.EventHandling;
 
