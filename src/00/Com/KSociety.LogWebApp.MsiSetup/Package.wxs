@@ -1,0 +1,9 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="KSociety.LogWebApp.MsiSetup" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="475da757-44fe-4f60-80b4-519ab61c9b19">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="ExampleComponents" />
+    </Feature>
+  </Package>
+</Wix>

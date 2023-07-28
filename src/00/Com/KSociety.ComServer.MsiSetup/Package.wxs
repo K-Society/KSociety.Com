@@ -1,0 +1,9 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="KSociety.ComServer.MsiSetup" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="c955a890-7192-4c63-9106-8665db1dc1da">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="ExampleComponents" />
+    </Feature>
+  </Package>
+</Wix>
