@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.EventBus" Version="1.2.15" />
-    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="1.2.15" />
+    <PackageReference Include="KSociety.Base.EventBus" Version="1.2.23" />
+    <PackageReference Include="KSociety.Base.InfraSub.Shared" Version="1.2.23" />
     <PackageReference Include="S7netplus" Version="0.19.0" />
   </ItemGroup>
 

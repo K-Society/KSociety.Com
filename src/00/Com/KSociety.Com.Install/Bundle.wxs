@@ -1,12 +1,27 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
-  <Bundle Name="KSociety.Com.Install" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="61bb283f-fbef-4ae2-b0e7-d7be60cc52a0">
+  <Bundle Name="KSociety.Com $(Version) $(NetVersion)"
+          Manufacturer="K-Society"
+          Version="$(AssemblyFileVersion)"
+          UpgradeCode="52AEADBB-9B1B-4FF3-AF39-FBD19907DE75"
+          AboutUrl="https://github.com/K-Society/KSociety.Com"
+          Compressed="yes">
     <BootstrapperApplication>
-      <bal:WixStandardBootstrapperApplication LicenseUrl="https://www.example.com/license" Theme="hyperlinkLicense" />
+      <bal:WixStandardBootstrapperApplication
+        LicenseUrl=""
+        Theme="hyperlinkLicense"
+        ShowVersion="true"/>
     </BootstrapperApplication>
 
     <Chain>
-      <!-- TODO: Define the list of chained packages. -->
-      <!-- <MsiPackage SourceFile="path\to\your.msi" /> -->
+      <MsiPackage
+        Visible="no"
+        Compressed="yes"
+        SourceFile="..\..\..\..\build\KSociety.ComServer.MsiSetup\Release\$(NetVersion)\en-US\KSociety.ComServer-$(Version)-$(NetVersion).msi" >
+      </MsiPackage>
+      <MsiPackage
+        Visible="no"
+        Compressed="yes"
+        SourceFile="..\..\..\..\build\KSociety.ComWebApp.MsiSetup\Release\$(NetVersion)\en-US\KSociety.ComWebApp-$(Version)-$(NetVersion).msi" />
     </Chain>
 
   </Bundle>

@@ -1,9 +1,20 @@
-﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-  <Package Name="KSociety.LogWebApp.MsiSetup" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="475da757-44fe-4f60-80b4-519ab61c9b19">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="KSociety.ComWebApp.MsiSetup $(Version)"
+           Manufacturer="K-Society"
+           Version="$(AssemblyFileVersion)"
+           UpgradeCode="7B32A7AA-6559-40F9-A923-3EDA0985830E"
+           InstallerVersion="500"
+           Language="1033"
+           Scope="perMachine"
+           ShortNames="yes">
+    <Media Id="1" Cabinet="ComWebApp.cab" EmbedCab="yes"/>
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+    <WixVariable Id="Edition" Value="Enterprise"/>
+    <ui:WixUI Id="WixUI_Minimal" />
 
     <Feature Id="Main">
-      <ComponentGroupRef Id="ExampleComponents" />
+      <ComponentGroupRef Id="File" />
     </Feature>
   </Package>
 </Wix>

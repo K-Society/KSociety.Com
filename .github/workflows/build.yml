@@ -42,11 +42,11 @@ jobs:
 
       - name: Zip Installer net6.0
         shell: pwsh
-        run: Compress-Archive -LiteralPath .\build\KSociety.Log.Install\Release\net6.0\KSociety.Log.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.exe -DestinationPath .\build\KSociety.Log.Install\Release\net6.0\K-Society.Log-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip -Force
+        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\Release\net6.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.exe -DestinationPath .\build\KSociety.Com.Install\Release\net6.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip -Force
 
       - name: Zip Installer net7.0
         shell: pwsh
-        run: Compress-Archive -LiteralPath .\build\KSociety.Log.Install\Release\net7.0\KSociety.Log.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.exe -DestinationPath .\build\KSociety.Log.Install\Release\net7.0\K-Society.Log-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip -Force
+        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\Release\net7.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.exe -DestinationPath .\build\KSociety.Com.Install\Release\net7.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip -Force
 
       - name: Push to GitHub Packages
         if: github.event_name == 'push' && github.repository_owner == 'K-Society' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop')
@@ -63,9 +63,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: false
           prerelease: false
-          name: K-Society.Log ${{ steps.nbgv.outputs.SimpleVersion }}
+          name: K-Society.Com ${{ steps.nbgv.outputs.SimpleVersion }}
           tag_name: ${{ steps.nbgv.outputs.SimpleVersion }}
           files: |
-            ./build/KSociety.Log.Install/Release/net6.0/K-Society.Log-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip
-            ./build/KSociety.Log.Install/Release/net7.0/K-Society.Log-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip
+            ./build/KSociety.Com.Install/Release/net6.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip
+            ./build/KSociety.Com.Install/Release/net7.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip
         
