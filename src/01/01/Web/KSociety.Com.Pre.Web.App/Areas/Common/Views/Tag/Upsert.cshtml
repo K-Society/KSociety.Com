@@ -1,0 +1,111 @@
+﻿@model KSociety.Com.Srv.Dto.Common.Model.Tag
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Areas/Common/Views/Shared/_CommonLayout.cshtml";
+}
+<br />
+<h2 class="text-info">@(Model.TagDto.Id != Guid.Empty ? "Edit" : "Create") Tag</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.TagDto.Id != Guid.Empty)
+        {
+            <input type="hidden" asp-for="TagDto.Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="AutomationTypeId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.TagDto.AutomationTypeId, new SelectList(Model.AutomationTypeId.List, "Key", "Value", Model.TagDto.AutomationTypeId), htmlAttributes: new { @class = "form-control", id = "AutomationTypeId" })
+            </div>
+            <span asp-validation-for="AutomationTypeId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="TagDto.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="TagDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.ConnectionId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.TagDto.ConnectionId, new SelectList(Model.ConnectionId.List, "Key", "Value", Model.TagDto.ConnectionId), htmlAttributes: new { @class = "form-control", id = "ConnectionId" })
+            </div>
+            <span asp-validation-for="TagDto.ConnectionId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.Enable"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="TagDto.Enable" class="form-control" />
+            </div>
+            <span asp-validation-for="TagDto.Enable" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.InputOutput"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.TagDto.InputOutput, new SelectList(Model.InputOutput.List, "Key", "Value", Model.TagDto.InputOutput), htmlAttributes: new { @class = "form-control", id = "InputOutput" })
+            </div>
+            <span asp-validation-for="TagDto.InputOutput" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.AnalogDigitalSignal"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.TagDto.AnalogDigitalSignal, new SelectList(Model.AnalogDigitalSignal.List, "Key", "Value", Model.TagDto.AnalogDigitalSignal), htmlAttributes: new { @class = "form-control", id = "AnalogDigitalSignal" })
+            </div>
+            <span asp-validation-for="TagDto.AnalogDigitalSignal" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.MemoryAddress"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="TagDto.MemoryAddress" class="form-control" />
+            </div>
+            <span asp-validation-for="TagDto.MemoryAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.Invoke"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="TagDto.Invoke" class="form-control" />
+            </div>
+            <span asp-validation-for="TagDto.Invoke" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="TagDto.TagGroupId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.TagDto.TagGroupId, new SelectList(Model.TagGroupId.List, "Key", "Value", Model.TagDto.TagGroupId), htmlAttributes: new { @class = "form-control", id = "TagGroupId" })
+            </div>
+            <span asp-validation-for="TagDto.TagGroupId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.TagDto.Id != Guid.Empty ? "Update" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

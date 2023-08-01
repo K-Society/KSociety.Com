@@ -1,0 +1,42 @@
+﻿<Project Sdk="WixToolset.Sdk/4.0.1">
+  <PropertyGroup>
+    <Cultures>en-US</Cultures>
+    <OutputName>KSociety.ComWebApp</OutputName>
+    <NetVersion>net6.0</NetVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <HarvestDirectory Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\Release\$(NetVersion)\publish">
+      <ComponentGroupName>HarvestedComponents</ComponentGroupName>
+      <DirectoryRefId>NetVersionFolder</DirectoryRefId>
+      <SuppressRootDirectory>true</SuppressRootDirectory>
+      <SuppressRegistry>true</SuppressRegistry>
+      <VerboseOutput>false</VerboseOutput>
+      <KeepEmptyDirectories>true</KeepEmptyDirectories>
+      <Transforms>Filter.xslt</Transforms>
+    </HarvestDirectory>
+    <BindPath Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\Release\$(NetVersion)\publish">
+    </BindPath>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Filter.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Firewall.wixext" Version="4.0.1" />
+    <PackageReference Include="WixToolset.Heat" Version="4.0.1" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.1" />
+  </ItemGroup>
+  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
+    <CreateProperty Value="$(OutputName)-$(BuildVersion3Components)-$(NetVersion)">
+      <Output TaskParameter="Value" PropertyName="TargetName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetName)$(TargetExt)">
+      <Output TaskParameter="Value" PropertyName="TargetFileName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetDir)$(TargetFileName)">
+      <Output TaskParameter="Value" PropertyName="TargetPath" />
+    </CreateProperty>
+    <PropertyGroup>
+      <DefineConstants>AssemblyFileVersion=$(AssemblyFileVersion);Version=$(BuildVersion3Components);NetVersion=$(NetVersion)</DefineConstants>
+    </PropertyGroup>
+  </Target>
+</Project>

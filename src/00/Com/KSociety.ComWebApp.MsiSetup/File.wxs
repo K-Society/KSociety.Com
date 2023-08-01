@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:fw="http://wixtoolset.org/schemas/v4/wxs/firewall">
+  <Fragment>
+    <ComponentGroup Id="File" Directory="NetVersionFolder">
+      <ComponentGroupRef Id="HarvestedComponents"/>
+      <Component Id="KSociety.Com.Pre.Web.App.exe" Guid="{FB65C853-56C2-4234-85D9-6DE4D01EE4CB}">
+        <File Id="KSociety.Com.Pre.Web.App.exe" Source="SourceDir\KSociety.Com.Pre.Web.App.exe" KeyPath="yes" Checksum="yes">
+          <fw:FirewallException Id="COM_WEB_APP_ID" Name="ComWebApp" Description="K-Society ComWebApp $(NetVersion)" IgnoreFailure="yes" Profile="all" Scope="any" />
+        </File>
+        <ServiceInstall
+          Id="ComWebAppService"
+          Type="ownProcess"
+          Vital="yes"
+          Name="ComWebApp"
+          DisplayName="ComWebApp $(NetVersion)"
+          Description="K-Society ComWebApp $(NetVersion) $(AssemblyFileVersion)"
+          ErrorControl="normal"
+          Account="LocalSystem"
+          Start="auto"
+          Interactive="no"/>
+        <ServiceControl
+          Id="ComServerServiceControl"
+          Name="ComWebApp"
+          Start="install"
+          Remove="uninstall"
+          Stop="both" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <!--MSBuildErrorsAsMessages>NU1202</MSBuildErrorsAsMessages-->
+
+    <ProjectName Condition=" '$(ProjectName)' == '' ">$(MSBuildProjectName)</ProjectName>
+    <BaseOutputPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\..\build\$(ProjectName)\))</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(BaseOutputPath)obj\</BaseIntermediateOutputPath>
+    <OutputPath>$(BaseOutputPath)bin\$(Configuration)\</OutputPath>
+	
+	<Title>$(AssemblyName)</Title>
+
+    <Authors>K-Society Team</Authors>
+    <Company>K-Society</Company>
+    <Copyright>Copyright © K-Society and contributors. All rights reserved.</Copyright>
+	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>
+    <Product>K-Society Com</Product>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
+	<NBGV_EmitThisAssemblyClass>false</NBGV_EmitThisAssemblyClass>
+	<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+      <PrivateAssets>all</PrivateAssets>
+      <Version>3.6.133</Version>
+    </PackageReference>
+  </ItemGroup>
+
+<!--
+  <Import Project="Cpp.Build.props" Condition=" Exists('Cpp.Build.props') And '$(MSBuildProjectExtension)'=='.vcxproj' " />
+  <Import Project="Wix.Build.props" Condition=" Exists('Wix.Build.props') And '$(MSBuildProjectExtension)'=='.wixproj' " />
+  <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
+-->
+  <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
+</Project>

@@ -1,0 +1,89 @@
+﻿SQL Server Object Explorer -> remove connection
+
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagGroupReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "ConnectionReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "ConnectionAutomationView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "TagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllTagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.AssemblyName, "AllTagGroupAllConnectionView");
+
+KSociety.Com.Srv.Host -> Clean and Build
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "TagReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "TagGroupReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "ConnectionReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "ConnectionAutomationView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "TagConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "TagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "AllConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "AllTagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqlServerAssemblyName, "AllTagGroupAllConnectionView");
+
+add-migration ComDb -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
+add-migration View -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
+Update-Database -Args "Sqlserver ComDb KSociety.Com.Infra.Transfer.SqlServer" -Project KSociety.Com.Infra.Transfer.SqlServer -StartupProject KSociety.Com.Srv.Host -Verbose
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "TagReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "TagGroupReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "ConnectionReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "ConnectionAutomationView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "TagConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "TagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "AllConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "AllTagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.SqliteAssemblyName, "AllTagGroupAllConnectionView");
+
+add-migration ComDb -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose
+add-migration View -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose
+Update-Database -Args "Sqlite ComDb KSociety.Com.Infra.Transfer.Sqlite" -Project KSociety.Com.Infra.Transfer.Sqlite -StartupProject KSociety.Com.Srv.Host -Verbose
+
+
+migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "TagReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "TagGroupReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "ConnectionReadyView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "ConnectionAutomationView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "TagConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "TagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "AllConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "AllTagGroupConnectionView");
+
+            migrationBuilder.CreateViewFromSql(DataAccess.Global.MySqlAssemblyName, "AllTagGroupAllConnectionView");
+
+add-migration ComDb -Args "Mysql ComDb KSociety.Com.Infra.Transfer.MySql" -Project KSociety.Com.Infra.Transfer.MySql -StartupProject KSociety.Com.Srv.Host -Verbose
+add-migration View -Args "Mysql ComDb KSociety.Com.Infra.Transfer.MySql" -Project KSociety.Com.Infra.Transfer.MySql -StartupProject KSociety.Com.Srv.Host -Verbose
+Update-Database -Args "Mysql ComDb KSociety.Com.Infra.Transfer.MySql" -Project KSociety.Com.Infra.Transfer.MySql -StartupProject KSociety.Com.Srv.Host -Verbose

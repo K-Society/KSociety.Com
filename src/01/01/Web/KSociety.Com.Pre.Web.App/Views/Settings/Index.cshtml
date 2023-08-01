@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Database</h1>
+
+<br/>
+
+<div>
+    <h3>ConnectionString:</h3>
+    <p>@ViewData["Message"]</p>
+</div>
+
+<br/>
+
+<div class="col-3">
+    <a asp-action="EnsureCreate" class="btn btn-info form-control text-white">EnsureCreate</a>
+</div>
+
+<br/>
+
+<div class="col-3">
+    <a asp-action="Migration" class="btn btn-info form-control text-white">Migration</a>
+</div>
+
+<br/>
+
+<div class="col-3">
+    <a asp-action="EnsureDeleted" class="btn btn-danger form-control text-white">EnsureDeleted</a>
+</div>

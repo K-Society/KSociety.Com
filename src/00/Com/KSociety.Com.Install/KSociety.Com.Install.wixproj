@@ -1,0 +1,25 @@
+﻿<Project Sdk="WixToolset.Sdk/4.0.1">
+  <PropertyGroup>
+    <Cultures>en-US</Cultures>
+    <OutputName>KSociety.Com.Install</OutputName>
+    <NetVersion>net6.0</NetVersion>
+    <OutputType>Bundle</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="WixToolset.Bal.wixext" Version="4.0.1" />
+  </ItemGroup>
+  <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
+    <CreateProperty Value="$(OutputName)-$(BuildVersion3Components)-$(NetVersion)">
+      <Output TaskParameter="Value" PropertyName="TargetName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetName)$(TargetExt)">
+      <Output TaskParameter="Value" PropertyName="TargetFileName" />
+    </CreateProperty>
+    <CreateProperty Value="$(TargetDir)$(TargetFileName)">
+      <Output TaskParameter="Value" PropertyName="TargetPath" />
+    </CreateProperty>
+    <PropertyGroup>
+      <DefineConstants>AssemblyFileVersion=$(AssemblyFileVersion);Version=$(BuildVersion3Components);NetVersion=$(NetVersion)</DefineConstants>
+    </PropertyGroup>
+  </Target>
+</Project>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Csv\S7Connection.csv" />
+    <None Remove="Csv\S7Tag.csv" />
+    <None Remove="Csv\S7TagSeparaBarre.csv" />
+    <None Remove="Csv\TagGroup.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Csv\S7Connection.csv" />
+    <EmbeddedResource Include="Csv\S7Tag.csv" />
+    <EmbeddedResource Include="Csv\S7TagSeparaBarre.csv" />
+    <EmbeddedResource Include="Csv\TagGroup.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Repository\KSociety.Com.Domain.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

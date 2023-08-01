@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+	
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <!--MSBuildErrorsAsMessages>NU1202</MSBuildErrorsAsMessages-->
+
+    <ProjectName Condition=" '$(ProjectName)' == '' ">$(MSBuildProjectName)</ProjectName>
+    <BaseOutputPath>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\build\$(ProjectName)\))</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(BaseOutputPath)obj\</BaseIntermediateOutputPath>
+    <OutputPath>$(BaseOutputPath)$(Configuration)\</OutputPath>
+	
+	<Title>$(AssemblyName)</Title>
+
+    <Authors>K-Society Team</Authors>
+    <Company>K-Society</Company>
+    <Copyright>Copyright © K-Society and contributors 2023. All rights reserved.</Copyright>
+	<PackageLicenseExpression>MS-RL</PackageLicenseExpression>
+	<Description>K-Society Com is a full stack framework for .NET 6 application https://github.com/K-Society/KSociety.Com</Description>
+    <Product>K-Society Com</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageProjectUrl>https://github.com/K-Society/KSociety.Com</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/K-Society/KSociety.Com</RepositoryUrl>
+	<PackageReleaseNotes>https:%2F%2Fk-society.github.io%2FKSociety.Com%2F$(ProjectName)%2Fchange-log</PackageReleaseNotes>
+	<RepositoryType>git</RepositoryType>
+	<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	<IncludeSymbols>true</IncludeSymbols>
+	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PackageTags>ksociety;k-society;microservices;fullstack;framework;S7</PackageTags>
+	<ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Globalization.Invariant" Value="false" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+      <PrivateAssets>all</PrivateAssets>
+      <Version>3.6.133</Version>
+    </PackageReference>
+	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <Import Project="Icon.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Icon.Build.props') " />
+  <Import Project="CSharp.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('CSharp.Build.props') " />
+  <Import Project="Readme.Build.props" Condition=" '$(MSBuildProjectExtension)'=='.csproj' and Exists('Readme.Build.props') " />
+  <Import Project="Custom.Build.props" Condition=" Exists('Custom.Build.props') " />
+</Project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="CompanyFolder" Name="K-Society" >
+        <Directory Id="MainFolder" Name="Com">
+          <Directory Id="ServerFolder" Name="Server">
+            <Directory Id="NetVersionFolder" Name="$(NetVersion)">
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+  </Fragment>
+</Wix>

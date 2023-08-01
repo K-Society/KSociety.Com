@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright © K-Society and contributors. All rights reserved. Licensed under the K-Society License. See LICENSE.TXT file in the project root for full license information. -->
+
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <UserSecretsId>dotnet-Std.Srv.Host.Com-235594AD-23E6-492D-BC68-DFEB516571BD</UserSecretsId>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.2.31" />
+    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.2.31" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.2.34" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" />
+    <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\03\KSociety.Com.App.ReqHdlr\KSociety.Com.App.ReqHdlr.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.MySql\KSociety.Com.Infra.Transfer.MySql.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.Npgsql\KSociety.Com.Infra.Transfer.Npgsql.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.Sqlite\KSociety.Com.Infra.Transfer.Sqlite.csproj" />
+    <ProjectReference Include="..\..\..\06\KSociety.Com.Infra.Transfer.SqlServer\KSociety.Com.Infra.Transfer.SqlServer.csproj" />
+    <ProjectReference Include="..\..\KSociety.Com.Srv.Behavior\KSociety.Com.Srv.Behavior.csproj" />
+  </ItemGroup>
+</Project>

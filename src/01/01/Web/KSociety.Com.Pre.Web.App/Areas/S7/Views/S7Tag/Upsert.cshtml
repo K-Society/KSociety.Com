@@ -1,0 +1,156 @@
+﻿@model KSociety.Com.Srv.Dto.S7.Model.S7Tag
+@{
+    ViewData["Title"] = "Upsert";
+    Layout = "~/Areas/S7/Views/Shared/_S7Layout.cshtml";
+}
+<br />
+<h2 class="text-info">@(Model.S7TagDto.Id != Guid.Empty ? "Edit" : "Create") S7Tag</h2>
+<br />
+
+<div class="border container" style="padding:30px;">
+    <form method="post">
+        @if (Model.S7TagDto.Id != Guid.Empty)
+        {
+            <input type="hidden" asp-for="S7TagDto.Id" />
+        }
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.Name"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.Name" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.ConnectionId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.ConnectionId, new SelectList(Model.ConnectionId.List, "Key", "Value", Model.S7TagDto.ConnectionId), htmlAttributes: new { @class = "form-control", id = "ConnectionId" })
+            </div>
+            <span asp-validation-for="S7TagDto.ConnectionId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.Enable"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.Enable" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.Enable" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.InputOutput"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.InputOutput, new SelectList(Model.InputOutput.List, "Key", "Value", Model.S7TagDto.InputOutput), htmlAttributes: new { @class = "form-control", id = "InputOutput" })
+            </div>
+            <span asp-validation-for="S7TagDto.InputOutput" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.AnalogDigitalSignal"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.AnalogDigitalSignal, new SelectList(Model.AnalogDigitalSignal.List, "Key", "Value", Model.S7TagDto.AnalogDigitalSignal), htmlAttributes: new { @class = "form-control", id = "AnalogDigitalSignal" })
+            </div>
+            <span asp-validation-for="S7TagDto.AnalogDigitalSignal" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.MemoryAddress"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.MemoryAddress" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.MemoryAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.Invoke"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.Invoke" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.Invoke" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.TagGroupId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.TagGroupId, new SelectList(Model.TagGroupId.List, "Key", "Value", Model.S7TagDto.TagGroupId), htmlAttributes: new { @class = "form-control", id = "TagGroupId" })
+            </div>
+            <span asp-validation-for="S7TagDto.TagGroupId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.DataBlock"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.DataBlock" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.DataBlock" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.Offset"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.Offset" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.Offset" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.BitOfByte"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.BitOfByte, new SelectList(Model.BitOfByte.List, "Key", "Value", Model.S7TagDto.BitOfByte), htmlAttributes: new { @class = "form-control", id = "BitOfByte" })
+            </div>
+            <span asp-validation-for="S7TagDto.BitOfByte" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.WordLenId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.WordLenId, new SelectList(Model.WordLenId.List, "Key", "Value", Model.S7TagDto.WordLenId), htmlAttributes: new { @class = "form-control", id = "WordLenId" })
+            </div>
+            <span asp-validation-for="S7TagDto.WordLenId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.AreaId"></label>
+            </div>
+            <div class="col-6">
+                @Html.DropDownListFor(m => Model.S7TagDto.AreaId, new SelectList(Model.AreaId.List, "Key", "Value", Model.S7TagDto.AreaId), htmlAttributes: new { @class = "form-control", id = "AreaId" })
+            </div>
+            <span asp-validation-for="S7TagDto.AreaId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="S7TagDto.StringLength"></label>
+            </div>
+            <div class="col-6">
+                <input asp-for="S7TagDto.StringLength" class="form-control" />
+            </div>
+            <span asp-validation-for="S7TagDto.StringLength" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-3">
+                <button type="submit" class="btn btn-primary form-control">@(Model.S7TagDto.Id != Guid.Empty ? "Update" : "Create")</button>
+            </div>
+            <div class="col-3">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:fw="http://wixtoolset.org/schemas/v4/wxs/firewall">
+  <Fragment>
+    <ComponentGroup Id="File" Directory="NetVersionFolder">
+      <ComponentGroupRef Id="HarvestedComponents"/>
+      <Component Id="KSociety.Com.Srv.Host.exe" Guid="{5BC9B870-C955-4CBD-B3F8-51BA650C9DD8}">
+        <File Id="KSociety.Com.Srv.Host.exe" Source="SourceDir\KSociety.Com.Srv.Host.exe" KeyPath="yes" Checksum="yes">
+          <fw:FirewallException Id="COM_SERVER_ID" Name="ComServer" Description="K-Society ComServer $(NetVersion)" IgnoreFailure="yes" Profile="all" Scope="any" />
+        </File>
+        <ServiceInstall
+          Id="ComServerService"
+          Type="ownProcess"
+          Vital="yes"
+          Name="ComServer"
+          DisplayName="ComServer $(NetVersion)"
+          Description="K-Society ComServer $(NetVersion) $(AssemblyFileVersion)"
+          ErrorControl="normal"
+          Account="LocalSystem"
+          Start="auto"
+          Interactive="no"/>
+        <ServiceControl
+          Id="ComServerServiceControl"
+          Name="ComServer"
+          Start="install"
+          Remove="uninstall"
+          Stop="both" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

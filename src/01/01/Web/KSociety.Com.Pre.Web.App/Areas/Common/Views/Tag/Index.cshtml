@@ -1,0 +1,119 @@
+﻿@model KSociety.Com.Srv.Dto.Common.List.GridView.Tag
+@{
+    ViewData["Title"] = "Tag";
+    Layout = "~/Areas/Common/Views/Shared/_CommonLayout.cshtml";
+}
+<br />
+
+<div class="container row p-0 m-0">
+    <div class="col-9">
+        <h2 class="text-info">Tag</h2>
+    </div>
+    <div class="col-3">
+        <a asp-action="Upsert" class="btn btn-info form-control text-white">Create New Tag</a>
+    </div>
+
+    <div class="col-3">
+        <a asp-action="Export" asp-route-csvPath="Tag.csv" class="btn btn-info form-control text-white">Export CSV</a>
+    </div>
+
+    <form asp-action="Import" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <button type="submit">Upload File</button>
+    </form>
+
+    <div class="col-12 border p-3 mt-3" style="overflow: auto;">
+        <form method="post">
+            @if (Model.List != null)
+            {
+                @if (Model.List.Count > 0)
+                {
+                    <table class="table table-striped border">
+                        <tr class="table-secondary">
+                            <th>
+                                <label asp-for="List.FirstOrDefault().AutomationTypeId"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Name"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().ConnectionId"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Enable"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().InputOutput"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().AnalogDigitalSignal"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().MemoryAddress"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().Invoke"></label>
+                            </th>
+                            <th>
+                                <label asp-for="List.FirstOrDefault().TagGroupId"></label>
+                            </th>
+                            <th>
+                                <label>Edit</label>
+                            </th>
+                            <th>
+                                <label>Delete</label>
+                            </th>
+                        </tr>
+                        @foreach (var item in Model.List)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(m => Model.AutomationTypeId.List.Find(vp => vp.Key.Equals(item.AutomationTypeId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.ConnectionId.List.Find(vp => vp.Key.Equals(item.ConnectionId)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Enable)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.InputOutput.List.Find(vp => vp.Key.Equals(item.InputOutput)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.AnalogDigitalSignal.List.Find(vp => vp.Key.Equals(item.AnalogDigitalSignal)).Value)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.MemoryAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => item.Invoke)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(m => Model.TagGroupId.List.Find(vp => vp.Key.Equals(item.TagGroupId)).Value)
+                                </td>
+                                <td>
+                                    <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+                                </td>
+                                <td>
+                                    <button asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                }
+                else
+                {
+                    <p>No Tags available!</p>
+                }
+            }
+            else
+            {
+                <p>No Tags available!</p>
+            }
+        </form>
+    </div>
+</div>
+
