@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="7.0.1" />
+    <PackageReference Include="Autofac" Version="7.1.0" />
     <PackageReference Include="KSociety.Base.EventBusRabbitMQ" Version="1.2.33" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
