@@ -1,4 +1,7 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/vw2wblpsxwihbuoo?svg=true)](https://ci.appveyor.com/project/maniglia/ksociety-com)
+[![Logo](https://github.com/K-Society/KSociety.Com/blob/master/docs/K-Society__Logo_vs-negative.png)](https://github.com/K-Society)
+
+[![build status](https://img.shields.io/github/actions/workflow/status/K-Society/KSociety.Com/build.yml?branch=develop)](https://github.com/K-Society/KSociety.Com/actions/workflows/build.yml?query=branch%3Adevelop) [![NuGet](https://img.shields.io/nuget/v/KSociety.Com.Driver)](https://www.nuget.org/profiles/K-Society)
+
 ![GitHub all releases](https://img.shields.io/github/downloads/K-Society/KSociety.Com/total)
 # KSociety.Com - Communication System
 #### A .NET full stack software for Siemens S7 Connectivity
