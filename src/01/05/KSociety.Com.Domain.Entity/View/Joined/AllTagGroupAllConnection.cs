@@ -5,17 +5,13 @@ using KSociety.Com.Domain.Entity.Common;
 
 namespace KSociety.Com.Domain.Entity.View.Joined
 {
-    public class AllTagGroupAllConnection : BaseEntityNotifier //<NotifyTagEvent>
+    public class AllTagGroupAllConnection : BaseEntityNotifier
     {
         #region [Propery]
-
-        //public Guid StdTagId { get; private set; }
 
         public Guid Id { get; private set; }
 
         public string TagName { get; private set; }
-
-        //public Guid StdConnectionId { get; private set; }
 
         public Guid ConnectionId { get; private set; }
 
@@ -51,8 +47,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
 
         public byte BitOfByte { get; private set; }
 
-        //public string Address { get; private set; }
-
         public int WordLenId { get; private set; }
 
         public string WordLenName { get; private set; }
@@ -62,8 +56,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         public string AreaName { get; private set; }
 
         public int StringLength { get; private set; }
-
-        //public string TagPath { get; private set; }
 
         public int ConnectionTypeId { get; private set; }
 
@@ -82,11 +74,8 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         #endregion
 
         public AllTagGroupAllConnection(
-            //IMediator mediator,
-            //Guid stdTagId,
             Guid id,
             string tagName,
-            //Guid stdConnectionId,
             Guid connectionId,
             string connectionName,
             int automationTypeId,
@@ -104,13 +93,11 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             int dataBlock,
             int offset,
             byte bitOfByte,
-            //string address,
             int wordLenId,
             string wordLenName,
             int areaId,
             string areaName,
             int stringLength,
-            //string tagPath,
             int connectionTypeId,
             string connectionTypeName,
             int cpuTypeId,
@@ -118,12 +105,10 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             short rack,
             short slot,
             byte[] path
-        ) //:base(/*LogManager.GetCurrentClassLogger()*//*, mediator*/)
+        ) 
         {
-            //StdTagId = stdTagId;
             Id = id;
             TagName = tagName;
-            //StdConnectionId = stdConnectionId;
             ConnectionId = connectionId;
             ConnectionName = connectionName;
             AutomationTypeId = automationTypeId;
@@ -147,7 +132,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             AreaId = areaId;
             AreaName = areaName;
             StringLength = stringLength;
-            //TagPath = tagPath;
             ConnectionTypeId = connectionTypeId;
             ConnectionTypeName = connectionTypeName;
             CpuTypeId = cpuTypeId;
@@ -165,7 +149,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         public AllConnection GetAllConnection()
         {
             return new AllConnection(
-                //StdConnectionId,
                 ConnectionId,
                 AutomationTypeId,
                 AutomationName,
@@ -186,7 +169,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         public AllTagGroupConnection GetAllTagGroupConnection()
         {
             return new AllTagGroupConnection(
-                //StdTagId,
                 Id,
                 TagName,
                 ConnectionId,
@@ -211,7 +193,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
                 AreaId,
                 AreaName,
                 StringLength
-                //TagPath
             );
         }
 
@@ -233,30 +214,12 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             {
                 switch (AutomationTypeId)
                 {
-                    //case 0:
-                    //    return new Connection(
-                    //        ConnectionId,
-                    //        AutomationTypeId,
-                    //        ConnectionName,
-                    //        Ip,
-                    //        true,
-                    //        WriteEnable
-                    //    );
 
                     case 1:
                         return GetS7Connection();
 
                     case 2:
                         return GetLogixConnection();
-                    //return new Entity.Common.Connection(
-                    //        StdConnectionId,
-                    //        AutomationTypeId,
-                    //        ConnectionName,
-                    //        Ip,
-                    //        true,
-                    //        WriteEnable,
-                    //    GetLogixConnection()
-                    //);
 
                     default:
                         return null;
@@ -288,27 +251,17 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         public Entity.Logix.LogixConnection GetLogixConnection()
         {
             return null;
-            //return new S7.Connection(
-            //    ConnectionId,
-            //    StdConnectionId,
-            //    CpuTypeId,
-            //    Rack,
-            //    Slot,
-            //    ConnectionTypeId
-            //);
         }
 
-        public Entity.Common.Tag GetCommonTag(INotifierMediatorService notifierMediatorService, /*IEventBus eventBus,*/
+        public Entity.Common.Tag GetCommonTag(INotifierMediatorService notifierMediatorService,
             Connection connection, TagGroup tagGroup)
         {
             try
             {
-                //return new Tag(LogManager.GetCurrentClassLogger());
                 switch (AutomationTypeId)
                 {
                     case 0:
                         return new Tag(
-                            ////eventBus,
                             notifierMediatorService,
                             Id,
                             AutomationTypeId,
@@ -326,7 +279,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
 
                     case 1:
                         return new Entity.S7.S7Tag(
-                            ////eventBus,
                             notifierMediatorService,
                             Id,
                             AutomationTypeId,
@@ -354,7 +306,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
 
                     default:
                         return new Entity.Common.Tag(
-                            ////eventBus,
                             notifierMediatorService,
                             Id,
                             AutomationTypeId,
@@ -377,35 +328,5 @@ namespace KSociety.Com.Domain.Entity.View.Joined
                 return null;
             }
         }
-
-        //public Entity.S7.S7Tag GetS7Tag()
-        //{
-        //    return new Entity.S7.S7Tag(
-        //        //NotifierMediatorService,
-        //        Id,
-        //        //StdTagId,
-        //        DataBlock,
-        //        Offset,
-        //        BitOfByte,
-        //        //Address,
-        //        WordLenId,
-        //        AreaId
-        //        );
-        //}
-        //public Entity.Logix.LogixTag GetLogixTag()
-        //{
-        //    return null;
-        //    //return new Entity.Logix.Tag(
-        //    //    TagId,
-        //    //    StdTagId,
-        //    //    DataBlock,
-        //    //    Offset,
-        //    //    BitOfByte,
-        //    //    Address,
-        //    //    WordLenId,
-        //    //    AreaId
-        //    //    );
-        //}
-
     }
 }

@@ -9,15 +9,10 @@ namespace KSociety.Com.Domain.Entity.S7
 
         public virtual ICollection<S7Connection> Connections { get; set; }
 
-        //private ConnectionType() { }
-
         public ConnectionType(int id, string name)
         {
             Id = id;
             Name = name;
-
-            //var s7WordLenValidator = new S7WordLenValidator();
-            //s7WordLenValidator.ValidateAndThrow(this);
         }
     }
 }

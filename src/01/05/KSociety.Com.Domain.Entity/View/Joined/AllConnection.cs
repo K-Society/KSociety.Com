@@ -12,8 +12,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
 
         #region [Propery]
 
-        //public Guid StdConnectionId { get; private set; }
-
         public Guid Id { get; private set; }
 
         public int AutomationTypeId { get; private set; }
@@ -45,7 +43,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
         #endregion
 
         public AllConnection(
-            //Guid stdConnectionId,
             Guid id,
             int automationTypeId,
             string automationName,
@@ -61,9 +58,7 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             string connectionTypeName
 
         )
-            : base( /*LogManager.GetCurrentClassLogger()*/)
         {
-            //StdConnectionId = stdConnectionId;
             Id = id;
             AutomationTypeId = automationTypeId;
             AutomationName = automationName;
@@ -107,18 +102,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             }
         }
 
-        //public Domain.Com.Entity.Common.Connection GetCommonConnection()
-        //{
-        //    return new Connection(
-        //        //StdConnectionId,
-        //        AutomationTypeId,
-        //        ConnectionName,
-        //        Ip,
-        //        true,
-        //        WriteEnable
-        //        );
-        //}
-
         public S7Connection GetS7Connection()
         {
             return new S7.S7Connection(
@@ -127,13 +110,10 @@ namespace KSociety.Com.Domain.Entity.View.Joined
                 Ip,
                 true,
                 WriteEnable,
-                //ConnectionId, 
-                //StdConnectionId,
                 CpuTypeId,
                 Rack,
                 Slot,
                 ConnectionTypeId
-                //GetCommonConnection()
             );
         }
     }

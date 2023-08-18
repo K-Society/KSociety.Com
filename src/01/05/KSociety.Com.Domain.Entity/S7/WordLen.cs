@@ -11,16 +11,11 @@ namespace KSociety.Com.Domain.Entity.S7
         public virtual ICollection<S7Tag> S7Tags { get; set; }
         public virtual ICollection<BlockArea> S7BlockAreas { get; set; }
 
-        //private WordLen() { }
-
         public WordLen(int id, string wordLenName, string mean)
         {
             Id = id;
             WordLenName = wordLenName;
             Mean = mean;
-
-            //var s7WordLenValidator = new S7WordLenValidator();
-            //s7WordLenValidator.ValidateAndThrow(this);
         }
     }
 }

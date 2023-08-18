@@ -23,7 +23,7 @@ namespace KSociety.Com.Srv.Behavior.Biz;
 public class BizAsync : IBizAsync
 {
     private readonly ILoggerFactory _loggerFactory;
-    private static ILogger<BizAsync> _logger;
+    private static ILogger<BizAsync>? _logger;
     private readonly IComponentContext _componentContext;
     private readonly IEventBusComParameters _eventBusComParameters;
     private readonly ICommandHandlerAsync _commandHandlerAsync;
@@ -93,7 +93,7 @@ public class BizAsync : IBizAsync
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "LoadGroups: ");
+            _logger?.LogError(ex, "LoadGroups: ");
         }
     }
 
@@ -112,7 +112,7 @@ public class BizAsync : IBizAsync
             }
             catch (TaskCanceledException tce)
             {
-                _logger.LogWarning(tce, "SendHeartBeatAsync: CancellationToken CancellationRequested.");
+                _logger?.LogWarning(tce, "SendHeartBeatAsync: CancellationToken CancellationRequested.");
             }
 
             if (!cancel.IsCancellationRequested)
@@ -134,18 +134,6 @@ public class BizAsync : IBizAsync
             yield return new NotifyTagRes(tagInvokeIntegrationEvent.GroupName, tagInvokeIntegrationEvent.Name, tagInvokeIntegrationEvent.Value, tagInvokeIntegrationEvent.Timestamp);
         }
     }
-
-    //public IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, CallContext context = default) =>
-    //    NotifyTagReadAsync(notifyTagReq, context.CancellationToken);
-
-    //private async IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, [EnumeratorCancellation] CancellationToken cancel)
-    //{
-    //    await foreach (var tagReadIntegrationEvent in TagGroupEventBus[notifyTagReq.GroupName + "_Read"]
-    //        .GetIntegrationQueueHandler<TagReadIntegrationEvent, TagReadQueueHandler>().Dequeue(cancel))
-    //    {
-    //        yield return tagReadIntegrationEvent;
-    //    }
-    //}
 
     public async ValueTask<App.Dto.Res.Biz.GetConnectionStatus> ConnectionStatusAsync(GetConnectionStatus request, CallContext context = default)
     {

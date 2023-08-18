@@ -12,13 +12,6 @@ public interface IBiz
     [Operation]
     IEnumerable<HeartBeat> SendHeartBeat(CallContext context = default);
 
-    //[OperationContract]
-    //IEnumerable<TagIntegrationEvent> NotifyTagInvoke(NotifyTagReq notifyTagReq, CallContext context = default);
-
-    //[OperationContract]
-    //IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, CallContext context = default);
-
-
     [Operation]
     //[FaultContract(typeof(BusinessFault))]
     App.Dto.Res.Biz.GetConnectionStatus ConnectionStatus(GetConnectionStatus request, CallContext context = default);
@@ -26,10 +19,6 @@ public interface IBiz
     [Operation]
     //[FaultContract(typeof(BusinessFault))]
     App.Dto.Res.Biz.SetTagValue SetTagValue(SetTagValue request, CallContext context = default);
-
-    //[OperationContract]
-    ////[FaultContract(typeof(BusinessFault))]
-    //ValueTask<bool> WriteTagValueAsync(WriteTagValue request, CallContext context = default);
 
     [Operation]
     //[FaultContract(typeof(BusinessFault))]

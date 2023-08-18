@@ -9,7 +9,6 @@ namespace KSociety.Com.Domain.Entity.Common
     {
         #region [Propery]
 
-        //public Guid ConnectionId { get; protected set; }
         public Guid Id { get; protected set; }
 
         public int AutomationTypeId { get; protected set; }
@@ -23,8 +22,6 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public bool WriteEnable { get; protected set; }
 
-        //public virtual S7.Connection S7Connection { get; private set; }
-        //public virtual Logix.Connection LogixConnection { get; private set; }
         public virtual ICollection<Tag> Tags { get; set; }
 
         #endregion
@@ -32,52 +29,22 @@ namespace KSociety.Com.Domain.Entity.Common
         public static SemaphoreSlim ReadSemaphore { get; } = new SemaphoreSlim(1, 1);
         public static SemaphoreSlim WriteSemaphore { get; } = new SemaphoreSlim(1, 1);
 
-        //public Connection()
-        //    : base(LogManager.GetCurrentClassLogger())
-        //{
-
-        //}
 
         #region [Constructor]
 
-        //public Connection()
-        //:base()
-        //{
 
-        //}
-
-        public Connection( /*ILogger<Connection> logger*/)
-            //: base(logger)
+        public Connection()
         {
 
         }
 
-        //public Connection(
-        //    //ILogger<Connection> logger,
-        //    int automationTypeId,
-        //    string name,
-        //    string ip,
-        //    bool enable,
-        //    bool writeEnable
-        //)
-        //    : base(/*LogManager.GetCurrentClassLogger()*/)
-        //{
-        //    AutomationTypeId = automationTypeId;
-        //    Name = name;
-        //    Ip = ip;
-        //    Enable = enable;
-        //    WriteEnable = writeEnable;
-        //}
-
         public Connection(
-                //ILogger<Connection> logger,
                 int automationTypeId,
                 string name,
                 string ip,
                 bool enable,
                 bool writeEnable
             )
-            //:base(logger)
         {
             AutomationTypeId = automationTypeId;
             Name = name;
@@ -87,7 +54,6 @@ namespace KSociety.Com.Domain.Entity.Common
         }
 
         public Connection(
-                //Guid connectionId,
                 Guid id,
                 int automationTypeId,
                 string name,
@@ -95,7 +61,6 @@ namespace KSociety.Com.Domain.Entity.Common
                 bool enable,
                 bool writeEnable
             )
-            //: base(new ILogger<Connection>())
         {
             Id = id;
             AutomationTypeId = automationTypeId;
@@ -105,27 +70,7 @@ namespace KSociety.Com.Domain.Entity.Common
             WriteEnable = writeEnable;
         }
 
-        //public Connection(
-        //    //ILogger<Connection> logger,
-        //    Guid id,
-        //    int automationTypeId,
-        //    string name,
-        //    string ip,
-        //    bool enable,
-        //    bool writeEnable
-        //)
-        ////:base(logger)
-        //{
-        //    Id = id;
-        //    AutomationTypeId = automationTypeId;
-        //    Name = name;
-        //    Ip = ip;
-        //    Enable = enable;
-        //    WriteEnable = writeEnable;
-        //}
-
         public Connection(
-                //ILogger logger,
                 Guid connectionId,
                 int automationTypeId,
                 string name,
@@ -134,7 +79,6 @@ namespace KSociety.Com.Domain.Entity.Common
                 bool writeEnable,
                 S7.S7Connection connection
             )
-            //: base(LogManager.GetCurrentClassLogger())
         {
             Id = connectionId;
             AutomationTypeId = automationTypeId;
@@ -142,11 +86,9 @@ namespace KSociety.Com.Domain.Entity.Common
             Ip = ip;
             Enable = enable;
             WriteEnable = writeEnable;
-            //S7Connection = connection;
         }
 
         public Connection(
-                //ILogger logger,
                 Guid connectionId,
                 int automationTypeId,
                 string name,
@@ -155,7 +97,6 @@ namespace KSociety.Com.Domain.Entity.Common
                 bool writeEnable,
                 Logix.LogixConnection connection
             )
-            //: base(LogManager.GetCurrentClassLogger())
         {
             Id = connectionId;
             AutomationTypeId = automationTypeId;
@@ -163,20 +104,7 @@ namespace KSociety.Com.Domain.Entity.Common
             Ip = ip;
             Enable = enable;
             WriteEnable = writeEnable;
-            //LogixConnection = connection;
         }
-
-        //public void SetS7Connection(S7.S7Connection connection)
-        //{
-        //    //S7Connection = connection;
-        //}
-
-        //public void SetLogixConnection(Logix.LogixConnection connection)
-        //{
-        //    //LogixConnection = connection;
-        //}
-
-        //public abstract void Initiate();
 
         #endregion
 
@@ -207,19 +135,6 @@ namespace KSociety.Com.Domain.Entity.Common
         {
             return false;
         }
-
-        //public async Task ReadTags()
-        //{
-        //    switch (AutomationTypeId)
-        //    {
-        //        case 0:
-        //            //await S7Connection.ReadTags();
-        //            break;
-
-        //        case 1:
-        //            break;
-        //    }
-        //}
 
         protected override void DisposeManagedResources()
         {

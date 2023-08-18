@@ -38,7 +38,7 @@ public static class Program
         {
             // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
 
-            global::Serilog.Log.CloseAndFlush();
+            await global::Serilog.Log.CloseAndFlushAsync();
         }
     }
 

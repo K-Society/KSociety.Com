@@ -17,10 +17,6 @@ public interface IBizAsync
     [Operation]
     IAsyncEnumerable<NotifyTagRes> NotifyTagInvokeAsync(NotifyTagReq notifyTagReq, CallContext context = default);
 
-    //[OperationContract]
-    //IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, CallContext context = default);
-
-
     [Operation]
     //[FaultContract(typeof(BusinessFault))]
     ValueTask<App.Dto.Res.Biz.GetConnectionStatus> ConnectionStatusAsync(GetConnectionStatus request, CallContext context = default);
@@ -28,10 +24,6 @@ public interface IBizAsync
     [Operation]
     //[FaultContract(typeof(BusinessFault))]
     ValueTask<App.Dto.Res.Biz.SetTagValue> SetTagValueAsync(SetTagValue request, CallContext context = default);
-
-    //[OperationContract]
-    ////[FaultContract(typeof(BusinessFault))]
-    //ValueTask<bool> WriteTagValueAsync(WriteTagValue request, CallContext context = default);
 
     [Operation]
     //[FaultContract(typeof(BusinessFault))]

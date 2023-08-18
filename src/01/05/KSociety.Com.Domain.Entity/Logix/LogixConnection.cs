@@ -9,7 +9,6 @@ namespace KSociety.Com.Domain.Entity.Logix
         public LogixConnection(
             byte[] path
         )
-            : base( /*LogManager.GetCurrentClassLogger()*/)
         {
             Path = path;
 
@@ -18,7 +17,6 @@ namespace KSociety.Com.Domain.Entity.Logix
         public LogixConnection(
             string path
         )
-            : base( /*LogManager.GetCurrentClassLogger()*/)
         {
 
             Path = StringPathConverter(path);
@@ -33,7 +31,6 @@ namespace KSociety.Com.Domain.Entity.Logix
             byte[] path
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 automationTypeId,
                 name,
                 ip,
@@ -53,7 +50,6 @@ namespace KSociety.Com.Domain.Entity.Logix
             string path
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 automationTypeId,
                 name,
                 ip,
@@ -74,7 +70,6 @@ namespace KSociety.Com.Domain.Entity.Logix
             byte[] path
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 id,
                 automationTypeId,
                 name,
@@ -96,7 +91,6 @@ namespace KSociety.Com.Domain.Entity.Logix
             string path
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 id,
                 automationTypeId,
                 name,

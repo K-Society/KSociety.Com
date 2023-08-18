@@ -18,7 +18,7 @@ public class ConnectionStatusRpcClientHandler : IntegrationRpcClientHandler<Conn
     public override void HandleReply(ConnectionStatusIntegrationEventReply @integrationEventReply, CancellationToken cancel = default)
     {
         //await Queue.SendAsync(@integrationEventReply, cancel).ConfigureAwait(false);
-        Logger.LogWarning("ConnectionStatusRpcClientHandler HandleRpcAsync: NotImplemented! " + @integrationEventReply.RoutingKey);
+        Logger?.LogWarning("ConnectionStatusRpcClientHandler HandleRpcAsync: NotImplemented! " + @integrationEventReply.RoutingKey);
         //throw new NotImplementedException();
     }
 
@@ -26,7 +26,7 @@ public class ConnectionStatusRpcClientHandler : IntegrationRpcClientHandler<Conn
     {
         //await Queue.SendAsync(@integrationEventReply, cancel).ConfigureAwait(false);
         ;
-        Logger.LogWarning("ConnectionStatusRpcClientHandler HandleRpcAsync: NotImplemented! " + @integrationEventReply.RoutingKey);
+        Logger?.LogWarning("ConnectionStatusRpcClientHandler HandleRpcAsync: NotImplemented! " + @integrationEventReply.RoutingKey);
         //throw new NotImplementedException();
     }
 }
