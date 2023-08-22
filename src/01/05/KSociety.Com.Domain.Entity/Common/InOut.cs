@@ -10,8 +10,6 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public virtual ICollection<Tag> Tags { get; set; }
 
-        //public InOut() { }
-
         public InOut(string inputOutput, string inputOutputName)
         {
             InputOutput = inputOutput;

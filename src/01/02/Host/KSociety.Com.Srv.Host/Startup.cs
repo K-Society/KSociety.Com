@@ -25,25 +25,17 @@ public class Startup
 {
     public ILifetimeScope AutofacContainer { get; private set; }
 
-    //private string MasterString { get; }
-
     private bool DebugFlag { get; }
     private MessageBrokerOptions ComMessageBrokerOptions { get; }
     private DatabaseOptions DatabaseOptions { get; }
 
-    //private string MigrationsAssembly { get; }
-
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
-        //MasterString = Configuration.GetConnectionString("ComDb");
         DebugFlag = Configuration.GetValue<bool>("DebugFlag");
 
         ComMessageBrokerOptions = Configuration.GetSection("MessageBroker").Get<MessageBrokerOptions>();
         DatabaseOptions = Configuration.GetSection("Database").Get<DatabaseOptions>();
-        ;
-        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.SqlServer";//typeof(ComContext).GetTypeInfo().Assembly.GetName().Name;
-        //MigrationsAssembly = "KSociety.Com.Infra.Transfer.Sqlite";
     }
 
     public IConfiguration Configuration { get; }

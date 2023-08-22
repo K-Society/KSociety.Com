@@ -17,18 +17,6 @@ namespace KSociety.Com.Domain.Entity.S7
         public Guid ConnectionId { get; private set; }
         public virtual S7Connection Connection { get; private set; }
 
-        ////[StringLength(8)]
-        ////[Required]
-        //public string AreaId { get; private set; }
-        //public Area Area { get; private set; }
-
-        //[StringLength(12)]
-        //[Required]
-        //public string WordLenId { get; private set; }
-        //public WordLen WordLen { get; private set; }
-
-        //private BlockArea() { }
-
         public BlockArea(
             bool enable,
             int areaId,

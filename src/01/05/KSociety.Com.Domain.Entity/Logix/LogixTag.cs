@@ -1,6 +1,6 @@
 ﻿namespace KSociety.Com.Domain.Entity.Logix
 {
-    public class LogixTag : Common.Tag //StdEntity
+    public class LogixTag : Common.Tag
     {
         //[Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

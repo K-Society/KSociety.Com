@@ -8,8 +8,6 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public virtual ICollection<Tag> Tags { get; set; }
 
-        //public AnalogDigital() { }
-
         public AnalogDigital(string analogDigitalSignal)
         {
             AnalogDigitalSignal = analogDigitalSignal;

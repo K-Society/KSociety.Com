@@ -10,14 +10,12 @@ using Quartz;
 
 namespace KSociety.Com.Domain.Entity.Common
 {
-    public class TagGroup : EntityNotifier //<NotifyTagEvent>
+    public class TagGroup : EntityNotifier
     {
         private List<View.Joined.AllTagGroupAllConnection> _dataList;
 
         private List<string> _connectionNameList;
 
-        //private List<Tag> _tagList;
-        //public readonly Dictionary<string, Tag> _tagDictionary = new Dictionary<string, Tag>();
         public readonly Dictionary<string, Connection> Connection = new Dictionary<string, Connection>();
 
         private readonly Dictionary<string, List<View.Joined.AllTagGroupAllConnection>> _dataItemByConnection =
@@ -28,16 +26,9 @@ namespace KSociety.Com.Domain.Entity.Common
         public readonly Dictionary<string, List<Tag>> _tagWriteByConnection = new Dictionary<string, List<Tag>>();
 
         private Scheduler _scheduleRead;
-        //public  IEventBus EventBus;
-        //private IEventBus _eventWriteBus;
-        //private readonly IConnectionFactory _connectionFactory;
-        //private IConnection _connectionFactory;
-
-
 
         #region [Propery]
 
-        //public Guid TagGroupId { get; private set; }
         public Guid Id { get; private set; }
 
         public string Name { get; private set; }
@@ -57,9 +48,7 @@ namespace KSociety.Com.Domain.Entity.Common
         //For Csv.
         public TagGroup(
                 Guid id, string name, int clock, int update, bool enable)
-            //: base(/*LogManager.GetCurrentClassLogger()*/)
         {
-            //TagGroupId = tagGroupId;
             Id = id;
             Name = name;
             Clock = clock;
@@ -70,26 +59,19 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public TagGroup(
                 string name, int clock, int update, bool enable)
-            //:base(/*LogManager.GetCurrentClassLogger()*/)
         {
             Name = name;
             Clock = clock;
             Update = update;
             Enable = enable;
 
-            //Logger.Info("Domain.Entity.TagGroup: " + Name + " ");
         }
 
         public TagGroup(
             INotifierMediatorService notifierMediatorService,
-            //ILoggerFactory loggerFactory,
-            ////IConnectionFactory connectionFactory,
             Guid id, string name, int clock, int update, bool enable)
-            : base( /*LogManager.GetCurrentClassLogger(),*/ notifierMediatorService)
+            : base(notifierMediatorService)
         {
-            //Logger = loggerFactory.CreateLogger<TagGroup>();
-            //_connectionFactory = connectionFactory;
-            //TagGroupId = tagGroupId;
             Id = id;
             Name = name;
             Clock = clock;
@@ -180,24 +162,6 @@ namespace KSociety.Com.Domain.Entity.Common
             _scheduleRead = new Scheduler(Name + "Read", Clock, Scheduler.TimeType.ms);
             StartScheduleRead<TaskRead>();
         }
-
-        //private void TagOnNewValueReached(object sender, EventArgs e)
-        //{
-        //    //throw new NotImplementedException();
-        //    Logger.Trace("Tag Group: TagOnNewValueReached");
-        //}
-
-        //private void InitiateEventBus()
-        //{
-        //    DefaultRabbitMqPersistentConnection persistentConnection = new DefaultRabbitMqPersistentConnection(_connectionFactory, Logger);
-        //    var eventReadHandler = new TagEventHandler(Logger, _tagDictionary);
-
-        //    EventBus = new EventBusRabbitMq(persistentConnection, Logger, eventReadHandler, null, "direct", "AutomationQueue_" + Name);
-        //    //_eventBus = new EventBusRabbitMq(persistentConnection, Logger, eventReadHandler, null, "topic", "AutomationQueue_" + Name);
-
-        //    EventBus.Subscribe<TagIntegrationEvent, TagEventHandler>(Name + ".automation.read");
-        //    EventBus.Subscribe<TagIntegrationEvent, TagEventHandler>(Name + ".automation.write");
-        //}
 
         private void StartScheduleRead<T>() where T : IJob
         {
@@ -304,32 +268,5 @@ namespace KSociety.Com.Domain.Entity.Common
         {
             return Connection.ContainsKey(connectionName) ? Connection[connectionName] : null;
         }
-
-        //[DisallowConcurrentExecution]
-        //private class TaskRead : IJob
-        //{
-        //    #region [Private]
-        //    private SchedulerContext _sc;
-        //    private TagGroup _tagGroup;
-        //    private string _name = string.Empty;
-        //    #endregion
-
-        //    public Task Execute(IJobExecutionContext context)
-        //    {
-        //        //var key = context.JobDetail.Key;
-        //        //var dataMap = context.JobDetail.JobDataMap;
-
-        //        _sc = context.Scheduler.Context;
-        //        _name = context.JobDetail.Key.Name;
-
-        //        _tagGroup = (TagGroup)_sc.Get(_name); //(S7GROUP)_sc.Get(_name);
-
-        //        //_s7Group.Logger.Trace("S7TaskRead");
-        //        //s7group.OnTrigger();
-        //        return _tagGroup.OnSchedulerTriggerRead();
-
-        //        //return Task.CompletedTask;
-        //    }
-        //}//Task
     }
 }

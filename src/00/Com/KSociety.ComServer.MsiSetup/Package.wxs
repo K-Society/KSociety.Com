@@ -8,7 +8,7 @@
            Language="1033"
            Scope="perMachine"
            ShortNames="yes">
-    <Media Id="1" Cabinet="LogServer$(NetVersion).cab" EmbedCab="yes"/>
+    <Media Id="1" Cabinet="LogServer_$(NetVersion).cab" EmbedCab="yes"/>
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
     <WixVariable Id="Edition" Value="Enterprise"/>
     <ui:WixUI Id="WixUI_Minimal" />

@@ -6,8 +6,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
     {
         #region [Propery]
 
-        //public Guid StdTagId { get; private set; }
-
         public Guid Id { get; private set; }
 
         public string TagName { get; private set; }
@@ -56,12 +54,9 @@ namespace KSociety.Com.Domain.Entity.View.Joined
 
         public int StringLength { get; private set; }
 
-        //public string TagPath { get; private set; }
-
         #endregion
 
         public AllTagGroupConnection(
-            //Guid stdTagId,
             Guid id,
             string tagName,
             Guid connectionId,
@@ -86,10 +81,8 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             int areaId,
             string areaName,
             int stringLength
-            //string tagPath
         )
         {
-            //StdTagId = stdTagId;
             Id = id;
             TagName = tagName;
             ConnectionId = connectionId;
@@ -114,7 +107,6 @@ namespace KSociety.Com.Domain.Entity.View.Joined
             AreaId = areaId;
             AreaName = areaName;
             StringLength = stringLength;
-            //TagPath = tagPath;
         }
     }
 }

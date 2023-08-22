@@ -66,7 +66,6 @@ namespace KSociety.Com.Domain.Entity.S7
                 tagGroupId
             )
         {
-            //Console.WriteLine("ForCSV: " + memoryAddress);
             DataBlock = dataBlock;
             Offset = offset;
             BitOfByte = bitOfByte;
@@ -81,7 +80,6 @@ namespace KSociety.Com.Domain.Entity.S7
         }
 
         public S7Tag(
-            ////IEventBus eventBus,
             INotifierMediatorService notifierMediatorService,
             Guid id,
             int automationTypeId,
@@ -103,9 +101,6 @@ namespace KSociety.Com.Domain.Entity.S7
             int? stringLength
         )
             : base(
-                ////eventBus,
-                ////LogManager.GetCurrentClassLogger(),
-                ////new Logger<Tag>(),
                 notifierMediatorService,
                 id,
                 automationTypeId,
@@ -420,13 +415,13 @@ namespace KSociety.Com.Domain.Entity.S7
                         break;
 
                     default:
-                        Logger.LogWarning("UpdateTagValue: " + Name + " No VarType");
+                        Logger?.LogWarning("UpdateTagValue: " + Name + " No VarType");
                         break;
                 }
             }
             catch (Exception ex)
             {
-                Logger.LogError("S7Tag UpdateTagValue: " + Name + " - " + value + " - " + ex.Message + " " +
+                Logger?.LogError("S7Tag UpdateTagValue: " + Name + " - " + value + " - " + ex.Message + " " +
                                 ex.StackTrace);
             }
         }

@@ -25,12 +25,8 @@ namespace KSociety.Com.Domain.Entity.S7
 
         #endregion
 
-        //
-
         public Plc ClientRead { get; private set; }
         public Plc ClientWrite { get; private set; }
-
-        //
 
 
         #region [Constructor]
@@ -49,7 +45,6 @@ namespace KSociety.Com.Domain.Entity.S7
             int? connectionTypeId
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 id,
                 automationTypeId,
                 name,
@@ -71,9 +66,6 @@ namespace KSociety.Com.Domain.Entity.S7
             short? slot,
             int? connectionTypeId
         )
-            : base(
-                //LogManager.GetCurrentClassLogger()
-            )
         {
             CpuTypeId = cpuTypeId;
             Rack = rack;
@@ -93,7 +85,6 @@ namespace KSociety.Com.Domain.Entity.S7
             int? connectionTypeId
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 automationTypeId,
                 name,
                 ip,
@@ -114,16 +105,12 @@ namespace KSociety.Com.Domain.Entity.S7
             string ip,
             bool enable,
             bool writeEnable, //
-            //Guid connectionId,
-            //Guid stdConnectionId,
             int cpuTypeId,
             short rack,
             short slot,
             int connectionTypeId
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
-                //stdConnectionId,
                 automationTypeId,
                 name,
                 ip,
@@ -131,61 +118,11 @@ namespace KSociety.Com.Domain.Entity.S7
                 writeEnable
             )
         {
-            //S7ConnectionId = connectionId;
-            //StdConnectionId = stdConnectionId;
             CpuTypeId = cpuTypeId;
             Rack = rack;
             Slot = slot;
             ConnectionTypeId = connectionTypeId;
-            //StdConnection = base;
         }
-
-        //public S7Connection(
-        //    int automationTypeId,
-        //    string name,
-        //    string ip,
-        //    bool enable,
-        //    bool writeEnable,//
-        //                     //Guid s7ConnectionId,
-        //                     //Guid stdConnectionId,
-        //    int cpuTypeId,
-        //    short rack,
-        //    short slot,
-        //    int connectionTypeId
-        ////Common.Connection stdConnection
-        //)
-        //    : base(
-        //        //LogManager.GetCurrentClassLogger(),
-        //        //stdConnectionId,
-        //        automationTypeId,
-        //        name,
-        //        ip,
-        //        enable,
-        //        writeEnable
-        //        )
-        //{
-        //    //S7ConnectionId = s7ConnectionId;
-        //    //StdConnectionId = stdConnectionId;
-        //    CpuTypeId = cpuTypeId;
-        //    Rack = rack;
-        //    Slot = slot;
-        //    ConnectionTypeId = connectionTypeId;
-        //    //StdConnection = stdConnection;
-        //}
-
-        //public void Modify(
-        //    //Guid stdConnectionId,
-        //    int cpuTypeId,
-        //    short rack,
-        //    short slot, int connectionTypeId
-        //)
-        //{
-        //    //StdConnectionId = stdConnectionId;
-        //    CpuTypeId = cpuTypeId;
-        //    Rack = rack;
-        //    Slot = slot;
-        //    ConnectionTypeId = connectionTypeId;
-        //}
 
         #endregion
 
@@ -194,14 +131,12 @@ namespace KSociety.Com.Domain.Entity.S7
             Logger?.LogTrace("Domain.Entity.S7.S7Connection Initiate: " + Name);
             if (CpuTypeId != null)
             {
-                //ClientRead = new Plc((Driver.S7.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 ClientRead = new Plc((global::S7.Net.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 TryConnectRead();
             }
 
             if (CpuTypeId != null && WriteEnable)
             {
-                //ClientWrite = new Plc((Driver.S7.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 ClientWrite = new Plc((global::S7.Net.CpuType)CpuTypeId, Ip, Rack ?? 0, Slot ?? 0);
                 TryConnectWrite();
             }
@@ -210,20 +145,6 @@ namespace KSociety.Com.Domain.Entity.S7
             SetTag();
 
         }
-
-        //public void Initiate(Common.Connection connection)
-        //{
-        //    //StdConnection = connection;
-        //    //Logger.Trace("Domain.Entity.S7.Connection Initiate: " + StdConnection.Name);
-        //    //ClientRead = new Plc((Std.Com.Driver.S7.CpuType)CpuTypeId, StdConnection.Ip, Rack, Slot);
-
-        //    //if (StdConnection.WriteEnable)
-        //    //{
-        //    //    ClientWrite = new Plc((Std.Com.Driver.S7.CpuType)CpuTypeId, StdConnection.Ip, Rack, Slot);
-        //    //}
-
-        //    TryConnectRead();
-        //}
 
         public async void TryConnectRead()
         {
@@ -237,8 +158,6 @@ namespace KSociety.Com.Domain.Entity.S7
                         Logger.LogWarning("TryConnectRead: " + ex.Message + " - " + ex.StackTrace);
                     }
                 );
-
-            //await policy.Execute(async () => await ClientRead.OpenAsync());
 
             await policy.ExecuteAsync(() => ClientRead.OpenAsync()).ConfigureAwait(false);
         }
@@ -348,7 +267,7 @@ namespace KSociety.Com.Domain.Entity.S7
             }
             catch (Exception ex)
             {
-                Logger.LogError("Read: " + ex.Message + " - " + ex.StackTrace);
+                Logger?.LogError("Read: " + ex.Message + " - " + ex.StackTrace);
             }
             finally
             {
@@ -375,109 +294,5 @@ namespace KSociety.Com.Domain.Entity.S7
         {
             return WriteEnable && ClientWrite.IsConnected;
         }
-
-        //private async Task HandleAsync(S7Tag tag)
-        //{
-        //    //await Task.Factory.StartNew(() =>
-        //    //{               
-        //    try
-        //    {
-        //        //await s7Tag.UpdateValueAsync();
-        //        //_s7Plc.S7Group.Logger.Info("S7MVar Handle: " + s7Tag.DBTag.TagName + s7Tag.Value);
-
-        //        if (s7Tag.DbTag.TagName.Equals("WatchDogRead"))
-        //        {
-        //            await WatchDogAsync(); //ToDo
-        //            //await _s7Plc.S7Group.HandleItemAsync(s7Tag, DateTime.Now);
-        //        }
-        //        else
-        //        {
-        //            await _s7Plc.S7Group.HandleItemAsync(s7Tag, DateTime.Now);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //_s7Plc.S7Group.Logger.Error("S7MVar Handle: " + s7Tag.DbTag.TagName + " " + ex.Message);
-        //    }
-        //    //});
-        //}
-
-        //private void SetGroups(KeyValuePair<string, S7MVar> s7MVar, int bytes)
-        //    {
-        //        //S7Engine.Logger.Fatal("SetGroups: " + s7MVar.Key);
-        //        try
-        //        {
-        //            var tagRead = TagReadList.Where(x => x.DbTag.ConnName.Equals(s7MVar.Key)).ToList();
-
-        //            if (tagRead.Count > bytes)
-        //            {
-        //                for (int i = 0; i < tagRead.Count() / bytes; i++)
-        //                {
-        //                    if (DictionaryTagReadMVar.ContainsKey(s7MVar.Key))
-        //                    {
-        //                        if (!DictionaryTagReadMVar[s7MVar.Key].ContainsKey(i))
-        //                        {
-        //                            DictionaryTagReadMVar[s7MVar.Key].Add(i, tagRead.GetRange(i * bytes, bytes));
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        DictionaryTagReadMVar.Add(s7MVar.Key, new Dictionary<int, List<S7Tag>>());
-        //                        DictionaryTagReadMVar[s7MVar.Key].Add(i, tagRead.GetRange(i * bytes, bytes));
-        //                    }
-        //                }
-
-        //                if (tagRead.Count % bytes != 0)
-        //                {
-        //                    DictionaryTagReadMVar[s7MVar.Key].Add(DictionaryTagReadMVar[s7MVar.Key].Count,
-        //                        tagRead.GetRange(DictionaryTagReadMVar[s7MVar.Key].Count * bytes,
-        //                            tagRead.Count % bytes));
-
-        //                }
-        //            }
-        //            else
-        //            {
-        //                DictionaryTagReadMVar.Add(s7MVar.Key, new Dictionary<int, List<S7Tag>>());
-        //                DictionaryTagReadMVar[s7MVar.Key].Add(0, tagRead);
-        //            }
-
-        //            var tagWrite = TagWriteList.Where(x => x.DbTag.ConnName.Equals(s7MVar.Key)).ToList();
-
-        //            if (tagWrite.Count > bytes)
-        //            {
-        //                for (int i = 0; i < tagWrite.Count() / bytes; i++)
-        //                {
-        //                    if (DictionaryTagWriteMVar.ContainsKey(s7MVar.Key))
-        //                    {
-        //                        if (!DictionaryTagWriteMVar[s7MVar.Key].ContainsKey(i))
-        //                        {
-        //                            DictionaryTagWriteMVar[s7MVar.Key].Add(i, tagWrite.GetRange(i * bytes, bytes));
-        //                        }
-        //                    }
-        //                    else
-        //                    {
-        //                        DictionaryTagWriteMVar.Add(s7MVar.Key, new Dictionary<int, List<S7Tag>>());
-        //                        DictionaryTagWriteMVar[s7MVar.Key].Add(i, tagWrite.GetRange(i * bytes, bytes));
-        //                    }
-        //                }
-
-        //                if (tagWrite.Count % bytes != 0)
-        //                {
-        //                    DictionaryTagWriteMVar[s7MVar.Key].Add(DictionaryTagWriteMVar[s7MVar.Key].Count,
-        //                        tagWrite.GetRange(DictionaryTagWriteMVar[s7MVar.Key].Count * bytes,
-        //                            tagWrite.Count % bytes));
-        //                }
-        //            }
-        //            else
-        //            {
-        //                DictionaryTagWriteMVar.Add(s7MVar.Key, new Dictionary<int, List<S7Tag>>());
-        //                DictionaryTagWriteMVar[s7MVar.Key].Add(0, tagWrite);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            S7Engine.Logger.Error("S7Group SetGroups: " + ex.Message);
-        //        }
-        //    }
     }
 }

@@ -14,8 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\04\KSociety.Com.Biz\KSociety.Com.Biz.csproj" />
-    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Entity\KSociety.Com.Domain.Entity.csproj" />
-    <ProjectReference Include="..\..\05\KSociety.Com.Domain.Repository\KSociety.Com.Domain.Repository.csproj" />
     <ProjectReference Include="..\KSociety.Com.App.Dto\KSociety.Com.App.Dto.csproj" />
   </ItemGroup>
 

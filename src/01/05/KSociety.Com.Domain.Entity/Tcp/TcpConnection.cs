@@ -17,7 +17,6 @@ namespace KSociety.Com.Domain.Entity.Tcp
             int? port
         )
             : base(
-                //LogManager.GetCurrentClassLogger(),
                 id,
                 automationTypeId,
                 name,

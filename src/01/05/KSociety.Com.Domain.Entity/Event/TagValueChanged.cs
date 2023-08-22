@@ -11,14 +11,12 @@ namespace KSociety.Com.Domain.Entity.Event
         public string Value { get; }
         public DateTime Timestamp { get; }
 
-        public TagValueChanged( /*ILogger logger,*/ Tag tag, string name, string value, DateTime timestamp)
+        public TagValueChanged(Tag tag, string name, string value, DateTime timestamp)
         {
             Tag = tag;
             Name = name;
             Value = value;
             Timestamp = timestamp;
-
-            //logger.LogTrace(Tag.Name + " " + Name + " " + Value);
         }
     }
 }
