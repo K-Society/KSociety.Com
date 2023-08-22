@@ -5,49 +5,31 @@
 
 @if "%VCToolsVersion%"=="" call :StartDeveloperCommandPrompt || exit /b
 
-msbuild -t:restore -p:Configuration=%_C% || exit /b
+msbuild -t:clean;restore -p:Configuration=%_C% || exit /b
 
 msbuild -p:Configuration=%_C% || exit /b
 
-msbuild src\01\01\Web\KSociety.Com.Pre.Web.App\KSociety.Com.Pre.Web.App.csproj -t:restore -p:Configuration=%_C% || exit /b
+msbuild src\01\01\Web\KSociety.Com.Pre.Web.App\KSociety.Com.Pre.Web.App.csproj -t:clean;restore -p:Configuration=%_C% || exit /b
 
-msbuild src\01\01\Web\KSociety.Com.Pre.Web.App\KSociety.Com.Pre.Web.App.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework="net6.0" -p:OutputPath=%_P%\KSociety.Com.Pre.Web.App\%_C%\net6.0\ || exit /b
+msbuild src\01\01\Web\KSociety.Com.Pre.Web.App\KSociety.Com.Pre.Web.App.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework=%1 -p:OutputPath=%_P%\KSociety.Com.Pre.Web.App\bin\%_C%\%1\ || exit /b
 
-msbuild src\01\01\Web\KSociety.Com.Pre.Web.App\KSociety.Com.Pre.Web.App.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework="net7.0" -p:OutputPath=%_P%\KSociety.Com.Pre.Web.App\%_C%\net7.0\ || exit /b
+msbuild src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:clean;restore -p:Configuration=%_C% || exit /b
 
-msbuild src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:restore -p:Configuration=%_C% || exit /b
+msbuild src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework=%1 -p:OutputPath=%_P%\KSociety.Com.Srv.Host\bin\%_C%\%1\ || exit /b
 
-msbuild src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework="net6.0" -p:OutputPath=%_P%\KSociety.Com.Srv.Host\%_C%\net6.0\ || exit /b
+REM WiX
 
-msbuild src\01\02\Host\KSociety.Com.Srv.Host\KSociety.Com.Srv.Host.csproj -t:Publish -p:Configuration=%_C% -p:DeleteExistingFiles=true -p:TargetFramework="net7.0" -p:OutputPath=%_P%\KSociety.Com.Srv.Host\%_C%\net7.0\ || exit /b
+msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=%1 || exit /b
 
-msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net6.0 || exit /b
+msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=%1 -p:OutputPath=%_P%\KSociety.ComServer.MsiSetup\bin\%_C%\%1\ || exit /b
 
-msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=net6.0 -p:OutputPath=%_P%\KSociety.ComServer.MsiSetup\%_C%\net6.0\ || exit /b
+msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=%1 || exit /b
 
-msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net7.0 || exit /b
+msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=%1 -p:OutputPath=%_P%\KSociety.ComWebApp.MsiSetup\bin\%_C%\%1\ || exit /b
 
-msbuild src\00\Com\KSociety.ComServer.MsiSetup\KSociety.ComServer.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=net7.0 -p:OutputPath=%_P%\KSociety.ComServer.MsiSetup\%_C%\net7.0\ || exit /b
+msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=%1 || exit /b
 
-REM
-
-msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net6.0 || exit /b
-
-msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=net6.0 -p:OutputPath=%_P%\KSociety.ComWebApp.MsiSetup\%_C%\net6.0\ || exit /b
-
-msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net7.0 || exit /b
-
-msbuild src\00\Com\KSociety.ComWebApp.MsiSetup\KSociety.ComWebApp.MsiSetup.wixproj -p:Configuration=%_C% -p:NetVersion=net7.0 -p:OutputPath=%_P%\KSociety.ComWebApp.MsiSetup\%_C%\net7.0\ || exit /b
-
-REM
-
-msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net6.0 || exit /b
-
-msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -p:Configuration=%_C% -p:NetVersion=net6.0 -p:OutputPath=%_P%\KSociety.Com.Install\%_C%\net6.0\ || exit /b
-
-msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -t:clean;restore -p:Configuration=%_C% -p:NetVersion=net7.0 || exit /b
-
-msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -p:Configuration=%_C% -p:NetVersion=net7.0 -p:OutputPath=%_P%\KSociety.Com.Install\%_C%\net7.0\ || exit /b
+msbuild src\00\Com\KSociety.Com.Install\KSociety.Com.Install.wixproj -p:Configuration=%_C% -p:NetVersion=%1 -p:OutputPath=%_P%\KSociety.Com.Install\bin\%_C%\%1\ || exit /b
 
 goto LExit
 

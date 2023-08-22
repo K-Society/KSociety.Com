@@ -5,7 +5,7 @@
     <NetVersion>net6.0</NetVersion>
   </PropertyGroup>
   <ItemGroup>
-    <HarvestDirectory Include="..\..\..\..\build\KSociety.Com.Srv.Host\Release\$(NetVersion)\publish">
+    <HarvestDirectory Include="..\..\..\..\build\KSociety.Com.Srv.Host\bin\Release\$(NetVersion)\publish">
       <ComponentGroupName>HarvestedComponents</ComponentGroupName>
       <DirectoryRefId>NetVersionFolder</DirectoryRefId>
       <SuppressRootDirectory>true</SuppressRootDirectory>
@@ -14,7 +14,7 @@
       <KeepEmptyDirectories>true</KeepEmptyDirectories>
       <Transforms>Filter.xslt</Transforms>
     </HarvestDirectory>
-    <BindPath Include="..\..\..\..\build\KSociety.Com.Srv.Host\Release\$(NetVersion)\publish">
+    <BindPath Include="..\..\..\..\build\KSociety.Com.Srv.Host\bin\Release\$(NetVersion)\publish">
     </BindPath>
   </ItemGroup>
   <ItemGroup>
