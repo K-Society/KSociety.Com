@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.Srv.Contract" Version="1.2.41" />
+    <PackageReference Include="KSociety.Base.Srv.Contract" Version="1.2.57" />
     <PackageReference Include="protobuf-net.Grpc" Version="1.1.1" />
   </ItemGroup>
 
