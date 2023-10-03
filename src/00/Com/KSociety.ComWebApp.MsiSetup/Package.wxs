@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
-  <Package Name="KSociety.ComWebApp.MsiSetup $(Version)"
+  <Package Name="KSociety.ComWebApp.MsiSetup $(Version) $(NetVersion)"
            Manufacturer="K-Society"
            Version="$(AssemblyFileVersion)"
            UpgradeCode="7B32A7AA-6559-40F9-A923-3EDA0985830E"
@@ -8,7 +8,7 @@
            Language="1033"
            Scope="perMachine"
            ShortNames="yes">
-    <Media Id="1" Cabinet="ComWebApp.cab" EmbedCab="yes"/>
+    <Media Id="1" Cabinet="ComWebApp_$(NetVersion).cab" EmbedCab="yes"/>
     <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
     <WixVariable Id="Edition" Value="Enterprise"/>
     <ui:WixUI Id="WixUI_Minimal" />

@@ -33,7 +33,6 @@ namespace KSociety.Com.Domain.Entity.View.Common
                 string name,
                 int clock,
                 int update)
-            //:base(/*LogManager.GetCurrentClassLogger()*/)
         {
             Id = id;
             Name = name;
@@ -41,15 +40,13 @@ namespace KSociety.Com.Domain.Entity.View.Common
             Update = update;
         }
 
-        public Entity.Common.TagGroup GetTagGroup( /*IConnectionFactory connectionFactory,*/
+        public Entity.Common.TagGroup GetTagGroup( 
                 INotifierMediatorService notifierMediatorService)
-            //public Entity.Common.TagGroup GetTagGroup(IConnection connectionFactory)
         {
             Logger?.LogInformation("GetTagGroup: " + Name);
 
             var tagGroup = new Entity.Common.TagGroup(
                 notifierMediatorService,
-                ////connectionFactory,
                 Id,
                 Name,
                 Clock,
@@ -63,30 +60,5 @@ namespace KSociety.Com.Domain.Entity.View.Common
 
             return tagGroup;
         }
-
-        //public void Initiate(List<Joined.AllTagGroupAllConnection> dataList)
-        //{
-        //    Logger.Trace("Domain.Entity.View.Common.TagGroupReady Initiate: " + Name);
-        //    if (!dataList.Any())
-        //    {
-        //        Logger.Warn("Domain.Entity.View.Common.TagGroupReady: " + Name + " No Data!");
-        //        return;
-        //    }
-        //    _dataList = dataList;
-
-        //    _connectionName = _dataList.Select(connection => connection.ConnectionName).Distinct().ToList();
-
-        //    foreach (var connection in _connectionName)
-        //    {
-        //        //var temp = _dataList.Where(dataItem => dataItem.ConnectionName.Equals(connection) && dataItem.InputOutput.Equals("R") || dataItem.InputOutput.Equals("RW")).ToList();
-
-        //        var connectionData = _dataList.Find(tag => tag.ConnectionName.Equals(connection)).GetAllConnection();
-
-        //        if(_systemConnections.ContainsKey(connection)) continue;
-        //        _systemConnections.Add(connection, connectionData);
-
-        //        connectionData.Initiate(_dataList.Where(dataItem => dataItem.ConnectionName.Equals(connection)).ToList());
-        //    }
-        //}//Initiate
     }
 }

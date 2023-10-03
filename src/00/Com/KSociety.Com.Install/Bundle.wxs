@@ -16,12 +16,12 @@
       <MsiPackage
         Visible="no"
         Compressed="yes"
-        SourceFile="..\..\..\..\build\KSociety.ComServer.MsiSetup\Release\$(NetVersion)\en-US\KSociety.ComServer-$(Version)-$(NetVersion).msi" >
+        SourceFile="..\..\..\..\build\KSociety.ComServer.MsiSetup\bin\Release\$(NetVersion)\en-US\KSociety.ComServer-$(Version)-$(NetVersion).msi" >
       </MsiPackage>
       <MsiPackage
         Visible="no"
         Compressed="yes"
-        SourceFile="..\..\..\..\build\KSociety.ComWebApp.MsiSetup\Release\$(NetVersion)\en-US\KSociety.ComWebApp-$(Version)-$(NetVersion).msi" />
+        SourceFile="..\..\..\..\build\KSociety.ComWebApp.MsiSetup\bin\Release\$(NetVersion)\en-US\KSociety.ComWebApp-$(Version)-$(NetVersion).msi" />
     </Chain>
 
   </Bundle>

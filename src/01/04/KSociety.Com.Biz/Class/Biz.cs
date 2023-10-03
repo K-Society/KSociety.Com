@@ -72,29 +72,6 @@ public class Biz : IBiz
 
                 #region [Connection]
 
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "Add TagGroupEventBus", tagGroupReady.Name + "_Connection");
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Connection", 
-                //    new EventBusRabbitMqRpcClient(_persistentConnection, _loggerFactory, new ConnectionStatusRpcHandler(_loggerFactory, _componentContext), 
-                //        null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name));
-                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Connection"]).Initialize();
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Connection");
-
-                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Connection"])
-                //    .SubscribeRpcClient<ConnectionStatusIntegrationEventReply, ConnectionStatusRpcClientHandler>(tagGroupReady.Name + ".automation.connection.client.com");
-
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "Add TagGroupEventBus", tagGroupReady.Name + "_Connection_Server");
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Connection_Server",
-                //    new EventBusRabbitMqRpcServer(_persistentConnection, _loggerFactory, new ConnectionStatusRpcServerHandler(_loggerFactory, _componentContext),
-                //        null, _eventBusComParameters, "BusinessQueueConnection_" + tagGroupReady.Name));
-                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"]).Initialize();
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Connection_Server");
-
-                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Connection_Server"])
-                //    .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.connection.server");
-
-
                 Subscriber.SubscribeClientServer<
                     ConnectionStatusRpcClientHandler, ConnectionStatusRpcServerHandler,
                     ConnectionStatusIntegrationEvent, ConnectionStatusIntegrationEventReply>(
@@ -107,35 +84,12 @@ public class Biz : IBiz
 
                 #endregion
 
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Invoke", 
-                //    new EventBusRabbitMqQueue(_persistentConnection, _loggerFactory, new TagInvokeEventHandler(_loggerFactory, _componentContext),
-                //        null, _eventBusComParameters, "BusinessQueueInvoke_" + tagGroupReady.Name));
-                //((IEventBusQueue)TagGroupEventBus[tagGroupReady.Name + "_Invoke"]).Initialize();
-
                 Subscriber.SubscribeInvoke<TagInvokeEventHandler, TagIntegrationEvent>(
                     tagGroupReady.Name + "_Invoke", "BusinessQueueInvoke_" + tagGroupReady.Name, 
                     new TagInvokeEventHandler(_loggerFactory, _componentContext)
                     );
 
                 #region [Read]
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Read",
-                //    new EventBusRabbitMqRpcClient(PersistentConnection, _loggerFactory, new TagReadRpcClientHandler(_loggerFactory, _componentContext),
-                //        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
-
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Read");
-
-                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Read"])
-                //    .SubscribeRpcClient<TagReadIntegrationEventReply, TagReadRpcClientHandler>(tagGroupReady.Name + ".automation.read.client.com");
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Read_Server",
-                //    new EventBusRabbitMqRpcServer(PersistentConnection, _loggerFactory, new TagReadRpcServerHandler(_loggerFactory, _componentContext),
-                //        null, _eventBusComParameters, "BusinessQueueRead_" + tagGroupReady.Name, CancellationToken.None));
-
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Read_Server");
-
-                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Read_Server"])
-                //    .SubscribeRpcServer<TagReadIntegrationEvent, TagReadIntegrationEventReply, TagReadRpcServerHandler>(tagGroupReady.Name + ".automation.read.server");
 
                 Subscriber.SubscribeClientServer<
                     TagReadRpcClientHandler, TagReadRpcServerHandler, 
@@ -150,24 +104,6 @@ public class Biz : IBiz
                 #endregion
 
                 #region [Write]
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Write", 
-                //    new EventBusRabbitMqRpcClient(_persistentConnection, _loggerFactory, new TagWriteRpcHandler(_loggerFactory, _componentContext), 
-                //        null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name));
-                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"]).Initialize();
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcClient", tagGroupReady.Name + "_Write");
-
-                //((IEventBusRpcClient)TagGroupEventBus[tagGroupReady.Name + "_Write"])
-                //    .SubscribeRpcClient<TagWriteIntegrationEventReply, TagWriteRpcClientHandler>(tagGroupReady.Name + ".automation.write.client.com");
-
-                //TagGroupEventBus.Add(tagGroupReady.Name + "_Write_Server",
-                //    new EventBusRabbitMqRpcServer(_persistentConnection, _loggerFactory, new TagWriteRpcServerHandler(_loggerFactory, _componentContext),
-                //        null, _eventBusComParameters, "BusinessQueueWrite_" + tagGroupReady.Name));
-                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"]).Initialize();
-                //_logger.LogTrace("LoadGroup: {0} - {1}", "SubscribeRpcServer", tagGroupReady.Name + "_Write_Server");
-
-                //((IEventBusRpcServer)TagGroupEventBus[tagGroupReady.Name + "_Write_Server"])
-                //    .SubscribeRpcServer<TagWriteIntegrationEvent, TagWriteIntegrationEventReply, TagWriteRpcServerHandler>(tagGroupReady.Name + ".automation.write.server");
 
                 Subscriber.SubscribeClientServer<
                     TagWriteRpcClientHandler, TagWriteRpcServerHandler,
@@ -189,9 +125,6 @@ public class Biz : IBiz
                     .Initiate(_allTagGroupAllConnection.GetAllTagGroupAllConnection()
                         .Where(tags => tags.TagGroupName.Equals(tagGroupReady.Name))
                         .ToList());
-
-                //tagGroupReady.Initiate(_allTagGroupAllConnection.AllTagGroupAllConnections
-                //    .Where(tags => tags.TagGroupName.Equals(tagGroupReady.Name)).ToList());
             }
         }
         catch (Exception ex)

@@ -36,25 +36,29 @@ jobs:
           echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
           echo 'SimpleVersion=${{ steps.nbgv.outputs.SimpleVersion }}'
 
-      - name: Build KSociety.Com
+      - name: Build KSociety.Com net6.0
         shell: cmd
-        run: ./build.cmd
+        run: ./build.cmd net6.0
 
       - name: Zip Installer net6.0
         shell: pwsh
-        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\Release\net6.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.exe -DestinationPath .\build\KSociety.Com.Install\Release\net6.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip -Force
+        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\bin\Release\net6.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.exe -DestinationPath .\build\KSociety.Com.Install\bin\Release\net6.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip -Force
+
+      - name: Build KSociety.Com net7.0
+        shell: cmd
+        run: ./build.cmd net7.0
 
       - name: Zip Installer net7.0
         shell: pwsh
-        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\Release\net7.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.exe -DestinationPath .\build\KSociety.Com.Install\Release\net7.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip -Force
+        run: Compress-Archive -LiteralPath .\build\KSociety.Com.Install\bin\Release\net7.0\KSociety.Com.Install-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.exe -DestinationPath .\build\KSociety.Com.Install\bin\Release\net7.0\K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip -Force
 
       - name: Push to GitHub Packages
         if: github.event_name == 'push' && github.repository_owner == 'K-Society' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop')
-        run: dotnet nuget push "build/**/Release/*.nupkg" --source https://nuget.pkg.github.com/K-Society/index.json --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
+        run: dotnet nuget push "build/**/bin/Release/*.nupkg" --source https://nuget.pkg.github.com/K-Society/index.json --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate
 
       - name: Push to NuGet Packages
         if: github.event_name == 'push' && github.repository_owner == 'K-Society' && (github.ref == 'refs/heads/master')
-        run: nuget push build/**/Release/*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} -SkipDuplicate
+        run: nuget push build/**/bin/Release/*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} -SkipDuplicate
 
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -66,6 +70,6 @@ jobs:
           name: K-Society.Com ${{ steps.nbgv.outputs.SimpleVersion }}
           tag_name: ${{ steps.nbgv.outputs.SimpleVersion }}
           files: |
-            ./build/KSociety.Com.Install/Release/net6.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip
-            ./build/KSociety.Com.Install/Release/net7.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip
+            ./build/KSociety.Com.Install/bin/Release/net6.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net6.0.zip
+            ./build/KSociety.Com.Install/bin/Release/net7.0/K-Society.Com-${{ steps.nbgv.outputs.SimpleVersion }}-net7.0.zip
         

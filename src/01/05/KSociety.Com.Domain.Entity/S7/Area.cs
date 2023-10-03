@@ -12,8 +12,6 @@ namespace KSociety.Com.Domain.Entity.S7
         public virtual ICollection<S7Tag> S7Tags { get; set; }
         public virtual ICollection<BlockArea> S7BlockAreas { get; set; }
 
-        //private Area() { }
-
         public Area(int id, string areaName, string mean)
         {
             Id = id;

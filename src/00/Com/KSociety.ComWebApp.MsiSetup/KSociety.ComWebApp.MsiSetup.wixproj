@@ -1,11 +1,11 @@
-﻿<Project Sdk="WixToolset.Sdk/4.0.1">
+﻿<Project Sdk="WixToolset.Sdk/4.0.2">
   <PropertyGroup>
     <Cultures>en-US</Cultures>
     <OutputName>KSociety.ComWebApp</OutputName>
     <NetVersion>net6.0</NetVersion>
   </PropertyGroup>
   <ItemGroup>
-    <HarvestDirectory Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\Release\$(NetVersion)\publish">
+    <HarvestDirectory Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\bin\Release\$(NetVersion)\publish">
       <ComponentGroupName>HarvestedComponents</ComponentGroupName>
       <DirectoryRefId>NetVersionFolder</DirectoryRefId>
       <SuppressRootDirectory>true</SuppressRootDirectory>
@@ -14,16 +14,16 @@
       <KeepEmptyDirectories>true</KeepEmptyDirectories>
       <Transforms>Filter.xslt</Transforms>
     </HarvestDirectory>
-    <BindPath Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\Release\$(NetVersion)\publish">
+    <BindPath Include="..\..\..\..\build\KSociety.Com.Pre.Web.App\bin\Release\$(NetVersion)\publish">
     </BindPath>
   </ItemGroup>
   <ItemGroup>
     <None Include="Filter.xslt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="WixToolset.Firewall.wixext" Version="4.0.1" />
-    <PackageReference Include="WixToolset.Heat" Version="4.0.1" />
-    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.1" />
+    <PackageReference Include="WixToolset.Firewall.wixext" Version="4.0.2" />
+    <PackageReference Include="WixToolset.Heat" Version="4.0.2" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.2" />
   </ItemGroup>
   <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
     <CreateProperty Value="$(OutputName)-$(BuildVersion3Components)-$(NetVersion)">

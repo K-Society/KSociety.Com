@@ -9,13 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="KSociety.Base.Srv.Contract" Version="1.2.33" />
+    <PackageReference Include="KSociety.Base.Srv.Contract" Version="1.2.57" />
     <PackageReference Include="protobuf-net.Grpc" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\04\KSociety.Com.Biz\KSociety.Com.Biz.csproj" />
-    <ProjectReference Include="..\KSociety.Com.Srv.Dto\KSociety.Com.Srv.Dto.csproj" />
   </ItemGroup>
 
 </Project>

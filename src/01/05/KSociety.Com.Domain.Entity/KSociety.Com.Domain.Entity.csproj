@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.7.1" />
-    <PackageReference Include="KSociety.Base.Domain.Shared" Version="1.2.33" />
-    <PackageReference Include="Polly" Version="7.2.4" />
+    <PackageReference Include="KSociety.Base.Domain.Shared" Version="1.2.57" />
+    <PackageReference Include="Polly" Version="8.0.0" />
     <PackageReference Include="Quartz" Version="3.7.0" />
   </ItemGroup>
 

@@ -11,8 +11,6 @@ namespace KSociety.Com.Domain.Entity.Common
 
         public virtual ICollection<S7Tag> S7Tags { get; set; }
 
-        //public Bit() { }
-
         public Bit(byte bitOfByte, string bitName)
         {
             BitOfByte = bitOfByte;

@@ -14,26 +14,17 @@ public class Biz<TContext> : Module where TContext : DatabaseContext
     public Biz(bool debugFlag)
     {
         _debugFlag = debugFlag;
-
-        //_mqHostName = "localhost";//mqHostName;
-        //_mqUserName = "KSociety";//mqUserName;
-        //_mqPassword = "KSociety";//mqPassword;
-        ////_mqUserName = "guest";//mqUserName;
-        ////_mqPassword = "guest";//mqPassword;
     }
     protected override void Load(ContainerBuilder builder)
     {
         builder.RegisterType<NotifyTagValueChangedHandler>().AsImplementedInterfaces().InstancePerDependency();
 
         builder.RegisterType<Infra.DataAccess.Repository.View.Common.TagGroupReady<TContext>>()
-            .As<Domain.Repository.View.Common.ITagGroupReady>(); //.InstancePerLifetimeScope();
+            .As<Domain.Repository.View.Common.ITagGroupReady>();
 
         builder.RegisterType<NotifierMediatorService>().As<INotifierMediatorService>();
 
         builder.RegisterType<Com.Biz.Class.Biz>().As<IBiz>().SingleInstance();
         builder.RegisterType<Com.Biz.Class.Startup>().As<IStartable>().SingleInstance();
-
-        //builder.RegisterType<Srv.Behavior.Biz.Biz>().As<Srv.Contract.Biz.IBiz>();
-        //builder.RegisterType<Srv.Behavior.Biz.BizAsync>().As<Srv.Contract.Biz.IBizAsync>();
     }
 }

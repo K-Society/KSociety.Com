@@ -22,7 +22,7 @@ namespace KSociety.Com.Srv.Behavior.Biz;
 public class Biz : IBiz
 {
     private readonly ILoggerFactory _loggerFactory;
-    private static ILogger<Biz> _logger;
+    private static ILogger<Biz>? _logger;
     private readonly IComponentContext _componentContext;
     private readonly IEventBusComParameters _eventBusComParameters;
     private readonly ICommandHandler _commandHandler;
@@ -93,7 +93,7 @@ public class Biz : IBiz
         }
         catch (Exception ex)
         {
-            _logger.LogError("LoadGroups: " + ex.Message + " - " + ex.StackTrace);
+            _logger?.LogError(ex, "LoadGroups: ");
         }
     }
 
@@ -112,7 +112,7 @@ public class Biz : IBiz
             }
             catch (TaskCanceledException tce)
             {
-                _logger.LogWarning(tce, "SendHeartBeatAsync: CancellationToken CancellationRequested.");
+                _logger?.LogWarning(tce, "SendHeartBeatAsync: CancellationToken CancellationRequested.");
             }
 
             if (!cancel.IsCancellationRequested)
@@ -121,30 +121,6 @@ public class Biz : IBiz
             }
         }
     }
-
-    //public IEnumerable<TagIntegrationEvent> NotifyTagInvoke(NotifyTagReq notifyTagReq, CallContext context = default) =>
-    //    NotifyTagInvoke(notifyTagReq, context.CancellationToken);
-
-    //private async IEnumerable<TagIntegrationEvent> NotifyTagInvoke(NotifyTagReq notifyTagReq, [EnumeratorCancellation] CancellationToken cancel)
-    //{
-    //    await foreach (var tagInvokeIntegrationEvent in ((IEventBusQueue)TagGroupEventBus[notifyTagReq.GroupName + "_Invoke"])
-    //        .GetIntegrationQueueHandler<TagIntegrationEvent, TagInvokeQueueHandler>().Dequeue(cancel))
-    //    {
-    //        yield return tagInvokeIntegrationEvent;
-    //    }
-    //}
-
-    //public IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, CallContext context = default) =>
-    //    NotifyTagReadAsync(notifyTagReq, context.CancellationToken);
-
-    //private async IAsyncEnumerable<TagReadIntegrationEvent> NotifyTagReadAsync(NotifyTagReq notifyTagReq, [EnumeratorCancellation] CancellationToken cancel)
-    //{
-    //    await foreach (var tagReadIntegrationEvent in TagGroupEventBus[notifyTagReq.GroupName + "_Read"]
-    //        .GetIntegrationQueueHandler<TagReadIntegrationEvent, TagReadQueueHandler>().Dequeue(cancel))
-    //    {
-    //        yield return tagReadIntegrationEvent;
-    //    }
-    //}
 
     public App.Dto.Res.Biz.GetConnectionStatus ConnectionStatus(GetConnectionStatus request, CallContext context = default)
     {
