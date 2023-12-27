@@ -1,4 +1,4 @@
-﻿<Project Sdk="WixToolset.Sdk/4.0.2">
+﻿<Project Sdk="WixToolset.Sdk/4.0.3">
   <PropertyGroup>
     <Cultures>en-US</Cultures>
     <OutputName>KSociety.Com.Install</OutputName>
@@ -6,7 +6,7 @@
     <OutputType>Bundle</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="WixToolset.Bal.wixext" Version="4.0.2" />
+    <PackageReference Include="WixToolset.Bal.wixext" Version="4.0.3" />
   </ItemGroup>
   <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
     <CreateProperty Value="$(OutputName)-$(BuildVersion3Components)-$(NetVersion)">

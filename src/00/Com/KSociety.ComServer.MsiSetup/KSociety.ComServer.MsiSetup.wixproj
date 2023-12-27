@@ -1,4 +1,4 @@
-﻿<Project Sdk="WixToolset.Sdk/4.0.2">
+﻿<Project Sdk="WixToolset.Sdk/4.0.3">
   <PropertyGroup>
     <Cultures>en-US</Cultures>
     <OutputName>KSociety.ComServer</OutputName>
@@ -21,9 +21,9 @@
     <None Include="Filter.xslt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="WixToolset.Firewall.wixext" Version="4.0.2" />
-    <PackageReference Include="WixToolset.Heat" Version="4.0.2" />
-    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.2" />
+    <PackageReference Include="WixToolset.Firewall.wixext" Version="4.0.3" />
+    <PackageReference Include="WixToolset.Heat" Version="4.0.3" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.3" />
   </ItemGroup>
   <Target Name="CustomBeforeBuild" BeforeTargets="BeforeBuild" DependsOnTargets="GetBuildVersion">
     <CreateProperty Value="$(OutputName)-$(BuildVersion3Components)-$(NetVersion)">

@@ -11,16 +11,16 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.2.57" />
-    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.2.57" />
-    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.2.48" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+    <PackageReference Include="KSociety.Base.Srv.Behavior" Version="1.3.33" />
+    <PackageReference Include="KSociety.Base.Srv.Host.Shared" Version="1.3.33" />
+    <PackageReference Include="KSociety.Log.Serilog.Sinks.RabbitMq" Version="1.2.72" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.0" />
     <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Serilog.AspNetCore" Version="7.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
